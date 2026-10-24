@@ -414,3 +414,4 @@ picture{display:contents}
 }
 .hero .hero-bar .btns{flex-wrap:wrap;max-width:100%}
 @media (max-width:600px){.hero .hero-bar .btns{width:100%}.hero .hero-bar .btn{flex:1 1 auto;justify-content:center;text-align:center;padding-left:18px;padding-right:18px}}
+.cs-note{font-size:14px;color:var(--muted);max-width:78ch;margin-top:14px}

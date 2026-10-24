@@ -8,7 +8,7 @@ export const stats = [
   { value: '<2 wks', label: 'Concept to production' },
   { value: '152', label: 'Reviewed pull requests' },
   { value: '1,218', label: 'Automated tests' },
-  { value: '~5 hrs', label: 'Saved per week, by my estimate' },
+  { value: '~2 hrs', label: 'Saved per person per week, by my estimate' },
 ];
 
 export const modules = [
