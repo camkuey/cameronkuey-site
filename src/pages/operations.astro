@@ -1,0 +1,76 @@
+---
+import Base from '../layouts/Base.astro';
+const roles = [
+  {
+    when: 'Now', now: true, title: 'Director of Business Operations', org: 'Doodle Pirates Foundation',
+    bullets: [
+      'Designed and launched the Internal Dashboard as product owner, taking it from concept to a live production site in under two weeks: one role-based platform for projects and tasks, onboarding, PTO, documentation, shift scheduling, time clocking, payroll preparation and a manufacturing shop-floor kiosk.',
+      'Built Ask Otis, an embedded Claude-powered assistant with human-in-the-loop approval before any change is saved.',
+      'Designed the organization-wide agentic operating model and deployed about 20 AI agents mapped to org-chart roles across all six departments.',
+      'Architected four connected Airtable bases, including a 30-table operations backbone and a 32-table manufacturing ERP.',
+      'Built an AI meeting-to-task pipeline that turns transcripts into approved tasks, saving about 5 hours a week.',
+      'Set up Foundation operations and migrated the team from Microsoft 365 to Google Workspace and Slack.',
+    ],
+    more: { href: '/case-studies/internal-dashboard', text: 'Read the Internal Dashboard case study' },
+  },
+  {
+    when: 'May 2024 – April 2026', title: 'Content Operations Manager', org: 'Modern Health',
+    bullets: [
+      'Built and maintained 150+ automations across Zapier, Airtable, Salesforce, Quickbase, Zoom and Google Apps Script.',
+      'Partnered with Revenue, Business and Product Operations, Marketing, Clinical, Finance, Legal and Content Studio to turn ambiguous requirements into end-to-end system designs.',
+      'Designed data pipelines and API integrations that unified revenue, operations and finance data.',
+      'Automated provider contracting, order forms and invoicing across a multi-sided marketplace.',
+    ],
+  },
+  {
+    when: 'May 2022 – May 2024', title: 'Creative Producer', org: 'Modern Health',
+    bullets: [
+      'Owned scheduling, logistics and live production for 570+ provider-led group Circles.',
+      'Led continuous operational experimentation; iterations supported 60%+ year-over-year growth in a core product line.',
+    ],
+  },
+  {
+    when: '2015 – 2022', title: 'Founder & Executive Director', org: 'The Cultivation Project',
+    bullets: [
+      'Founded and ran a nonprofit media organization: day-to-day operations, financial systems, fundraising, the creative team and the board.',
+      'Guided the team to create 70+ documentaries, promotional videos, podcasts and educational content.',
+    ],
+    more: { href: '/documentaries', text: 'See The Cultivation Project’s films' },
+  },
+  {
+    when: '2012 – 2022', title: 'Founder', org: 'Cosie Co. Productions',
+    bullets: [
+      'Wedding, family and corporate photography and videography: 100+ weddings and events photographed and 50+ video projects produced.',
+      'Ran the whole client operation myself, from lead intake and contracts to scheduling, delivery and invoicing.',
+    ],
+    more: { href: '/photography', text: 'See the photography' },
+  },
+];
+---
+<Base title="Operations" section="operations"
+  description="Cameron Kuey’s operations experience: Director of Business Operations at Doodle Pirates Foundation, Modern Health, and founder of The Cultivation Project and Cosie Co.">
+  <div class="wrap">
+    <header class="page-head">
+      <p class="eyebrow">Operations</p>
+      <h1>Running the business side so <em>mission work moves faster.</em></h1>
+      <p class="lede">Processes, data, teams and tools: I design the big picture, then build the systems that make it run.</p>
+      <div class="btns"><a class="btn solid" href="/resume.pdf">Download résumé (PDF)</a><a class="btn" href="/ai-builds">AI builds →</a></div>
+    </header>
+  </div>
+  <section style="padding-top:24px"><div class="wrap">
+    <div class="sec-head"><h2>Experience</h2><p class="eyebrow">2012 – now</p></div>
+    <div class="roles">
+      {roles.map((r) => (
+        <article class="role">
+          <p class="when">{r.now ? <b>Now</b> : r.when}</p>
+          <div>
+            <h3>{r.title}</h3>
+            <p class="org">{r.org}</p>
+            <ul>{r.bullets.map((b) => <li>{b}</li>)}</ul>
+            {r.more && <p class="more"><a href={r.more.href}>{r.more.text} →</a></p>}
+          </div>
+        </article>
+      ))}
+    </div>
+  </div></section>
+</Base>

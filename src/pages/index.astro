@@ -1,0 +1,115 @@
+---
+import Base from '../layouts/Base.astro';
+import Pic from '../components/Pic.astro';
+import DashboardArt from '../components/DashboardArt.astro';
+import { SITE } from '../lib/site';
+
+const work = [
+  { cls: 'w1', id: 'photography/01-7fe5208b', href: '/wedding-photography', title: 'Wedding Photography', tag: 'Cosie Co.', alt: 'Bride and groom in a forest clearing', sizes: '(max-width: 900px) 100vw, 720px' },
+  { cls: 'w2', id: 'video-production/02-49466d51', href: '/documentaries', title: 'Documentaries & Short Stories', tag: 'The Cultivation Project', play: true, alt: 'Two people in conversation during a filmed interview', sizes: '(max-width: 900px) 100vw, 520px' },
+  { cls: 'w3', id: 'engagement-proposals/03-9554103e', href: '/engagement-proposals', title: 'Engagements & Proposals', tag: 'Photo', alt: 'Black and white portrait of an engaged couple', sizes: '(max-width: 900px) 50vw, 410px' },
+  { cls: 'w4', id: 'video-production/03-4e826515', href: '/commercials-social-media-ads', title: 'Commercials & Social Ads', tag: 'Video', play: true, alt: 'Hand holding Bible book covers for Alabaster Co.', sizes: '(max-width: 900px) 50vw, 410px' },
+  { cls: 'w5', id: 'family-photoshoots/02-081697bb', href: '/family-photoshoots', title: 'Family Photoshoots', tag: 'Photo', alt: 'Toddler playing in autumn leaves', sizes: '(max-width: 900px) 100vw, 410px' },
+  { cls: 'w6', id: 'audio-production/01-0bcb341f', href: '/coffee-meets-bible-podcast', title: 'Coffee Meets Bible', tag: 'Podcast', alt: 'Coffee Meets Bible podcast cover art', sizes: '(max-width: 900px) 100vw, 520px' },
+  { cls: 'w7', id: 'graduation-photoshoots/10-2322cd02', href: '/graduation-photoshoots', title: 'Graduation Photoshoots', tag: 'Photo', alt: 'Graduates jumping on the beach', sizes: '(max-width: 900px) 100vw, 720px' },
+];
+
+const jsonld = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: 'Cameron Kuey',
+  url: SITE.url,
+  image: `${SITE.url}/og.jpg`,
+  email: `mailto:${SITE.email}`,
+  jobTitle: 'Director of Business Operations',
+  worksFor: { '@type': 'Organization', name: 'Doodle Pirates Foundation' },
+  sameAs: [SITE.linkedin, SITE.github, SITE.cosie, SITE.tcp],
+  knowsAbout: ['Business operations', 'Airtable', 'AI-assisted software development', 'Photography', 'Video production', 'Graphic design'],
+};
+---
+<Base title="Cameron Kuey" description="Cameron Kuey — Director of Business Operations at Doodle Pirates Foundation, builder of AI-powered internal tools, and a photographer and filmmaker (Cosie Co., The Cultivation Project)." jsonld={jsonld}>
+<section class="hero" aria-labelledby="h"><div class="wrap">
+  <p class="eyebrow">Operations · AI &amp; technical builds · Photo, film &amp; design</p>
+  <h1 id="h" style="margin-top:22px">I build systems,<br /><em>stories,</em> and AI tools.</h1>
+  <div class="hero-grid">
+    <div class="hero-intro">
+      <p>I’m Cameron — Director of Business Operations at Doodle Pirates Foundation, a hands-on builder of AI-powered internal tools, and a photographer and filmmaker who has been telling stories through Cosie Co. and The Cultivation Project since 2012.</p>
+      <div class="meta">
+        <div><b>Now</b>Doodle Pirates Foundation</div>
+        <div><b>Before</b>Modern Health</div>
+        <div><b>Founder</b>Cosie Co. · The Cultivation Project</div>
+      </div>
+      <div class="btns"><a class="btn solid" href="/case-studies/internal-dashboard">See the Internal Dashboard →</a><a class="btn" href="/contact">Get in touch</a></div>
+    </div>
+    <figure class="hero-photo">
+      <Pic id="engagement-proposals/09-9efda6cb" eager sizes="(max-width: 900px) 100vw, 600px" style="object-position:50% 40%" alt="Couple embracing on a granite outcrop with Yosemite Valley behind them" />
+      <figcaption><a href="/engagement-proposals">Engagement session, Yosemite</a><span>Photo — Cameron Kuey</span></figcaption>
+    </figure>
+  </div>
+</div></section>
+
+<section id="paths" aria-labelledby="paths-h"><div class="wrap">
+  <div class="sec-head"><h2 id="paths-h">Three ways I work</h2><p class="eyebrow">Choose a path</p></div>
+  <div class="paths">
+    <a class="path" href="/operations">
+      <span class="num">01</span><h3>Operations</h3>
+      <p>Running the business side so mission work can move faster — processes, data, teams and tools.</p>
+      <ul><li>Director of Business Operations, Doodle Pirates Foundation</li><li>Content Operations Manager, Modern Health (prev.)</li><li>Airtable ERP &amp; workflow design</li></ul>
+      <span class="go">Operations work →</span>
+    </a>
+    <a class="path" href="/ai-builds">
+      <span class="num">02</span><h3>AI &amp; Technical Builds</h3>
+      <p>Shipping production software with Claude Code, Claude Design and AI coding agents — with humans kept in the loop.</p>
+      <ul><li>All-in-one Internal Dashboard</li><li>Ask Otis, a Claude-powered assistant</li><li>~20 AI agents mapped to org roles</li></ul>
+      <span class="go">Technical builds →</span>
+    </a>
+    <a class="path" href="/creative">
+      <span class="num">03</span><h3>Creative Work</h3>
+      <p>Photography, video, design and podcasting — 100+ weddings and events, 50+ video projects, dozens of brand materials.</p>
+      <ul><li>Cosie Co. Productions, est. 2012</li><li>The Cultivation Project, est. 2015</li><li>Coffee Meets Bible podcast</li></ul>
+      <span class="go">Creative portfolio →</span>
+    </a>
+  </div>
+</div></section>
+
+<section id="case" aria-labelledby="case-h" style="padding-top:0"><div class="wrap">
+  <div class="sec-head"><h2>Featured case study</h2><p class="eyebrow">AI &amp; Technical Builds</p></div>
+  <article class="case">
+    <div class="case-body">
+      <p class="eyebrow">Doodle Pirates Foundation · Internal tools</p>
+      <h3 id="case-h">An all-in-one Internal Dashboard, <em>concept to production in under two weeks.</em></h3>
+      <p>Built with Claude Code, Claude Design and AI coding agents on top of an Airtable ERP — including Ask Otis, a Claude-powered assistant with human-in-the-loop approval built in.</p>
+      <div class="stats">
+        <div class="stat"><b>&lt;2 wks</b><span>Concept to production</span></div>
+        <div class="stat"><b>152</b><span>Reviewed pull requests</span></div>
+        <div class="stat"><b>1,218</b><span>Automated tests</span></div>
+        <div class="stat"><b>~20</b><span>AI agents</span></div>
+      </div>
+      <a class="btn" href="/case-studies/internal-dashboard">Read the case study →</a>
+    </div>
+    <DashboardArt />
+  </article>
+</div></section>
+
+<section id="work" aria-labelledby="work-h" style="padding-top:0"><div class="wrap">
+  <div class="sec-head"><h2 id="work-h">Selected work</h2><a class="eyebrow" href="/creative">Photography · Film · Design · Audio →</a></div>
+  <div class="work">
+    {work.map((w) => (
+      <figure class={w.cls}>
+        <a href={w.href}>
+          <span class="ph"><Pic id={w.id} alt={w.alt} sizes={w.sizes} />{w.play && <span class="play" aria-hidden="true"></span>}</span>
+          <figcaption><b>{w.title}</b><span>{w.tag}</span></figcaption>
+        </a>
+      </figure>
+    ))}
+  </div>
+</div></section>
+
+<section aria-label="About" style="padding-top:0"><div class="wrap about">
+  <Pic id="home/01-b8f082cc" alt="Portrait of Cameron Kuey" sizes="(max-width: 900px) 280px, 360px" />
+  <div>
+    <blockquote>“A creative entrepreneur who loves to tell stories, solve difficult problems, and figure out more effective ways to pass information from one source to another.”</blockquote>
+    <p>I started Cosie Co. in 2012 and founded The Cultivation Project in 2015, where I served as Chairman &amp; Executive Director through 2022 and guided the team to create 70+ documentaries, promotional videos, podcasts and educational content. Today I bring that same storytelling instinct to operations and AI-built internal tools. <a href="/home">Read my original About page</a>.</p>
+  </div>
+</div></section>
+</Base>

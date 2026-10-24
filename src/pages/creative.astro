@@ -1,0 +1,37 @@
+---
+import Base from '../layouts/Base.astro';
+import Covers from '../components/Covers.astro';
+import CreativeNav from '../components/CreativeNav.astro';
+import { CATEGORIES, page } from '../lib/site';
+const covers = CATEGORIES.map((c) => {
+  const p = page(c.slug);
+  const img = p.covers.find((x: any) => x.image)?.image ?? null;
+  return { title: c.title, href: `/${c.slug}`, image: img, tag: `${c.children.length} ${c.children.length === 1 ? 'project' : 'projects'}` };
+});
+---
+<Base title="Creative work" section="creative"
+  description="Creative work by Cameron Kuey: wedding, engagement, family and graduation photography; video production; product design; graphic design; and the Coffee Meets Bible podcast.">
+  <CreativeNav current="creative" />
+  <div class="wrap">
+    <header class="page-head wide">
+      <p class="eyebrow">Creative</p>
+      <h1>Photography, film, design <em>&amp; audio.</em></h1>
+      <p class="lede">Ten years of work through Cosie Co. and The Cultivation Project: 100+ weddings and events, 50+ video projects and dozens of brand materials.</p>
+    </header>
+  </div>
+  <section style="padding-top:8px"><div class="wrap">
+    <Covers covers={covers} three eager />
+    <div class="creative-index">
+      {CATEGORIES.map((c) => (
+        <div>
+          <h2 class="eyebrow"><a href={`/${c.slug}`}>{c.title}</a></h2>
+          <ul>{c.children.map((ch) => <li><a href={`/${ch.slug}`}>{ch.title}</a></li>)}</ul>
+        </div>
+      ))}
+      <div>
+        <h2 class="eyebrow"><a href="/home">About</a></h2>
+        <ul><li><a href="/home">Original About page</a></li><li><a href="/contact">Contact</a></li></ul>
+      </div>
+    </div>
+  </div></section>
+</Base>

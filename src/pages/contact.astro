@@ -1,0 +1,31 @@
+---
+import Base from '../layouts/Base.astro';
+import { SITE } from '../lib/site';
+const links = [
+  { label: 'Email', text: SITE.email, href: `mailto:${SITE.email}` },
+  { label: 'LinkedIn', text: 'cameron-kuey', href: SITE.linkedin, ext: true },
+  { label: 'GitHub', text: 'camkuey', href: SITE.github, ext: true },
+  { label: 'Cosie Co.', text: 'cosiephotos.com', href: SITE.cosie, ext: true },
+  { label: 'The Cultivation Project', text: 'cultivationproject.org', href: SITE.tcp, ext: true },
+];
+---
+<Base title="Contact" section="contact" footer={false}
+  description="Contact Cameron Kuey: email camkuey93@gmail.com, LinkedIn, GitHub, Cosie Co. and The Cultivation Project.">
+  <div class="wrap">
+    <header class="page-head">
+      <p class="eyebrow">Contact</p>
+      <h1>Let’s build <em>something.</em></h1>
+      <p class="lede">Operations, AI-built tools, or a photo and film project. Email is the fastest way to reach me.</p>
+    </header>
+  </div>
+  <section style="padding-top:16px"><div class="wrap">
+    <div class="contact-list">
+      {links.map((l) => (
+        <a href={l.href} target={l.ext ? '_blank' : undefined} rel={l.ext ? 'me noopener' : undefined}>
+          <span>{l.label}</span><b>{l.text}</b><span aria-hidden="true">{l.ext ? '↗' : '→'}</span>
+        </a>
+      ))}
+    </div>
+    <div class="btns"><a class="btn solid" href={`mailto:${SITE.email}`}>Email me</a><a class="btn" href="/resume.pdf">Résumé (PDF)</a></div>
+  </div></section>
+</Base>
