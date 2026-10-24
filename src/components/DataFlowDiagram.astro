@@ -1,0 +1,236 @@
+---
+/* "How data flows" diagram. Pure SVG; blobs travel on SMIL animateMotion paths.
+   Two layouts (wide + narrow) so labels stay readable on phones. The visible
+   list under the diagram (from dataFlows) is the text alternative. */
+import { dataFlows } from '../data/internal-dashboard';
+
+type Node = { id: string; x: number; y: number; w: number; h: number; t: string; s: string; kind?: 'core' | 'human'; ts?: number };
+type Blob = { label: string; tone: 'ink' | 'light' | 'red'; begin: number; side?: 'l' | 'r' | 't' };
+type Route = { id: string; d: string; dur: number; segs?: [number, number][]; blobs: Blob[] };
+type Pin = { label: string; tone: Blob['tone']; at: [number, number]; side?: Blob['side'] };
+type Layout = { pins: Pin[]; key: string; w: number; h: number; y0: number; nodes: Node[]; lines: { d: string; tone?: 'red' | 'dash' }[]; routes: Route[]; notes: { x: number; y: number; t: string; a?: string }[]; dots: boolean };
+
+// gap segments between nodes on the main request / response lanes
+const lanesH = (gaps: [number, number][], yIn: number, yOut: number) =>
+  gaps.flatMap(([a, b]) => [{ d: `M${a + 2},${yIn} H${b - 5}` }, { d: `M${b - 2},${yOut} H${a + 5}` }]);
+const lanesV = (gaps: [number, number][], xIn: number, xOut: number) =>
+  gaps.flatMap(([a, b]) => [{ d: `M${xIn},${a + 2} V${b - 5}` }, { d: `M${xOut},${b - 2} V${a + 5}` }]);
+
+const wide: Layout = {
+  key: 'w', w: 1000, h: 470, y0: 50, dots: false,
+  nodes: [
+    { id: 'user', x: 8, y: 235, w: 148, h: 70, t: 'Team member', s: 'Browser · phone · kiosk' },
+    { id: 'access', x: 227, y: 235, w: 130, h: 70, t: 'Cloudflare Access', s: 'Sign-in' },
+    { id: 'dash', x: 435, y: 235, w: 130, h: 70, t: 'Dashboard', s: 'React + Vite' },
+    { id: 'api', x: 642, y: 235, w: 130, h: 70, t: 'API', s: 'Hono · Workers' },
+    { id: 'air', x: 850, y: 235, w: 130, h: 70, t: 'Airtable', s: 'System of record', kind: 'core' },
+    { id: 'docs', x: 850, y: 70, w: 130, h: 70, t: 'Google Docs', s: 'Documentation' },
+    { id: 'cal', x: 850, y: 370, w: 130, h: 70, t: 'Google Calendar', s: 'Schedules' },
+    { id: 'otis', x: 400, y: 430, w: 130, h: 70, t: 'Ask Otis', s: 'Claude-powered' },
+    { id: 'human', x: 642, y: 430, w: 130, h: 70, t: 'Human approval', s: 'Required to save', kind: 'human' },
+  ],
+  lines: [
+    ...lanesH([[156, 227], [357, 435], [565, 642], [772, 850]], 252, 274),
+    { d: 'M752,233 V135 Q752,105 782,105 H845' },
+    { d: 'M752,307 V375 Q752,405 782,405 H845' },
+    { d: 'M530,465 H637', tone: 'red' },
+    { d: 'M680,428 V310', tone: 'red' },
+    { d: 'M774,296 H845', tone: 'red' },
+    { d: 'M480,307 V428', tone: 'dash' },
+  ],
+  routes: [
+    { id: 'req', d: 'M156,252 H850', dur: 6.6, segs: [[71, 1], [130, 0], [78, 1], [130, 0], [77, 1], [130, 0], [78, 1]], blobs: [{ label: 'task', tone: 'ink', begin: 0 }, { label: 'PTO request', tone: 'ink', begin: 2.2 }, { label: 'shift', tone: 'ink', begin: 4.4 }] },
+    { id: 'res', d: 'M850,274 H156', dur: 6.6, segs: [[78, 1], [130, 0], [77, 1], [130, 0], [78, 1], [130, 0], [71, 1]], blobs: [{ label: 'shift', tone: 'light', begin: 1.1 }, { label: 'task', tone: 'light', begin: 3.3 }, { label: 'PTO request', tone: 'light', begin: 5.5 }] },
+    { id: 'docs', d: 'M752,235 V135 Q752,105 782,105 H850', dur: 3.6, blobs: [{ label: 'doc', tone: 'ink', begin: 1 }] },
+    { id: 'cal', d: 'M752,305 V375 Q752,405 782,405 H850', dur: 3.6, blobs: [{ label: 'shift', tone: 'ink', begin: 2.8 }] },
+    { id: 'sug', d: 'M530,465 H642', dur: 3, blobs: [{ label: 'suggestion', tone: 'red', begin: 1.5 }] },
+    { id: 'ok', d: 'M680,430 V296 H850', dur: 4, segs: [[125, 1], [101, 0], [78, 1]], blobs: [{ label: 'approved', tone: 'red', begin: 3 }] },
+  ],
+  notes: [{ x: 490, y: 372, t: 'built into the dashboard' }],
+  // static chips for the reduced-motion version
+  pins: [
+    { label: 'task', tone: 'ink', at: [191, 252] }, { label: 'shift', tone: 'ink', at: [396, 252] }, { label: 'task', tone: 'ink', at: [811, 252] },
+    { label: 'shift', tone: 'light', at: [191, 274] }, { label: 'task', tone: 'light', at: [603, 274] },
+    { label: 'doc', tone: 'ink', at: [752, 175] }, { label: 'shift', tone: 'ink', at: [752, 340] },
+    { label: 'suggestion', tone: 'red', at: [586, 465] }, { label: 'approved', tone: 'red', at: [680, 370] },
+  ],
+};
+
+const narrow: Layout = {
+  key: 'n', w: 360, h: 600, y0: 0, dots: true,
+  nodes: [
+    { id: 'user', x: 95, y: 10, w: 170, h: 56, t: 'Team member', s: 'Browser · phone · kiosk' },
+    { id: 'access', x: 95, y: 96, w: 170, h: 56, t: 'Cloudflare Access', s: 'Sign-in' },
+    { id: 'dash', x: 95, y: 182, w: 170, h: 56, t: 'Dashboard', s: 'React + Vite' },
+    { id: 'otis', x: 10, y: 290, w: 130, h: 56, t: 'Ask Otis', s: 'Claude-powered' },
+    { id: 'human', x: 220, y: 290, w: 130, h: 56, t: 'Human approval', s: 'Required to save', kind: 'human' },
+    { id: 'api', x: 95, y: 400, w: 170, h: 56, t: 'API', s: 'Hono · Workers' },
+    { id: 'docs', x: 10, y: 530, w: 100, h: 56, t: 'Docs', s: 'Google' },
+    { id: 'air', x: 120, y: 530, w: 120, h: 56, t: 'Airtable', s: 'System of record', kind: 'core' },
+    { id: 'cal', x: 250, y: 530, w: 100, h: 56, t: 'Calendar', s: 'Google' },
+  ],
+  lines: [
+    ...lanesV([[66, 96], [152, 182], [238, 400], [456, 530]], 168, 192),
+    { d: 'M95,440 H75 Q60,440 60,455 V525' },
+    { d: 'M265,440 H285 Q300,440 300,455 V525' },
+    { d: 'M140,318 H215', tone: 'red' },
+    { d: 'M232,348 V395', tone: 'red' },
+    { d: 'M232,458 V525', tone: 'red' },
+    { d: 'M110,240 V288', tone: 'dash' },
+  ],
+  routes: [
+    { id: 'req', d: 'M168,66 V530', dur: 6, segs: [[30, 1], [56, 0], [30, 1], [56, 0], [162, 1], [56, 0], [74, 1]], blobs: [{ label: 'task', tone: 'ink', begin: 0, side: 'l' }, { label: 'PTO request', tone: 'ink', begin: 2, side: 'l' }, { label: 'shift', tone: 'ink', begin: 4, side: 'l' }] },
+    { id: 'res', d: 'M192,530 V66', dur: 6, segs: [[74, 1], [56, 0], [162, 1], [56, 0], [30, 1], [56, 0], [30, 1]], blobs: [{ label: 'shift', tone: 'light', begin: 1, side: 'r' }, { label: 'task', tone: 'light', begin: 3, side: 'r' }, { label: 'PTO request', tone: 'light', begin: 5, side: 'r' }] },
+    { id: 'docs', d: 'M95,440 H75 Q60,440 60,455 V530', dur: 3, blobs: [{ label: 'doc', tone: 'ink', begin: 1, side: 'r' }] },
+    { id: 'cal', d: 'M265,440 H285 Q300,440 300,455 V530', dur: 3, blobs: [{ label: 'shift', tone: 'ink', begin: 2.5, side: 'r' }] },
+    { id: 'sug', d: 'M140,318 H220', dur: 2.6, blobs: [{ label: 'suggestion', tone: 'red', begin: 1, side: 't' }] },
+    { id: 'ok', d: 'M232,346 V530', dur: 4, segs: [[54, 1], [56, 0], [74, 1]], blobs: [{ label: 'approved', tone: 'red', begin: 2, side: 'r' }] },
+  ],
+  notes: [{ x: 116, y: 268, t: 'built in', a: 'start' }],
+  pins: [
+    { label: 'task', tone: 'ink', at: [168, 81], side: 'l' }, { label: 'PTO request', tone: 'ink', at: [168, 493], side: 'l' },
+    { label: 'shift', tone: 'light', at: [192, 81], side: 'r' }, { label: 'task', tone: 'light', at: [192, 493], side: 'r' },
+    { label: 'doc', tone: 'ink', at: [60, 490], side: 'r' }, { label: 'shift', tone: 'ink', at: [300, 490], side: 'r' },
+    { label: 'suggestion', tone: 'red', at: [180, 318], side: 't' }, { label: 'approved', tone: 'red', at: [232, 372], side: 'r' },
+  ],
+};
+
+// Blobs move at full speed in the open and dash through the nodes they pass behind.
+const timing = (segs?: [number, number][]) => {
+  if (!segs) return {};
+  const total = segs.reduce((a, [l]) => a + l, 0);
+  const wsum = segs.reduce((a, [l, g]) => a + l * (g ? 1 : 0.15), 0);
+  let p = 0, t = 0; const kp = ['0'], kt = ['0'];
+  segs.forEach(([l, g]) => { p += l / total; t += (l * (g ? 1 : 0.15)) / wsum; kp.push(p.toFixed(4)); kt.push(t.toFixed(4)); });
+  kp[kp.length - 1] = '1'; kt[kt.length - 1] = '1';
+  return { keyPoints: kp.join(';'), keyTimes: kt.join(';') };
+};
+
+const pillW = (s: string) => Math.round(s.length * 5.8 + 16);
+// negative begin = blobs are already in flight when the page loads
+const start = (r: Route, b: Blob) => `${(b.begin - r.dur * 0.5).toFixed(2)}s`;
+---
+<figure class="df" data-dataflow>
+  {[wide, narrow].map((L) => (
+    <svg class={`df-svg df-${L.key}`} viewBox={`0 ${L.y0} ${L.w} ${L.h}`} role="img" aria-labelledby={`df-t-${L.key} df-d-${L.key}`}>
+      <title id={`df-t-${L.key}`}>How data flows through the Internal Dashboard</title>
+      <desc id={`df-d-${L.key}`}>A team member signs in through Cloudflare Access. Requests go from the Dashboard to the API, which reads and writes Airtable, saves docs to Google Docs and syncs schedules to Google Calendar. Ask Otis suggestions go to a person for approval, and only approved changes are written to Airtable. A text version follows the diagram.</desc>
+      <defs>
+        <marker id={`df-a-${L.key}`} viewBox="0 0 8 8" refX="6" refY="4" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M1,1 L6,4 L1,7" fill="none" stroke="#B3A895" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" /></marker>
+        <marker id={`df-ar-${L.key}`} viewBox="0 0 8 8" refX="6" refY="4" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M1,1 L6,4 L1,7" fill="none" stroke="#881919" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" /></marker>
+        {L.routes.map((r) => <path id={`df-${L.key}-${r.id}`} d={r.d} />)}
+      </defs>
+      <g class="df-lines" aria-hidden="true">
+        {L.lines.map((l) => <path d={l.d} class={l.tone ? `ln-${l.tone}` : undefined} marker-end={l.tone === 'dash' ? undefined : `url(#df-${l.tone === 'red' ? 'ar' : 'a'}-${L.key})`} />)}
+        {L.notes.map((n) => <text class="df-note" x={n.x} y={n.y} text-anchor={n.a ?? 'start'}>{n.t}</text>)}
+      </g>
+      {['blobs', 'pins'].map((mode) => (
+        <g class={`df-${mode}`} aria-hidden="true">
+          {(mode === 'blobs'
+            ? L.routes.flatMap((r) => r.blobs.map((b) => ({ ...b, r })))
+            : L.pins.map((p) => ({ ...p, r: undefined }))
+          ).map((b) => {
+            const w = pillW(b.label);
+            const lx = b.side === 'l' ? -9 : b.side === 'r' ? 9 : 0;
+            const ly = b.side === 't' ? -10 : 4;
+            const r = b.r;
+            return (
+              <g class={`df-blob t-${b.tone}`} opacity={r ? '0' : undefined} transform={'at' in b && b.at ? `translate(${b.at[0]} ${b.at[1]})` : undefined}>
+                {L.dots ? (
+                  <>
+                    <circle r="5.5" />
+                    <text x={lx} y={ly} text-anchor={b.side === 'l' ? 'end' : b.side === 'r' ? 'start' : 'middle'}>{b.label}</text>
+                  </>
+                ) : (
+                  <>
+                    <rect x={-w / 2} y="-8.5" width={w} height="17" rx="8.5" />
+                    <text y="3.5" text-anchor="middle">{b.label}</text>
+                  </>
+                )}
+                {r && <animateMotion dur={`${r.dur}s`} begin={start(r, b)} repeatCount="indefinite" calcMode="linear" {...timing(r.segs)}><mpath href={`#df-${L.key}-${r.id}`} /></animateMotion>}
+                {r && <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.08;0.92;1" dur={`${r.dur}s`} begin={start(r, b)} repeatCount="indefinite" />}
+              </g>
+            );
+          })}
+        </g>
+      ))}
+      <g class="df-nodes" aria-hidden="true">
+        {L.nodes.map((n) => (
+          <g class={`df-node${n.kind ? ` k-${n.kind}` : ''}`}>
+            <rect x={n.x} y={n.y} width={n.w} height={n.h} rx="8" />
+            <text class="nt" x={n.x + n.w / 2} y={n.y + n.h / 2 - 2} text-anchor="middle" style={n.ts ? `font-size:${n.ts}px` : undefined}>{n.t}</text>
+            <text class="ns" x={n.x + n.w / 2} y={n.y + n.h / 2 + 15} text-anchor="middle">{n.s}</text>
+          </g>
+        ))}
+      </g>
+    </svg>
+  ))}
+  <figcaption class="df-legend">
+    <span class="tag">Illustration · not a screenshot</span>
+    <span><i class="t-ink"></i>Requests &amp; writes</span>
+    <span><i class="t-light"></i>Reads coming back</span>
+    <span><i class="t-red"></i>Ask Otis, gated by a person</span>
+  </figcaption>
+</figure>
+<details class="df-text">
+  <summary>Text version of the diagram</summary>
+  <ol>{dataFlows.map((f) => <li><b>{f.from} → {f.to}.</b> {f.carries}.</li>)}</ol>
+</details>
+
+<script>
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)');
+  document.querySelectorAll<HTMLElement>('[data-dataflow]').forEach((fig) => {
+    const svgs = [...fig.querySelectorAll('svg')] as SVGSVGElement[];
+    // reduced motion: CSS swaps the moving blobs for static chips; stop the clock too
+    const freeze = () => svgs.forEach((s) => s.pauseAnimations());
+    if (reduce.matches) return freeze();
+    // pause off-screen to save battery
+    new IntersectionObserver(([e]) => svgs.forEach((s) => (e.isIntersecting ? s.unpauseAnimations() : s.pauseAnimations()))).observe(fig);
+    reduce.addEventListener?.('change', (e) => e.matches && freeze());
+  });
+</script>
+
+<style>
+  .df{margin:0;background:#F3EEE6;border:1px solid var(--line);border-radius:4px;padding:28px 28px 20px}
+  .df-svg{display:block;width:100%;height:auto;font-family:var(--fb);overflow:visible}
+  .df-n{display:none;max-width:460px;margin:0 auto}
+  @media (max-width:860px){.df{padding:20px 10px 16px}.df-w{display:none}.df-n{display:block}}
+  .df-lines path{fill:none;stroke:#C9BFAF;stroke-width:1.3}
+  .df-lines .ln-red{stroke:var(--accent);stroke-dasharray:4 4;stroke-width:1.2}
+  .df-lines .ln-dash{stroke-dasharray:2 4;stroke:#A69B88}
+  .df-note{font-size:11px;fill:var(--muted);letter-spacing:.04em}
+  .df-node rect{fill:#fff;stroke:#D9CFC0;stroke-width:1}
+  .df-node .nt{font-size:14.5px;font-weight:500;fill:var(--ink);letter-spacing:.01em}
+  .df-node .ns{font-size:9.5px;fill:var(--muted);letter-spacing:.07em;text-transform:uppercase}
+  .df-n .df-node .nt{font-size:13.5px}
+  .df-w .df-node .ns{letter-spacing:.05em}
+  .df-n .df-node .ns{font-size:9px;letter-spacing:.06em}
+  .df-node.k-core rect{fill:var(--ink);stroke:var(--ink)}
+  .df-node.k-core .nt{fill:#F4F0E8}.df-node.k-core .ns{fill:#B9B2A6}
+  .df-node.k-human rect{stroke:var(--accent);stroke-width:1.4}
+  .df-node.k-human .nt{fill:var(--accent)}
+  .df-blob text{font-size:10px;font-weight:500;letter-spacing:.03em}
+  .df-n .df-blob text{font-size:10.5px;paint-order:stroke;stroke:#F3EEE6;stroke-width:3px;stroke-linejoin:round}
+  .df-blob.t-ink rect,.df-blob.t-ink circle{fill:var(--ink)}
+  .df-blob.t-ink text{fill:#F4F0E8}
+  .df-blob.t-light rect,.df-blob.t-light circle{fill:#fff;stroke:var(--ink);stroke-width:1}
+  .df-blob.t-light text{fill:var(--ink)}
+  .df-blob.t-red rect,.df-blob.t-red circle{fill:var(--accent)}
+  .df-blob.t-red text{fill:#fff}
+  .df-n .df-blob.t-ink text,.df-n .df-blob.t-light text{fill:var(--ink)}
+  .df-n .df-blob.t-red text{fill:var(--accent)}
+  .df-pins{display:none}
+  @media (prefers-reduced-motion:reduce){.df-blobs{display:none}.df-pins{display:inline}}
+  .df-legend{display:flex;flex-wrap:wrap;align-items:center;gap:8px 22px;margin-top:18px;font-size:13px;color:var(--muted)}
+  .df-legend .tag{font-size:11px;letter-spacing:.14em;text-transform:uppercase;background:#fff;color:var(--muted);padding:6px 10px;border:1px dashed #B9B2A6;margin-right:auto}
+  .df-legend i{display:inline-block;width:22px;height:10px;border-radius:5px;margin-right:8px;vertical-align:-1px}
+  .df-legend i.t-ink{background:var(--ink)}
+  .df-legend i.t-light{background:#fff;border:1px solid var(--ink)}
+  .df-legend i.t-red{background:var(--accent)}
+  .df-text{margin-top:16px;font-size:15px;border-bottom:1px solid var(--line);padding-bottom:12px}
+  .df-text summary{cursor:pointer;font-size:12px;letter-spacing:.16em;text-transform:uppercase;font-weight:500;color:var(--muted)}
+  .df-text summary:hover{color:var(--ink)}
+  .df-text ol{margin:12px 0 0 1.3em;max-width:72ch}
+  .df-text li{margin:.35em 0}.df-text li::marker{color:var(--accent)}
+  .df-text b{font-weight:500}
+</style>

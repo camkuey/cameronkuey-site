@@ -1,6 +1,8 @@
 ---
 import Base from '../../layouts/Base.astro';
 import DashboardArt from '../../components/DashboardArt.astro';
+import DataFlowDiagram from '../../components/DataFlowDiagram.astro';
+import DaySequence from '../../components/DaySequence.astro';
 import { stats, modules, stack, broke, differently, screenshots } from '../../data/internal-dashboard';
 ---
 <Base title="Case study: the Internal Dashboard" section="ai"
@@ -60,6 +62,22 @@ import { stats, modules, stack, broke, differently, screenshots } from '../../da
           {stack.map(([k, v]) => <div><dt>{k}</dt><dd>{v}</dd></div>)}
         </dl>
       </div>
+    </div></section>
+
+    <section style="padding-top:0"><div class="wrap">
+      <div class="cs-grid">
+        <div class="sec-head cs-label"><h2>How data flows</h2></div>
+        <div class="prose block-text"><p>Every request goes through Cloudflare Access sign-in to the API. The API reads and writes Airtable, saves docs to Google Docs and syncs schedules to Google Calendar. Ask Otis only suggests. A person approves before anything is saved.</p></div>
+      </div>
+      <div style="margin-top:32px"><DataFlowDiagram /></div>
+    </div></section>
+
+    <section style="padding-top:0"><div class="wrap">
+      <div class="cs-grid">
+        <div class="sec-head cs-label"><h2>A day in the dashboard</h2></div>
+        <div class="prose block-text"><p>How the team uses it on a normal day, from a meeting to finished work.</p></div>
+      </div>
+      <div style="margin-top:40px"><DaySequence /></div>
     </div></section>
 
     {broke.length > 0 && (
