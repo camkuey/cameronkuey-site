@@ -1,5 +1,5 @@
 /**
- * Flow graphics for the two Modern Health case studies. One 360x344 grid for all
+ * Flow graphics for the case studies (Modern Health, and the freelance Strategy Growth Roadmap build). One 360x344 grid for all
  * of them: 3 columns x 4 rows. Nodes sit on the grid; routes list the nodes a dot
  * travels through (orthogonal hops between node centres). CaseFlow.astro does the
  * geometry and timing. No figures, client names or real IDs here.
@@ -161,5 +161,90 @@ export const FLOWS: Record<string, FDef> = {
       { via: ['who', 'ic', 'auto', 'at', 'type', 'bill', 'pay', 'at:hv'], T: 14, idle: 1.2, blobs: [{ tone: 'gold', still: 4.6, swaps: [{ at: 1, tone: 'blue' }, { at: 3, tone: 'ink' }] }] },
     ],
     legend: [['gold', 'the signature'], ['blue', 'signed form'], ['ink', 'status, payment']],
+  },
+
+  /* ── Strategy Growth Roadmap: Sheet, script and browser ── */
+  'growth-sync': {
+    accent: 'gold',
+    label:
+      'Animated diagram of how the Strategy Growth Roadmap saves. You edit in the browser, which holds the whole roadmap in memory. About 0.4 seconds after the last edit, a batched autosave goes to a Google Apps Script function called saveChart. The script takes a script lock and checks the revision the save started from. If it is current, the five Google Sheet tabs are written and the status changes to Saved. If someone saved first, the script reports a conflict, and you choose Reload or Keep mine; Keep mine saves again over the newer version.',
+    nodes: [
+      { id: 'you', c: 0, r: 0, t: 'You edit', s: 'click or drag', tone: 'person' },
+      { id: 'br', c: 1, r: 0, t: 'Browser', s: 'all in memory', col: 'blue' },
+      { id: 'save', c: 2, r: 0, t: 'Autosave', s: '0.4 s, batched', col: 'sand' },
+      { id: 'gas', c: 2, r: 1, t: 'Apps Script', s: 'saveChart', col: 'gold-t' },
+      { id: 'lock', c: 1, r: 1, t: 'Lock + check', s: 'lock, revision', col: 'red-t' },
+      { id: 'sheet', c: 0, r: 1, t: 'Google Sheet', s: 'five tabs', col: 'ink' },
+      { id: 'ok', c: 0, r: 2, t: 'Saved', s: 'status updates', col: 'blue-t' },
+      { id: 'conf', c: 1, r: 2, t: 'Conflict', s: 'stale revision', tone: 'human', step: '!' },
+      { id: 'choice', c: 2, r: 2, t: 'Reload / Keep', s: 'you choose', tone: 'person', step: false },
+      { id: 'note', c: 0, r: 3, span: 3, t: 'Edits show instantly, saves run behind', col: 'gold-t', tone: 'note' },
+    ],
+    links: [
+      { a: 'you', b: 'br' }, { a: 'br', b: 'save' }, { a: 'save', b: 'gas' }, { a: 'gas', b: 'lock' },
+      { a: 'lock', b: 'sheet' }, { a: 'sheet', b: 'ok' },
+      { a: 'lock', b: 'conf', style: 'red' }, { a: 'conf', b: 'choice' }, { a: 'choice', b: 'gas', style: 'dash' },
+    ],
+    routes: [
+      {
+        via: ['you', 'br', 'save', 'gas', 'lock', 'sheet', 'ok'], T: 14, idle: 1.2,
+        blobs: [{ tone: 'ink', still: 6.4, swaps: [{ at: 3, tone: 'gold' }, { at: 5, tone: 'blue' }] }],
+      },
+      { via: ['gas', 'lock', 'conf', 'choice'], T: 14, idle: 5, blobs: [{ delay: 7, tone: 'red', still: 3.6 }] },
+    ],
+    legend: [['ink', 'your edit'], ['gold', 'the save'], ['red', 'edited elsewhere']],
+  },
+
+  /* ── Strategy Growth Roadmap: one master Sheet, a copy per client ── */
+  'growth-copies': {
+    accent: 'red',
+    label:
+      'Animated diagram of one master Google Sheet being copied for each client. The master Sheet is shared as a view-only copy link. Each new client, shown generically as Client A, Client B and Client C, makes a copy of it and gets their own private Sheet with their own data, with nothing to install.',
+    nodes: [
+      { id: 'master', c: 1, r: 0, t: 'Master Sheet', s: 'one template', col: 'ink' },
+      { id: 'link', c: 1, r: 1, t: 'Copy link', s: 'view-only', col: 'gold-t' },
+      { id: 'a', c: 0, r: 2, t: 'Client A', s: 'private copy', col: 'blue', step: 3 },
+      { id: 'b', c: 1, r: 2, t: 'Client B', s: 'private copy', col: 'gold', step: 3 },
+      { id: 'c', c: 2, r: 2, t: 'Client C', s: 'private copy', col: 'red', step: 3 },
+      { id: 'note', c: 0, r: 3, span: 3, t: 'Every new client is just a copy', col: 'gold-t', tone: 'note' },
+    ],
+    links: [
+      { a: 'master', b: 'link' }, { a: 'link', b: 'a', mode: 'hv' }, { a: 'link', b: 'b' }, { a: 'link', b: 'c', mode: 'hv' },
+    ],
+    routes: [
+      { via: ['master', 'link', 'a'], T: 12, idle: 1.4, blobs: [{ tone: 'ink', still: 10, swaps: [{ at: 2, tone: 'blue' }] }] },
+      { via: ['master', 'link', 'b'], T: 12, idle: 1.4, blobs: [{ delay: 4, tone: 'ink', still: 10, swaps: [{ at: 2, tone: 'gold' }] }] },
+      { via: ['master', 'link', 'c'], T: 12, idle: 1.4, blobs: [{ delay: 8, tone: 'ink', still: 10, swaps: [{ at: 2, tone: 'red' }] }] },
+    ],
+    legend: [['ink', 'the master'], ['blue', 'a copy per client'], ['gold', 'their own data']],
+  },
+
+  /* ── Strategy Growth Roadmap: rollout ── */
+  'growth-rollout': {
+    accent: 'red',
+    label:
+      'Animated diagram of the rollout. I set up one master Google Sheet that holds the template and the Apps Script code, deploy one web app once, and paste its address into the code. I share the master with a copy link. A client makes their own copy, approves Google the first time, and uses the Open full screen menu item, which opens their own Sheet in the web app as them. Clients never deploy anything.',
+    nodes: [
+      { id: 'master', c: 0, r: 0, t: 'Master Sheet', s: 'template + code', col: 'ink' },
+      { id: 'deploy', c: 1, r: 0, t: 'Deploy once', s: 'one web app', col: 'gold-t' },
+      { id: 'url', c: 2, r: 0, t: 'Paste its URL', s: 'into the code', col: 'sand' },
+      { id: 'share', c: 2, r: 1, t: 'Share link', s: 'view-only copy', col: 'red-t' },
+      { id: 'copy', c: 1, r: 1, t: 'Client copy', s: 'their own Sheet', col: 'blue' },
+      { id: 'appr', c: 0, r: 1, t: 'Approve', s: 'first time only', tone: 'person' },
+      { id: 'full', c: 0, r: 2, t: 'Full screen', s: 'one menu click', col: 'gold' },
+      { id: 'data', c: 1, r: 2, t: 'Their Sheet', s: 'opened as them', col: 'ink' },
+      { id: 'note', c: 0, r: 3, span: 3, t: 'Clients never deploy anything', col: 'gold-t', tone: 'note' },
+    ],
+    links: [
+      { a: 'master', b: 'deploy' }, { a: 'deploy', b: 'url' }, { a: 'url', b: 'share' }, { a: 'share', b: 'copy' },
+      { a: 'copy', b: 'appr' }, { a: 'appr', b: 'full' }, { a: 'full', b: 'data' },
+    ],
+    routes: [
+      {
+        via: ['master', 'deploy', 'url', 'share', 'copy', 'appr', 'full', 'data'], T: 16, idle: 1.4,
+        blobs: [{ tone: 'ink', still: 9, swaps: [{ at: 4, tone: 'blue' }, { at: 6, tone: 'gold' }] }],
+      },
+    ],
+    legend: [['ink', 'me, once'], ['blue', 'each client'], ['gold', 'their roadmap']],
   },
 };

@@ -3,8 +3,147 @@
   "w": 404,
   "h": 720,
   "base": "/media/home/film-silent-night",
-  "webp": [404],
-  "avif": [404],
+  "webp": [
+   404
+  ],
+  "avif": [
+   404
+  ],
   "color": "#2b3a33"
+ },
+ "growth-overview-light": {
+  "w": 3200,
+  "h": 2074,
+  "base": "/media/growth/overview-light",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#f8f8f8"
+ },
+ "growth-overview-dark": {
+  "w": 3200,
+  "h": 2074,
+  "base": "/media/growth/overview-dark",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#181818"
+ },
+ "growth-notes-tooltip": {
+  "w": 1680,
+  "h": 760,
+  "base": "/media/growth/notes-tooltip",
+  "webp": [
+   480,
+   960,
+   1600,
+   1680
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#f8f8f8"
+ },
+ "growth-edit-milestone": {
+  "w": 3200,
+  "h": 2000,
+  "base": "/media/growth/edit-milestone",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#f8f8f8"
+ },
+ "growth-edit-year-header": {
+  "w": 3200,
+  "h": 1440,
+  "base": "/media/growth/edit-year-header",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#f8f8f8"
+ },
+ "growth-empty-state": {
+  "w": 3200,
+  "h": 2000,
+  "base": "/media/growth/empty-state",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#f8f8f8"
+ },
+ "growth-label-resized": {
+  "w": 3200,
+  "h": 1240,
+  "base": "/media/growth/label-resized",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#f8f8f8"
+ },
+ "growth-menu-launcher": {
+  "w": 1120,
+  "h": 640,
+  "base": "/media/growth/menu-launcher",
+  "webp": [
+   480,
+   960,
+   1120
+  ],
+  "avif": [
+   480,
+   960,
+   1120
+  ],
+  "color": "#f8f8f8"
  }
 }

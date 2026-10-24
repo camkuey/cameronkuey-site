@@ -2,23 +2,34 @@
 /* Decorative flat-shape motif for the case-study hero bands and the /case-studies cards:
    four bold shapes joined by a line, with one dot travelling along it (SMIL, hidden
    under reduced motion). Purely decorative, so aria-hidden. */
-interface Props { kind: 'circles' | 'contract'; variant?: 'hero' | 'card' }
+interface Props { kind: 'circles' | 'contract' | 'roadmap'; variant?: 'hero' | 'card' }
 const { kind, variant = 'hero' } = Astro.props as Props;
 const K = { red: '#881919', blue: '#2E5E92', gold: '#DAB057', ink: '#1B1A18', cream: '#FAF8F4' };
 const pal = {
   circles: { hero: [K.red, K.ink, K.blue, K.gold], card: [K.red, K.ink, K.blue, K.cream] },
   contract: { hero: [K.ink, K.blue, K.gold, K.red], card: [K.cream, K.ink, K.gold, K.red] },
+  roadmap: { hero: [K.gold, K.ink, K.blue, K.red], card: [K.gold, K.ink, K.blue, K.cream] },
 }[kind][variant];
-const line = variant === 'card' && kind === 'contract' ? K.cream : K.ink;
+const line = variant === 'card' && kind !== 'circles' && kind !== 'contract' ? K.cream : variant === 'card' && kind === 'contract' ? K.cream : K.ink;
 const ring = variant === 'card' ? (kind === 'contract' ? K.blue : K.gold) : '#F1EDE5';
-const pts: [number, number][] = kind === 'circles' ? [[70, 218], [190, 140], [292, 206], [414, 118]] : [[100, 215], [210, 118], [325, 205], [420, 100]];
+const pts: [number, number][] = kind === 'contract' ? [[100, 215], [210, 118], [325, 205], [420, 100]] : [[70, 218], [190, 140], [292, 206], [414, 118]];
 const path = 'M' + pts.map((p) => p.join(',')).join(' L');
 const badge = (i: number) => ({ x: pts[i][0] + 30, y: pts[i][1] - 40, n: i + 1 });
-const dot = variant === 'card' ? (kind === 'contract' ? K.gold : K.cream) : K.red;
+const dot = variant === 'card' ? (kind === 'circles' ? K.cream : K.gold) : K.red;
 ---
 <svg class={`cm cm-${variant}`} viewBox="0 0 480 300" aria-hidden="true" focusable="false">
   <path d={path} fill="none" stroke={line} stroke-width="3" stroke-linejoin="round" />
-  {kind === 'circles' ? (
+  {kind === 'roadmap' ? (
+    <>
+      <g transform="rotate(-6 70 218)"><rect x="28" y="176" width="84" height="84" rx="5" fill={pal[0]} /><g stroke={K.ink} stroke-width="3" stroke-linecap="round"><path d="M44,200 H96 M44,218 H90 M44,236 H72" /></g></g>
+      <circle cx="190" cy="140" r="42" fill={pal[1]} />
+      <path d="M164,158 L180,140 L196,150 L218,120" fill="none" stroke={K.cream} stroke-width="6" stroke-linecap="round" stroke-linejoin="round" />
+      <rect x="238" y="168" width="108" height="76" rx="12" fill={pal[2]} />
+      <g fill={K.cream}><rect x="252" y="182" width="56" height="16" rx="8" /><rect x="270" y="206" width="62" height="16" rx="8" /></g>
+      <circle cx="414" cy="118" r="44" fill={pal[3]} stroke={ring} stroke-width="4" />
+      <path d="M400,140 V96 L436,108 L400,120" fill={variant === 'card' ? K.red : K.cream} stroke={variant === 'card' ? K.red : K.cream} stroke-width="4" stroke-linejoin="round" stroke-linecap="round" />
+    </>
+  ) : kind === 'circles' ? (
     <>
       <circle cx="70" cy="218" r="40" fill={pal[0]} />
       <rect x="150" y="100" width="80" height="80" rx="12" fill={pal[1]} />

@@ -1,0 +1,149 @@
+---
+import Base from '../../layouts/Base.astro';
+import CaseMotif from '../../components/CaseMotif.astro';
+import CaseFlow from '../../components/CaseFlow.astro';
+import Pic from '../../components/Pic.astro';
+import { fullSrc, IMAGES } from '../../lib/site';
+import { meta, stats, note, problem, design, copies, flows, owner, clientSteps, friendly, screens, results, limits } from '../../data/growth-roadmap';
+const shot = (id: string) => screens.find((s) => s.id === id)!;
+const pair = [shot('growth-overview-light'), shot('growth-overview-dark')];
+const gallery = screens.filter((s) => !pair.includes(s));
+---
+<Base title={meta.title} section="cases" description={meta.description}>
+  <article class="cs-page">
+    <div class="cs-heroband">
+      <div class="cs-stripe" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+      <div class="wrap cs-herogrid">
+        <header class="page-head wide">
+          <ol class="crumbs eyebrow" aria-label="Breadcrumb"><li><a href="/case-studies">Case studies</a></li><li>Strategy Growth Roadmap</li></ol>
+          <h1>From sticky notes to <em>a Strategy Growth Roadmap that lives in a Google Sheet.</em></h1>
+          <p class="lede">A freelance build. A client was planning years of growth on hand-drawn sketches and sticky notes. I designed a roadmap tool that runs on Google Sheets and Apps Script. It’s easy to use and easy to roll out: one master Sheet, and each new client just makes a copy, so everyone gets their own private Sheet and nothing to install.</p>
+        </header>
+        <div class="cs-motif"><CaseMotif kind="roadmap" /></div>
+      </div>
+      <div class="wrap">
+        <div class="cs-tiles">
+          {stats.map((s, i) => <div class={`cs-tile t${i}`}><b>{s.value}</b><span>{s.label}</span></div>)}
+        </div>
+      </div>
+    </div>
+    <div class="wrap"><p class="cs-note">{note}</p></div>
+
+    <section class="cs-sec c-red"><div class="wrap">
+      <div class="cs-split">
+        <div class="cs-text">
+          <span class="cs-no" aria-hidden="true">01</span>
+          <h2>The problem</h2>
+          {problem.map((p) => <p>{p}</p>)}
+        </div>
+        <figure class="cs-vis cs-platforms cs-notes">
+          <span class="tag">Illustration · not a screenshot</span>
+          <svg viewBox="0 0 480 300" role="img" aria-label="Illustration: a loose scatter of tilted sticky notes joined by a hand-drawn arrow.">
+            <path class="gn-arrow" d="M70,236 C150,286 230,232 290,246 S400,262 438,214" fill="none" stroke="#1B1A18" stroke-width="3" stroke-dasharray="7 7" stroke-linecap="round" />
+            <path d="M424,208 L440,212 L430,226" fill="none" stroke="#1B1A18" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+            <g class="gn-note" style="--r:-7deg;--d:0s"><rect x="28" y="44" width="104" height="96" fill="#DAB057" /><path d="M46,72 H112 M46,92 H104 M46,112 H80" stroke="#1B1A18" stroke-width="3" stroke-linecap="round" /></g>
+            <g class="gn-note" style="--r:5deg;--d:-1.2s"><rect x="170" y="30" width="104" height="96" fill="#881919" /><path d="M188,58 H254 M188,78 H246 M188,98 H222" stroke="#FAF8F4" stroke-width="3" stroke-linecap="round" /></g>
+            <g class="gn-note" style="--r:-4deg;--d:-2.4s"><rect x="318" y="50" width="104" height="96" fill="#2E5E92" /><path d="M336,78 H402 M336,98 H394 M336,118 H366" stroke="#FAF8F4" stroke-width="3" stroke-linecap="round" /></g>
+            <g class="gn-note" style="--r:8deg;--d:-3.6s"><rect x="96" y="150" width="96" height="84" fill="#F8EDCF" stroke="#1B1A18" stroke-width="2" /><path d="M112,176 H174 M112,196 H162" stroke="#1B1A18" stroke-width="3" stroke-linecap="round" /></g>
+            <g class="gn-note" style="--r:-6deg;--d:-4.8s"><rect x="260" y="148" width="96" height="84" fill="#E1EAF4" stroke="#1B1A18" stroke-width="2" /><path d="M276,174 H338 M276,194 H322" stroke="#1B1A18" stroke-width="3" stroke-linecap="round" /></g>
+          </svg>
+          <figcaption>Where the plan started.</figcaption>
+        </figure>
+      </div>
+    </div></section>
+
+    <section class="cs-sec c-blue tint"><div class="wrap">
+      <div class="cs-grid">
+        <div class="cs-label"><span class="cs-no" aria-hidden="true">02</span><h2>From sketch to tool</h2></div>
+        <div class="cs-prose">
+          <p>I designed it like a planning sketch, but one that edits itself: yearly numbers on top, a swimlane for each area of the plan below, and one shared year axis.</p>
+          <ol class="numbered">{design.map((d) => <li><b>{d.title}</b><p>{d.text}</p></li>)}</ol>
+        </div>
+      </div>
+      <div class="cs-gal two" data-gallery>
+        {pair.map((s) => (
+          <figure>
+            <a class="cs-shotlink" href={fullSrc(s.id)} data-lb data-w={IMAGES[s.id].w} data-h={IMAGES[s.id].h} data-cap={s.label} aria-label={`View larger: ${s.label}`}>
+              <Pic id={s.id} alt={s.alt} sizes="(max-width: 900px) 100vw, 560px" />
+            </a>
+            <figcaption><b>{s.label}</b><span>{s.note}</span></figcaption>
+          </figure>
+        ))}
+      </div>
+      <p class="cs-note">Preview render with invented example data, not a live Google deployment.</p>
+    </div></section>
+
+    <section class="cs-sec c-gold"><div class="wrap">
+      <div class="cs-split rev">
+        <div class="cs-text">
+          <span class="cs-no" aria-hidden="true">03</span>
+          <h2>{flows.sync.title}</h2>
+          {flows.sync.body.map((p) => <p>{p}</p>)}
+        </div>
+        <figure class="cs-vis cs-flow"><CaseFlow flow="growth-sync" /></figure>
+      </div>
+    </div></section>
+
+    <section class="cs-sec c-red tint"><div class="wrap">
+      <div class="cs-split">
+        <div class="cs-text">
+          <span class="cs-no" aria-hidden="true">04</span>
+          <h2>{copies.title}</h2>
+          {copies.body.map((p) => <p>{p}</p>)}
+        </div>
+        <figure class="cs-vis cs-flow"><CaseFlow flow="growth-copies" /></figure>
+      </div>
+      <div class="cs-split rev cs-row2">
+        <div class="cs-text">
+          <p class="eyebrow">{flows.rollout.title}</p>
+          {flows.rollout.body.map((p) => <p>{p}</p>)}
+        </div>
+        <figure class="cs-vis cs-flow"><CaseFlow flow="growth-rollout" /></figure>
+      </div>
+      <div class="cs-two">
+        <div class="cs-card2 k-ink"><p class="eyebrow">Me, once</p><ol class="numbered">{owner.map((o) => <li><b>{o.title}</b><p>{o.text}</p></li>)}</ol></div>
+        <div class="cs-card2 k-blue"><p class="eyebrow">Each client</p><ol class="numbered">{clientSteps.map((o) => <li><b>{o.title}</b><p>{o.text}</p></li>)}</ol></div>
+      </div>
+    </div></section>
+
+    <section class="cs-sec c-blue"><div class="wrap">
+      <div class="cs-grid">
+        <div class="cs-label"><span class="cs-no" aria-hidden="true">05</span><h2>{friendly.title}</h2></div>
+        <div class="cs-prose">
+          {friendly.body.map((p) => <p>{p}</p>)}
+          <ul class="chips" style="margin-top:18px!important">{friendly.chips.map(([t, c]) => <li class={`chip ch-${c}`}>{t}</li>)}</ul>
+        </div>
+      </div>
+      <div class="cs-gal" data-gallery>
+        {gallery.map((s) => (
+          <figure>
+            <a class="cs-shotlink" href={fullSrc(s.id)} data-lb data-w={IMAGES[s.id].w} data-h={IMAGES[s.id].h} data-cap={s.label} aria-label={`View larger: ${s.label}`}>
+              <Pic id={s.id} alt={s.alt} sizes="(max-width: 600px) 100vw, (max-width: 900px) 50vw, 380px" />
+            </a>
+            <figcaption><b>{s.label}</b><span>{s.note}</span></figcaption>
+          </figure>
+        ))}
+      </div>
+    </div></section>
+
+    <section class="cs-sec c-gold tint"><div class="wrap">
+      <div class="cs-grid">
+        <div class="cs-label"><span class="cs-no" aria-hidden="true">06</span><h2>What I can show</h2></div>
+        <ol class="numbered">{results.map((r) => <li><b>{r.title}</b><p>{r.text}</p></li>)}</ol>
+      </div>
+      <p class="cs-note">I’m not claiming outcomes for the client here. These are the checks I ran on the build itself.</p>
+    </div></section>
+
+    <section class="cs-sec c-ink tint"><div class="wrap">
+      <div class="cs-grid">
+        <div class="cs-label"><span class="cs-no" aria-hidden="true">07</span><h2>Honest limits</h2></div>
+        <ol class="numbered">{limits.map((l) => <li><p>{l}</p></li>)}</ol>
+      </div>
+    </div></section>
+
+    <section class="cs-cta"><div class="wrap">
+      <p class="eyebrow">Keep reading</p>
+      <div class="btns"><a class="btn solid" href="/case-studies">All case studies →</a><a class="btn" href="/contact">Ask me about it</a></div>
+    </div></section>
+  </article>
+</Base>
