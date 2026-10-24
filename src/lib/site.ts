@@ -7,8 +7,12 @@ import alts from '../data/alt.json';
 export type Img = { w: number; h: number; base: string; webp: number[]; avif: number[]; color: string };
 export const IMAGES = { ...images, ...dashImages, ...extraImages } as Record<string, Img>;
 export const ALT = alts as Record<string, string>;
-export const PAGES = (pagesData as any).pages as any[];
-export const MENU = (pagesData as any).menu as { title: string; slug: string; children: { title: string; slug: string }[] }[];
+/** Creative categories hidden from the site for now (content stays in pages.json; remove a slug here to bring it back). */
+export const HIDDEN_CATEGORIES = ['work', 'graphic-design'];
+const ALL_MENU = (pagesData as any).menu as { title: string; slug: string; children: { title: string; slug: string }[] }[];
+const hiddenSlugs = new Set(ALL_MENU.filter((m) => HIDDEN_CATEGORIES.includes(m.slug)).flatMap((m) => [m.slug, ...m.children.map((c) => c.slug)]));
+export const PAGES = ((pagesData as any).pages as any[]).filter((p) => !hiddenSlugs.has(p.slug));
+export const MENU = ALL_MENU.filter((m) => !HIDDEN_CATEGORIES.includes(m.slug));
 
 export const SITE = {
   name: 'Cameron Kuey',

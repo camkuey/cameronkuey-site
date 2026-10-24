@@ -27,12 +27,12 @@ const jsonld = {
   jobTitle: 'Director of Business Operations',
   worksFor: { '@type': 'Organization', name: 'Doodle Pirates Foundation' },
   sameAs: [SITE.linkedin, SITE.github, SITE.cosie, SITE.tcp],
-  knowsAbout: ['Business operations', 'Airtable', 'AI-assisted software development', 'Photography', 'Video production', 'Graphic design'],
+  knowsAbout: ['Business operations', 'Airtable', 'AI-assisted software development', 'Photography', 'Video production'],
 };
 ---
 <Base title="Cameron Kuey" description="Cameron Kuey — Director of Business Operations at Doodle Pirates Foundation, builder of internal tools with AI agents, and a photographer and filmmaker (Cosie Co., The Cultivation Project)." jsonld={jsonld}>
 <section class="hero" aria-labelledby="h"><div class="wrap">
-  <p class="eyebrow">Operations · AI builds · Photo, film &amp; design</p>
+  <p class="eyebrow">Operations · AI builds · Photo, film &amp; audio</p>
   <div class="hero-bar">
     <div>
       <h1 id="h">I run operations, <em>design the tools,</em> and tell stories.</h1>
@@ -72,7 +72,7 @@ const jsonld = {
     </a>
     <a class="path" href="/creative">
       <span class="num">03</span><h3>Creative Work</h3>
-      <p>Photography, video, design and podcasting. 200+ clients served as a freelancer through Cosie Co., and 100+ documentaries, videos and podcast episodes produced with The Cultivation Project.</p>
+      <p>Photography, video and podcasting. 200+ clients served as a freelancer through Cosie Co., and 100+ documentaries, videos and podcast episodes produced with The Cultivation Project.</p>
       <span class="go">Creative portfolio →</span>
     </a>
   </div>
@@ -100,7 +100,7 @@ const jsonld = {
 </div></section>
 
 <section id="work" aria-labelledby="work-h" style="padding-top:0"><div class="wrap">
-  <div class="sec-head"><h2 id="work-h">Selected work</h2><a class="eyebrow" href="/creative">Photography · Film · Design · Audio →</a></div>
+  <div class="sec-head"><h2 id="work-h">Selected work</h2><a class="eyebrow" href="/creative">Photography · Film · Audio →</a></div>
   <div class="work">
     {work.map((w) => (
       <figure class={w.cls}>
