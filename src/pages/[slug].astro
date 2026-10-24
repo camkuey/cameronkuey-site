@@ -3,6 +3,7 @@
 import Base from '../layouts/Base.astro';
 import Blocks from '../components/Blocks.astro';
 import Covers from '../components/Covers.astro';
+import Pic from '../components/Pic.astro';
 import CreativeNav from '../components/CreativeNav.astro';
 import { PAGES, CATEGORIES, IMAGES } from '../lib/site';
 
@@ -16,6 +17,10 @@ const firstText = p.blocks.filter((b: any) => b.t === 'html').map((b: any) => st
 const cat = CATEGORIES.find((c) => c.slug === p.categorySlug);
 const isCategory = p.type === 'gallery';
 const isAbout = p.slug === 'home';
+const aboutHtml = isAbout ? p.blocks.filter((b: any) => b.t === 'html').map((b: any) => b.html) : [];
+const aboutIntro = aboutHtml[0] ?? '';
+const aboutSkills = isAbout ? (aboutHtml[1] ?? '').replace(/^<h3>Skills<\/h3>/, '').split(/(?=<h3>)/).filter((g: string) => g.trim()).map((g: string) => g.replace(/<h3>/, '<h2>').replace(/<\/h3>/, '</h2>')) : [];
+const aboutImg = isAbout ? p.blocks.find((b: any) => b.t === 'images')?.items?.[0]?.id : null;
 
 let description: string;
 if (isAbout) description = 'About Cameron Kuey: operations leader, AI-assisted systems builder, photographer and filmmaker.';
@@ -48,7 +53,21 @@ const catCovers = isCategory
     </header>
   </div>
   <section style="padding-top:8px"><div class="wrap">
-    {isCategory ? <Covers covers={catCovers} eager /> : <Blocks blocks={p.blocks} />}
+    {isAbout ? (
+      <div class="about-page">
+        <div class="about-top">
+          <figure class="about-portrait">{aboutImg && <Pic id={aboutImg} eager alt="Portrait of Cameron Kuey" sizes="(max-width: 900px) 70vw, 380px" />}</figure>
+          <div class="about-body">
+            <div class="prose about-intro" set:html={aboutIntro} />
+            <div class="btns"><a class="btn solid" href="/resume.pdf">Download my resume (PDF)</a><a class="btn" href="/contact">Get in touch</a></div>
+          </div>
+        </div>
+        <section class="about-skills" aria-label="Skills">
+          <p class="eyebrow">Skills</p>
+          <div class="about-skill-grid">{aboutSkills.map((g: string) => <div class="prose" set:html={g} />)}</div>
+        </section>
+      </div>
+    ) : isCategory ? <Covers covers={catCovers} eager /> : <Blocks blocks={p.blocks} />}
   </div></section>
   {(prev || next) && (
     <nav class="wrap" aria-label={`More ${cat!.title}`} style="padding-bottom:96px">
@@ -59,3 +78,24 @@ const catCovers = isCategory
     </nav>
   )}
 </Base>
+
+<style is:global>
+.about-top{display:grid;grid-template-columns:minmax(240px,380px) 1fr;gap:64px;align-items:start}
+.about-portrait{margin:0;position:sticky;top:96px}
+.about-portrait img{width:100%;aspect-ratio:4/5;object-fit:cover;object-position:50% 25%;display:block}
+.about-intro{font-size:18px;line-height:1.65}
+.about-intro p:first-child{font-size:23px;line-height:1.45;font-weight:300}
+.about-body .btns{margin-top:32px}
+.about-skills{margin-top:88px;padding-top:40px;border-top:1px solid var(--line)}
+.about-skills .eyebrow{margin-bottom:28px}
+.about-skill-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px 56px}
+.about-skill-grid .prose{max-width:none}
+.about-skill-grid h2{margin-top:0}
+@media (max-width:900px){
+  .about-top{grid-template-columns:1fr;gap:32px}
+  .about-portrait{position:static;max-width:300px}
+  .about-intro p:first-child{font-size:20px}
+  .about-skill-grid{grid-template-columns:1fr}
+  .about-skills{margin-top:56px}
+}
+</style>
