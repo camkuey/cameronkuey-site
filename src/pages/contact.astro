@@ -11,15 +11,21 @@ const links = [
 ---
 <Base title="Contact" section="contact" footer={false}
   description="Contact Cameron Kuey: email camkuey93@gmail.com, LinkedIn, GitHub, Cosie Co. and The Cultivation Project.">
-  <div class="band"><div class="cs-stripe" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
-  <div class="wrap">
-    <header class="page-head">
-      <p class="eyebrow">Contact</p>
+  <header class="pg"><div class="cs-stripe" aria-hidden="true"></div><div class="wrap pg-grid">
+    <div>
+      <p class="ey">Contact</p>
       <h1>Let’s build <em>something.</em></h1>
-      <p class="lede">Operations, AI-built tools, or a photo and film project. Email is the fastest way to reach me.</p>
-    </header>
-  </div></div>
-  <section style="padding-top:16px"><div class="wrap">
+      <p class="intro">Operations, AI-built tools, or a photo and film project. Email is the fastest way to reach me.</p>
+    </div>
+    <dl class="spec-t">
+      <div><dt>Fastest</dt><dd><a href={`mailto:${SITE.email}`}>{SITE.email}</a></dd></div>
+      <div><dt>Operations</dt><dd>Doodle Pirates Foundation</dd></div>
+      <div><dt>Photo</dt><dd>Cosie Co.</dd></div>
+      <div><dt>Film</dt><dd>The Cultivation Project</dd></div>
+    </dl>
+  </div></header>
+  <section class="sec" style="padding-top:56px"><div class="wrap">
+    <p class="ey"><b>01</b> / Elsewhere</p>
     <div class="contact-list">
       {links.map((l) => (
         <a href={l.href} target={l.ext ? '_blank' : undefined} rel={l.ext ? 'me noopener' : undefined}>

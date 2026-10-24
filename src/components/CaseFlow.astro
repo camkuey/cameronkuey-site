@@ -5,18 +5,21 @@
    Routes are written as node ids; the geometry, timing and static frame are
    worked out here. With reduced motion the moving dots are swapped for static ones. */
 import { FLOWS, type Tone, type FRoute, type FBlob } from '../data/case-flows';
+import { THEMES, type ThemeName } from '../data/themes';
 
 type Pt = [number, number];
-interface Props { flow: string }
-const { flow } = Astro.props as Props;
+interface Props { flow: string; theme?: ThemeName }
+const { flow, theme = 'brand' } = Astro.props as Props;
 const def = FLOWS[flow];
 if (!def) throw new Error(`Unknown flow: ${flow}`);
+const TH = THEMES[theme];
 
-const COL: Record<Tone, string> = { ink: '#1B1A18', blue: '#2E5E92', gold: '#DAB057', red: '#881919' };
-// line colours (gold is darkened so it reads on the cream panel)
-const HUE: Record<string, string> = { red: '#881919', blue: '#2E5E92', gold: '#A67C1B', ink: '#6B645A' };
-const hueOf = (col?: string, tone?: string) => (tone === 'human' ? 'red' : col?.startsWith('red') ? 'red' : col?.startsWith('blue') ? 'blue' : col?.startsWith('gold') ? 'gold' : 'ink');
-const BADGE_TXT: Record<Tone, string> = { ink: '#F4F0E8', blue: '#FFFFFF', gold: '#1B1A18', red: '#FFFFFF' };
+// Dot colours keep their legend meaning, drawn from the page theme: "red" = the primary,
+// "blue" = the quiet secondary, "gold" = the accent. Nodes and lines stay neutral; only the
+// human / error path and the step badges carry the primary.
+const COL: Record<Tone, string> = { ink: '#1B1A18', blue: TH.second, gold: TH.accent, red: TH.primary };
+const HUE: Record<string, string> = { red: TH.primary, ink: '#8A8172' };
+const hueOf = (_col?: string, tone?: string) => (tone === 'human' ? 'red' : 'ink');
 const f = (n: number) => +n.toFixed(3);
 const X = [8, 132, 256], W = 100, GAP = 24, Y = [16, 98, 180, 262], H = 44;
 const VB_W = 360;
@@ -189,7 +192,6 @@ const legend = def.legend.map(([tone, label]) => {
     ))}
   </defs>
   <rect class="cf-panel" x=".5" y=".5" width={VB_W - 1} height={VB_H - 1} rx="4" />
-  <path d={`M.5,4.5 A4,4 0 0 1 4.5,.5 H${VB_W - 4.5} A4,4 0 0 1 ${VB_W - .5},4.5 V9 H.5 Z`} fill={COL[def.accent]} />
   <g class="cf-lines" aria-hidden="true">
     {links.map((l) => <path d={l.d} stroke={HUE[l.hue]} class={l.style === 'dash' ? 'ln-dash' : undefined} marker-end={l.mark ? undefined : `url(#${id}-a-${l.hue})`} />)}
     {links.filter((l) => l.mark).map((l) => <path class="cf-x" d={`M${f(l.mid[0] - 5)},${f(l.mid[1] - 5)} l10,10 M${f(l.mid[0] + 5)},${f(l.mid[1] - 5)} l-10,10`} />)}
@@ -238,10 +240,10 @@ const legend = def.legend.map(([tone, label]) => {
               const t0 = x.rt.b.arrive[x.rt.g.hopIdx[k]] - held;
               const begin = (((t0 + x.delay) % T) + T) % T;
               const dur = held + 1.2;
-              return <animate attributeName="fill" values="#F6E4E1;#E5B0AA;#E5B0AA;#F6E4E1;#F6E4E1" keyTimes={`0;0.02;${f((dur - 0.3) / T)};${f(dur / T)};1`} dur={`${T}s`} begin={`${f(begin)}s`} repeatCount="indefinite" />;
+              return <animate attributeName="fill" values={`${TH.soft};${TH.softLine};${TH.softLine};${TH.soft};${TH.soft}`} keyTimes={`0;0.02;${f((dur - 0.3) / T)};${f(dur / T)};1`} dur={`${T}s`} begin={`${f(begin)}s`} repeatCount="indefinite" />;
             })}
           </rect>
-          <rect class="cf-halo" x={n.x - 3.5} y={n.y - 3.5} width={n.w + 7} height={n.h + 7} rx="11" style={`fill:none;stroke:${COL[def.accent]};stroke-width:2.5px`} opacity="0">
+          <rect class="cf-halo" x={n.x - 3.5} y={n.y - 3.5} width={n.w + 7} height={n.h + 7} rx="11" style={`fill:none;stroke:${TH.primary};stroke-width:2.5px`} opacity="0">
             {hits.map(({ x, k }) => {
               const T = x.rt.r.T;
               const t0 = x.rt.b.arrive[x.rt.g.hopIdx[k]] - 0.5;
@@ -254,8 +256,8 @@ const legend = def.legend.map(([tone, label]) => {
           {two && <text class="ns" x={n.cx} y={n.cy + 12} text-anchor="middle">{n.s}</text>}
           {step && (
             <>
-              <circle cx={n.x + 5} cy={n.y + 3} r="9" fill={COL[def.accent]} stroke="#FFFDF9" stroke-width="2" />
-              <text class="cf-step" x={n.x + 5} y={n.y + 7} text-anchor="middle" fill={BADGE_TXT[def.accent]}>{step}</text>
+              <circle cx={n.x + 5} cy={n.y + 3} r="9" fill={TH.primary} stroke="#FFFDF9" stroke-width="2" />
+              <text class="cf-step" x={n.x + 5} y={n.y + 7} text-anchor="middle" fill="#FFFFFF">{step}</text>
             </>
           )}
         </g>
@@ -273,27 +275,24 @@ const legend = def.legend.map(([tone, label]) => {
 </svg>
 <style>
   .cf{display:block;width:100%;height:auto;aspect-ratio:360/344;font-family:var(--fb);overflow:hidden}
-  .cf-panel{fill:#FFFDF9;stroke:#1B1A18;stroke-width:1}
-  .cf-lines path{fill:none;stroke-width:1.7}
+  .cf-panel{fill:#FFFDF9;stroke:#D9CFC0;stroke-width:1}
+  .cf-lines path{fill:none;stroke-width:1.6}
   .cf-lines .ln-dash{stroke-dasharray:4 4}
-  .cf-lines .cf-x{stroke:#881919;stroke-width:2.2;stroke-linecap:round}
+  .cf-lines .cf-x{stroke:var(--cs-primary,#881919);stroke-width:2.2;stroke-linecap:round}
   .cf-node rect{fill:#fff;stroke:#D9CFC0;stroke-width:1}
   .cf-node .nt{font-size:12px;font-weight:500;fill:#1B1A18;letter-spacing:.01em}
   .cf-node .ns{font-size:11.2px;fill:#5A544B;letter-spacing:.02em}
   .cf-node .cf-halo{fill:none}
   .cf-step{font-size:11.2px;font-weight:600}
-  .k-red rect{fill:#881919;stroke:#881919}.k-red .nt{fill:#fff}.k-red .ns{fill:#F6DEDB}
-  .k-blue rect{fill:#2E5E92;stroke:#2E5E92}.k-blue .nt{fill:#fff}.k-blue .ns{fill:#E0EAF5}
-  .k-gold rect{fill:#DAB057;stroke:#DAB057}.k-gold .nt{fill:#1B1A18}.k-gold .ns{fill:#3B3326}
+  /* tools: main ones outlined in ink, supporting ones on a soft tint; one dark anchor (the source of truth) */
+  .k-red rect,.k-blue rect,.k-gold rect{fill:#fff;stroke:#1B1A18;stroke-width:1.2}
   .k-ink rect{fill:#1B1A18;stroke:#1B1A18}.k-ink .nt{fill:#F4F0E8}.k-ink .ns{fill:#D5CEC2}
-  .k-red-t rect{fill:#F6E4E1;stroke:#881919}.k-red-t .ns{fill:#5C4642}
-  .k-blue-t rect{fill:#E1EAF4;stroke:#2E5E92}.k-blue-t .ns{fill:#3F4D5E}
-  .k-gold-t rect{fill:#F8EDCF;stroke:#B98F2F}.k-gold-t .ns{fill:#5A4A25}
-  .k-sand rect{fill:#EDE7DC;stroke:#B9B2A6}.k-sand .ns{fill:#4F4A42}
+  .k-red-t rect,.k-blue-t rect,.k-gold-t rect,.k-sand rect{fill:var(--cs-tint,#F4EFE7);stroke:#D9CFC0}
   .k-white rect{fill:#fff;stroke:#B9B2A6}
   .k-person rect{fill:#FFFDF9;stroke:#1B1A18;stroke-width:1.8}
-  .k-human rect{fill:#F6E4E1;stroke:#881919;stroke-width:1.8}.k-human .nt{fill:#881919}.k-human .ns{fill:#5C4642}
-  .k-note .nt{font-size:13px;font-weight:600}
+  .k-human rect{fill:var(--cs-primary-soft,#F6EAE7);stroke:var(--cs-primary,#881919);stroke-width:1.8}.k-human .nt{fill:var(--cs-primary-ink,#881919)}.k-human .ns{fill:#4F4A42}
+  .k-note rect{fill:#FFFDF9;stroke:#1B1A18;stroke-width:1.2}
+  .k-note .nt{font-size:13px;font-weight:600;fill:var(--cs-primary-ink,#881919)}.k-note .ns{fill:#4F4A42}
   .k-next rect{fill:transparent;stroke:#8A8172;stroke-width:1.3;stroke-dasharray:4 3}
   .k-next .ns{fill:#5A544B}
   .cf-lg{font-size:11.2px;fill:#4F4A42;letter-spacing:.01em}

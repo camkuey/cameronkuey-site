@@ -17,15 +17,19 @@ const covers = CATEGORIES.map((c) => {
 });
 
 // ---- Collage -------------------------------------------------------------------------------
-// Every tile links to its category page. Shoot types, colours and captions per category.
-const KIND: Record<string, { label: string; href: string; color: string; cap: string }> = {
-  wed:  { label: 'Weddings',    href: '/wedding-photography',   color: '#881919', cap: 'Wedding · Cosie Co.' },
-  eng:  { label: 'Engagements', href: '/engagement-proposals',  color: '#2E5E92', cap: 'Engagement · Cosie Co.' },
-  fam:  { label: 'Family',      href: '/family-photoshoots',    color: '#DAB057', cap: 'Family · Cosie Co.' },
-  grad: { label: 'Graduation',  href: '/graduation-photoshoots', color: '#1B1A18', cap: 'Graduation · Cosie Co.' },
-  vid:  { label: 'Video',       href: '/video-production',      color: '#881919', cap: 'Video production' },
-  aud:  { label: 'Podcast',     href: '/audio-production',      color: '#2E5E92', cap: 'Audio · Coffee Meets Bible' },
+// Every tile links to its category page. Shoot types and captions per category; one neutral
+// placeholder colour for all (the photos carry the colour, not the categories).
+const SAND = '#EDE7DC';
+const KIND: Record<string, { label: string; href: string; color: string; cap: string; k: string; s: string }> = {
+  wed:  { label: 'Weddings',    href: '/wedding-photography',   color: SAND, cap: 'Wedding · Cosie Co.', k: 'Wedding', s: 'Cosie Co.' },
+  eng:  { label: 'Engagements', href: '/engagement-proposals',  color: SAND, cap: 'Engagement · Cosie Co.', k: 'Engagement', s: 'Cosie Co.' },
+  fam:  { label: 'Family',      href: '/family-photoshoots',    color: SAND, cap: 'Family · Cosie Co.', k: 'Family', s: 'Cosie Co.' },
+  grad: { label: 'Graduation',  href: '/graduation-photoshoots', color: SAND, cap: 'Graduation · Cosie Co.', k: 'Graduation', s: 'Cosie Co.' },
+  vid:  { label: 'Video',       href: '/video-production',      color: SAND, cap: 'Video production', k: 'Video production', s: '' },
+  aud:  { label: 'Podcast',     href: '/audio-production',      color: SAND, cap: 'Audio · Coffee Meets Bible', k: 'Audio', s: 'Coffee Meets Bible' },
 };
+// "Browse the work" tags: the medium of each category's pages
+const MEDIUM: Record<string, string> = { photography: 'Photo', 'video-production': 'Video', 'audio-production': 'Podcast' };
 const FULL: Record<string, string> = { wed: 'wedding-photography', eng: 'engagement-proposals', fam: 'family-photoshoots', grad: 'graduation-photoshoots' };
 const find = (prefix: string, n: number) => {
   const k = Object.keys(IMAGES).find((x) => x.startsWith(`${prefix}/${String(n).padStart(2, '0')}-`));
@@ -64,29 +68,47 @@ const EAGER = 7; // tiles that sit in the first rows on desktop
 <Base title="Creative work" section="creative"
   description="Creative work by Cameron Kuey: wedding, engagement, family and graduation photography; video production; and the Coffee Meets Bible podcast.">
   <CreativeNav current="creative" />
-  <div class="band"><div class="cs-stripe" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
-  <div class="wrap">
-    <header class="page-head wide">
-      <p class="eyebrow">Creative</p>
+  <header class="pg"><div class="wrap pg-grid">
+    <div>
+      <p class="ey">Creative</p>
       <h1>Photography, film <em>&amp; audio.</em></h1>
-      <p class="lede">Ten years of work through Cosie Co. and The Cultivation Project: 200+ clients served as a freelancer, and 100+ documentaries, promotional videos and podcast episodes produced with a team of 10+.</p>
-      <ul class="cl-chips" aria-label="Browse by type">
-        {['wed', 'eng', 'fam', 'grad', 'vid', 'aud'].map((k) => <li><a href={KIND[k].href} style={`--c:${KIND[k].color}`}>{KIND[k].label}</a></li>)}
+      <p class="intro">Ten years of work through Cosie Co. and The Cultivation Project: 200+ clients served as a freelancer, and 100+ documentaries, promotional videos and podcast episodes produced with a team of 10+.</p>
+      <ul class="pills" aria-label="Browse by type" style="margin-top:28px">
+        <li><a href="/creative" aria-current="page">All</a></li>
+        {['wed', 'eng', 'fam', 'grad', 'vid', 'aud'].map((k) => <li><a href={KIND[k].href}>{KIND[k].label}</a></li>)}
       </ul>
-    </header>
-  </div></div>
-  <section class="cl-sec"><div class="wrap">
+    </div>
+    <div class="nums stack">
+      <div><b>200+</b><span>Clients served as a freelancer</span></div>
+      <div><b>100+</b><span>Documentaries, videos and podcast episodes</span></div>
+      <div><b>10+</b><span>Person production team</span></div>
+      <div><b>2012</b><span>First year as a photographer and filmmaker</span></div>
+    </div>
+  </div></header>
+  <section class="cl-sec" aria-label="Photo mosaic"><div class="wrap">
     <div class="cl-mosaic">
-      {mosaic.map((t, n) => t.tile
-        ? <a class="cl-tile" href={t.href} style={`--c:${t.color};--ar:1`} data-k={t.kind}><span class="cl-n eyebrow">Browse</span><b>{t.label}</b><span class="cl-go">See the photos →</span></a>
-        : <a class="cl-ph" href={t.href} style={`--ar:${t.ar};--c:${t.color}`} data-wide={t.ar >= 1.2 ? '' : undefined}>
-            <Pic id={t.id} sizes="(max-width: 700px) 50vw, 340px" eager={n < EAGER} />
-            <span class="cl-cap"><i style={`background:${t.color}`}></i>{t.cap}</span>
-          </a>)}
+      {mosaic.filter((t) => !t.tile).map((t: any, n) => (
+        <a class="cl-ph" href={t.href} style={`--ar:${t.ar}`} data-wide={t.ar >= 1.2 ? '' : undefined}>
+          <span class="cl-img"><Pic id={t.id} sizes="(max-width: 700px) 50vw, 340px" eager={n < EAGER} /></span>
+          <span class="cap-row"><span class="k">{t.k}</span>{t.s && <span class="s">{t.s}</span>}</span>
+        </a>
+      ))}
+    </div>
+  </div></section>
+  <section class="film" aria-labelledby="film-h"><div class="wrap film-grid">
+    <a class="film-shot" href="/commercials-social-media-ads" aria-label="Watch Silent Night, a short film for Alabaster Co.">
+      <Pic id="home-film-silent-night" sizes="(max-width: 900px) 100vw, 720px" alt="Silent Night, a short film for Alabaster Co.: hands opening a book beside candles, small lit houses and a Christmas tree" />
+      <span class="hm-play" aria-hidden="true"></span>
+    </a>
+    <div>
+      <p class="ey"><b>01</b> / Featured film</p>
+      <h2 id="film-h">Silent Night</h2>
+      <p>A short film for Alabaster Co.</p>
+      <a class="btn" href="/commercials-social-media-ads">Watch the film →</a>
     </div>
   </div></section>
   <section class="cl-sec cl-strips" aria-label="More frames"><div class="wrap">
-    <div class="sec-head"><h2>More frames</h2><p class="eyebrow">Hover to pause</p></div>
+    <div class="sec-top"><div><p class="ey"><b>02</b> / Hover to pause</p><h2>More frames</h2></div></div>
   </div>
     {[stripA, stripB].map((row, r) => (
       <div class={`cl-strip${r ? ' rev' : ''}`}>
@@ -100,20 +122,19 @@ const EAGER = 7; // tiles that sit in the first rows on desktop
       </div>
     ))}
   </section>
-  <section style="padding-top:8px"><div class="wrap">
-    <div class="sec-head"><h2>By category</h2><p class="eyebrow">Shoot types</p></div>
+  <section class="sec" style="padding-top:24px"><div class="wrap">
+    <div class="sec-top"><div><p class="ey"><b>03</b> / By category</p><h2>Shoot types</h2></div></div>
     <Covers covers={covers} three eager={false} />
-    <div class="creative-index">
+  </div></section>
+  <section class="sec" style="padding-top:0"><div class="wrap">
+    <div class="sec-top"><div><p class="ey"><b>04</b> / Index</p><h2>Browse the work</h2></div><a class="more" href="/home">About me →</a></div>
+    <div class="browse">
       {CATEGORIES.map((c) => (
         <div>
-          <h2 class="eyebrow"><a href={`/${c.slug}`}>{c.title}</a></h2>
-          <ul>{c.children.map((ch) => <li><a href={`/${ch.slug}`}>{ch.title}</a></li>)}</ul>
+          <h3><a href={`/${c.slug}`}>{c.title}</a></h3>
+          <ul>{c.children.map((ch) => <li><a href={`/${ch.slug}`}>{ch.title}<span>{MEDIUM[c.slug] ?? ''}</span></a></li>)}</ul>
         </div>
       ))}
-      <div>
-        <h2 class="eyebrow"><a href="/home">About</a></h2>
-        <ul><li><a href="/home">About Me</a></li><li><a href="/contact">Contact</a></li></ul>
-      </div>
     </div>
   </div></section>
 </Base>

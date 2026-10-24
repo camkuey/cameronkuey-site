@@ -25,8 +25,8 @@ const aboutImg = isAbout ? p.blocks.find((b: any) => b.t === 'images')?.items?.[
 let description: string;
 if (isAbout) description = 'About Cameron Kuey: operations leader, AI-assisted systems builder, photographer and filmmaker.';
 else if (isCategory) description = `${p.title} by Cameron Kuey: ${CATEGORIES.find((c) => c.slug === p.slug)!.children.map((c) => c.title).join(', ')}.`;
-else description = firstText ? (firstText.length > 155 ? firstText.slice(0, 152).replace(/\s+\S*$/, '') + '…' : firstText) : `${p.title} — ${p.category} work by Cameron Kuey.`;
-if (description.length < 70 && !isCategory) description = `${p.title} — ${p.category ?? 'creative'} work by Cameron Kuey. ${description}`.slice(0, 158);
+else description = firstText ? (firstText.length > 155 ? firstText.slice(0, 152).replace(/\s+\S*$/, '') + '…' : firstText) : `${p.title}: ${p.category} work by Cameron Kuey.`;
+if (description.length < 70 && !isCategory) description = `${p.title}: ${p.category ?? 'creative'} work by Cameron Kuey. ${description}`.slice(0, 158);
 
 // Social image: first image on the page, else the site default.
 const firstImg = (p.blocks.find((b: any) => b.t === 'images' && b.items.some((i: any) => IMAGES[i.id]))?.items ?? []).find((i: any) => IMAGES[i.id]) ?? (p.covers[0]?.image && IMAGES[p.covers[0].image.id] ? p.covers[0].image : null);
@@ -46,21 +46,21 @@ const catCovers = isCategory
 ---
 <Base title={isAbout ? 'About Me' : p.title} description={description} section="creative" image={image}>
   <CreativeNav current={isAbout ? 'home' : p.categorySlug ?? p.slug} />
-  <div class="wrap">
-    <header class:list={['page-head', { wide: isCategory }]}>
-      <ol class="crumbs eyebrow" aria-label="Breadcrumb">
+  <header class="pg wide"><div class="wrap pg-grid">
+    <div>
+      <ol class="crumbs" aria-label="Breadcrumb">
         <li><a href="/creative">Creative</a></li>
         {cat && <li><a href={`/${cat.slug}`}>{cat.title}</a></li>}
       </ol>
       <h1>{p.title}</h1>
       {showRange && (
-        <nav class="range" aria-label={`Types of ${noun[rangeCat!.slug] ?? rangeCat!.title}`}>
-          <ul>{rangeCat!.children.map((c) => <li><a href={`/${c.slug}`} aria-current={c.slug === p.slug ? 'page' : undefined}>{c.title}</a></li>)}</ul>
+        <nav aria-label={`Types of ${noun[rangeCat!.slug] ?? rangeCat!.title}`} style="margin-top:26px">
+          <ul class="pills">{rangeCat!.children.map((c) => <li><a href={`/${c.slug}`} aria-current={c.slug === p.slug ? 'page' : undefined}>{c.title}</a></li>)}</ul>
         </nav>
       )}
-    </header>
-  </div>
-  <section style="padding-top:8px"><div class="wrap">
+    </div>
+  </div></header>
+  <section class="sec" style="padding-top:48px"><div class="wrap">
     {isAbout ? (
       <div class="about-page">
         <div class="about-top">

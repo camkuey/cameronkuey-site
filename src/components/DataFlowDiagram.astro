@@ -117,7 +117,7 @@ const start = (r: Route, b: Blob) => `${(b.begin - r.dur * 0.5).toFixed(2)}s`;
       <desc id={`df-d-${L.key}`}>A team member signs in with a work Google account through Cloudflare Access. Requests go from the Dashboard to the API, which runs on the same Cloudflare Worker. The API checks permissions, then reads and writes Airtable and saves docs to Google Docs. Shifts, PTO and sick days are pushed one way to Google Calendar; nothing comes back from the calendar. Ask Otis suggestions go to a person, and only what that person approves is written to Airtable. A text version follows the diagram.</desc>
       <defs>
         <marker id={`df-a-${L.key}`} viewBox="0 0 8 8" refX="6" refY="4" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M1,1 L6,4 L1,7" fill="none" stroke="#B3A895" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" /></marker>
-        <marker id={`df-ar-${L.key}`} viewBox="0 0 8 8" refX="6" refY="4" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M1,1 L6,4 L1,7" fill="none" stroke="#881919" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" /></marker>
+        <marker id={`df-ar-${L.key}`} viewBox="0 0 8 8" refX="6" refY="4" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M1,1 L6,4 L1,7" fill="none" style="stroke:var(--accent)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" /></marker>
         {L.routes.map((r) => <path id={`df-${L.key}-${r.id}`} d={r.d} />)}
       </defs>
       <g class="df-lines" aria-hidden="true">
@@ -191,7 +191,7 @@ const start = (r: Route, b: Blob) => `${(b.begin - r.dur * 0.5).toFixed(2)}s`;
 </script>
 
 <style>
-  .df{margin:0;background:#F3EEE6;border:1px solid var(--line);border-radius:4px;padding:28px 28px 20px}
+  .df{margin:0;background:var(--cs-tint,#F3EEE6);border:1px solid var(--line);border-radius:4px;padding:28px 28px 20px}
   .df-svg{display:block;width:100%;height:auto;font-family:var(--fb);overflow:visible}
   .df-n{display:none;max-width:460px;margin:0 auto}
   @media (max-width:860px){.df{padding:20px 10px 16px}.df-w{display:none}.df-n{display:block}}
@@ -210,7 +210,7 @@ const start = (r: Route, b: Blob) => `${(b.begin - r.dur * 0.5).toFixed(2)}s`;
   .df-node.k-human rect{stroke:var(--accent);stroke-width:1.4}
   .df-node.k-human .nt{fill:var(--accent)}
   .df-blob text{font-size:10px;font-weight:500;letter-spacing:.03em}
-  .df-n .df-blob text{font-size:10.5px;paint-order:stroke;stroke:#F3EEE6;stroke-width:3px;stroke-linejoin:round}
+  .df-n .df-blob text{font-size:10.5px;paint-order:stroke;stroke:var(--cs-tint,#F3EEE6);stroke-width:3px;stroke-linejoin:round}
   .df-blob.t-ink rect,.df-blob.t-ink circle{fill:var(--ink)}
   .df-blob.t-ink text{fill:#F4F0E8}
   .df-blob.t-light rect,.df-blob.t-light circle{fill:#fff;stroke:var(--ink);stroke-width:1}

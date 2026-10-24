@@ -1,21 +1,22 @@
 ---
 import Base from '../../layouts/Base.astro';
-import CaseMotif from '../../components/CaseMotif.astro';
+import { themeVars } from '../../data/themes';
 import HoursToClick from '../../components/HoursToClick.astro';
 import CaseFlow from '../../components/CaseFlow.astro';
 import { meta, stats, note, problem, built, flows, results, success, differently } from '../../data/circles-scheduling';
 ---
 <Base title={meta.title} section="cases" description={meta.description}>
-  <article class="cs-page">
+  <article class="cs-page" data-theme="brand" style={themeVars('brand')}>
     <div class="cs-heroband">
       <div class="cs-stripe" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
       <div class="wrap cs-herogrid">
         <header class="page-head wide">
-        <ol class="crumbs eyebrow" aria-label="Breadcrumb"><li><a href="/case-studies">Case studies</a></li><li>Modern Health</li></ol>
+        <ol class="crumbs eyebrow mono" aria-label="Breadcrumb"><li><a href="/case-studies">Case studies</a></li><li>Modern Health</li></ol>
         <h1>Turning a manual, multi-tab Circles setup into <em>a one-step workflow.</em></h1>
         <p class="lede">At Modern Health I produced online workshops and webinars called Circles. Setup took hours across many tools, so I mapped the process and automated it with Zapier and Airtable.</p>
+          <dl class="spec-t"><div><dt>Org</dt><dd>Modern Health</dd></div><div><dt>Role</dt><dd>Creative Producer</dd></div><div><dt>Tools</dt><dd>Zapier, Airtable, Zendesk, Zoom, Google Slides</dd></div></dl>
       </header>
-        <div class="cs-motif"><CaseMotif kind="circles" /></div>
+        <figure class="cs-herovis is-flow"><HoursToClick /></figure>
       </div>
       <div class="wrap">
         <div class="cs-tiles">
@@ -26,13 +27,9 @@ import { meta, stats, note, problem, built, flows, results, success, differently
     <div class="wrap"><p class="cs-note">{note}</p></div>
 
     <section class="cs-sec c-red"><div class="wrap">
-      <div class="cs-split">
-        <div class="cs-text">
-          <span class="cs-no" aria-hidden="true">01</span>
-          <h2>The problem</h2>
-          {problem.map((p) => <p>{p}</p>)}
-        </div>
-        <figure class="cs-vis cs-flow"><HoursToClick /></figure>
+      <div class="cs-grid">
+        <div class="cs-label"><span class="cs-no" aria-hidden="true">01</span><h2>The problem</h2></div>
+        <div class="cs-prose">{problem.map((p) => <p>{p}</p>)}</div>
       </div>
     </div></section>
     <section class="cs-sec c-blue tint"><div class="wrap">
@@ -72,7 +69,7 @@ import { meta, stats, note, problem, built, flows, results, success, differently
         <figure class="cs-vis cs-flow"><CaseFlow flow="circles-deck" /></figure>
       </div>
     </div></section>
-    <section class="cs-sec c-gold tint"><div class="wrap">
+    <section class="cs-sec is-key c-gold tint"><div class="wrap">
       <div class="cs-grid">
         <div class="cs-label"><span class="cs-no" aria-hidden="true">06</span><h2>Results</h2></div>
         <ol class="numbered">{results.map((r) => <li><p>{r}</p></li>)}</ol>

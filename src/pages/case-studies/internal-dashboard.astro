@@ -6,60 +6,68 @@ import MotionClips from '../../components/MotionClips.astro';
 import DataFlowDiagram from '../../components/DataFlowDiagram.astro';
 import DaySequence from '../../components/DaySequence.astro';
 import ProblemFlow from '../../components/ProblemFlow.astro';
+import { themeVars } from '../../data/themes';
 import { stats, modules, stack, broke, differently, screenshots, shot } from '../../data/internal-dashboard';
 ---
 <Base title="Case study: the Internal Dashboard" section="cases"
   description="How Cameron Kuey took Doodle Pirates Foundation’s all-in-one Internal Dashboard from concept to production in under two weeks with AI agents: 152 reviewed PRs, 1,218 tests.">
-  <article>
-    <div class="wrap">
-      <header class="page-head wide">
-        <ol class="crumbs eyebrow" aria-label="Breadcrumb"><li><a href="/ai-builds">AI Builds</a></li><li>Case study</li></ol>
-        <h1>An all-in-one Internal Dashboard, <em>concept to production in under two weeks.</em></h1>
-        <p class="lede">As Director of Business Operations at Doodle Pirates Foundation, I designed one role-based platform for the whole team and shipped it fast by directing Cursor cloud agents and reviewing every change.</p>
-      </header>
-    </div>
-
-    <section style="padding-top:8px"><div class="wrap">
-      <figure class="cs-vis cs-hero-vis">
-        <Pic id={shot.myWork.id} alt={shot.myWork.alt} eager sizes="(max-width: 1280px) 100vw, 1200px" />
-      </figure>
-      <div class="stats cs-statbar">
-        {stats.map((s) => <div class="stat"><b>{s.value}</b><span>{s.label}</span></div>)}
+  <article class="cs-page" data-theme="dashboard" style={themeVars('dashboard')}>
+    <div class="cs-heroband">
+      <div class="cs-stripe" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+      <div class="wrap cs-herogrid">
+        <header class="page-head wide">
+          <ol class="crumbs eyebrow mono" aria-label="Breadcrumb"><li><a href="/ai-builds">AI Builds</a></li><li>Case study</li></ol>
+          <h1>An all-in-one Internal Dashboard, <em>concept to production in under two weeks.</em></h1>
+          <p class="lede">As Director of Business Operations at Doodle Pirates Foundation, I designed one role-based platform for the whole team and shipped it fast by directing Cursor cloud agents and reviewing every change.</p>
+          <dl class="spec-t"><div><dt>Org</dt><dd>Doodle Pirates Foundation</dd></div><div><dt>Role</dt><dd>Director of Business Operations</dd></div><div><dt>Stack</dt><dd>React + Vite, Hono, Cloudflare Worker, Airtable</dd></div></dl>
+        </header>
+        <figure class="cs-herovis is-shot">
+          <Pic id={shot.myWork.id} alt={shot.myWork.alt} eager sizes="(max-width: 900px) 100vw, 720px" />
+        </figure>
       </div>
-      <p class="cs-note">The savings figure is my estimate, per employee per year. It is not audited.</p>
-    </div></section>
+      <div class="wrap">
+        <div class="cs-tiles">
+          {stats.map((s, i) => <div class={`cs-tile t${i}`}><b>{s.value}</b><span>{s.label}</span></div>)}
+        </div>
+      </div>
+    </div>
+    <div class="wrap"><p class="cs-note">The savings figure is my estimate, per employee per year. It is not audited.</p></div>
 
-    <section class="cs-vspace"><div class="wrap cs-split">
+    <section class="cs-sec"><div class="wrap cs-split">
       <div class="cs-text">
+        <span class="cs-no" aria-hidden="true">01</span>
         <h2>The problem</h2>
         <p>The team was disconnected: projects and tasks lived in different places, so nobody could see who was doing what. As a nonprofit startup we couldn’t afford a stack of subscriptions, and we employ neurodivergent people, so everyone learns and works differently. I designed one affordable, easy-to-use system with one place to see what to focus on.</p>
       </div>
-      <figure class="cs-vis cs-problem"><ProblemFlow /></figure>
+      <figure class="cs-vis cs-flow cs-problem"><ProblemFlow theme="dashboard" /></figure>
     </div></section>
 
-    <section class="cs-vspace"><div class="wrap cs-split rev">
+    <section class="cs-sec tint"><div class="wrap cs-split rev">
       <div class="cs-text">
+        <span class="cs-no" aria-hidden="true">02</span>
         <h2>What it does</h2>
         <p>One role-based platform replacing a stack of separate tools. By my estimate, it avoids <strong>$1,000+ per employee in annual software costs</strong>.</p>
         <ul class="taglist">{modules.map((m) => <li>{m}</li>)}</ul>
       </div>
-      <figure class="cs-vis">
+      <figure class="cs-vis cs-shotfig">
         <Pic id={shot.tasks.id} alt={shot.tasks.alt} sizes="(max-width: 900px) 100vw, 700px" />
       </figure>
     </div></section>
 
-    <section class="cs-vspace"><div class="wrap">
+    <section class="cs-sec"><div class="wrap">
       <div class="cs-text" style="max-width:62ch">
+        <span class="cs-no" aria-hidden="true">03</span>
         <h2>Plan: milestones and a live timeline</h2>
         <p>Each department gets a Gantt-style timeline of its projects and milestones, with counts for what’s open, next and blocked. Dependency lines show what waits on what. Hover for details, or click to edit the record in Airtable.</p>
       </div>
-      <figure class="cs-vis" style="margin-top:28px">
+      <figure class="cs-vis cs-shotfig" style="margin-top:28px">
         <Pic id={shot.projects.id} alt={shot.projects.alt} sizes="(max-width: 1280px) 100vw, 1200px" />
       </figure>
     </div></section>
 
-    <section class="cs-vspace"><div class="wrap cs-split">
+    <section class="cs-sec tint"><div class="wrap cs-split">
       <div class="cs-text">
+        <span class="cs-no" aria-hidden="true">04</span>
         <h2>Ask Otis</h2>
         <p>Ask Otis is a Claude-powered assistant built into the dashboard. Ask it to add or update a task, project or milestone and it returns an editable card. Nothing changes until the person presses Approve; the server rechecks permissions before saving.</p>
       </div>
@@ -72,39 +80,41 @@ import { stats, modules, stack, broke, differently, screenshots, shot } from '..
       </figure>
     </div></section>
 
-    <section class="cs-vspace"><div class="wrap cs-split rev">
+    <section class="cs-sec"><div class="wrap cs-split rev">
       <div class="cs-text">
+        <span class="cs-no" aria-hidden="true">05</span>
         <h2>From meetings to daily focus</h2>
         <p>The dashboard doesn’t read meeting notes. Action items reach the task list from people and from AI assistants we run outside it. Every weekday at 6:30 AM it picks each person’s daily focus, with a rule-based fallback if the AI is down.</p>
       </div>
-      <figure class="cs-vis">
+      <figure class="cs-vis cs-shotfig">
         <Pic id={shot.focusDeck.id} alt={shot.focusDeck.alt} sizes="(max-width: 900px) 100vw, 700px" />
       </figure>
     </div></section>
 
-    <section class="cs-vspace"><div class="wrap">
-      <div class="cs-split" style="margin-bottom:32px">
-        <div class="cs-text">
-          <h2>How data flows</h2>
-          <p>Everyone signs in with a work Google account, and every write passes a permission check before reaching Airtable, the source of truth. Docs are real Google Docs, calendar sync is one way, and Ask Otis only suggests.</p>
-        </div>
-        <div></div>
+    <section class="cs-sec tint"><div class="wrap">
+      <div class="cs-text" style="max-width:62ch;margin-bottom:32px">
+        <span class="cs-no" aria-hidden="true">06</span>
+        <h2>How data flows</h2>
+        <p>Everyone signs in with a work Google account, and every write passes a permission check before reaching Airtable, the source of truth. Docs are real Google Docs, calendar sync is one way, and Ask Otis only suggests.</p>
       </div>
       <DataFlowDiagram />
     </div></section>
 
-    <section class="cs-vspace"><div class="wrap">
-      <div class="sec-head"><h2>A day in the dashboard</h2><p class="eyebrow">From meeting action items to a confirmed week</p></div>
+    <section class="cs-sec"><div class="wrap">
+      <div class="cs-label"><span class="cs-no" aria-hidden="true">07</span><h2>A day in the dashboard</h2></div>
+      <p class="eyebrow cs-sub">From meeting action items to a confirmed week</p>
       <div style="margin-top:28px"><DaySequence /></div>
     </div></section>
 
-    <section class="cs-vspace"><div class="wrap">
-      <div class="sec-head"><h2>See it in motion</h2><p class="eyebrow">Sample-data screen recordings</p></div>
+    <section class="cs-sec tint"><div class="wrap">
+      <div class="cs-label"><span class="cs-no" aria-hidden="true">08</span><h2>See it in motion</h2></div>
+      <p class="eyebrow cs-sub">Sample-data screen recordings</p>
       <div style="margin-top:28px"><MotionClips only={['opening-the-day', 'kiosk-clock-in']} /></div>
     </div></section>
 
-    <section class="cs-vspace"><div class="wrap cs-split">
+    <section class="cs-sec"><div class="wrap cs-split">
       <div class="cs-text">
+        <span class="cs-no" aria-hidden="true">09</span>
         <h2>How it was built</h2>
         <p>I set the requirements, structure and approval rules, and AI agents did the typing. I reviewed every change: 152 pull requests, backed by 1,218 automated tests.</p>
         <dl class="spec" style="grid-template-columns:1fr">
@@ -117,9 +127,9 @@ import { stats, modules, stack, broke, differently, screenshots, shot } from '..
       </div>
     </div></section>
 
-    <section class="cs-vspace"><div class="wrap">
-      <div class="sec-head"><h2>Screens</h2></div>
-      <div class="shots dash-shots" data-gallery>
+    <section class="cs-sec tint"><div class="wrap">
+      <div class="cs-label"><span class="cs-no" aria-hidden="true">10</span><h2>Screens</h2></div>
+      <div class="shots dash-shots" data-gallery style="margin-top:28px">
         {screenshots.map((s) => (
           <figure class={`shot${s.phone ? ' is-phone' : ''}`}>
             <a class="shot-img" href={fullSrc(s.id)} data-lb data-w={IMAGES[s.id].w} data-h={IMAGES[s.id].h} data-cap={s.label} aria-label={`View larger: ${s.alt}`}>
@@ -130,21 +140,24 @@ import { stats, modules, stack, broke, differently, screenshots, shot } from '..
         ))}
       </div>
       <p class="caption" style="margin-top:20px">All names, tasks and numbers are invented sample data, and one vendor name is blurred. The dashboard and its code are private to Doodle Pirates Foundation.</p>
-      <div class="btns"><a class="btn solid" href="/ai-builds">More AI builds →</a><a class="btn" href="/contact">Ask me about it</a></div>
     </div></section>
 
     {broke.length > 0 && (
-      <section class="cs-vspace"><div class="wrap cs-grid">
-        <div class="sec-head cs-label"><h2>What broke &amp; how I fixed it</h2></div>
+      <section class="cs-sec"><div class="wrap cs-grid">
+        <div class="cs-label"><span class="cs-no" aria-hidden="true">11</span><h2>What broke &amp; how I fixed it</h2></div>
         <ol class="numbered">{broke.map((b) => <li><b>{b.title}</b><p>{b.fix}</p></li>)}</ol>
       </div></section>
     )}
     {differently.length > 0 && (
-      <section class="cs-vspace"><div class="wrap cs-grid">
-        <div class="sec-head cs-label"><h2>What I’d do differently</h2></div>
+      <section class="cs-sec tint"><div class="wrap cs-grid">
+        <div class="cs-label"><span class="cs-no" aria-hidden="true">{broke.length > 0 ? '12' : '11'}</span><h2>What I’d do differently</h2></div>
         <ol class="numbered">{differently.map((d) => <li><p>{d}</p></li>)}</ol>
       </div></section>
     )}
+    <section class="cs-cta"><div class="wrap">
+      <p class="eyebrow">Keep reading</p>
+      <div class="btns"><a class="btn solid" href="/ai-builds">More AI builds →</a><a class="btn" href="/contact">Ask me about it</a></div>
+    </div></section>
   </article>
 </Base>
 <script>

@@ -5,16 +5,25 @@
    Pure inline SVG + CSS keyframes, 9s loop with a pause on the end state. Same panel, palette and
    Jost type as CaseFlow. Under prefers-reduced-motion nothing moves: the static end state shows
    both the "≈ 3 hours" and the "1 click" halves. */
-type Tab = { t: string; fill: string; stroke: string; ink: string; short: string };
+import { THEMES, type ThemeName } from '../data/themes';
+interface Props { theme?: ThemeName }
+const { theme = 'brand' } = Astro.props as Props;
+const TH = THEMES[theme];
+// Before: each tab lights in the same neutral sand (manual, one at a time). After: every tool lights
+// together in ink, fired by one primary Run button. No per-tool colours.
+type Tab = { t: string; short: string };
 const tabs: Tab[] = [
-  { t: 'Zendesk', short: 'Zendesk', fill: '#881919', stroke: '#881919', ink: '#fff' },
-  { t: 'Airtable', short: 'Airtable', fill: '#1B1A18', stroke: '#1B1A18', ink: '#F4F0E8' },
-  { t: 'Zoom', short: 'Zoom', fill: '#2E5E92', stroke: '#2E5E92', ink: '#fff' },
-  { t: 'Google Calendar', short: 'Calendar', fill: '#DAB057', stroke: '#DAB057', ink: '#1B1A18' },
-  { t: 'Google Slides', short: 'Slides', fill: '#F8EDCF', stroke: '#B98F2F', ink: '#1B1A18' },
-  { t: 'Email', short: 'Email', fill: '#F6E4E1', stroke: '#881919', ink: '#881919' },
-  { t: 'Slack', short: 'Slack', fill: '#DCD3C3', stroke: '#1B1A18', ink: '#1B1A18' },
+  { t: 'Zendesk', short: 'Zendesk' },
+  { t: 'Airtable', short: 'Airtable' },
+  { t: 'Zoom', short: 'Zoom' },
+  { t: 'Google Calendar', short: 'Calendar' },
+  { t: 'Google Slides', short: 'Slides' },
+  { t: 'Email', short: 'Email' },
+  { t: 'Slack', short: 'Slack' },
 ];
+const LIT_B = { fill: '#E7DFD2', stroke: '#CFC4B2', ink: '#1B1A18' };
+const LIT_A = { fill: '#1B1A18', stroke: '#1B1A18', ink: '#F4F0E8' };
+const SLOW = '#9C9283';
 const T = 9;
 const ty = (i: number) => 44 + i * 24;
 const px = (i: number) => (i % 2 ? 268 : 192);
@@ -32,7 +41,7 @@ tabs.forEach((_, i) => {
 });
 css += `
 @keyframes h2c-root{0%{opacity:0}3%,94%{opacity:1}99%,100%{opacity:0}}
-@keyframes h2c-dim{0%,50%{opacity:1}57%,100%{opacity:.4}}
+@keyframes h2c-dim{0%,50%{opacity:1}57%,100%{opacity:.92}}
 @keyframes h2c-ghost{0%,50%{opacity:.28}56%,100%{opacity:1}}
 @keyframes h2c-cur{0%,50%{opacity:0;transform:translate(338px,168px)}52%{opacity:1;transform:translate(338px,168px)}61%,63%{opacity:1;transform:translate(284px,98px)}64%,100%{opacity:1;transform:translate(285px,100px)}}
 @keyframes h2c-press{0%,62.5%{transform:translate(0,0)}64%,66%{transform:translate(3px,4px)}68%,100%{transform:translate(0,0)}}
@@ -55,7 +64,6 @@ const label =
 ---
 <svg class="h2c" viewBox="0 0 360 272" role="img" aria-label={label}>
   <rect class="h2c-panel" x=".5" y=".5" width="359" height="271" rx="4" />
-  <path d="M.5,4.5 A4,4 0 0 1 4.5,.5 H355.5 A4,4 0 0 1 359.5,4.5 V9 H.5 Z" fill="#881919" />
   <g class="h2c-root" aria-hidden="true">
     <path d="M184,26 V262" stroke="#D9CFC0" stroke-width="1.2" stroke-dasharray="4 4" />
 
@@ -66,17 +74,17 @@ const label =
           <rect x="16" y={ty(i)} width="160" height="20" rx="6" fill="#fff" stroke="#D9CFC0" />
           <text class="h2c-nm" x="27" y={ty(i) + 14} fill="#4F4A42">{tb.t}</text>
           <g class={`h2c-lit h2c-t${i}`}>
-            <rect x="16" y={ty(i)} width="160" height="20" rx="6" fill={tb.fill} stroke={tb.stroke} />
-            <text class="h2c-nm" x="27" y={ty(i) + 14} fill={tb.ink}>{tb.t}</text>
-            <path d={`M159,${ty(i) + 10.5} l3.5,3.5 l6.5,-7.5`} fill="none" stroke={tb.ink} stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+            <rect x="16" y={ty(i)} width="160" height="20" rx="6" fill={LIT_B.fill} stroke={LIT_B.stroke} />
+            <text class="h2c-nm" x="27" y={ty(i) + 14} fill={LIT_B.ink}>{tb.t}</text>
+            <path d={`M159,${ty(i) + 10.5} l3.5,3.5 l6.5,-7.5`} fill="none" stroke={LIT_B.ink} stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
           </g>
         </g>
       ))}
       <circle cx="28" cy="228" r="11" fill="#fff" stroke="#1B1A18" stroke-width="1.6" />
-      <g class="h2c-bhand" style="transform-origin:28px 228px"><path d="M28,228 V220.5" stroke="#881919" stroke-width="2" stroke-linecap="round" /></g>
+      <g class="h2c-bhand" style="transform-origin:28px 228px"><path d="M28,228 V220.5" stroke={SLOW} stroke-width="2" stroke-linecap="round" /></g>
       <circle cx="28" cy="228" r="1.6" fill="#1B1A18" />
       <rect x="48" y="224" width="128" height="8" rx="4" fill="#EDE7DC" />
-      <rect class="h2c-bbar" x="48" y="224" width="128" height="8" rx="4" fill="#881919" style="transform-origin:48px 228px" />
+      <rect class="h2c-bbar" x="48" y="224" width="128" height="8" rx="4" fill={SLOW} style="transform-origin:48px 228px" />
       <text class="h2c-big h2c-blab" x="16" y="262">≈ 3 hours of setup</text>
     </g>
 
@@ -84,26 +92,26 @@ const label =
       <text class="h2c-cap" x="192" y="36">After</text>
       <rect x="199" y="63" width="140" height="52" rx="12" fill="#1B1A18" />
       <g class="h2c-press">
-        <rect x="196" y="59" width="140" height="52" rx="12" fill="#881919" stroke="#1B1A18" stroke-width="1.5" />
+        <rect x="196" y="59" width="140" height="52" rx="12" fill={TH.primary} stroke="#1B1A18" stroke-width="1.5" />
         <path d="M236,76 L236,94 L250,85 Z" fill="#fff" />
         <text class="h2c-run" x="262" y="93">Run</text>
       </g>
-      <circle class="h2c-rip" cx="266" cy="85" r="46" fill="none" stroke="#881919" stroke-width="2.5" style="transform-origin:266px 85px" />
+      <circle class="h2c-rip" cx="266" cy="85" r="46" fill="none" stroke={TH.primary} stroke-width="2.5" style="transform-origin:266px 85px" />
       {tabs.map((tb, i) => (
         <g>
           <rect x={px(i)} y={py(i)} width="74" height="17" rx="8.5" fill="#fff" stroke="#D9CFC0" />
           <text class="h2c-mini" x={px(i) + 37} y={py(i) + 12} text-anchor="middle" fill="#6B645A">{tb.short}</text>
           <g class={`h2c-lit h2c-p${i}`}>
-            <rect x={px(i)} y={py(i)} width="74" height="17" rx="8.5" fill={tb.fill} stroke={tb.stroke} />
-            <text class="h2c-mini" x={px(i) + 37} y={py(i) + 12} text-anchor="middle" fill={tb.ink}>{tb.short}</text>
+            <rect x={px(i)} y={py(i)} width="74" height="17" rx="8.5" fill={LIT_A.fill} stroke={LIT_A.stroke} />
+            <text class="h2c-mini" x={px(i) + 37} y={py(i) + 12} text-anchor="middle" fill={LIT_A.ink}>{tb.short}</text>
           </g>
         </g>
       ))}
       <circle cx="204" cy="228" r="11" fill="#fff" stroke="#1B1A18" stroke-width="1.6" />
-      <g class="h2c-ahand" style="transform-origin:204px 228px"><path d="M204,228 V220.5" stroke="#2E5E92" stroke-width="2" stroke-linecap="round" /></g>
+      <g class="h2c-ahand" style="transform-origin:204px 228px"><path d="M204,228 V220.5" stroke={TH.primary} stroke-width="2" stroke-linecap="round" /></g>
       <circle cx="204" cy="228" r="1.6" fill="#1B1A18" />
       <rect x="224" y="224" width="118" height="8" rx="4" fill="#EDE7DC" />
-      <rect class="h2c-abar" x="224" y="224" width="118" height="8" rx="4" fill="#2E5E92" style="transform-origin:224px 228px" />
+      <rect class="h2c-abar" x="224" y="224" width="118" height="8" rx="4" fill={TH.primary} style="transform-origin:224px 228px" />
       <text class="h2c-big h2c-alab" x="192" y="262">1 click<tspan class="h2c-sm" dx="7">in seconds</tspan></text>
       <g class="h2c-cur"><path d="M0,0 L0,17 L4.6,13 L7.8,20 L10.8,18.7 L7.7,11.9 L13.4,11.9 Z" fill="#fff" stroke="#1B1A18" stroke-width="1.5" stroke-linejoin="round" /></g>
     </g>
@@ -117,13 +125,14 @@ const label =
 </svg>
 <style>
   .h2c{display:block;width:100%;height:auto;aspect-ratio:360/272;font-family:var(--fb);overflow:hidden}
-  .h2c-panel{fill:#FFFDF9;stroke:#1B1A18;stroke-width:1}
+  .h2c-panel{fill:#FFFDF9;stroke:#D9CFC0;stroke-width:1}
   .h2c-cap{font-size:11.5px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;fill:#6B645A}
   .h2c-nm{font-size:12.5px;font-weight:500}
   .h2c-mini{font-size:11px;font-weight:500}
   .h2c-big{font-size:16px;font-weight:600;fill:#1B1A18}
   .h2c-sm{font-size:12px;font-weight:400;fill:#4F4A42}
   .h2c-run{font-size:23px;font-weight:500;fill:#fff;letter-spacing:.02em}
-  .h2c-before{opacity:.5}
+  /* "before" reads as past through its neutral sand fills, not by fading text below 4.5:1 */
+  .h2c-before{opacity:.92}
   .h2c-cur,.h2c-rip{opacity:0}
 </style>

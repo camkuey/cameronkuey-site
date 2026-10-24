@@ -4,8 +4,15 @@
    One 16 s loop: Before (0.6-7.4 s) -> cross-fade (8-9.4 s) -> After (to 14.4 s) -> reset.
    With reduced motion a static frame is shown instead: the "after" state with a
    small "Before: ..." line on each card. Only things from the brief are claimed. */
+import { THEMES, type ThemeName } from '../data/themes';
+interface Props { theme?: ThemeName }
+const { theme = 'brand' } = Astro.props as Props;
+const TH = THEMES[theme];
 const T = 16;
-const INK = '#1B1A18', RED = '#881919', BLUE = '#2E5E92', GOLD = '#DAB057', LINE = '#B8AC9A', SOFT = '#D9CFC0';
+// BLUE = the connected "after" state (page primary), GOLD = moving work items (quiet secondary),
+// RED = "broken / before" marks (theme warn colour)
+const INK = '#1B1A18', RED = TH.warn, BLUE = TH.primary, GOLD = TH.second, LINE = '#B8AC9A', SOFT = '#D9CFC0';
+const WARN_TXT = TH.warn === '#8A8172' ? '#6B665E' : TH.warn;
 const f = (n: number) => +n.toFixed(3);
 const cols = [8, 188], rows = [84, 186, 288], CW = 164, CH = 92;
 const cells = [0, 1, 2, 3, 4, 5].map((i) => ({ i, x: cols[i % 2], y: rows[Math.floor(i / 2)] }));
@@ -130,16 +137,16 @@ const beforeBody = cells.map((c) => `<g transform="translate(${c.x} ${c.y})">${b
 const afterAnim = cells.map((c, k) => `<g transform="translate(${c.x} ${c.y})">${after(true)[c.i]}</g>` + txt(c, labels[c.i].a)).join('');
 const afterStatic = cells.map((c) => `<g transform="translate(${c.x} ${c.y})">${after(false)[c.i]}</g>` + txt(c, labels[c.i].a) + stat(c, labels[c.i].s)).join('');
 
-const pillB = `<rect x="8" y="3" width="64" height="21" rx="10.5" fill="#fff" stroke="${RED}" stroke-width="1.2"/><text class="pp" x="40" y="17.5" text-anchor="middle" fill="${RED}">BEFORE</text>`;
+const pillB = `<rect x="8" y="3" width="64" height="21" rx="10.5" fill="#fff" stroke="${RED}" stroke-width="1.2"/><text class="pp" x="40" y="17.5" text-anchor="middle" fill="${WARN_TXT}">BEFORE</text>`;
 const pillA = `<rect x="8" y="3" width="64" height="21" rx="10.5" fill="${BLUE}"/><text class="pp" x="40" y="17.5" text-anchor="middle" fill="#fff">AFTER</text>`;
 const capB = `<text class="pc" x="352" y="17.5" text-anchor="end">Work lived in separate places</text>`;
 const capA = `<text class="pc" x="352" y="17.5" text-anchor="end">One connected place</text>`;
-const hubB = `<rect x="8" y="30" width="344" height="36" rx="6" fill="#fff" stroke="${RED}" stroke-width="1.3" stroke-dasharray="5 4"/><text class="ph" x="180" y="53" text-anchor="middle" fill="${RED}">Who is doing what?</text>`;
+const hubB = `<rect x="8" y="30" width="344" height="36" rx="6" fill="#fff" stroke="${RED}" stroke-width="1.3" stroke-dasharray="5 4"/><text class="ph" x="180" y="53" text-anchor="middle" fill="${WARN_TXT}">Who is doing what?</text>`;
 const hubA = `<rect x="8" y="30" width="344" height="36" rx="6" fill="${INK}"/><text class="ph" x="180" y="46" text-anchor="middle" fill="#F4F0E8">Dashboard</text><text class="ps" x="180" y="59.5" text-anchor="middle" fill="#B9B2A6">everything in one place</text>`;
 
 const label = 'Animated diagram of how the team’s work changed. Before: everybody kept their own task lists so nobody could see what each person was doing; nobody took meeting notes and action items vanished; manufacturing made parts but logged no inventory or end-of-day reports; there was no onboarding for new employees and volunteers; there were no Gantt charts or roadmaps; and the business ran on one messy, unorganized shared online drive instead of Airtable bases. After: one Dashboard connects them, with one task list, meeting action items landing as tasks, shop inventory and daily reports, onboarding, a Gantt timeline and roadmaps, and Airtable bases, one per business line.';
 ---
-<svg class="pr" viewBox="0 0 360 392" role="img" aria-label={label}>
+<svg class="pr" viewBox="0 0 360 392" role="img" aria-label={label} style={`--pr-panel:${TH.tint};--pr-warn:${WARN_TXT}`}>
   <rect class="pr-panel" x=".5" y=".5" width="359" height="391" rx="4" />
   <g class="pr-anim" aria-hidden="true">
     <g opacity="0"><g set:html={flowLines + flowDots} /><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;.52;.59;.9;.96;1" dur={`${T}s`} repeatCount="indefinite" /></g>
@@ -157,11 +164,11 @@ const label = 'Animated diagram of how the team’s work changed. Before: everyb
 
 <style>
   .pr{display:block;width:100%;height:auto;aspect-ratio:360/392;font-family:var(--fb);overflow:hidden}
-  .pr-panel{fill:#EDE7DC}
+  .pr-panel{fill:var(--pr-panel,#EDE7DC)}
   .pr :global(.pt){font-size:12.5px;font-weight:500;fill:#1B1A18;letter-spacing:.01em}
   .pr :global(.ps){font-size:11.5px;fill:#6B665E;letter-spacing:.02em}
-  .pr :global(.pb){font-size:11px;fill:#881919;letter-spacing:.02em}
-  .pr :global(.pq){font-weight:600;fill:#881919}
+  .pr :global(.pb){font-size:11px;fill:var(--pr-warn,#881919);letter-spacing:.02em}
+  .pr :global(.pq){font-weight:600;fill:var(--pr-warn,#881919)}
   .pr :global(.pp){font-size:11px;font-weight:500;letter-spacing:.16em}
   .pr :global(.pc){font-size:11.5px;fill:#6B665E;letter-spacing:.02em}
   .pr :global(.ph){font-size:14px;font-weight:500;letter-spacing:.01em}

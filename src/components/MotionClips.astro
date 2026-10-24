@@ -41,7 +41,7 @@ const poster = (id: string) => { const i = IMAGES[id]; return `${i.base}-${i.web
 
 <style>
   .mc{display:grid;grid-template-columns:repeat(var(--cols,2),1fr);gap:40px 32px}
-  .mc-frame{position:relative;background:#EDE7DC;border-radius:4px;padding:48px 14px 14px}
+  .mc-frame{position:relative;background:var(--cs-band,#EDE7DC);border-radius:4px;padding:48px 14px 14px}
   .mc-frame .tag{position:absolute;top:14px;left:14px;font-size:11px;letter-spacing:.14em;text-transform:uppercase;background:#fff;color:var(--muted);padding:6px 10px;border:1px dashed #B9B2A6}
   .mc video{display:block;width:100%;height:auto;aspect-ratio:1440/900;border-radius:6px;background:#2E5E92}
   .mc figcaption{margin-top:12px;display:grid;gap:2px}

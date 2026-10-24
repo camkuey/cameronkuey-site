@@ -1,21 +1,22 @@
 ---
 import Base from '../../layouts/Base.astro';
-import CaseMotif from '../../components/CaseMotif.astro';
+import { themeVars } from '../../data/themes';
 import { chipClass } from '../../data/chips';
 import CaseFlow from '../../components/CaseFlow.astro';
 import { meta, stats, note, platforms, problem, rethink, decision, flows, results, learned } from '../../data/contract-automation';
 ---
 <Base title={meta.title} section="cases" description={meta.description}>
-  <article class="cs-page">
+  <article class="cs-page" data-theme="brand" style={themeVars('brand')}>
     <div class="cs-heroband">
       <div class="cs-stripe" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
       <div class="wrap cs-herogrid">
         <header class="page-head wide">
-        <ol class="crumbs eyebrow" aria-label="Breadcrumb"><li><a href="/case-studies">Case studies</a></li><li>Modern Health</li></ol>
+        <ol class="crumbs eyebrow mono" aria-label="Breadcrumb"><li><a href="/case-studies">Case studies</a></li><li>Modern Health</li></ol>
         <h1>One button from an Airtable record to <em>a signed Ironclad contract.</em></h1>
         <p class="lede">Provider and freelancer contracts at Modern Health were built by hand, dozens a day. I simplified the process with legal, then automated it around Ironclad.</p>
+          <dl class="spec-t"><div><dt>Org</dt><dd>Modern Health</dd></div><div><dt>Role</dt><dd>Content Operations Manager</dd></div><div><dt>Tools</dt><dd>Airtable, Ironclad, Apps Script, API</dd></div></dl>
       </header>
-        <div class="cs-motif"><CaseMotif kind="contract" /></div>
+        <figure class="cs-herovis is-flow"><CaseFlow flow="contract-button" /></figure>
       </div>
       <div class="wrap">
         <div class="cs-tiles">
@@ -45,13 +46,9 @@ import { meta, stats, note, platforms, problem, rethink, decision, flows, result
       </div>
     </div></section>
     <section class="cs-sec c-gold"><div class="wrap">
-      <div class="cs-split rev">
-        <div class="cs-text">
-          <span class="cs-no" aria-hidden="true">03</span>
-          <h2>{flows.button.title}</h2>
-          {flows.button.body.map((p) => <p>{p}</p>)}
-        </div>
-        <figure class="cs-vis cs-flow"><CaseFlow flow="contract-button" /></figure>
+      <div class="cs-grid">
+        <div class="cs-label"><span class="cs-no" aria-hidden="true">03</span><h2>{flows.button.title}</h2></div>
+        <div class="cs-prose">{flows.button.body.map((p) => <p>{p}</p>)}</div>
       </div>
     </div></section>
     <section class="cs-sec c-ink tint"><div class="wrap">
@@ -64,7 +61,7 @@ import { meta, stats, note, platforms, problem, rethink, decision, flows, result
         <figure class="cs-vis cs-flow"><CaseFlow flow="contract-after" /></figure>
       </div>
     </div></section>
-    <section class="cs-sec c-red"><div class="wrap">
+    <section class="cs-sec is-key c-red"><div class="wrap">
       <div class="cs-grid">
         <div class="cs-label"><span class="cs-no" aria-hidden="true">05</span><h2>Results</h2></div>
         <ol class="numbered">{results.map((r) => <li><p>{r}</p></li>)}</ol>

@@ -2,8 +2,8 @@
 import Base from '../layouts/Base.astro';
 import Pic from '../components/Pic.astro';
 import DataFlowDiagram from '../components/DataFlowDiagram.astro';
-import CaseMotif from '../components/CaseMotif.astro';
 import { SITE, page } from '../lib/site';
+import { shot } from '../data/internal-dashboard';
 
 const work = [
   { cls: 'w1', id: 'photography/01-7fe5208b', href: '/wedding-photography', title: 'Wedding Photography', tag: 'Cosie Co.', alt: 'Bride and groom in a forest clearing', sizes: '(max-width: 900px) 100vw, 720px' },
@@ -13,6 +13,11 @@ const work = [
   { cls: 'w5', id: 'family-photoshoots/02-081697bb', href: '/family-photoshoots', title: 'Family Photoshoots', tag: 'Photo', alt: 'Toddler playing in autumn leaves', sizes: '(max-width: 900px) 100vw, 410px' },
   { cls: 'w6', id: 'audio-production/01-0bcb341f', href: '/coffee-meets-bible-podcast', title: 'Coffee Meets Bible', tag: 'Podcast', alt: 'Coffee Meets Bible podcast cover art', sizes: '(max-width: 900px) 100vw, 520px' },
   { cls: 'w7', id: 'graduation-photoshoots/10-2322cd02', href: '/graduation-photoshoots', title: 'Graduation Photoshoots', tag: 'Photo', alt: 'Graduates jumping on the beach', sizes: '(max-width: 900px) 100vw, 720px' },
+];
+const paths = [
+  { href: '/operations', title: 'Operations', text: 'Running the business side so mission work can move faster: processes, data, teams and tools.', tag: 'Operations' },
+  { href: '/ai-builds', title: 'AI & Technical Builds', text: 'I design the tools and decide how they work, then have Cursor cloud agents build them fast. I review every change.', tag: 'Technical builds' },
+  { href: '/creative', title: 'Creative Work', text: 'Photography, video and podcasting. 200+ clients served as a freelancer through Cosie Co., and 100+ documentaries, videos and podcast episodes produced with The Cultivation Project.', tag: 'Creative' },
 ];
 
 const aboutParas = (page('home').blocks.find((b: any) => b.t === 'html').html as string).split(/(?<=<\/p>)\s*/).filter((x: string) => x.startsWith('<p>'));
@@ -32,17 +37,24 @@ const jsonld = {
   knowsAbout: ['Business operations', 'Airtable', 'AI-assisted software development', 'Photography', 'Video production'],
 };
 ---
-<Base title="Cameron Kuey" description="Cameron Kuey — Director of Business Operations at Doodle Pirates Foundation, builder of internal tools with AI agents, and a photographer and filmmaker (Cosie Co., The Cultivation Project)." jsonld={jsonld}>
-<div class="cs-stripe" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
-<section class="hero" aria-labelledby="h"><div class="wrap">
-  <p class="eyebrow">Operations · AI builds · Photo, film &amp; audio</p>
-  <div class="hero-bar">
-    <div>
-      <h1 id="h">I run operations, <em>design the tools,</em> and tell stories.</h1>
-      <p>Director of Business Operations at Doodle Pirates Foundation, designing internal tools and building them fast with AI agents. Photographer and filmmaker since 2012.</p>
-    </div>
+<Base title="Cameron Kuey" description="Cameron Kuey, Director of Business Operations at Doodle Pirates Foundation, builder of internal tools with AI agents, and a photographer and filmmaker (Cosie Co., The Cultivation Project)." jsonld={jsonld}>
+<header class="pg" aria-labelledby="h"><div class="wrap pg-grid">
+  <div>
+    <p class="ey">Operations · AI builds · Photo, film &amp; audio</p>
+    <h1 id="h">I run operations, <em>design the tools,</em> and tell stories.</h1>
+    <p class="intro">Director of Business Operations at Doodle Pirates Foundation, designing internal tools and building them fast with AI agents. Photographer and filmmaker since 2012.</p>
     <div class="btns"><a class="btn solid" href="/contact">Get in touch</a><a class="btn" href="/resume.pdf">Resume (PDF)</a></div>
   </div>
+  <dl class="spec-t">
+    <div><dt>Now</dt><dd>Director of Business Operations, Doodle Pirates Foundation</dd></div>
+    <div><dt>Build</dt><dd>Cursor cloud agents, Claude Code</dd></div>
+    <div><dt>Data</dt><dd>Airtable</dd></div>
+    <div><dt>Hosting</dt><dd>Cloudflare Workers</dd></div>
+    <div><dt>Creative</dt><dd>Photo and film since 2012</dd></div>
+  </dl>
+</div></header>
+
+<section class="home-mosaic" aria-label="Highlights"><div class="wrap">
   <div class="hero-mosaic">
     <a class="hm hm-ui" href="/case-studies/internal-dashboard" aria-label="Case study: Internal Dashboard">
       <Pic id="dash-hero-focus" eager sizes="(max-width: 900px) 100vw, 760px" alt="The Internal Dashboard's Today's focus: a weekly progress meter and the day's focus card with Done, Continue tomorrow and Skip today buttons" />
@@ -60,61 +72,47 @@ const jsonld = {
   </div>
 </div></section>
 
-<section id="paths" aria-labelledby="paths-h"><div class="wrap">
-  <div class="sec-head"><h2 id="paths-h">Three ways I work</h2><p class="eyebrow">Choose a path</p></div>
-  <div class="paths">
-    <a class="path" href="/operations">
-      <div class="path-motif" aria-hidden="true"><CaseMotif kind="contract" variant="card" /></div>
-      <span class="num">01</span><h3>Operations</h3>
-      <p>Running the business side so mission work can move faster — processes, data, teams and tools.</p>
-      <span class="go">Operations work →</span>
-    </a>
-    <a class="path" href="/ai-builds">
-      <div class="path-motif" aria-hidden="true"><CaseMotif kind="roadmap" variant="card" /></div>
-      <span class="num">02</span><h3>AI &amp; Technical Builds</h3>
-      <p>I design the tools and decide how they work, then have Cursor cloud agents build them fast. I review every change.</p>
-      <span class="go">Technical builds →</span>
-    </a>
-    <a class="path" href="/creative">
-      <div class="path-motif" aria-hidden="true"><CaseMotif kind="circles" variant="card" /></div>
-      <span class="num">03</span><h3>Creative Work</h3>
-      <p>Photography, video and podcasting. 200+ clients served as a freelancer through Cosie Co., and 100+ documentaries, videos and podcast episodes produced with The Cultivation Project.</p>
-      <span class="go">Creative portfolio →</span>
-    </a>
-  </div>
+<section id="paths" class="sec" aria-labelledby="paths-h"><div class="wrap">
+  <div class="sec-top"><div><p class="ey"><b>01</b> / Choose a path</p><h2 id="paths-h">Three ways I work</h2></div></div>
+  <ul class="rows">
+    {paths.map((p, i) => (
+      <li><a class="row" href={p.href}>
+        <span class="n">{String(i + 1).padStart(2, '0')}</span>
+        <h3>{p.title}</h3>
+        <p>{p.text}</p>
+        <span class="tag">{p.tag}<span class="go" aria-hidden="true">→</span></span>
+      </a></li>
+    ))}
+  </ul>
 </div></section>
 
-<section id="case" aria-labelledby="case-h" style="padding-top:0;padding-bottom:0"><div class="wrap">
-  <div class="sec-head"><h2>Featured case study</h2><p class="eyebrow">AI &amp; Technical Builds</p></div>
-  <article class="case">
-    <div class="case-body">
-      <p class="eyebrow">Doodle Pirates Foundation · Internal tools</p>
-      <h3 id="case-h">An all-in-one Internal Dashboard, <em>concept to production in under two weeks.</em></h3>
-      <p>Designed by me and built fast with Cursor cloud agents on an Airtable ERP, including Ask Otis, a Claude-powered assistant with human-in-the-loop approval.</p>
-      <div class="stats">
-        <div class="stat"><b>&lt;2 wks</b><span>Concept to production</span></div>
-        <div class="stat"><b>152</b><span>Reviewed pull requests</span></div>
-        <div class="stat"><b>1,218</b><span>Automated tests</span></div>
-        <div class="stat"><b>~20</b><span>AI agents</span></div>
-      </div>
-      <a class="btn" href="/case-studies/internal-dashboard">Read the case study →</a>
-    </div>
-    <figure class="case-phone">
-      <Pic id="dash-phone-today-focus" sizes="(max-width: 900px) 80vw, 320px" alt="The Internal Dashboard on a phone: the week meter, today's focus card and the first task to do" />
+<section id="case" class="feat" aria-labelledby="case-h"><div class="wrap">
+  <div class="feat-grid">
+    <figure class="feat-shot">
+      <Pic id={shot.myWork.id} sizes="(max-width: 900px) 100vw, 600px" alt={shot.myWork.alt} />
     </figure>
-  </article>
-</div></section>
-
-<section id="flow" aria-labelledby="flow-h" class="flow-link"><div class="wrap">
-  <div class="flow-stem" aria-hidden="true"><i></i></div>
-  <div class="flow-card">
-    <p class="flow-tag" id="flow-h"><span>Part of the case study above</span> Under the hood: how the data flows</p>
-    <DataFlowDiagram />
+    <div>
+      <p class="ey"><b>02</b> / Featured case study · AI &amp; Technical Builds</p>
+      <h3 id="case-h">An all-in-one Internal Dashboard, <em>concept to production in under two weeks.</em></h3>
+      <p class="desc">Designed by me and built fast with Cursor cloud agents on an Airtable ERP, including Ask Otis, a Claude-powered assistant with human-in-the-loop approval.</p>
+      <div class="nums">
+        <div><b>&lt;2 wks</b><span>Concept to production</span></div>
+        <div><b>152</b><span>Reviewed pull requests</span></div>
+        <div><b>1,218</b><span>Automated tests</span></div>
+        <div><b>~20</b><span>AI agents</span></div>
+      </div>
+      <div class="btns"><a class="btn solid" href="/case-studies/internal-dashboard">Read the case study →</a></div>
+    </div>
   </div>
 </div></section>
 
-<section id="work" aria-labelledby="work-h" style="padding-top:0"><div class="wrap">
-  <div class="sec-head"><h2 id="work-h">Selected work</h2><a class="eyebrow" href="/creative">Photography · Film · Audio →</a></div>
+<section id="flow" class="sec" aria-labelledby="flow-h" style="padding-bottom:0"><div class="wrap">
+  <div class="sec-top"><div><p class="ey"><b>03</b> / Part of the case study above</p><h2 id="flow-h">Under the hood: how the data flows</h2></div></div>
+  <DataFlowDiagram />
+</div></section>
+
+<section id="work" class="sec" aria-labelledby="work-h"><div class="wrap">
+  <div class="sec-top"><div><p class="ey"><b>04</b> / Creative</p><h2 id="work-h">Selected work</h2></div><a class="more" href="/creative">Photography · Film · Audio →</a></div>
   <div class="work">
     {work.map((w) => (
       <figure class={w.cls}>
@@ -127,9 +125,10 @@ const jsonld = {
   </div>
 </div></section>
 
-<section aria-label="About" style="padding-top:0"><div class="wrap about">
+<section class="sec" aria-label="About" style="padding-top:0"><div class="wrap about">
   <Pic id="home/01-b8f082cc" alt="Portrait of Cameron Kuey" sizes="(max-width: 900px) 280px, 360px" />
   <div class="about-copy">
+    <p class="ey"><b>05</b> / About</p>
     <div set:html={aboutLead} />
     <div set:html={aboutToday.replace(/<\/p>$/, ' <a href="/home">Read more about me</a>.</p>')} />
   </div>
