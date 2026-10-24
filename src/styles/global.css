@@ -404,8 +404,6 @@ picture{display:contents}
 .cs-vis.pair{display:grid;grid-template-columns:1fr;gap:18px;align-items:start}
 .cs-vis.pair figure:first-of-type{margin-top:0}
 .cs-vis figcaption{font-size:13px;color:var(--muted);margin-top:8px}
-.cs-vis.phones{display:flex;justify-content:center;gap:20px}
-.cs-vis.phones picture{display:block;flex:1 1 0;min-width:0;max-width:240px}
 .cs-statbar{display:grid;grid-template-columns:repeat(4,1fr);background:transparent;border:0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin:24px 0 0}
 .cs-statbar .stat{background:transparent;padding:18px 20px 18px 0}
 .cs-statbar .stat+.stat{padding-left:20px;border-left:1px solid var(--line)}

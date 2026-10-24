@@ -5,6 +5,7 @@ import Pic from '../../components/Pic.astro';
 import MotionClips from '../../components/MotionClips.astro';
 import DataFlowDiagram from '../../components/DataFlowDiagram.astro';
 import DaySequence from '../../components/DaySequence.astro';
+import ProblemFlow from '../../components/ProblemFlow.astro';
 import { stats, modules, stack, broke, differently, screenshots, shot } from '../../data/internal-dashboard';
 ---
 <Base title="Case study: the Internal Dashboard" section="ai"
@@ -33,10 +34,7 @@ import { stats, modules, stack, broke, differently, screenshots, shot } from '..
         <h2>The problem</h2>
         <p>At Doodle Pirates Foundation, the team was disconnected: projects and tasks lived in different places, so it was hard to see who was doing what or how the work fit together. As a nonprofit startup we also have limited funds and couldn’t afford a stack of separate software subscriptions. And we employ neurodivergent people, so everyone learns and works differently, at every level of experience. I designed the dashboard to solve all three: one affordable, universal and easy-to-use system that works for every kind of employee, and gives each person one simple place that shows what to focus on each day.</p>
       </div>
-      <div class="cs-vis phones">
-        <Pic id={shot.phoneFocus.id} alt={shot.phoneFocus.alt} sizes="240px" />
-        <Pic id={shot.phoneOtis.id} alt={shot.phoneOtis.alt} sizes="240px" />
-      </div>
+      <figure class="cs-vis cs-problem"><ProblemFlow /></figure>
     </div></section>
 
     <section class="cs-vspace"><div class="wrap cs-split rev">
