@@ -1,0 +1,202 @@
+---
+import '../styles/global.css';
+import { SITE, CATEGORIES } from '../lib/site';
+interface Props {
+  title: string;
+  description: string;
+  section?: 'operations' | 'ai' | 'creative' | 'contact' | 'home';
+  image?: string;
+  jsonld?: object;
+  noindex?: boolean;
+  footer?: boolean;
+}
+const { title, description, section = 'home', image = '/og.jpg', jsonld, noindex = false, footer = true } = Astro.props;
+const path = Astro.url.pathname.replace(/\.html$/, '').replace(/\/index$/, '/') || '/';
+const canonical = new URL(path, SITE.url).href.replace(/\/$/, path === '/' ? '/' : '');
+const ogImage = new URL(image, SITE.url).href;
+const fullTitle = title === SITE.name ? title : `${title} · ${SITE.name}`;
+const nav = [
+  { href: '/operations', label: 'Operations', key: 'operations' },
+  { href: '/ai-builds', label: 'AI Builds', key: 'ai' },
+  { href: '/creative', label: 'Creative', key: 'creative' },
+  { href: '/contact', label: 'Contact', key: 'contact' },
+];
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{fullTitle}</title>
+  <meta name="description" content={description} />
+  <link rel="canonical" href={canonical} />
+  {noindex && <meta name="robots" content="noindex" />}
+  <meta name="theme-color" content="#FAF8F4" />
+  <link rel="icon" href="/favicon.ico" sizes="32x32" />
+  <link rel="icon" href="/favicon-32.png" type="image/png" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <link rel="sitemap" href="/sitemap-index.xml" />
+  <link rel="preload" href="/fonts/jost-latin-300-normal.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/fonts/jost-latin-500-normal.woff2" as="font" type="font/woff2" crossorigin />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content={SITE.name} />
+  <meta property="og:title" content={fullTitle} />
+  <meta property="og:description" content={description} />
+  <meta property="og:url" content={canonical} />
+  <meta property="og:image" content={ogImage} />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={fullTitle} />
+  <meta name="twitter:description" content={description} />
+  <meta name="twitter:image" content={ogImage} />
+  {jsonld && <script type="application/ld+json" set:html={JSON.stringify(jsonld)} />}
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="nav">
+    <div class="wrap">
+      <a class="logo" href="/" aria-label="Cameron Kuey, home">CAMERON KUEY<span>.</span></a>
+      <nav class="primary" aria-label="Primary">
+        <ul>
+          {nav.map((n) => <li><a href={n.href} aria-current={section === n.key ? 'page' : undefined}>{n.label}</a></li>)}
+        </ul>
+      </nav>
+      <button class="menu-btn" type="button" aria-expanded="false" aria-controls="mobile-menu">Menu</button>
+    </div>
+  </header>
+  <div class="mobile-menu" id="mobile-menu" hidden>
+    <nav aria-label="Mobile">
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/operations">Operations</a></li>
+        <li><a href="/ai-builds">AI Builds</a></li>
+        <li>
+          <a href="/creative">Creative</a>
+          <ul class="sub">
+            {CATEGORIES.map((c) => <li><a href={`/${c.slug}`}>{c.title}</a></li>)}
+            <li><a href="/home">Original About</a></li>
+          </ul>
+        </li>
+        <li><a href="/contact">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+
+  <main id="main" tabindex="-1">
+    <slot />
+  </main>
+
+  {footer && (
+  <footer id="contact" class="contact" aria-labelledby="footer-title"><div class="wrap">
+    <p class="eyebrow" style="margin-bottom:20px">Contact</p>
+    <h2 id="footer-title">Let’s build something.<br /><a href={`mailto:${SITE.email}`}>{SITE.email}</a></h2>
+    <div class="contact-row">
+      <span>© {new Date().getFullYear()} Cameron Kuey</span>
+      <nav aria-label="Elsewhere">
+        <a href={SITE.linkedin} rel="me noopener" target="_blank">LinkedIn</a>
+        <a href={SITE.github} rel="me noopener" target="_blank">GitHub</a>
+        <a href={`mailto:${SITE.email}`}>Email</a>
+        <a href="/resume.pdf">Résumé</a>
+      </nav>
+    </div>
+  </div></footer>
+  )}
+  {!footer && (
+  <footer class="contact" style="padding:0 0 40px;border-top:0"><div class="wrap"><div class="contact-row" style="margin-top:0">
+    <span>© {new Date().getFullYear()} Cameron Kuey</span>
+    <nav aria-label="Elsewhere"><a href={SITE.linkedin} rel="me noopener" target="_blank">LinkedIn</a><a href={SITE.github} rel="me noopener" target="_blank">GitHub</a><a href="/resume.pdf">Résumé</a></nav>
+  </div></div></footer>
+  )}
+
+  <dialog class="lb" aria-label="Image viewer">
+    <div class="lb-top"><span class="lb-count" aria-live="polite"></span><button type="button" class="lb-close">Close ✕</button></div>
+    <div class="lb-stage"><img alt="" /></div>
+    <p class="lb-cap"></p>
+    <button type="button" class="lb-prev" aria-label="Previous image">←</button>
+    <button type="button" class="lb-next" aria-label="Next image">→</button>
+  </dialog>
+
+  <script>
+    // Mobile menu
+    const btn = document.querySelector<HTMLButtonElement>('.menu-btn');
+    const menu = document.getElementById('mobile-menu');
+    if (btn && menu) {
+      const set = (open: boolean) => {
+        btn.setAttribute('aria-expanded', String(open));
+        btn.textContent = open ? 'Close' : 'Menu';
+        menu.hidden = !open;
+        document.body.classList.toggle('menu-open', open);
+      };
+      btn.addEventListener('click', () => set(menu.hidden));
+      document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !menu.hidden) { set(false); btn.focus(); } });
+      matchMedia('(min-width: 901px)').addEventListener('change', (e) => e.matches && set(false));
+    }
+
+    // Click-to-load embeds
+    document.querySelectorAll<HTMLButtonElement>('button[data-embed]').forEach((b) => {
+      b.addEventListener('click', () => {
+        const f = document.createElement('iframe');
+        f.src = b.dataset.embed!;
+        f.title = b.dataset.title || 'Embedded media';
+        f.allow = b.dataset.allow || '';
+        f.allowFullscreen = true;
+        f.setAttribute('referrerpolicy', 'strict-origin-when-cross-origin');
+        b.replaceWith(f);
+        f.focus();
+      });
+    });
+
+    // Lightbox: arrows, Esc, swipe, focus returns to the thumbnail.
+    const dlg = document.querySelector<HTMLDialogElement>('dialog.lb')!;
+    const img = dlg.querySelector('img')!;
+    const stage = dlg.querySelector<HTMLElement>('.lb-stage')!;
+    const cap = dlg.querySelector<HTMLElement>('.lb-cap')!;
+    const count = dlg.querySelector<HTMLElement>('.lb-count')!;
+    let items: HTMLAnchorElement[] = [];
+    let idx = 0;
+    let opener: HTMLElement | null = null;
+    const show = (i: number) => {
+      idx = (i + items.length) % items.length;
+      const a = items[idx];
+      const w = +a.dataset.w!, h = +a.dataset.h!;
+      stage.classList.toggle('tall', h / w > 2.2);
+      img.src = a.href;
+      img.alt = a.querySelector('img')?.alt || '';
+      cap.textContent = a.dataset.cap || img.alt;
+      count.textContent = `${idx + 1} / ${items.length}`;
+      stage.scrollTop = 0;
+      const multi = items.length > 1;
+      dlg.querySelectorAll<HTMLElement>('.lb-prev,.lb-next').forEach((x) => (x.hidden = !multi));
+    };
+    document.querySelectorAll<HTMLAnchorElement>('a[data-lb]').forEach((a) => {
+      a.addEventListener('click', (e) => {
+        if (e.metaKey || e.ctrlKey || e.shiftKey) return;
+        e.preventDefault();
+        items = [...a.closest('[data-gallery]')!.querySelectorAll<HTMLAnchorElement>('a[data-lb]')];
+        opener = a;
+        show(items.indexOf(a));
+        dlg.showModal();
+        dlg.querySelector<HTMLButtonElement>('.lb-close')!.focus();
+      });
+    });
+    dlg.querySelector('.lb-close')!.addEventListener('click', () => dlg.close());
+    dlg.querySelector('.lb-prev')!.addEventListener('click', () => show(idx - 1));
+    dlg.querySelector('.lb-next')!.addEventListener('click', () => show(idx + 1));
+    dlg.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight') { e.preventDefault(); show(idx + 1); }
+      if (e.key === 'ArrowLeft') { e.preventDefault(); show(idx - 1); }
+    });
+    dlg.addEventListener('click', (e) => { if (e.target === stage || e.target === dlg) dlg.close(); });
+    dlg.addEventListener('close', () => { img.removeAttribute('src'); opener?.focus(); });
+    let x0: number | null = null;
+    stage.addEventListener('touchstart', (e) => (x0 = e.touches[0].clientX), { passive: true });
+    stage.addEventListener('touchend', (e) => {
+      if (x0 === null) return;
+      const dx = e.changedTouches[0].clientX - x0;
+      if (Math.abs(dx) > 50) show(idx + (dx < 0 ? 1 : -1));
+      x0 = null;
+    });
+  </script>
+</body>
+</html>

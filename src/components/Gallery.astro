@@ -1,0 +1,32 @@
+---
+/* Justified-row gallery. Keeps original order and aspect ratios; every tile
+   opens the shared keyboard-accessible lightbox (see Base.astro). */
+import Pic from './Pic.astro';
+import { IMAGES, alt, fullSrc } from '../lib/site';
+interface Props { items: { id: string; caption?: string | null; alt?: string | null }[]; layout?: 'grid' | 'single'; eagerFirst?: boolean; }
+const { items, layout = 'grid', eagerFirst = false } = Astro.props;
+const list = items.filter((it) => IMAGES[it.id]);
+const single = layout === 'single' || list.length === 1;
+// Short galleries (one row) get a taller row so they fill the column instead of
+// sitting small on the left; long galleries use the default 280px row.
+const sumR = list.reduce((a, it) => a + IMAGES[it.id].w / IMAGES[it.id].h, 0);
+const rowD = sumR > 0 && sumR * 280 < 1200 ? Math.min(520, Math.floor((1150 - 12 * (list.length - 1)) / sumR)) : 280;
+---
+<div class={single ? 'single' : 'jg'} data-gallery style={!single && rowD !== 280 ? `--row-d:${rowD}px` : undefined}>
+  {list.map((it, n) => {
+    const i = IMAGES[it.id];
+    const r = (i.w / i.h).toFixed(4);
+    const a = alt(it.id, it.alt ?? '');
+    const cap = it.caption || it.alt || '';
+    const sizes = single ? '(max-width: 1140px) 100vw, 1100px' : `(max-width: 700px) ${Math.min(100, Math.round(Number(r) * 45))}vw, ${Math.min(1200, Math.round(Number(r) * 360))}px`;
+    return (
+      <figure style={single ? '' : `flex-grow:${r};flex-basis:calc(${r} * var(--row, 280px))`} class={single ? '' : 'gf'}>
+        <a class="gi" href={fullSrc(it.id)} data-lb data-w={i.w} data-h={i.h} data-cap={cap}
+           style={`--r:${r};--ar:${i.w}/${i.h};--c:${i.color}`} aria-label={`View larger: ${a}`}>
+          <Pic id={it.id} alt={a} sizes={sizes} eager={eagerFirst && n < 2} />
+        </a>
+        {cap && <figcaption>{cap}</figcaption>}
+      </figure>
+    );
+  })}
+</div>

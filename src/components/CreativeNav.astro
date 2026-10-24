@@ -1,0 +1,14 @@
+---
+import { CATEGORIES } from '../lib/site';
+interface Props { current?: string | null; }
+const { current } = Astro.props;
+---
+<nav class="subnav" aria-label="Creative categories">
+  <div class="wrap">
+    <ul>
+      <li><a href="/creative" aria-current={current === 'creative' ? 'page' : undefined}>All creative</a></li>
+      {CATEGORIES.map((c) => <li><a href={`/${c.slug}`} aria-current={current === c.slug ? 'true' : undefined}>{c.title}</a></li>)}
+      <li><a href="/home" aria-current={current === 'home' ? 'page' : undefined}>Original About</a></li>
+    </ul>
+  </div>
+</nav>

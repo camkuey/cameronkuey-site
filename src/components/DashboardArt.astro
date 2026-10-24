@@ -1,0 +1,21 @@
+---
+/* Abstract CSS illustration of the Internal Dashboard. Deliberately NOT a
+   screenshot: real screenshots will replace it later. */
+interface Props { tag?: string; }
+const { tag = 'Illustration · screenshot coming' } = Astro.props;
+---
+<div class="case-art" role="img" aria-label="Abstract illustration of a dashboard interface (not a screenshot)">
+  <span class="tag" aria-hidden="true">{tag}</span>
+  <div class="ui" aria-hidden="true">
+    <div class="ui-top"><i></i><i></i><i></i></div>
+    <div class="ui-main">
+      <div class="ui-side"><div class="on"></div><div></div><div style="width:70%"></div><div></div><div style="width:60%"></div><div></div></div>
+      <div class="ui-body">
+        <div class="ui-card"><div class="l"></div><div class="n"></div></div>
+        <div class="ui-card"><div class="l"></div><div class="n" style="width:55%"></div></div>
+        <div class="ui-card ui-wide"><div class="l" style="width:30%"></div><div class="bars"><span style="height:40%"></span><span style="height:65%"></span><span style="height:52%"></span><span style="height:80%"></span><span style="height:45%"></span><span style="height:90%"></span><span style="height:60%"></span><span style="height:72%"></span><span style="height:58%"></span></div></div>
+        <div class="ui-card ui-wide"><div class="l" style="width:22%"></div><div class="chat"><div class="m"></div><div class="m me"></div><div class="m" style="width:60%"></div></div><div class="approve"><span>Approve</span><span>Edit</span><span>Reject</span></div></div>
+      </div>
+    </div>
+  </div>
+</div>

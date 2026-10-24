@@ -1,0 +1,17 @@
+---
+import { IMAGES, alt as altFor } from '../lib/site';
+interface Props { id: string; alt?: string; sizes?: string; eager?: boolean; class?: string; style?: string; }
+const { id, alt, sizes = '(max-width: 900px) 100vw, 1200px', eager = false, class: cls, style } = Astro.props;
+const i = IMAGES[id];
+if (!i) throw new Error(`Unknown image id ${id} (run npm run images)`);
+const set = (ws: number[], ext: string) => ws.map((w) => `${i.base}-${w}.${ext} ${w}w`).join(', ');
+const fallbackW = i.webp.filter((w) => w <= 1600).pop() ?? i.webp[0];
+const a = alt ?? altFor(id);
+---
+<picture>
+  {i.avif.length > 0 && <source type="image/avif" srcset={set(i.avif, 'avif')} sizes={sizes} />}
+  <source type="image/webp" srcset={set(i.webp, 'webp')} sizes={sizes} />
+  <img src={`${i.base}-${fallbackW}.webp`} alt={a} width={i.w} height={i.h}
+    loading={eager ? 'eager' : 'lazy'} decoding={eager ? 'auto' : 'async'} fetchpriority={eager ? 'high' : undefined}
+    class={cls} style={style} />
+</picture>

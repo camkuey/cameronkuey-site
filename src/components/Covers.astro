@@ -1,0 +1,16 @@
+---
+import Pic from './Pic.astro';
+import { IMAGES, alt } from '../lib/site';
+interface Props { covers: { title: string; href: string; image?: { id: string } | null; tag?: string }[]; three?: boolean; eager?: boolean; }
+const { covers, three = false, eager = false } = Astro.props;
+---
+<div class:list={['covers', { three }]}>
+  {covers.map((c, n) => (
+    <a class="cover" href={c.href}>
+      {c.image && IMAGES[c.image.id]
+        ? <span class="ph"><Pic id={c.image.id} alt={alt(c.image.id)} sizes={three ? '(max-width: 520px) 100vw, (max-width: 900px) 50vw, 400px' : '(max-width: 520px) 100vw, (max-width: 900px) 50vw, 610px'} eager={eager && n < 2} /></span>
+        : <span class="ph none" aria-hidden="true"><span>{c.title}</span></span>}
+      <span class="t"><b>{c.title}</b><span>{c.tag ?? 'View →'}</span></span>
+    </a>
+  ))}
+</div>

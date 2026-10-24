@@ -1,0 +1,57 @@
+---
+/* Renders an old-portfolio page's content blocks in their original order. */
+import Gallery from './Gallery.astro';
+import Embed from './Embed.astro';
+import { IMAGES, fullSrc } from '../lib/site';
+interface Props { blocks: any[]; }
+const { blocks } = Astro.props;
+const VIDEO = new Set(['youtube', 'vimeo', 'facebook']);
+// Group consecutive video embeds so they sit in a two-up grid.
+type G = { t: 'videos'; items: any[] } | any;
+const groups: G[] = [];
+for (const b of blocks) {
+  if (b.t === 'images' && b.items.every((i: any) => !IMAGES[i.id])) continue; // unpublished image
+  if (b.t === 'button' && /invis\.io/.test(b.href)) continue; // InVision shut down; see notice
+  const last = groups[groups.length - 1];
+  if (b.t === 'embed' && VIDEO.has(b.kind)) {
+    if (last && last.t === 'videos') last.items.push(b);
+    else groups.push({ t: 'videos', items: [b] });
+  } else groups.push(b);
+}
+// Rich text: old <h3> sub-titles become <h2> to keep a clean heading outline.
+const fix = (h: string) => h.replace(/<h3>/g, '<h2>').replace(/<\/h3>/g, '</h2>');
+---
+<div class="blocks">
+  {groups.map((g) => {
+    if (g.t === 'html') return <div class="prose block-text" set:html={fix(g.html)} />;
+    if (g.t === 'images') return <Gallery items={g.items} layout={g.layout} />;
+    if (g.t === 'videos') {
+      if (g.items.length === 1) return <Embed b={g.items[0]} />;
+      return <div class="embed-grid">{g.items.map((b: any) => <Embed b={b} />)}</div>;
+    }
+    if (g.t === 'embed' && g.kind === 'invision')
+      return (
+        <div>
+          {g.caption && <p class="prose block-text">{g.caption}</p>}
+          <div class="notice" style="margin-top:20px">
+            <b>Interactive prototype retired</b>
+            The original click-through prototype was hosted on InVision, which has since shut down. The app screens are shown below.
+          </div>
+        </div>
+      );
+    if (g.t === 'embed') return <Embed b={g} />;
+    if (g.t === 'video')
+      return (
+        <figure>
+          <video class="selfhosted" controls preload="none" playsinline poster={IMAGES['video/01-poster'] ? fullSrc('video/01-poster') : undefined}
+            aria-label={g.title}>
+            <source src={`/media/video/${g.src.split('/').pop()}`} type="video/mp4" />
+          </video>
+          {g.caption && <figcaption>{g.caption}</figcaption>}
+        </figure>
+      );
+    if (g.t === 'button')
+      return <p><a class="btn" href={g.href} target={g.href.startsWith('http') ? '_blank' : undefined} rel={g.href.startsWith('http') ? 'noopener' : undefined}>{g.text}{g.href.startsWith('http') ? ' ↗' : ''}</a></p>;
+    return null;
+  })}
+</div>
