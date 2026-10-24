@@ -1,0 +1,10 @@
+{
+ "home-film-silent-night": {
+  "w": 404,
+  "h": 720,
+  "base": "/media/home/film-silent-night",
+  "webp": [404],
+  "avif": [404],
+  "color": "#2b3a33"
+ }
+}

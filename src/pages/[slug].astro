@@ -37,6 +37,9 @@ const sibs = cat ? cat.children : [];
 const k = sibs.findIndex((c) => c.slug === p.slug);
 const prev = k > 0 ? sibs[k - 1] : null;
 const next = k >= 0 && k < sibs.length - 1 ? sibs[k + 1] : null;
+const rangeCat = cat ?? CATEGORIES.find((c) => c.slug === p.slug);
+const noun: Record<string, string> = { photography: 'photography', 'video-production': 'video', work: 'product design', 'graphic-design': 'design and graphics' };
+const showRange = !!rangeCat && rangeCat.children.length > 1 && !isAbout;
 const catCovers = isCategory
   ? p.covers.map((c: any) => ({ ...c, tag: 'View →' }))
   : [];
@@ -50,6 +53,12 @@ const catCovers = isCategory
         {cat && <li><a href={`/${cat.slug}`}>{cat.title}</a></li>}
       </ol>
       <h1>{p.title}</h1>
+      {showRange && (
+        <nav class="range" aria-label={`Types of ${noun[rangeCat!.slug] ?? rangeCat!.title}`}>
+          <p class="eyebrow">I make {rangeCat!.children.length} kinds of {noun[rangeCat!.slug] ?? rangeCat!.title}</p>
+          <ul>{rangeCat!.children.map((c) => <li><a href={`/${c.slug}`} aria-current={c.slug === p.slug ? 'page' : undefined}>{c.title}</a></li>)}</ul>
+        </nav>
+      )}
     </header>
   </div>
   <section style="padding-top:8px"><div class="wrap">

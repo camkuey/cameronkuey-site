@@ -1,7 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
 import Pic from '../components/Pic.astro';
-import { SITE } from '../lib/site';
+import { SITE, page } from '../lib/site';
 
 const work = [
   { cls: 'w1', id: 'photography/01-7fe5208b', href: '/wedding-photography', title: 'Wedding Photography', tag: 'Cosie Co.', alt: 'Bride and groom in a forest clearing', sizes: '(max-width: 900px) 100vw, 720px' },
@@ -12,6 +12,10 @@ const work = [
   { cls: 'w6', id: 'audio-production/01-0bcb341f', href: '/coffee-meets-bible-podcast', title: 'Coffee Meets Bible', tag: 'Podcast', alt: 'Coffee Meets Bible podcast cover art', sizes: '(max-width: 900px) 100vw, 520px' },
   { cls: 'w7', id: 'graduation-photoshoots/10-2322cd02', href: '/graduation-photoshoots', title: 'Graduation Photoshoots', tag: 'Photo', alt: 'Graduates jumping on the beach', sizes: '(max-width: 900px) 100vw, 720px' },
 ];
+
+const aboutParas = (page('home').blocks.find((b: any) => b.t === 'html').html as string).split(/(?<=<\/p>)\s*/).filter((x: string) => x.startsWith('<p>'));
+const aboutLead = aboutParas[0];
+const aboutToday = aboutParas[1].replace(/ That includes.*?(?=<\/p>)/s, '');
 
 const jsonld = {
   '@context': 'https://schema.org',
@@ -26,29 +30,30 @@ const jsonld = {
   knowsAbout: ['Business operations', 'Airtable', 'AI-assisted software development', 'Photography', 'Video production', 'Graphic design'],
 };
 ---
-<Base title="Cameron Kuey" description="Cameron Kuey — Director of Business Operations at Doodle Pirates Foundation, builder of AI-powered internal tools, and a photographer and filmmaker (Cosie Co., The Cultivation Project)." jsonld={jsonld}>
+<Base title="Cameron Kuey" description="Cameron Kuey — Director of Business Operations at Doodle Pirates Foundation, builder of internal tools with AI coding agents, and a photographer and filmmaker (Cosie Co., The Cultivation Project)." jsonld={jsonld}>
 <section class="hero" aria-labelledby="h"><div class="wrap">
-  <p class="eyebrow">Operations · AI &amp; technical builds · Photo, film &amp; design</p>
+  <p class="eyebrow">Operations · AI builds · Photo, film &amp; design</p>
   <div class="hero-bar">
     <div>
-      <h1 id="h">I build systems, <em>stories,</em> and AI tools.</h1>
-      <p>Director of Business Operations at Doodle Pirates Foundation. Photographer and filmmaker since 2012.</p>
+      <h1 id="h">I run operations, <em>build with AI,</em> and tell stories.</h1>
+      <p>Director of Business Operations at Doodle Pirates Foundation, building internal tools with AI coding agents. Photographer and filmmaker since 2012.</p>
     </div>
-    <div class="btns"><a class="btn solid" href="/case-studies/internal-dashboard">See the Internal Dashboard →</a><a class="btn" href="/contact">Get in touch</a></div>
+    <div class="btns"><a class="btn solid" href="/contact">Get in touch</a><a class="btn" href="/resume.pdf">Resume (PDF)</a></div>
   </div>
   <div class="hero-mosaic">
-    <a class="hm hm-ui" href="/case-studies/internal-dashboard" aria-label="Internal Dashboard case study">
+    <a class="hm hm-ui" href="/case-studies/internal-dashboard" aria-label="Case study: Internal Dashboard">
       <span class="tag">Sample data</span>
       <Pic id="dash-today-focus" eager sizes="(max-width: 900px) 100vw, 760px" alt="The Internal Dashboard's My Work page with sample data: today's meetings, focus cards and open tasks" />
-      <span class="hm-cap"><span>Internal Dashboard</span><span>AI builds →</span></span>
+      <span class="hm-cap"><span><b>Internal Dashboard</b><small>Operations &amp; AI builds · case study</small></span><span>→</span></span>
     </a>
-    <a class="hm" href="/engagement-proposals" aria-label="Photography">
+    <a class="hm" href="/photography" aria-label="Photography">
       <Pic id="engagement-proposals/09-9efda6cb" eager sizes="(max-width: 900px) 50vw, 360px" style="object-position:50% 70%" alt="Couple embracing on a granite outcrop with Yosemite Valley behind them" />
-      <span class="hm-cap"><span>Photography</span><span>→</span></span>
+      <span class="hm-cap"><span><b>Photography</b><small>Weddings, engagements, family</small></span><span>→</span></span>
     </a>
-    <a class="hm" href="/documentaries" aria-label="Film">
-      <Pic id="video-production/02-49466d51" eager sizes="(max-width: 900px) 50vw, 360px" alt="Two people in conversation during a filmed interview" />
-      <span class="hm-cap"><span>Film</span><span>→</span></span>
+    <a class="hm" href="/commercials-social-media-ads" aria-label="Film: Silent Night for Alabaster Co.">
+      <Pic id="home-film-silent-night" eager sizes="(max-width: 900px) 50vw, 360px" alt="Silent Night, a short film for Alabaster Co.: hands opening a book beside candles, small lit houses and a Christmas tree" />
+      <span class="hm-play" aria-hidden="true"></span>
+      <span class="hm-cap"><span><b>Film</b><small>Weddings, documentaries, commercials</small></span><span>→</span></span>
     </a>
   </div>
 </div></section>
@@ -89,9 +94,9 @@ const jsonld = {
       </div>
       <a class="btn" href="/case-studies/internal-dashboard">Read the case study →</a>
     </div>
-    <figure class="cs-vis" style="margin:0;border-radius:0;display:flex;flex-direction:column;justify-content:center">
+    <figure class="case-phone">
       <span class="tag">Sample data</span>
-      <Pic id="dash-today-focus-deck" sizes="(max-width: 900px) 100vw, 640px" alt="Daily focus card from the Internal Dashboard, shown with sample data" />
+      <Pic id="dash-phone-today-focus" sizes="280px" alt="The Internal Dashboard on a phone, with sample data: today's focus card, the week meter and the first task to do" />
     </figure>
   </article>
 </div></section>
@@ -112,10 +117,9 @@ const jsonld = {
 
 <section aria-label="About" style="padding-top:0"><div class="wrap about">
   <Pic id="home/01-b8f082cc" alt="Portrait of Cameron Kuey" sizes="(max-width: 900px) 280px, 360px" />
-  <div>
-    <blockquote>“A creative entrepreneur who loves to tell stories, solve difficult problems, and figure out more effective ways to pass information from one source to another.”</blockquote>
-    <p>I'm an operations leader and systems builder with 10+ years across startups, nonprofits, and two businesses I founded. As Director of Business Operations at Doodle Pirates Foundation, I design how the organization runs and build the tools that run it, from Airtable systems and AI agents to an internal dashboard I shipped with Claude Code.</p>
-    <p>Before that, I ran content operations at Modern Health and built 150+ automations. I started as a storyteller, founding Cosie Co. in 2012 and The Cultivation Project in 2015, where my team produced 100+ documentaries, promotional videos, and podcast episodes. <a href="/home">Read more about me</a>.</p>
+  <div class="about-copy">
+    <div set:html={aboutLead} />
+    <div set:html={aboutToday.replace(/<\/p>$/, ' <a href="/home">Read more about me</a>.</p>')} />
   </div>
 </div></section>
 </Base>
