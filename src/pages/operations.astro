@@ -1,6 +1,8 @@
 ---
 import Base from '../layouts/Base.astro';
 import Reveal from '../components/RevealOnScroll.astro';
+import CaseMotif from '../components/CaseMotif.astro';
+import { CASES } from '../data/case-list';
 import { roles, cases, quoteText, startYear, rest, SPAN } from '../data/operations-roles';
 const pct = (y: number) => ((y - SPAN.start) / (SPAN.end - SPAN.start)) * 100;
 const years = [2012, 2014, 2016, 2018, 2020, 2022, 2024, 2026];
@@ -59,15 +61,21 @@ const chronoRoles = [...roles].reverse();
   </div></section>
   <section style="padding-top:24px"><div class="wrap">
     <div class="sec-head"><h2>Case studies</h2><p class="eyebrow">Modern Health</p></div>
-    <div class="minis">
-      {cases.map((c, i) => (
-        <a class="mini" href={c.href}>
-          <span class="num">{String(i + 1).padStart(2, '0')}</span>
-          <h3>{c.title}</h3>
-          <p>{c.text}</p>
-          <span class="eyebrow">{c.tools} · Read the case study →</span>
-        </a>
-      ))}
+    <div class="opc-grid">
+      {cases.map((c, i) => {
+        const motif = CASES.find((k) => c.href === `/case-studies/${k.slug}`)?.motif;
+        return (
+          <a class={`opc${motif ? ` k-${motif}` : ''}`} href={c.href}>
+            {motif && <div class={`cs-thumb has-motif m-${motif}`} aria-hidden="true"><div class="cs-motifwrap"><CaseMotif kind={motif} variant="card" /></div></div>}
+            <div class="opc-body">
+              <span class="num">{String(i + 1).padStart(2, '0')}</span>
+              <h3>{c.title}</h3>
+              <p>{c.text}</p>
+              <span class="eyebrow">{c.tools} · <span class="nw">Read the case study →</span></span>
+            </div>
+          </a>
+        );
+      })}
     </div>
   </div></section>
   <Reveal />
