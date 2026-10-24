@@ -454,6 +454,34 @@ picture{display:contents}
 @media (max-width:900px){.flow-stem{height:40px}.flow-tag span{display:block;margin:0 0 4px}@keyframes stemdot{0%{top:0;opacity:0}15%{opacity:1}85%{opacity:1}100%{top:30px;opacity:0}}}
 @media (prefers-reduced-motion:reduce){.flow-stem i{display:none}}
 
+/* Case studies index */
+.cs-list{list-style:none;display:grid;gap:28px;padding:0}
+.cs-card{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:0;border:1px solid var(--line);border-radius:4px;overflow:hidden;text-decoration:none;color:var(--ink);background:#fff;transition:border-color .2s,transform .2s}
+.cs-card:hover{border-color:var(--ink);transform:translateY(-2px)}
+.cs-thumb{background:#F1EDE5;display:flex;align-items:center;justify-content:center;overflow:hidden;min-height:260px}
+.cs-thumb picture,.cs-thumb img{display:block;width:100%;height:100%;object-fit:cover}
+.cs-mono{font-family:var(--fd);font-weight:300;font-size:64px;color:var(--accent);letter-spacing:-.03em}
+.cs-text{padding:40px 44px;display:flex;flex-direction:column;gap:14px}
+.cs-text h2{font-family:var(--fd);font-weight:300;font-size:clamp(24px,2.4vw,32px);letter-spacing:-.02em;line-height:1.1}
+.cs-text p:not(.eyebrow){font-weight:300;font-size:17px;line-height:1.5;max-width:52ch}
+.cs-tags{list-style:none;display:flex;flex-wrap:wrap;gap:8px;padding:0}
+.cs-tags li{font-size:12px;letter-spacing:.1em;text-transform:uppercase;border:1px solid var(--line);border-radius:999px;padding:6px 12px}
+.cs-more{margin-top:auto;font-size:13px;text-transform:uppercase;letter-spacing:.14em;font-weight:500;color:var(--accent)}
+@media(max-width:900px){.cs-card{grid-template-columns:1fr}.cs-thumb{min-height:200px;max-height:260px}.cs-text{padding:28px 22px}}
+
+/* Modern Health case studies (Circles scheduling, contract automation) */
+.cs-prose p{max-width:62ch}
+.cs-prose p+p{margin-top:14px}
+.cs-platforms{padding:28px 24px 20px}
+.cs-platforms .taglist{margin-bottom:0!important}
+.cs-platforms figcaption{margin-top:16px}
+.cs-flow{width:100%;max-width:560px;justify-self:end}
+.cs-split.rev .cs-flow{justify-self:start}
+@media (max-width:900px){.cs-flow,.cs-split.rev .cs-flow{max-width:none;justify-self:stretch}.cs-platforms{padding:20px 14px 14px}}
+a.mini{text-decoration:none;color:inherit}
+a.mini:hover h3{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:4px}
+a.mini:focus-visible{outline:2px solid var(--accent);outline-offset:4px}
+
 /* Phone recording (Ask Otis) */
 .phone-clip{margin:0;justify-self:center;width:min(100%,310px)}
 .pc-frame{background:#EDE7DC;border-radius:28px;padding:12px}
@@ -461,3 +489,86 @@ picture{display:contents}
 .phone-clip figcaption{margin-top:14px;display:grid;gap:2px}
 .phone-clip figcaption b{font-weight:500}
 .phone-clip figcaption span{color:var(--muted);font-size:15px}
+
+
+/* ── Case-study colour system (Modern Health pages + cards) ── */
+.cs-page{--c-red:#881919;--c-blue:#2E5E92;--c-gold:#DAB057;--c-ink:#1B1A18}
+.cs-heroband{background:#F1EDE5;position:relative;overflow:hidden}
+.cs-stripe{display:flex;height:8px}
+.cs-stripe i{flex:1}.cs-stripe i:nth-child(1){background:#881919}.cs-stripe i:nth-child(2){background:#DAB057}.cs-stripe i:nth-child(3){background:#2E5E92}.cs-stripe i:nth-child(4){background:#1B1A18}
+.cs-herogrid{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:40px;align-items:center}
+.cs-herogrid .page-head{padding:56px 0 40px}
+.cs-motif{padding:24px 0 8px}
+.cs-tiles{display:grid;grid-template-columns:repeat(4,1fr)}
+.cs-tile{padding:24px 24px 22px;display:flex;flex-direction:column;gap:6px;min-height:112px;justify-content:flex-end}
+.cs-tile b{font-family:var(--fd);font-weight:300;font-size:clamp(28px,3vw,40px);line-height:1.05;letter-spacing:-.02em}
+.cs-tile span{font-size:12px;letter-spacing:.16em;text-transform:uppercase;font-weight:500}
+.cs-tile.t0{background:#881919;color:#fff}
+.cs-tile.t1{background:#DAB057;color:#1B1A18}
+.cs-tile.t2{background:#2E5E92;color:#fff}
+.cs-tile.t3{background:#1B1A18;color:#F4F0E8}
+.cs-page .cs-note{margin-top:20px}
+
+.cs-sec{--sc:#881919;--sct:#F7EBE8;--scx:#fff;border-top:5px solid var(--sc);padding:72px 0;margin-top:48px}
+.cs-sec.c-blue{--sc:#2E5E92;--sct:#E9EFF6;--scx:#fff}
+.cs-sec.c-gold{--sc:#DAB057;--sct:#F8F0DB;--scx:#1B1A18}
+.cs-sec.c-ink{--sc:#1B1A18;--sct:#EDE7DC;--scx:#F4F0E8}
+.cs-sec.tint{background:var(--sct)}
+.cs-sec .cs-text{padding:0;display:block}
+.cs-sec .cs-no{display:inline-grid;place-items:center;width:64px;height:64px;border-radius:50%;background:var(--sc);color:var(--scx);font-family:var(--fd);font-weight:300;font-size:26px;letter-spacing:.02em;margin-bottom:18px}
+.cs-sec .cs-label{margin:0;padding:0;border:0}
+.cs-sec .cs-label h2{font-family:var(--fd);font-weight:300;font-size:clamp(28px,2.8vw,40px);letter-spacing:-.02em;line-height:1.08}
+.cs-sec .cs-grid>div:last-child{border-top:0;padding-top:6px}
+.cs-sec .cs-text p:first-of-type{font-size:19px;font-weight:300;line-height:1.5}
+.cs-prose p:first-child{font-size:21px;font-weight:300;line-height:1.5;color:var(--ink)}
+.cs-sec .cs-vis{background:transparent;padding:0}
+.cs-sec .cs-platforms{background:#FFFDF9;border:1px solid var(--ink);border-top:6px solid var(--sc);padding:26px 24px 20px;border-radius:4px}
+.cs-sec .cs-flow{border-radius:6px;box-shadow:8px 8px 0 var(--sc)}
+.cs-sec.c-gold .cs-flow{box-shadow:8px 8px 0 #DAB057}
+
+.chips{list-style:none;display:flex;flex-wrap:wrap;gap:10px;padding:0;margin:0 0 4px!important}
+.chip{border-radius:999px;padding:7px 16px;font-size:14px;font-weight:500;letter-spacing:.01em;border:1px solid transparent;margin:0!important}
+.ch-red{background:#881919;color:#fff}.ch-blue{background:#2E5E92;color:#fff}.ch-gold{background:#DAB057;color:#1B1A18}.ch-ink{background:#1B1A18;color:#F4F0E8}
+.ch-red-t{background:#F6E4E1;color:#6E1313;border-color:#881919}.ch-blue-t{background:#E1EAF4;color:#244B75;border-color:#2E5E92}.ch-gold-t{background:#F8EDCF;color:#5A4410;border-color:#B98F2F}.ch-sand{background:#EDE7DC;color:#1B1A18;border-color:#B9B2A6}
+
+.cs-sec .numbered{border-top:2px solid var(--sc);padding-top:0}
+.cs-sec .numbered li{padding:20px 0 20px 60px;border-bottom:1px solid rgba(27,26,24,.16)}
+.cs-sec .numbered li::before{top:20px;width:36px;height:36px;border-radius:50%;background:var(--sc);color:var(--scx);display:grid;place-items:center;font-size:13px;letter-spacing:.04em}
+.cs-sec .numbered p{color:var(--ink);margin-top:0;font-size:17px}
+.cs-big{list-style:none;display:grid;grid-template-columns:repeat(3,1fr);gap:0;padding:0}
+.cs-big li{min-height:150px;padding:22px 22px 24px;display:flex;align-items:flex-end;font-family:var(--fd);font-weight:300;font-size:clamp(22px,2.2vw,30px);line-height:1.15;letter-spacing:-.01em}
+.cs-big .b0{background:#881919;color:#fff}.cs-big .b1{background:#DAB057;color:#1B1A18}.cs-big .b2{background:#2E5E92;color:#fff}
+.cs-sec .cs-prose .cs-callout{margin-top:22px;padding:20px 24px;background:#FFFDF9;border-left:6px solid #2E5E92;font-size:18px;font-weight:300;max-width:60ch}
+
+.cs-cta{margin-top:72px;background:#1B1A18;color:#F4F0E8;padding:56px 0;border-top:5px solid #DAB057}
+.cs-cta .eyebrow{color:#D5CEC2;margin-bottom:18px}
+.cs-cta .btn{border-color:#F4F0E8;color:#F4F0E8}
+.cs-cta .btn:hover{background:#F4F0E8;color:#1B1A18}
+.cs-cta .btn.solid{background:#DAB057;border-color:#DAB057;color:#1B1A18}
+.cs-cta .btn.solid:hover{background:#F4F0E8;border-color:#F4F0E8}
+.cs-cta :focus-visible{outline-color:#DAB057}
+
+@media (max-width:900px){
+  .cs-herogrid{grid-template-columns:1fr;gap:0}
+  .cs-herogrid .page-head{padding:36px 0 8px}
+  .cs-motif{padding:8px 0 24px;max-width:420px}
+  .cs-tiles{grid-template-columns:repeat(2,1fr)}
+  .cs-tile{min-height:96px;padding:18px 16px}
+  .cs-sec{padding:48px 0;margin-top:32px}
+  .cs-sec .cs-no{width:52px;height:52px;font-size:22px;margin-bottom:12px}
+  .cs-big{grid-template-columns:1fr}.cs-big li{min-height:96px}
+  .cs-sec .cs-flow{box-shadow:5px 5px 0 var(--sc)}
+  .cs-sec .cs-platforms{padding:20px 16px 14px}
+  .cs-cta{margin-top:48px;padding:40px 0}
+}
+
+/* /case-studies cards */
+.cs-thumb.has-motif{padding:28px 24px;min-height:260px}
+.cs-thumb.m-circles{background:#DAB057}
+.cs-thumb.m-contract{background:#2E5E92}
+.cs-thumb .cs-motifwrap{width:100%;max-width:420px}
+.cs-card{border-width:2px}
+.cs-card.k-circles:hover{border-color:#DAB057}.cs-card.k-contract:hover{border-color:#2E5E92}
+.cs-tags li.chip{font-size:12px;letter-spacing:.1em;text-transform:uppercase;padding:6px 12px}
+.cs-tags li.chip.ch-sand{border-color:#B9B2A6}
+.cs-card.k-circles .eyebrow{color:#7A5C12}.cs-card.k-contract .eyebrow{color:#2E5E92}

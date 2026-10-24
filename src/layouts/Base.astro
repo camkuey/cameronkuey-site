@@ -4,7 +4,7 @@ import { SITE, CATEGORIES } from '../lib/site';
 interface Props {
   title: string;
   description: string;
-  section?: 'operations' | 'ai' | 'creative' | 'contact' | 'home';
+  section?: 'operations' | 'cases' | 'ai' | 'creative' | 'contact' | 'home';
   image?: string;
   jsonld?: object;
   noindex?: boolean;
@@ -17,6 +17,7 @@ const ogImage = new URL(image, SITE.url).href;
 const fullTitle = title === SITE.name ? title : `${title} · ${SITE.name}`;
 const nav = [
   { href: '/operations', label: 'Operations', key: 'operations' },
+  { href: '/case-studies', label: 'Case Studies', key: 'cases' },
   { href: '/ai-builds', label: 'AI Builds', key: 'ai' },
   { href: '/creative', label: 'Creative', key: 'creative' },
   { href: '/contact', label: 'Contact', key: 'contact' },
@@ -70,6 +71,7 @@ const nav = [
       <ul>
         <li><a href="/">Home</a></li>
         <li><a href="/operations">Operations</a></li>
+        <li><a href="/case-studies">Case Studies</a></li>
         <li><a href="/ai-builds">AI Builds</a></li>
         <li>
           <a href="/creative">Creative</a>

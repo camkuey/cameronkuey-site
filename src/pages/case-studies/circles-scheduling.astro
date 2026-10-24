@@ -1,0 +1,101 @@
+---
+import Base from '../../layouts/Base.astro';
+import CaseMotif from '../../components/CaseMotif.astro';
+import { chipClass } from '../../data/chips';
+import CaseFlow from '../../components/CaseFlow.astro';
+import { meta, stats, note, platforms, problem, built, flows, results, success, differently } from '../../data/circles-scheduling';
+---
+<Base title={meta.title} section="cases" description={meta.description}>
+  <article class="cs-page">
+    <div class="cs-heroband">
+      <div class="cs-stripe" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+      <div class="wrap cs-herogrid">
+        <header class="page-head wide">
+        <ol class="crumbs eyebrow" aria-label="Breadcrumb"><li><a href="/case-studies">Case studies</a></li><li>Modern Health</li></ol>
+        <h1>Turning a manual, multi-tab Circles setup into <em>a one-step workflow.</em></h1>
+        <p class="lede">At Modern Health I produced online workshops and webinars called Circles. Setting each one up took hours of clicking across many tools, so I mapped the whole process and automated it with Zapier and Airtable.</p>
+      </header>
+        <div class="cs-motif"><CaseMotif kind="circles" /></div>
+      </div>
+      <div class="wrap">
+        <div class="cs-tiles">
+          {stats.map((s, i) => <div class={`cs-tile t${i}`}><b>{s.value}</b><span>{s.label}</span></div>)}
+        </div>
+      </div>
+    </div>
+    <div class="wrap"><p class="cs-note">{note}</p></div>
+
+    <section class="cs-sec c-red"><div class="wrap">
+      <div class="cs-split">
+        <div class="cs-text">
+          <span class="cs-no" aria-hidden="true">01</span>
+          <h2>The problem</h2>
+          {problem.map((p) => <p>{p}</p>)}
+        </div>
+        <figure class="cs-vis cs-platforms">
+          <ul class="chips">{platforms.map((p) => <li class={chipClass(p)}>{p}</li>)}</ul>
+          <figcaption>Some of the tools one Circle touched, each with its own tab.</figcaption>
+        </figure>
+      </div>
+    </div></section>
+    <section class="cs-sec c-blue tint"><div class="wrap">
+      <div class="cs-grid">
+        <div class="cs-label"><span class="cs-no" aria-hidden="true">02</span><h2>What I built</h2></div>
+        <div class="cs-prose">{built.map((p) => <p>{p}</p>)}</div>
+      </div>
+    </div></section>
+    <section class="cs-sec c-gold"><div class="wrap">
+      <div class="cs-split rev">
+        <div class="cs-text">
+          <span class="cs-no" aria-hidden="true">03</span>
+          <h2>{flows.schedule.title}</h2>
+          {flows.schedule.body.map((p) => <p>{p}</p>)}
+        </div>
+        <figure class="cs-vis cs-flow"><CaseFlow flow="circles-schedule" /></figure>
+      </div>
+    </div></section>
+    <section class="cs-sec c-red tint"><div class="wrap">
+      <div class="cs-split">
+        <div class="cs-text">
+          <span class="cs-no" aria-hidden="true">04</span>
+          <h2>{flows.harden.title}</h2>
+          {flows.harden.body.map((p) => <p>{p}</p>)}
+        </div>
+        <figure class="cs-vis cs-flow"><CaseFlow flow="circles-harden" /></figure>
+      </div>
+    </div></section>
+    <section class="cs-sec c-blue"><div class="wrap">
+      <div class="cs-split rev">
+        <div class="cs-text">
+          <span class="cs-no" aria-hidden="true">05</span>
+          <h2>{flows.deck.title}</h2>
+          {flows.deck.body.map((p) => <p>{p}</p>)}
+          <p>{flows.deck.related}</p>
+        </div>
+        <figure class="cs-vis cs-flow"><CaseFlow flow="circles-deck" /></figure>
+      </div>
+    </div></section>
+    <section class="cs-sec c-gold tint"><div class="wrap">
+      <div class="cs-grid">
+        <div class="cs-label"><span class="cs-no" aria-hidden="true">06</span><h2>Results</h2></div>
+        <ol class="numbered">{results.map((r) => <li><p>{r}</p></li>)}</ol>
+      </div>
+    </div></section>
+    <section class="cs-sec c-ink"><div class="wrap">
+      <div class="cs-grid">
+        <div class="cs-label"><span class="cs-no" aria-hidden="true">07</span><h2>How I define success</h2></div>
+        <ul class="cs-big">{success.map((r, i) => <li class={`b${i}`}><span>{r}</span></li>)}</ul>
+      </div>
+    </div></section>
+    <section class="cs-sec c-red tint"><div class="wrap">
+      <div class="cs-grid">
+        <div class="cs-label"><span class="cs-no" aria-hidden="true">08</span><h2>What I’d do differently</h2></div>
+        <ol class="numbered">{differently.map((d) => <li><p>{d}</p></li>)}</ol>
+      </div>
+    </div></section>
+    <section class="cs-cta"><div class="wrap">
+      <p class="eyebrow">Keep reading</p>
+      <div class="btns"><a class="btn solid" href="/case-studies/contract-automation">Next: contract automation →</a><a class="btn" href="/operations">More operations work</a><a class="btn" href="/contact">Ask me about it</a></div>
+    </div></section>
+  </article>
+</Base>

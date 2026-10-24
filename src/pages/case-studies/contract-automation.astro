@@ -1,0 +1,84 @@
+---
+import Base from '../../layouts/Base.astro';
+import CaseMotif from '../../components/CaseMotif.astro';
+import { chipClass } from '../../data/chips';
+import CaseFlow from '../../components/CaseFlow.astro';
+import { meta, stats, note, platforms, problem, rethink, decision, flows, results, learned } from '../../data/contract-automation';
+---
+<Base title={meta.title} section="cases" description={meta.description}>
+  <article class="cs-page">
+    <div class="cs-heroband">
+      <div class="cs-stripe" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+      <div class="wrap cs-herogrid">
+        <header class="page-head wide">
+        <ol class="crumbs eyebrow" aria-label="Breadcrumb"><li><a href="/case-studies">Case studies</a></li><li>Modern Health</li></ol>
+        <h1>One button from an Airtable record to <em>a signed Ironclad contract.</em></h1>
+        <p class="lede">Provider and freelancer contracts at Modern Health were built by hand, dozens a day. I simplified the process with legal first, then automated it, keeping Ironclad as the system of record.</p>
+      </header>
+        <div class="cs-motif"><CaseMotif kind="contract" /></div>
+      </div>
+      <div class="wrap">
+        <div class="cs-tiles">
+          {stats.map((s, i) => <div class={`cs-tile t${i}`}><b>{s.value}</b><span>{s.label}</span></div>)}
+        </div>
+      </div>
+    </div>
+    <div class="wrap"><p class="cs-note">{note}</p></div>
+
+    <section class="cs-sec c-red"><div class="wrap">
+      <div class="cs-split">
+        <div class="cs-text">
+          <span class="cs-no" aria-hidden="true">01</span>
+          <h2>The problem</h2>
+          {problem.map((p) => <p>{p}</p>)}
+        </div>
+        <figure class="cs-vis cs-platforms">
+          <ul class="chips">{platforms.map((p) => <li class={chipClass(p)}>{p}</li>)}</ul>
+          <figcaption>What the finished workflow connects.</figcaption>
+        </figure>
+      </div>
+    </div></section>
+    <section class="cs-sec c-blue tint"><div class="wrap">
+      <div class="cs-grid">
+        <div class="cs-label"><span class="cs-no" aria-hidden="true">02</span><h2>Rethink before automating</h2></div>
+        <div class="cs-prose">{rethink.map((p) => <p>{p}</p>)}{decision.map((p) => <p class="cs-callout">{p}</p>)}</div>
+      </div>
+    </div></section>
+    <section class="cs-sec c-gold"><div class="wrap">
+      <div class="cs-split rev">
+        <div class="cs-text">
+          <span class="cs-no" aria-hidden="true">03</span>
+          <h2>{flows.button.title}</h2>
+          {flows.button.body.map((p) => <p>{p}</p>)}
+        </div>
+        <figure class="cs-vis cs-flow"><CaseFlow flow="contract-button" /></figure>
+      </div>
+    </div></section>
+    <section class="cs-sec c-ink tint"><div class="wrap">
+      <div class="cs-split">
+        <div class="cs-text">
+          <span class="cs-no" aria-hidden="true">04</span>
+          <h2>{flows.after.title}</h2>
+          {flows.after.body.map((p) => <p>{p}</p>)}
+        </div>
+        <figure class="cs-vis cs-flow"><CaseFlow flow="contract-after" /></figure>
+      </div>
+    </div></section>
+    <section class="cs-sec c-red"><div class="wrap">
+      <div class="cs-grid">
+        <div class="cs-label"><span class="cs-no" aria-hidden="true">05</span><h2>Results</h2></div>
+        <ol class="numbered">{results.map((r) => <li><p>{r}</p></li>)}</ol>
+      </div>
+    </div></section>
+    <section class="cs-sec c-blue tint"><div class="wrap">
+      <div class="cs-grid">
+        <div class="cs-label"><span class="cs-no" aria-hidden="true">06</span><h2>What I learned</h2></div>
+        <ol class="numbered">{learned.map((d) => <li><p>{d}</p></li>)}</ol>
+      </div>
+    </div></section>
+    <section class="cs-cta"><div class="wrap">
+      <p class="eyebrow">Keep reading</p>
+      <div class="btns"><a class="btn solid" href="/case-studies/circles-scheduling">Also: Circles scheduling →</a><a class="btn" href="/operations">More operations work</a><a class="btn" href="/contact">Ask me about it</a></div>
+    </div></section>
+  </article>
+</Base>

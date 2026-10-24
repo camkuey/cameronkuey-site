@@ -1,0 +1,51 @@
+---
+/* Decorative flat-shape motif for the case-study hero bands and the /case-studies cards:
+   four bold shapes joined by a line, with one dot travelling along it (SMIL, hidden
+   under reduced motion). Purely decorative, so aria-hidden. */
+interface Props { kind: 'circles' | 'contract'; variant?: 'hero' | 'card' }
+const { kind, variant = 'hero' } = Astro.props as Props;
+const K = { red: '#881919', blue: '#2E5E92', gold: '#DAB057', ink: '#1B1A18', cream: '#FAF8F4' };
+const pal = {
+  circles: { hero: [K.red, K.ink, K.blue, K.gold], card: [K.red, K.ink, K.blue, K.cream] },
+  contract: { hero: [K.ink, K.blue, K.gold, K.red], card: [K.cream, K.ink, K.gold, K.red] },
+}[kind][variant];
+const line = variant === 'card' && kind === 'contract' ? K.cream : K.ink;
+const ring = variant === 'card' ? (kind === 'contract' ? K.blue : K.gold) : '#F1EDE5';
+const pts: [number, number][] = kind === 'circles' ? [[70, 218], [190, 140], [292, 206], [414, 118]] : [[100, 215], [210, 118], [325, 205], [420, 100]];
+const path = 'M' + pts.map((p) => p.join(',')).join(' L');
+const badge = (i: number) => ({ x: pts[i][0] + 30, y: pts[i][1] - 40, n: i + 1 });
+const dot = variant === 'card' ? (kind === 'contract' ? K.gold : K.cream) : K.red;
+---
+<svg class={`cm cm-${variant}`} viewBox="0 0 480 300" aria-hidden="true" focusable="false">
+  <path d={path} fill="none" stroke={line} stroke-width="3" stroke-linejoin="round" />
+  {kind === 'circles' ? (
+    <>
+      <circle cx="70" cy="218" r="40" fill={pal[0]} />
+      <rect x="150" y="100" width="80" height="80" rx="12" fill={pal[1]} />
+      <circle cx="292" cy="206" r="42" fill={pal[2]} />
+      <rect x="372" y="76" width="84" height="84" rx="10" fill={pal[3]} />
+      <g stroke={variant === 'card' ? K.blue : K.ink} stroke-width="3" stroke-linecap="round"><path d="M388,100 H440 M388,118 H440 M388,136 H420" /></g>
+    </>
+  ) : (
+    <>
+      <rect x="58" y="172" width="84" height="86" rx="12" fill={pal[0]} />
+      <rect x="76" y="206" width="48" height="22" rx="11" fill={K.red} />
+      <circle cx="210" cy="118" r="40" fill={pal[1]} />
+      <path d="M290,150 H340 L362,172 V252 H290 Z" fill={pal[2]} />
+      <g stroke={K.ink} stroke-width="3" stroke-linecap="round"><path d="M304,184 H336 M304,202 H346 M304,220 H328" /></g>
+      <circle cx="420" cy="100" r="44" fill={pal[3]} stroke={ring} stroke-width="4" />
+      <path d="M400,102 L414,116 L441,86" fill="none" stroke={K.cream} stroke-width="7" stroke-linecap="round" stroke-linejoin="round" />
+    </>
+  )}
+  {pts.map((_, i) => {
+    const b = badge(i);
+    return <g><circle cx={b.x} cy={b.y} r="13" fill={K.cream} stroke={K.ink} stroke-width="2" /><text x={b.x} y={b.y + 4.5} text-anchor="middle" font-size="13" font-weight="600" fill={K.ink} font-family="Jost, sans-serif">{b.n}</text></g>;
+  })}
+  <circle class="cm-dot" r="8" fill={dot} stroke={K.cream} stroke-width="2.5">
+    <animateMotion path={path} dur="9s" repeatCount="indefinite" calcMode="linear" />
+  </circle>
+</svg>
+<style>
+  .cm{display:block;width:100%;height:auto;aspect-ratio:480/300}
+  @media (prefers-reduced-motion:reduce){.cm-dot{display:none}}
+</style>

@@ -21,6 +21,7 @@ const roles = [
       'Designed data pipelines and API integrations that unified revenue, operations and finance data.',
       'Automated provider contracting, order forms and invoicing across a multi-sided marketplace.',
     ],
+    more: { href: '/case-studies/contract-automation', text: 'Read the contract automation case study' },
   },
   {
     when: 'May 2022 – May 2024', title: 'Creative Producer', org: 'Modern Health',
@@ -28,6 +29,7 @@ const roles = [
       'Owned scheduling, logistics and live production for 570+ provider-led group Circles.',
       'Led continuous operational experimentation; iterations supported 60%+ year-over-year growth in a core product line.',
     ],
+    more: { href: '/case-studies/circles-scheduling', text: 'Read the Circles scheduling case study' },
   },
   {
     when: '2015 – 2022', title: 'Founder & Executive Director', org: 'The Cultivation Project',
@@ -45,6 +47,10 @@ const roles = [
     ],
     more: { href: '/photography', text: 'See the photography' },
   },
+];
+const cases = [
+  { href: '/case-studies/circles-scheduling', title: 'Turning a manual, multi-tab Circles setup into a one-step workflow', text: 'Zendesk to a finished Zoom event in one Zapier workflow, with Airtable as the source of truth and the producer still in the loop.', tools: 'Zapier · Airtable · Zoom · Zendesk' },
+  { href: '/case-studies/contract-automation', title: 'One button from an Airtable record to a signed Ironclad contract', text: 'I simplified the process with legal first, then automated it, keeping Ironclad as the system of record.', tools: 'Airtable · Apps Script · Ironclad' },
 ];
 ---
 <Base title="Operations" section="operations"
@@ -70,6 +76,19 @@ const roles = [
             {r.more && <p class="more"><a href={r.more.href}>{r.more.text} →</a></p>}
           </div>
         </article>
+      ))}
+    </div>
+  </div></section>
+  <section style="padding-top:24px"><div class="wrap">
+    <div class="sec-head"><h2>Case studies</h2><p class="eyebrow">Modern Health</p></div>
+    <div class="minis">
+      {cases.map((c, i) => (
+        <a class="mini" href={c.href}>
+          <span class="num">{String(i + 1).padStart(2, '0')}</span>
+          <h3>{c.title}</h3>
+          <p>{c.text}</p>
+          <span class="eyebrow">{c.tools} · Read the case study →</span>
+        </a>
       ))}
     </div>
   </div></section>

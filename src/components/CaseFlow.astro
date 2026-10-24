@@ -1,0 +1,298 @@
+---
+/* Looping flow graphics for the Modern Health case studies.
+   Pure inline SVG: dots travel on SMIL animateMotion paths (no JS). Every graphic
+   shares one 360x344 viewBox (3 columns x 4 rows), one panel and one node/dot style.
+   Routes are written as node ids; the geometry, timing and static frame are
+   worked out here. With reduced motion the moving dots are swapped for static ones. */
+import { FLOWS, type Tone, type FRoute, type FBlob } from '../data/case-flows';
+
+type Pt = [number, number];
+interface Props { flow: string }
+const { flow } = Astro.props as Props;
+const def = FLOWS[flow];
+if (!def) throw new Error(`Unknown flow: ${flow}`);
+
+const COL: Record<Tone, string> = { ink: '#1B1A18', blue: '#2E5E92', gold: '#DAB057', red: '#881919' };
+// line colours (gold is darkened so it reads on the cream panel)
+const HUE: Record<string, string> = { red: '#881919', blue: '#2E5E92', gold: '#A67C1B', ink: '#6B645A' };
+const hueOf = (col?: string, tone?: string) => (tone === 'human' ? 'red' : col?.startsWith('red') ? 'red' : col?.startsWith('blue') ? 'blue' : col?.startsWith('gold') ? 'gold' : 'ink');
+const BADGE_TXT: Record<Tone, string> = { ink: '#F4F0E8', blue: '#FFFFFF', gold: '#1B1A18', red: '#FFFFFF' };
+const f = (n: number) => +n.toFixed(3);
+const X = [8, 132, 256], W = 100, GAP = 24, Y = [16, 98, 180, 262], H = 44;
+const VB_W = 360, VB_H = 344;
+
+const nodes = def.nodes.map((n) => {
+  const span = n.span ?? 1;
+  const w = W * span + GAP * (span - 1);
+  const x = X[n.c], y = Y[n.r];
+  return { ...n, x, y, w, h: H, cx: x + w / 2, cy: y + H / 2 };
+});
+const byId = new Map(nodes.map((n) => [n.id, n]));
+const get = (id: string) => { const n = byId.get(id); if (!n) throw new Error(`${flow}: unknown node ${id}`); return n; };
+
+// step badges: the order the first route walks through the nodes
+const stepOf = new Map<string, string>();
+{
+  let n = 0;
+  def.routes[0].via.forEach((v) => { const id = v.split(':')[0]; if (!stepOf.has(id)) stepOf.set(id, String(++n)); });
+  nodes.forEach((nd) => { if (nd.step === false) stepOf.delete(nd.id); else if (nd.step !== undefined) stepOf.set(nd.id, String(nd.step)); });
+}
+
+// orthogonal hop between two node centres
+const hop = (a: string, b: string, mode?: string): Pt[] => {
+  const A = get(a), B = get(b);
+  const p0: Pt = [A.cx, A.cy], p1: Pt = [B.cx, B.cy];
+  const m = mode ?? (A.cy === B.cy ? 'h' : A.cx === B.cx ? 'v' : 'hv');
+  if (m === 'h' || m === 'v') return [p0, p1];
+  return m === 'hv' ? [p0, [B.cx, A.cy], p1] : [p0, [A.cx, B.cy], p1];
+};
+const inside = (p: Pt, n: { x: number; y: number; w: number; h: number }) => p[0] > n.x && p[0] < n.x + n.w && p[1] > n.y && p[1] < n.y + n.h;
+
+// visible connectors: centre-to-centre path, trimmed to the node edges
+const trim = (pts: Pt[], A: (typeof nodes)[number], B: (typeof nodes)[number]): Pt[] => {
+  const out = pts.map((p) => [...p] as Pt);
+  const first = out[0], second = out[1];
+  if (first[1] === second[1]) first[0] = second[0] > first[0] ? A.x + A.w + 2 : A.x - 2; else first[1] = second[1] > first[1] ? A.y + A.h + 2 : A.y - 2;
+  const last = out[out.length - 1], prev = out[out.length - 2];
+  if (last[1] === prev[1]) last[0] = last[0] > prev[0] ? B.x - 5 : B.x + B.w + 5; else last[1] = last[1] > prev[1] ? B.y - 5 : B.y + B.h + 5;
+  return out;
+};
+const links = def.links.map((l) => {
+  const A = get(l.a), B = get(l.b);
+  const p = trim(hop(l.a, l.b, l.mode), A, B);
+  const mid: Pt = [(p[p.length - 2][0] + p[p.length - 1][0]) / 2, (p[p.length - 2][1] + p[p.length - 1][1]) / 2];
+  const hue = l.style === 'red' ? 'red' : hueOf(A.col, A.tone);
+  return { d: 'M' + p.map((q) => q.map(f).join(',')).join(' L'), style: l.style, mark: l.mark, mid, hue };
+});
+
+// ── routes ──
+const rects = nodes;
+const splitSeg = (a: Pt, b: Pt): Pt[] => {
+  const cuts: Pt[] = [];
+  rects.forEach((n) => {
+    if (a[1] === b[1] && a[1] > n.y && a[1] < n.y + n.h) [n.x, n.x + n.w].forEach((x) => { if (x > Math.min(a[0], b[0]) && x < Math.max(a[0], b[0])) cuts.push([x, a[1]]); });
+    if (a[0] === b[0] && a[0] > n.x && a[0] < n.x + n.w) [n.y, n.y + n.h].forEach((y) => { if (y > Math.min(a[1], b[1]) && y < Math.max(a[1], b[1])) cuts.push([a[0], y]); });
+  });
+  cuts.sort((p, q) => Math.hypot(p[0] - a[0], p[1] - a[1]) - Math.hypot(q[0] - a[0], q[1] - a[1]));
+  return [...cuts, b];
+};
+const dist = (a: Pt, b: Pt) => Math.hypot(b[0] - a[0], b[1] - a[1]);
+
+const prep = (r: FRoute) => {
+  const hops = r.via.map((v) => { const [id, mode] = v.split(':'); return { id, mode }; });
+  let raw: Pt[] = [[get(hops[0].id).cx, get(hops[0].id).cy]];
+  hops.slice(1).forEach((h, i) => { hop(hops[i].id, h.id, h.mode).slice(1).forEach((p) => raw.push(p)); });
+  // split at node edges so passing through a node can be sped up
+  let pts: Pt[] = [raw[0]];
+  for (let i = 1; i < raw.length; i++) splitSeg(raw[i - 1], raw[i]).forEach((p) => pts.push(p));
+  // hold point, just before the dot enters its gate node
+  let holdIdx = -1;
+  if (r.hold) {
+    const g = get(r.hold.before);
+    const k = pts.findIndex((p) => p[0] === g.cx && p[1] === g.cy);
+    const edge = pts[k - 1], before = pts[k - 2];
+    const L = dist(before, edge) || 1;
+    const hp: Pt = [edge[0] - ((edge[0] - before[0]) / L) * 9, edge[1] - ((edge[1] - before[1]) / L) * 9];
+    pts.splice(k - 1, 0, hp);
+    holdIdx = k - 1;
+  }
+  // index of each hop's centre point
+  const hopIdx: number[] = [];
+  let from = 0;
+  hops.forEach((h) => {
+    const n = get(h.id);
+    const k = pts.findIndex((p, i) => i >= from && p[0] === n.cx && p[1] === n.cy);
+    hopIdx.push(k); from = k;
+  });
+  const w = pts.slice(1).map((p, i) => {
+    const m: Pt = [(pts[i][0] + p[0]) / 2, (pts[i][1] + p[1]) / 2];
+    return rects.some((n) => inside(m, n)) ? 0.15 : 1;
+  });
+  return { pts, w, holdIdx, hopIdx };
+};
+
+const build = (r: FRoute, pts: Pt[], w: number[], holdIdx: number) => {
+  const lens = pts.slice(1).map((p, i) => dist(pts[i], p));
+  const total = lens.reduce((a, b) => a + b, 0);
+  const idle = r.idle ?? 0;
+  const holdSec = holdIdx >= 0 ? r.hold!.sec : 0;
+  const wl = lens.map((l, i) => l * w[i]);
+  const wsum = wl.reduce((a, b) => a + b, 0);
+  const travel = r.T - idle - holdSec;
+  const segT = wl.map((v) => (v / wsum) * travel);
+  const ev: { t: number; s: number }[] = [{ t: 0, s: 0 }];
+  const depart: number[] = [0], arrive: number[] = [0];
+  let t = 0, s = 0;
+  lens.forEach((l, i) => {
+    t += segT[i]; s += l / total; arrive[i + 1] = t; ev.push({ t, s });
+    const h = i + 1 === holdIdx ? holdSec : 0;
+    if (h) { t += h; ev.push({ t, s }); }
+    depart[i + 1] = t;
+  });
+  if (idle) ev.push({ t: r.T, s: 1 }); else ev[ev.length - 1].t = r.T;
+  const posAtS = (sn: number): Pt => {
+    let d = sn * total;
+    for (let i = 0; i < lens.length; i++) {
+      if (d <= lens[i] || i === lens.length - 1) { const k = lens[i] ? Math.min(1, d / lens[i]) : 0; return [pts[i][0] + (pts[i + 1][0] - pts[i][0]) * k, pts[i][1] + (pts[i + 1][1] - pts[i][1]) * k]; }
+      d -= lens[i];
+    }
+    return pts[0];
+  };
+  const posAt = (c: number): Pt => {
+    for (let i = 1; i < ev.length; i++) if (c <= ev[i].t) { const a = ev[i - 1], b = ev[i]; return posAtS(b.t === a.t ? b.s : a.s + ((c - a.t) / (b.t - a.t)) * (b.s - a.s)); }
+    return posAtS(1);
+  };
+  return {
+    d: 'M' + pts.map((p) => p.map(f).join(',')).join(' L'),
+    keyPoints: ev.map((e) => f(e.s)).join(';'), keyTimes: ev.map((e) => f(e.t / r.T)).join(';'),
+    arrive, depart, posAt, te: (r.T - idle) / r.T,
+  };
+};
+
+const routes = def.routes.map((r) => {
+  const g = prep(r);
+  return { r, g, b: build(r, g.pts, g.w, g.holdIdx) };
+});
+// dot start times (a dot may start when another route's dot reaches a stop)
+const blobs = routes.flatMap((rt, ri) => rt.r.blobs.map((bl: FBlob, bi) => ({ rt, ri, bi, bl, delay: 0 })));
+blobs.forEach((x) => {
+  if (x.bl.sync) {
+    const src = routes[x.bl.sync.route];
+    const base = blobs.find((y) => y.ri === x.bl.sync!.route)!;
+    x.delay = (src.b.arrive[src.g.hopIdx[x.bl.sync.hop]] + base.delay) % x.rt.r.T;
+  } else x.delay = x.bl.delay ?? 0;
+});
+const toneAt = (x: (typeof blobs)[number], c: number): Tone => {
+  let tone = x.bl.tone;
+  (x.bl.swaps ?? []).forEach((s) => { if (x.rt.b.arrive[x.rt.g.hopIdx[s.at]] <= c) tone = s.tone; });
+  return tone;
+};
+const fade = 0.05;
+const id = `cf-${flow}`;
+
+// legend, laid out left to right
+let lx = 14;
+const legend = def.legend.map(([tone, label]) => {
+  const item = { tone, label, x: lx };
+  lx += 14 + label.length * 5.9 + 12;
+  return item;
+});
+---
+<svg class="cf" viewBox={`0 0 ${VB_W} ${VB_H}`} role="img" aria-label={def.label} data-flow={flow}>
+  <defs>
+    {Object.entries(HUE).map(([h, c]) => (
+      <marker id={`${id}-a-${h}`} viewBox="0 0 8 8" refX="6" refY="4" markerWidth="6" markerHeight="6" orient="auto"><path d="M1,1 L6,4 L1,7" fill="none" stroke={c} stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" /></marker>
+    ))}
+  </defs>
+  <rect class="cf-panel" x=".5" y=".5" width={VB_W - 1} height={VB_H - 1} rx="4" />
+  <path d={`M.5,4.5 A4,4 0 0 1 4.5,.5 H${VB_W - 4.5} A4,4 0 0 1 ${VB_W - .5},4.5 V9 H.5 Z`} fill={COL[def.accent]} />
+  <g class="cf-lines" aria-hidden="true">
+    {links.map((l) => <path d={l.d} stroke={HUE[l.hue]} class={l.style === 'dash' ? 'ln-dash' : undefined} marker-end={l.mark ? undefined : `url(#${id}-a-${l.hue})`} />)}
+    {links.filter((l) => l.mark).map((l) => <path class="cf-x" d={`M${f(l.mid[0] - 5)},${f(l.mid[1] - 5)} l10,10 M${f(l.mid[0] + 5)},${f(l.mid[1] - 5)} l-10,10`} />)}
+  </g>
+  <g class="cf-blobs" aria-hidden="true">
+    {blobs.map((x) => {
+      const { rt, bl } = x;
+      const T = rt.r.T;
+      const swaps = (bl.swaps ?? []).map((s) => ({ t: rt.b.arrive[rt.g.hopIdx[s.at]] / T, tone: s.tone }));
+      const kt = ['0', ...swaps.map((s) => f(s.t))];
+      const vals = [COL[bl.tone], ...swaps.map((s) => COL[s.tone])];
+      const op = rt.b.te < 1
+        ? { v: '0;1;1;0;0', k: `0;${fade};${f(rt.b.te - fade)};${f(rt.b.te)};1` }
+        : { v: '0;1;1;0', k: `0;${fade};${f(1 - fade)};1` };
+      const begin = `${f(x.delay - T)}s`;
+      return (
+        <g class="cf-blob" opacity="0">
+          <circle r="5.5" fill={COL[bl.tone]} stroke="#FFFDF9" stroke-width="1.5">
+            {swaps.length > 0 && <animate attributeName="fill" calcMode="discrete" values={vals.join(';')} keyTimes={kt.join(';')} dur={`${T}s`} begin={begin} repeatCount="indefinite" />}
+          </circle>
+          <animateMotion path={rt.b.d} dur={`${T}s`} begin={begin} repeatCount="indefinite" calcMode="linear" keyPoints={rt.b.keyPoints} keyTimes={rt.b.keyTimes} />
+          <animate attributeName="opacity" values={op.v} keyTimes={op.k} dur={`${T}s`} begin={begin} repeatCount="indefinite" />
+        </g>
+      );
+    })}
+  </g>
+  <g class="cf-pins" aria-hidden="true">
+    {blobs.map((x) => {
+      const c = x.bl.still ?? x.rt.r.T * 0.4;
+      const [px, py] = x.rt.b.posAt(c);
+      return <circle cx={f(px)} cy={f(py)} r="5.5" fill={COL[toneAt(x, c)]} stroke="#FFFDF9" stroke-width="1.5" />;
+    })}
+  </g>
+  <g class="cf-nodes" aria-hidden="true">
+    {nodes.map((n) => {
+      const two = !!n.s;
+      const cls = [n.col ? `k-${n.col}` : '', n.tone ? `k-${n.tone}` : ''].join(' ').trim();
+      const hits = blobs.flatMap((x) => x.rt.r.via.map((v, k) => ({ x, k, id: v.split(':')[0] })).filter((h) => h.id === n.id));
+      const step = stepOf.get(n.id);
+      return (
+        <g class={`cf-node ${cls}`}>
+          <rect x={n.x} y={n.y} width={n.w} height={n.h} rx="8">
+            {n.tone === 'human' && hits.map(({ x, k }) => {
+              const T = x.rt.r.T;
+              const held = x.rt.r.hold?.before === n.id ? x.rt.r.hold.sec : 0;
+              const t0 = x.rt.b.arrive[x.rt.g.hopIdx[k]] - held;
+              const begin = (((t0 + x.delay) % T) + T) % T;
+              const dur = held + 1.2;
+              return <animate attributeName="fill" values="#F6E4E1;#E5B0AA;#E5B0AA;#F6E4E1;#F6E4E1" keyTimes={`0;0.02;${f((dur - 0.3) / T)};${f(dur / T)};1`} dur={`${T}s`} begin={`${f(begin)}s`} repeatCount="indefinite" />;
+            })}
+          </rect>
+          <rect class="cf-halo" x={n.x - 3.5} y={n.y - 3.5} width={n.w + 7} height={n.h + 7} rx="11" style={`fill:none;stroke:${COL[def.accent]};stroke-width:2.5px`} opacity="0">
+            {hits.map(({ x, k }) => {
+              const T = x.rt.r.T;
+              const t0 = x.rt.b.arrive[x.rt.g.hopIdx[k]] - 0.5;
+              const begin = (((t0 + x.delay) % T) + T) % T;
+              const p = 1.6 / T;
+              return <animate attributeName="opacity" values="0;1;1;0;0" keyTimes={`0;${f(p * 0.2)};${f(p * 0.6)};${f(p)};1`} dur={`${T}s`} begin={`${f(begin)}s`} repeatCount="indefinite" />;
+            })}
+          </rect>
+          <text class="nt" x={n.cx} y={two ? n.cy - 2 : n.cy + 4.5} text-anchor="middle">{n.t}</text>
+          {two && <text class="ns" x={n.cx} y={n.cy + 12} text-anchor="middle">{n.s}</text>}
+          {step && (
+            <>
+              <circle cx={n.x + 5} cy={n.y + 3} r="9" fill={COL[def.accent]} stroke="#FFFDF9" stroke-width="2" />
+              <text class="cf-step" x={n.x + 5} y={n.y + 7} text-anchor="middle" fill={BADGE_TXT[def.accent]}>{step}</text>
+            </>
+          )}
+        </g>
+      );
+    })}
+  </g>
+  <g class="cf-legend" aria-hidden="true">
+    {legend.map((l) => (
+      <>
+        <circle cx={l.x + 5} cy="331" r="4.5" fill={COL[l.tone]} />
+        <text x={l.x + 14} y="335" class="cf-lg">{l.label}</text>
+      </>
+    ))}
+  </g>
+</svg>
+<style>
+  .cf{display:block;width:100%;height:auto;aspect-ratio:360/344;font-family:var(--fb);overflow:hidden}
+  .cf-panel{fill:#FFFDF9;stroke:#1B1A18;stroke-width:1}
+  .cf-lines path{fill:none;stroke-width:1.7}
+  .cf-lines .ln-dash{stroke-dasharray:4 4}
+  .cf-lines .cf-x{stroke:#881919;stroke-width:2.2;stroke-linecap:round}
+  .cf-node rect{fill:#fff;stroke:#D9CFC0;stroke-width:1}
+  .cf-node .nt{font-size:12px;font-weight:500;fill:#1B1A18;letter-spacing:.01em}
+  .cf-node .ns{font-size:11.2px;fill:#5A544B;letter-spacing:.02em}
+  .cf-node .cf-halo{fill:none}
+  .cf-step{font-size:11.2px;font-weight:600}
+  .k-red rect{fill:#881919;stroke:#881919}.k-red .nt{fill:#fff}.k-red .ns{fill:#F6DEDB}
+  .k-blue rect{fill:#2E5E92;stroke:#2E5E92}.k-blue .nt{fill:#fff}.k-blue .ns{fill:#E0EAF5}
+  .k-gold rect{fill:#DAB057;stroke:#DAB057}.k-gold .nt{fill:#1B1A18}.k-gold .ns{fill:#3B3326}
+  .k-ink rect{fill:#1B1A18;stroke:#1B1A18}.k-ink .nt{fill:#F4F0E8}.k-ink .ns{fill:#D5CEC2}
+  .k-red-t rect{fill:#F6E4E1;stroke:#881919}.k-red-t .ns{fill:#5C4642}
+  .k-blue-t rect{fill:#E1EAF4;stroke:#2E5E92}.k-blue-t .ns{fill:#3F4D5E}
+  .k-gold-t rect{fill:#F8EDCF;stroke:#B98F2F}.k-gold-t .ns{fill:#5A4A25}
+  .k-sand rect{fill:#EDE7DC;stroke:#B9B2A6}.k-sand .ns{fill:#4F4A42}
+  .k-white rect{fill:#fff;stroke:#B9B2A6}
+  .k-person rect{fill:#FFFDF9;stroke:#1B1A18;stroke-width:1.8}
+  .k-human rect{fill:#F6E4E1;stroke:#881919;stroke-width:1.8}.k-human .nt{fill:#881919}.k-human .ns{fill:#5C4642}
+  .k-note .nt{font-size:13px;font-weight:600}
+  .k-next rect{fill:transparent;stroke:#8A8172;stroke-width:1.3;stroke-dasharray:4 3}
+  .k-next .ns{fill:#5A544B}
+  .cf-lg{font-size:11.2px;fill:#4F4A42;letter-spacing:.01em}
+  .cf-pins{display:none}
+  @media (prefers-reduced-motion:reduce){.cf-blobs,.cf-halo{display:none}.cf-pins{display:inline}}
+</style>

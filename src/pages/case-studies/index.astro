@@ -1,0 +1,41 @@
+---
+import Base from '../../layouts/Base.astro';
+import Pic from '../../components/Pic.astro';
+import CaseMotif from '../../components/CaseMotif.astro';
+import { CASES } from '../../data/case-list';
+import { CHIP, chipClass } from '../../data/chips';
+---
+<Base title="Case studies" section="cases"
+  description="Case studies by Cameron Kuey: major operations workflows and systems he designed and built, from Modern Health automations to the Doodle Pirates Foundation Internal Dashboard.">
+  <div class="wrap">
+    <header class="page-head">
+      <p class="eyebrow">Case studies</p>
+      <h1>The workflows and systems <em>I designed and built.</em></h1>
+      <p class="lede">Each one starts with a messy real-world problem and ends with a process that runs on its own. Some are pure operations work, some are tools I designed from scratch.</p>
+    </header>
+  </div>
+  <section style="padding-top:16px"><div class="wrap">
+    <ul class="cs-list">
+      {CASES.map((c, i) => (
+        <li>
+          <a class={`cs-card${c.motif ? ` k-${c.motif}` : ''}`} href={`/case-studies/${c.slug}`}>
+            <div class={`cs-thumb${c.motif ? ` has-motif m-${c.motif}` : ''}`} aria-hidden={c.image ? undefined : 'true'}>
+              {c.image
+                ? <Pic id={c.image} alt={c.imageAlt ?? ''} sizes="(max-width: 900px) 100vw, 520px" eager={i === 0} />
+                : c.motif
+                  ? <div class="cs-motifwrap"><CaseMotif kind={c.motif} variant="card" /></div>
+                  : <span class="cs-mono">{c.org.split(' ').map((w) => w[0]).join('').slice(0, 2)}</span>}
+            </div>
+            <div class="cs-text">
+              <p class="eyebrow">{c.kind} · {c.org}</p>
+              <h2>{c.title}</h2>
+              <p>{c.summary}</p>
+              <ul class="cs-tags">{c.tags.map((t) => <li class={c.motif && CHIP[t] ? chipClass(t) : undefined}>{t}</li>)}</ul>
+              <span class="cs-more">Read the case study →</span>
+            </div>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div></section>
+</Base>
