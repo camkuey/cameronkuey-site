@@ -1,0 +1,285 @@
+{
+ "dash-today-focus": {
+  "w": 2880,
+  "h": 1800,
+  "base": "/media/dashboard/today-focus",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#386898"
+ },
+ "dash-today-focus-deck": {
+  "w": 2880,
+  "h": 1800,
+  "base": "/media/dashboard/today-focus-deck",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#f8f8f8"
+ },
+ "dash-tasks-open-list": {
+  "w": 2880,
+  "h": 1484,
+  "base": "/media/dashboard/tasks-open-list",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#f8f8f8"
+ },
+ "dash-ask-otis-confirm-card": {
+  "w": 2880,
+  "h": 1800,
+  "base": "/media/dashboard/ask-otis-confirm-card",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#f8f8f8"
+ },
+ "dash-ask-otis-approved": {
+  "w": 2880,
+  "h": 1800,
+  "base": "/media/dashboard/ask-otis-approved",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#f8f8f8"
+ },
+ "dash-kiosk-clocked-in": {
+  "w": 2880,
+  "h": 1800,
+  "base": "/media/dashboard/kiosk-clocked-in",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#386898"
+ },
+ "dash-work-schedule-pto-saved": {
+  "w": 2880,
+  "h": 1800,
+  "base": "/media/dashboard/work-schedule-pto-saved",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#386898"
+ },
+ "dash-time-review-week": {
+  "w": 2880,
+  "h": 1800,
+  "base": "/media/dashboard/time-review-week",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#386898"
+ },
+ "dash-projects-milestones": {
+  "w": 2880,
+  "h": 1800,
+  "base": "/media/dashboard/projects-milestones",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#f8f8f8"
+ },
+ "dash-documentation-editor": {
+  "w": 2880,
+  "h": 1800,
+  "base": "/media/dashboard/documentation-editor",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#f8f8f8"
+ },
+ "dash-onboarding": {
+  "w": 2880,
+  "h": 1800,
+  "base": "/media/dashboard/onboarding",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#f8f8f8"
+ },
+ "dash-phone-today-focus": {
+  "w": 1170,
+  "h": 2532,
+  "base": "/media/dashboard/phone-today-focus",
+  "webp": [
+   480,
+   960,
+   1170
+  ],
+  "avif": [
+   480,
+   960,
+   1170
+  ],
+  "color": "#f8f8f8"
+ },
+ "dash-phone-ask-otis-card": {
+  "w": 1170,
+  "h": 2532,
+  "base": "/media/dashboard/phone-ask-otis-card",
+  "webp": [
+   480,
+   960,
+   1170
+  ],
+  "avif": [
+   480,
+   960,
+   1170
+  ],
+  "color": "#f8f8f8"
+ },
+ "dash-poster-opening-the-day": {
+  "w": 1440,
+  "h": 900,
+  "base": "/media/dashboard/poster-opening-the-day",
+  "webp": [
+   480,
+   960,
+   1440
+  ],
+  "avif": [
+   480,
+   960,
+   1440
+  ],
+  "color": "#386898"
+ },
+ "dash-poster-finishing-a-task": {
+  "w": 1440,
+  "h": 900,
+  "base": "/media/dashboard/poster-finishing-a-task",
+  "webp": [
+   480,
+   960,
+   1440
+  ],
+  "avif": [
+   480,
+   960,
+   1440
+  ],
+  "color": "#f8f8f8"
+ },
+ "dash-poster-ask-otis-approve-suggestion": {
+  "w": 1440,
+  "h": 900,
+  "base": "/media/dashboard/poster-ask-otis-approve-suggestion",
+  "webp": [
+   480,
+   960,
+   1440
+  ],
+  "avif": [
+   480,
+   960,
+   1440
+  ],
+  "color": "#f8f8f8"
+ },
+ "dash-poster-kiosk-clock-in": {
+  "w": 1440,
+  "h": 900,
+  "base": "/media/dashboard/poster-kiosk-clock-in",
+  "webp": [
+   480,
+   960,
+   1440
+  ],
+  "avif": [
+   480,
+   960,
+   1440
+  ],
+  "color": "#f8f8f8"
+ }
+}

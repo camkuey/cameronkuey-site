@@ -1,0 +1,49 @@
+---
+/* "See it in motion": short screen recordings (sample data).
+   Muted loops that play only while on screen. With reduced motion (or no JS)
+   nothing autoplays: each clip shows its poster and native controls. */
+import { videos } from '../data/internal-dashboard';
+import { IMAGES } from '../lib/site';
+const poster = (id: string) => { const i = IMAGES[id]; return `${i.base}-${i.webp.filter((w) => w <= 1600).pop()}.webp`; };
+---
+<div class="mc" data-clips>
+  {videos.map((v) => (
+    <figure class="mc-clip">
+      <div class="mc-frame">
+        <span class="tag">Sample data</span>
+        <video src={`/media/dashboard/video/${v.file}.mp4`} poster={poster(v.poster)} width="1440" height="900"
+          muted loop playsinline controls preload="none" aria-label={v.label}></video>
+      </div>
+      <figcaption><b>{v.title}</b><span>{v.note}</span></figcaption>
+    </figure>
+  ))}
+</div>
+
+<script>
+  const still = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.querySelectorAll<HTMLElement>('[data-clips]').forEach((root) => {
+    if (still || !('IntersectionObserver' in window)) return;
+    const io = new IntersectionObserver((es) => es.forEach(({ target, isIntersecting }) => {
+      const v = target as HTMLVideoElement;
+      if (isIntersecting && !v.dataset.userPaused) { v.preload = 'metadata'; v.play().catch(() => {}); }
+      else if (!isIntersecting && !v.paused) { v.dataset.auto = '1'; v.pause(); }
+    }), { threshold: 0.6 });
+    root.querySelectorAll('video').forEach((v) => {
+      // a pause the person chose sticks until they press play again
+      v.addEventListener('pause', () => { if (v.dataset.auto || v.ended || document.hidden) delete v.dataset.auto; else v.dataset.userPaused = '1'; });
+      v.addEventListener('play', () => { delete v.dataset.userPaused; });
+      io.observe(v);
+    });
+  });
+</script>
+
+<style>
+  .mc{display:grid;grid-template-columns:1fr 1fr;gap:40px 32px}
+  .mc-frame{position:relative;background:#EDE7DC;border-radius:4px;padding:48px 14px 14px}
+  .mc-frame .tag{position:absolute;top:14px;left:14px;font-size:11px;letter-spacing:.14em;text-transform:uppercase;background:#fff;color:var(--muted);padding:6px 10px;border:1px dashed #B9B2A6}
+  .mc video{display:block;width:100%;height:auto;aspect-ratio:1440/900;border-radius:6px;background:#2E5E92}
+  .mc figcaption{margin-top:12px;display:grid;gap:2px}
+  .mc figcaption b{font-weight:500}
+  .mc figcaption span{color:var(--muted);font-size:15px}
+  @media (max-width:860px){ .mc{grid-template-columns:1fr;gap:32px} }
+</style>

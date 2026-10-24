@@ -11,6 +11,7 @@
     "preview": "astro preview",
     "astro": "astro",
     "images": "node scripts/process-images.mjs",
+    "images:dashboard": "node scripts/process-dashboard-images.mjs",
     "content": "python3 scripts/extract-content.py"
   },
   "dependencies": {

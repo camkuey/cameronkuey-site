@@ -20,12 +20,12 @@ const wide: Layout = {
   key: 'w', w: 1000, h: 470, y0: 50, dots: false,
   nodes: [
     { id: 'user', x: 8, y: 235, w: 148, h: 70, t: 'Team member', s: 'Browser · phone · kiosk' },
-    { id: 'access', x: 227, y: 235, w: 130, h: 70, t: 'Cloudflare Access', s: 'Sign-in' },
+    { id: 'access', x: 227, y: 235, w: 130, h: 70, t: 'Cloudflare Access', s: 'Work Google sign-in' },
     { id: 'dash', x: 435, y: 235, w: 130, h: 70, t: 'Dashboard', s: 'React + Vite' },
-    { id: 'api', x: 642, y: 235, w: 130, h: 70, t: 'API', s: 'Hono · Workers' },
+    { id: 'api', x: 642, y: 235, w: 130, h: 70, t: 'API', s: 'Hono · same Worker' },
     { id: 'air', x: 850, y: 235, w: 130, h: 70, t: 'Airtable', s: 'System of record', kind: 'core' },
     { id: 'docs', x: 850, y: 70, w: 130, h: 70, t: 'Google Docs', s: 'Documentation' },
-    { id: 'cal', x: 850, y: 370, w: 130, h: 70, t: 'Google Calendar', s: 'Schedules' },
+    { id: 'cal', x: 850, y: 370, w: 130, h: 70, t: 'Google Calendar', s: 'One way · shifts, PTO' },
     { id: 'otis', x: 400, y: 430, w: 130, h: 70, t: 'Ask Otis', s: 'Claude-powered' },
     { id: 'human', x: 642, y: 430, w: 130, h: 70, t: 'Human approval', s: 'Required to save', kind: 'human' },
   ],
@@ -39,10 +39,10 @@ const wide: Layout = {
     { d: 'M480,307 V428', tone: 'dash' },
   ],
   routes: [
-    { id: 'req', d: 'M156,252 H850', dur: 6.6, segs: [[71, 1], [130, 0], [78, 1], [130, 0], [77, 1], [130, 0], [78, 1]], blobs: [{ label: 'task', tone: 'ink', begin: 0 }, { label: 'PTO request', tone: 'ink', begin: 2.2 }, { label: 'shift', tone: 'ink', begin: 4.4 }] },
-    { id: 'res', d: 'M850,274 H156', dur: 6.6, segs: [[78, 1], [130, 0], [77, 1], [130, 0], [78, 1], [130, 0], [71, 1]], blobs: [{ label: 'shift', tone: 'light', begin: 1.1 }, { label: 'task', tone: 'light', begin: 3.3 }, { label: 'PTO request', tone: 'light', begin: 5.5 }] },
+    { id: 'req', d: 'M156,252 H850', dur: 6.6, segs: [[71, 1], [130, 0], [78, 1], [130, 0], [77, 1], [130, 0], [78, 1]], blobs: [{ label: 'task', tone: 'ink', begin: 0 }, { label: 'PTO', tone: 'ink', begin: 2.2 }, { label: 'shift', tone: 'ink', begin: 4.4 }] },
+    { id: 'res', d: 'M850,274 H156', dur: 6.6, segs: [[78, 1], [130, 0], [77, 1], [130, 0], [78, 1], [130, 0], [71, 1]], blobs: [{ label: 'shift', tone: 'light', begin: 1.1 }, { label: 'task', tone: 'light', begin: 3.3 }, { label: 'PTO', tone: 'light', begin: 5.5 }] },
     { id: 'docs', d: 'M752,235 V135 Q752,105 782,105 H850', dur: 3.6, blobs: [{ label: 'doc', tone: 'ink', begin: 1 }] },
-    { id: 'cal', d: 'M752,305 V375 Q752,405 782,405 H850', dur: 3.6, blobs: [{ label: 'shift', tone: 'ink', begin: 2.8 }] },
+    { id: 'cal', d: 'M752,305 V375 Q752,405 782,405 H850', dur: 3.6, blobs: [{ label: 'shift', tone: 'ink', begin: 1.2 }, { label: 'PTO', tone: 'ink', begin: 3 }] },
     { id: 'sug', d: 'M530,465 H642', dur: 3, blobs: [{ label: 'suggestion', tone: 'red', begin: 1.5 }] },
     { id: 'ok', d: 'M680,430 V296 H850', dur: 4, segs: [[125, 1], [101, 0], [78, 1]], blobs: [{ label: 'approved', tone: 'red', begin: 3 }] },
   ],
@@ -60,14 +60,14 @@ const narrow: Layout = {
   key: 'n', w: 360, h: 600, y0: 0, dots: true,
   nodes: [
     { id: 'user', x: 95, y: 10, w: 170, h: 56, t: 'Team member', s: 'Browser · phone · kiosk' },
-    { id: 'access', x: 95, y: 96, w: 170, h: 56, t: 'Cloudflare Access', s: 'Sign-in' },
+    { id: 'access', x: 95, y: 96, w: 170, h: 56, t: 'Cloudflare Access', s: 'Work Google sign-in' },
     { id: 'dash', x: 95, y: 182, w: 170, h: 56, t: 'Dashboard', s: 'React + Vite' },
     { id: 'otis', x: 10, y: 290, w: 130, h: 56, t: 'Ask Otis', s: 'Claude-powered' },
     { id: 'human', x: 220, y: 290, w: 130, h: 56, t: 'Human approval', s: 'Required to save', kind: 'human' },
-    { id: 'api', x: 95, y: 400, w: 170, h: 56, t: 'API', s: 'Hono · Workers' },
+    { id: 'api', x: 95, y: 400, w: 170, h: 56, t: 'API', s: 'Hono · same Worker' },
     { id: 'docs', x: 10, y: 530, w: 100, h: 56, t: 'Docs', s: 'Google' },
     { id: 'air', x: 120, y: 530, w: 120, h: 56, t: 'Airtable', s: 'System of record', kind: 'core' },
-    { id: 'cal', x: 250, y: 530, w: 100, h: 56, t: 'Calendar', s: 'Google' },
+    { id: 'cal', x: 250, y: 530, w: 100, h: 56, t: 'Calendar', s: 'Google · one way' },
   ],
   lines: [
     ...lanesV([[66, 96], [152, 182], [238, 400], [456, 530]], 168, 192),
@@ -79,16 +79,16 @@ const narrow: Layout = {
     { d: 'M110,240 V288', tone: 'dash' },
   ],
   routes: [
-    { id: 'req', d: 'M168,66 V530', dur: 6, segs: [[30, 1], [56, 0], [30, 1], [56, 0], [162, 1], [56, 0], [74, 1]], blobs: [{ label: 'task', tone: 'ink', begin: 0, side: 'l' }, { label: 'PTO request', tone: 'ink', begin: 2, side: 'l' }, { label: 'shift', tone: 'ink', begin: 4, side: 'l' }] },
-    { id: 'res', d: 'M192,530 V66', dur: 6, segs: [[74, 1], [56, 0], [162, 1], [56, 0], [30, 1], [56, 0], [30, 1]], blobs: [{ label: 'shift', tone: 'light', begin: 1, side: 'r' }, { label: 'task', tone: 'light', begin: 3, side: 'r' }, { label: 'PTO request', tone: 'light', begin: 5, side: 'r' }] },
+    { id: 'req', d: 'M168,66 V530', dur: 6, segs: [[30, 1], [56, 0], [30, 1], [56, 0], [162, 1], [56, 0], [74, 1]], blobs: [{ label: 'task', tone: 'ink', begin: 0, side: 'l' }, { label: 'PTO', tone: 'ink', begin: 2, side: 'l' }, { label: 'shift', tone: 'ink', begin: 4, side: 'l' }] },
+    { id: 'res', d: 'M192,530 V66', dur: 6, segs: [[74, 1], [56, 0], [162, 1], [56, 0], [30, 1], [56, 0], [30, 1]], blobs: [{ label: 'shift', tone: 'light', begin: 1, side: 'r' }, { label: 'task', tone: 'light', begin: 3, side: 'r' }, { label: 'PTO', tone: 'light', begin: 5, side: 'r' }] },
     { id: 'docs', d: 'M95,440 H75 Q60,440 60,455 V530', dur: 3, blobs: [{ label: 'doc', tone: 'ink', begin: 1, side: 'r' }] },
-    { id: 'cal', d: 'M265,440 H285 Q300,440 300,455 V530', dur: 3, blobs: [{ label: 'shift', tone: 'ink', begin: 2.5, side: 'r' }] },
+    { id: 'cal', d: 'M265,440 H285 Q300,440 300,455 V530', dur: 3, blobs: [{ label: 'shift', tone: 'ink', begin: 1, side: 'r' }, { label: 'PTO', tone: 'ink', begin: 2.5, side: 'r' }] },
     { id: 'sug', d: 'M140,318 H220', dur: 2.6, blobs: [{ label: 'suggestion', tone: 'red', begin: 1, side: 't' }] },
     { id: 'ok', d: 'M232,346 V530', dur: 4, segs: [[54, 1], [56, 0], [74, 1]], blobs: [{ label: 'approved', tone: 'red', begin: 2, side: 'r' }] },
   ],
   notes: [{ x: 116, y: 268, t: 'built in', a: 'start' }],
   pins: [
-    { label: 'task', tone: 'ink', at: [168, 81], side: 'l' }, { label: 'PTO request', tone: 'ink', at: [168, 493], side: 'l' },
+    { label: 'task', tone: 'ink', at: [168, 81], side: 'l' }, { label: 'PTO', tone: 'ink', at: [168, 493], side: 'l' },
     { label: 'shift', tone: 'light', at: [192, 81], side: 'r' }, { label: 'task', tone: 'light', at: [192, 493], side: 'r' },
     { label: 'doc', tone: 'ink', at: [60, 490], side: 'r' }, { label: 'shift', tone: 'ink', at: [300, 490], side: 'r' },
     { label: 'suggestion', tone: 'red', at: [180, 318], side: 't' }, { label: 'approved', tone: 'red', at: [232, 372], side: 'r' },
@@ -114,7 +114,7 @@ const start = (r: Route, b: Blob) => `${(b.begin - r.dur * 0.5).toFixed(2)}s`;
   {[wide, narrow].map((L) => (
     <svg class={`df-svg df-${L.key}`} viewBox={`0 ${L.y0} ${L.w} ${L.h}`} role="img" aria-labelledby={`df-t-${L.key} df-d-${L.key}`}>
       <title id={`df-t-${L.key}`}>How data flows through the Internal Dashboard</title>
-      <desc id={`df-d-${L.key}`}>A team member signs in through Cloudflare Access. Requests go from the Dashboard to the API, which reads and writes Airtable, saves docs to Google Docs and syncs schedules to Google Calendar. Ask Otis suggestions go to a person for approval, and only approved changes are written to Airtable. A text version follows the diagram.</desc>
+      <desc id={`df-d-${L.key}`}>A team member signs in with a work Google account through Cloudflare Access. Requests go from the Dashboard to the API, which runs on the same Cloudflare Worker. The API checks permissions, then reads and writes Airtable and saves docs to Google Docs. Shifts, PTO and sick days are pushed one way to Google Calendar; nothing comes back from the calendar. Ask Otis suggestions go to a person, and only what that person approves is written to Airtable. A text version follows the diagram.</desc>
       <defs>
         <marker id={`df-a-${L.key}`} viewBox="0 0 8 8" refX="6" refY="4" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M1,1 L6,4 L1,7" fill="none" stroke="#B3A895" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" /></marker>
         <marker id={`df-ar-${L.key}`} viewBox="0 0 8 8" refX="6" refY="4" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M1,1 L6,4 L1,7" fill="none" stroke="#881919" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" /></marker>
