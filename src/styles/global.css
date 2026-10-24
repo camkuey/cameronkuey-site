@@ -412,3 +412,5 @@ picture{display:contents}
   .cs-statbar .stat:nth-child(n+3){border-top:1px solid var(--line)}
   .cs-vspace{margin-top:48px}
 }
+.hero .hero-bar .btns{flex-wrap:wrap;max-width:100%}
+@media (max-width:600px){.hero .hero-bar .btns{width:100%}.hero .hero-bar .btn{flex:1 1 auto;justify-content:center;text-align:center;padding-left:18px;padding-right:18px}}
