@@ -612,3 +612,7 @@ a.mini:focus-visible{outline:2px solid var(--accent);outline-offset:4px}
 .cs-row2{margin-top:72px}
 .cs-row2 .cs-text .eyebrow{margin-bottom:14px}
 @media (max-width:900px){.cs-row2{margin-top:40px}}
+/* Creative hub covers: shoot types under the title, wrapping instead of one nowrap row */
+.covers.three .cover .t{flex-direction:column;align-items:flex-start;gap:6px}
+.covers.three .cover .t span{white-space:normal;line-height:1.6}
+@media (max-width:900px){.covers.three .cover .t span{display:block;font-size:10.5px}}
