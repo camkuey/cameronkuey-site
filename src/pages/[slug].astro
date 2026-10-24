@@ -55,7 +55,6 @@ const catCovers = isCategory
       <h1>{p.title}</h1>
       {showRange && (
         <nav class="range" aria-label={`Types of ${noun[rangeCat!.slug] ?? rangeCat!.title}`}>
-          <p class="eyebrow">I make {rangeCat!.children.length} kinds of {noun[rangeCat!.slug] ?? rangeCat!.title}</p>
           <ul>{rangeCat!.children.map((c) => <li><a href={`/${c.slug}`} aria-current={c.slug === p.slug ? 'page' : undefined}>{c.title}</a></li>)}</ul>
         </nav>
       )}
