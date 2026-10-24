@@ -648,25 +648,6 @@ a.mini:focus-visible{outline:2px solid var(--accent);outline-offset:4px}
 .opc.k-circles .eyebrow{color:#7A5C12}.opc.k-contract .eyebrow{color:#2E5E92}
 @media (max-width:900px){.opc-grid{grid-template-columns:1fr;gap:24px}.opc-body{padding:24px 20px 26px}.opc .cs-thumb{padding:20px 16px}}
 .opc .eyebrow .nw{white-space:nowrap}
-/* Creative hub covers: shoot types under the title, wrapping instead of one nowrap row */
-.covers.three .cover .t{flex-direction:column;align-items:flex-start;gap:6px}
-.covers.three .cover .t span{white-space:normal;line-height:1.6}
-@media (max-width:900px){.covers.three .cover .t span{display:block;font-size:10.5px}}
-/* Case-study step headers: number and title share one row, one weight/size, so they line up with the copy below */
-.cs-sec .cs-text{display:grid;grid-template-columns:auto minmax(0,1fr);column-gap:16px;align-items:center}
-.cs-sec .cs-text>p,.cs-sec .cs-text>ul,.cs-sec .cs-text>ol{grid-column:1/-1}
-.cs-sec .cs-text .cs-no{margin:0;width:46px;height:46px;font-size:18px}
-.cs-sec .cs-text h2,.cs-sec .cs-label h2{font-weight:400;font-size:clamp(26px,2.4vw,32px);letter-spacing:-.012em;line-height:1.15;margin:0}
-.cs-sec .cs-text h2{margin-bottom:0}
-.cs-sec .cs-text>h2+p{margin-top:20px}
-.cs-sec .cs-label{display:flex;align-items:center;gap:16px}
-.cs-sec .cs-label .cs-no{margin:0;width:46px;height:46px;font-size:18px;flex:none}
-.cs-sec .cs-grid,.cs-sec .cs-split{align-items:start}
-@media (max-width:700px){.cs-sec .cs-text .cs-no,.cs-sec .cs-label .cs-no{width:40px;height:40px;font-size:16px}.cs-sec .cs-text{column-gap:12px}}
 /* Home intro: lead line and paragraph share one column width */
 .about-copy{max-width:640px}
 .about-copy p,.about-copy>div:first-child p{max-width:none;text-wrap:pretty}
-/* Wider copy column so step titles stay on one line on desktop; balanced wrap elsewhere */
-@media (min-width:901px){.cs-sec .cs-split,.cs-sec .cs-split.rev{grid-template-columns:minmax(0,6fr) minmax(0,6fr)}.cs-sec .cs-split.rev{grid-template-columns:minmax(0,6fr) minmax(0,6fr)}}
-.cs-sec .cs-text h2,.cs-sec .cs-label h2{text-wrap:balance}
-@media (min-width:901px){.cs-sec .cs-grid{grid-template-columns:minmax(0,5fr) minmax(0,7fr);column-gap:48px}}
