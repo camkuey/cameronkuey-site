@@ -1,0 +1,3803 @@
+{
+ "home/01-b8f082cc": {
+  "w": 1500,
+  "h": 2250,
+  "base": "/media/home/01-b8f082cc",
+  "webp": [
+   480,
+   960,
+   1500
+  ],
+  "avif": [
+   480,
+   960,
+   1500
+  ],
+  "color": "#f8f8f8"
+ },
+ "photography/02-3f39fcda": {
+  "w": 3274,
+  "h": 2560,
+  "base": "/media/photography/02-3f39fcda",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#585838"
+ },
+ "photography/01-7fe5208b": {
+  "w": 3567,
+  "h": 2788,
+  "base": "/media/photography/01-7fe5208b",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#f8f8f8"
+ },
+ "photography/03-9654e573": {
+  "w": 3840,
+  "h": 3002,
+  "base": "/media/photography/03-9654e573",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#f8f8f8"
+ },
+ "wedding-photography/01-106b2676": {
+  "w": 3840,
+  "h": 2560,
+  "base": "/media/wedding-photography/01-106b2676",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#d8d8b8"
+ },
+ "photography/04-35c4abc5": {
+  "w": 2812,
+  "h": 2198,
+  "base": "/media/photography/04-35c4abc5",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#f8f8f8"
+ },
+ "wedding-photography/03-55fde249": {
+  "w": 3840,
+  "h": 2560,
+  "base": "/media/wedding-photography/03-55fde249",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#98b8c8"
+ },
+ "wedding-photography/02-47466e09": {
+  "w": 3840,
+  "h": 5760,
+  "base": "/media/wedding-photography/02-47466e09",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#282818"
+ },
+ "wedding-photography/05-e634651b": {
+  "w": 3840,
+  "h": 2560,
+  "base": "/media/wedding-photography/05-e634651b",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#484838"
+ },
+ "wedding-photography/06-83ea1356": {
+  "w": 3840,
+  "h": 2560,
+  "base": "/media/wedding-photography/06-83ea1356",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#f8f8f8"
+ },
+ "wedding-photography/04-07ba7613": {
+  "w": 3840,
+  "h": 5760,
+  "base": "/media/wedding-photography/04-07ba7613",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#f8f8f8"
+ },
+ "wedding-photography/08-28822710": {
+  "w": 3840,
+  "h": 2560,
+  "base": "/media/wedding-photography/08-28822710",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#484838"
+ },
+ "wedding-photography/07-5475057c": {
+  "w": 3840,
+  "h": 5760,
+  "base": "/media/wedding-photography/07-5475057c",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#f8f8f8"
+ },
+ "wedding-photography/10-ea7e2733": {
+  "w": 3840,
+  "h": 2560,
+  "base": "/media/wedding-photography/10-ea7e2733",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#484838"
+ },
+ "wedding-photography/09-b1b6bcc4": {
+  "w": 3840,
+  "h": 5760,
+  "base": "/media/wedding-photography/09-b1b6bcc4",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#483828"
+ },
+ "wedding-photography/13-f0187212": {
+  "w": 3840,
+  "h": 2560,
+  "base": "/media/wedding-photography/13-f0187212",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#f8f8f8"
+ },
+ "wedding-photography/12-88c55e0f": {
+  "w": 1920,
+  "h": 2880,
+  "base": "/media/wedding-photography/12-88c55e0f",
+  "webp": [
+   480,
+   960,
+   1600,
+   1920
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#f8f8f8"
+ },
+ "wedding-photography/11-a1061a14": {
+  "w": 3840,
+  "h": 5760,
+  "base": "/media/wedding-photography/11-a1061a14",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#f8f8f8"
+ },
+ "wedding-photography/14-d069bd1b": {
+  "w": 1920,
+  "h": 2880,
+  "base": "/media/wedding-photography/14-d069bd1b",
+  "webp": [
+   480,
+   960,
+   1600,
+   1920
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#f8f8f8"
+ },
+ "wedding-photography/16-2b73644f": {
+  "w": 3840,
+  "h": 2560,
+  "base": "/media/wedding-photography/16-2b73644f",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#f8f8f8"
+ },
+ "wedding-photography/15-15c52aba": {
+  "w": 1920,
+  "h": 2880,
+  "base": "/media/wedding-photography/15-15c52aba",
+  "webp": [
+   480,
+   960,
+   1600,
+   1920
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#f8f8f8"
+ },
+ "wedding-photography/17-f44d38cb": {
+  "w": 3840,
+  "h": 2560,
+  "base": "/media/wedding-photography/17-f44d38cb",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#f8f8f8"
+ },
+ "wedding-photography/18-dc2a2b02": {
+  "w": 1920,
+  "h": 2880,
+  "base": "/media/wedding-photography/18-dc2a2b02",
+  "webp": [
+   480,
+   960,
+   1600,
+   1920
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#f8f8f8"
+ },
+ "wedding-photography/20-962d461e": {
+  "w": 3840,
+  "h": 2560,
+  "base": "/media/wedding-photography/20-962d461e",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#f8f8f8"
+ },
+ "wedding-photography/21-e7c24fa8": {
+  "w": 3840,
+  "h": 2560,
+  "base": "/media/wedding-photography/21-e7c24fa8",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#f8f8f8"
+ },
+ "wedding-photography/19-6607846a": {
+  "w": 3840,
+  "h": 2560,
+  "base": "/media/wedding-photography/19-6607846a",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#f8f8f8"
+ },
+ "wedding-photography/22-6f207454": {
+  "w": 1920,
+  "h": 2880,
+  "base": "/media/wedding-photography/22-6f207454",
+  "webp": [
+   480,
+   960,
+   1600,
+   1920
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#f8f8f8"
+ },
+ "wedding-photography/23-47178ac5": {
+  "w": 1920,
+  "h": 2880,
+  "base": "/media/wedding-photography/23-47178ac5",
+  "webp": [
+   480,
+   960,
+   1600,
+   1920
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#f8f8f8"
+ },
+ "wedding-photography/25-80980ee6": {
+  "w": 1920,
+  "h": 2880,
+  "base": "/media/wedding-photography/25-80980ee6",
+  "webp": [
+   480,
+   960,
+   1600,
+   1920
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#f8f8f8"
+ },
+ "wedding-photography/24-f0cfab45": {
+  "w": 1920,
+  "h": 2880,
+  "base": "/media/wedding-photography/24-f0cfab45",
+  "webp": [
+   480,
+   960,
+   1600,
+   1920
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#f8f8f8"
+ },
+ "wedding-photography/26-e5ed7ad2": {
+  "w": 1920,
+  "h": 2880,
+  "base": "/media/wedding-photography/26-e5ed7ad2",
+  "webp": [
+   480,
+   960,
+   1600,
+   1920
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#f8f8f8"
+ },
+ "wedding-photography/28-c23da5ee": {
+  "w": 1920,
+  "h": 2880,
+  "base": "/media/wedding-photography/28-c23da5ee",
+  "webp": [
+   480,
+   960,
+   1600,
+   1920
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#f8f8f8"
+ },
+ "wedding-photography/27-10d82c2c": {
+  "w": 1920,
+  "h": 2880,
+  "base": "/media/wedding-photography/27-10d82c2c",
+  "webp": [
+   480,
+   960,
+   1600,
+   1920
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#f8f8f8"
+ },
+ "wedding-photography/29-f868a292": {
+  "w": 1920,
+  "h": 2880,
+  "base": "/media/wedding-photography/29-f868a292",
+  "webp": [
+   480,
+   960,
+   1600,
+   1920
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#f8f8f8"
+ },
+ "wedding-photography/30-38a99ee5": {
+  "w": 1920,
+  "h": 2880,
+  "base": "/media/wedding-photography/30-38a99ee5",
+  "webp": [
+   480,
+   960,
+   1600,
+   1920
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#f8f8f8"
+ },
+ "wedding-photography/32-866b0b6c": {
+  "w": 1920,
+  "h": 2880,
+  "base": "/media/wedding-photography/32-866b0b6c",
+  "webp": [
+   480,
+   960,
+   1600,
+   1920
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#f8f8f8"
+ },
+ "wedding-photography/31-eebcbe16": {
+  "w": 1920,
+  "h": 2880,
+  "base": "/media/wedding-photography/31-eebcbe16",
+  "webp": [
+   480,
+   960,
+   1600,
+   1920
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#f8f8f8"
+ },
+ "wedding-photography/33-00faa5c5": {
+  "w": 1920,
+  "h": 2880,
+  "base": "/media/wedding-photography/33-00faa5c5",
+  "webp": [
+   480,
+   960,
+   1600,
+   1920
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#f8f8f8"
+ },
+ "wedding-photography/35-44464320": {
+  "w": 3840,
+  "h": 2560,
+  "base": "/media/wedding-photography/35-44464320",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#f8f8f8"
+ },
+ "wedding-photography/34-62d488a7": {
+  "w": 1920,
+  "h": 2880,
+  "base": "/media/wedding-photography/34-62d488a7",
+  "webp": [
+   480,
+   960,
+   1600,
+   1920
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#f8f8f8"
+ },
+ "wedding-photography/37-75d6bc78": {
+  "w": 3840,
+  "h": 2560,
+  "base": "/media/wedding-photography/37-75d6bc78",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#f8f8f8"
+ },
+ "wedding-photography/36-9dbce447": {
+  "w": 3840,
+  "h": 5760,
+  "base": "/media/wedding-photography/36-9dbce447",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#e8e8e8"
+ },
+ "wedding-photography/39-d86a75d6": {
+  "w": 3840,
+  "h": 2560,
+  "base": "/media/wedding-photography/39-d86a75d6",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#f8f8f8"
+ },
+ "wedding-photography/40-07f45647": {
+  "w": 3840,
+  "h": 2560,
+  "base": "/media/wedding-photography/40-07f45647",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#f8f8f8"
+ },
+ "engagement-proposals/01-81090a43": {
+  "w": 3840,
+  "h": 2560,
+  "base": "/media/engagement-proposals/01-81090a43",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#585838"
+ },
+ "wedding-photography/38-b23a980b": {
+  "w": 3840,
+  "h": 5760,
+  "base": "/media/wedding-photography/38-b23a980b",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#f8f8f8"
+ },
+ "engagement-proposals/03-9554103e": {
+  "w": 3840,
+  "h": 5760,
+  "base": "/media/engagement-proposals/03-9554103e",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#c8c8c8"
+ },
+ "engagement-proposals/02-2f561268": {
+  "w": 3840,
+  "h": 5760,
+  "base": "/media/engagement-proposals/02-2f561268",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#080808"
+ },
+ "engagement-proposals/04-899f7f78": {
+  "w": 3840,
+  "h": 2560,
+  "base": "/media/engagement-proposals/04-899f7f78",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#181818"
+ },
+ "engagement-proposals/06-26eca29d": {
+  "w": 3840,
+  "h": 2560,
+  "base": "/media/engagement-proposals/06-26eca29d",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#383828"
+ },
+ "engagement-proposals/07-840f415e": {
+  "w": 3840,
+  "h": 5760,
+  "base": "/media/engagement-proposals/07-840f415e",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#686858"
+ },
+ "engagement-proposals/08-58a6f429": {
+  "w": 3840,
+  "h": 5760,
+  "base": "/media/engagement-proposals/08-58a6f429",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#f8f8f8"
+ },
+ "engagement-proposals/05-a5cf9c89": {
+  "w": 3840,
+  "h": 5760,
+  "base": "/media/engagement-proposals/05-a5cf9c89",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#f8f8f8"
+ },
+ "engagement-proposals/09-9efda6cb": {
+  "w": 3840,
+  "h": 5760,
+  "base": "/media/engagement-proposals/09-9efda6cb",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#f8f8f8"
+ },
+ "engagement-proposals/10-f2408a6d": {
+  "w": 3840,
+  "h": 2560,
+  "base": "/media/engagement-proposals/10-f2408a6d",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#f8f8f8"
+ },
+ "engagement-proposals/11-43ba0781": {
+  "w": 3840,
+  "h": 5760,
+  "base": "/media/engagement-proposals/11-43ba0781",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#f8f8f8"
+ },
+ "engagement-proposals/12-95c34024": {
+  "w": 3840,
+  "h": 5760,
+  "base": "/media/engagement-proposals/12-95c34024",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#f8f8f8"
+ },
+ "engagement-proposals/13-59f65445": {
+  "w": 3840,
+  "h": 5760,
+  "base": "/media/engagement-proposals/13-59f65445",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#f8f8f8"
+ },
+ "engagement-proposals/14-5a0203f7": {
+  "w": 3840,
+  "h": 5760,
+  "base": "/media/engagement-proposals/14-5a0203f7",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#c8c8d8"
+ },
+ "engagement-proposals/15-1e4148ee": {
+  "w": 3840,
+  "h": 2560,
+  "base": "/media/engagement-proposals/15-1e4148ee",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#a8a8b8"
+ },
+ "engagement-proposals/17-4286c1a1": {
+  "w": 3840,
+  "h": 2560,
+  "base": "/media/engagement-proposals/17-4286c1a1",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#f8f8f8"
+ },
+ "engagement-proposals/16-07a3a6c4": {
+  "w": 3840,
+  "h": 5760,
+  "base": "/media/engagement-proposals/16-07a3a6c4",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#b8b8b8"
+ },
+ "engagement-proposals/20-dc187f17": {
+  "w": 3840,
+  "h": 2560,
+  "base": "/media/engagement-proposals/20-dc187f17",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#484828"
+ },
+ "engagement-proposals/18-5dd78679": {
+  "w": 1920,
+  "h": 2880,
+  "base": "/media/engagement-proposals/18-5dd78679",
+  "webp": [
+   480,
+   960,
+   1600,
+   1920
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#181818"
+ },
+ "engagement-proposals/19-db94c354": {
+  "w": 3840,
+  "h": 5760,
+  "base": "/media/engagement-proposals/19-db94c354",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#080808"
+ },
+ "engagement-proposals/22-9bb4b262": {
+  "w": 3840,
+  "h": 2560,
+  "base": "/media/engagement-proposals/22-9bb4b262",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#f8f8f8"
+ },
+ "engagement-proposals/21-c1f2f98d": {
+  "w": 3840,
+  "h": 5760,
+  "base": "/media/engagement-proposals/21-c1f2f98d",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#686848"
+ },
+ "engagement-proposals/24-ded8c4d1": {
+  "w": 3840,
+  "h": 2560,
+  "base": "/media/engagement-proposals/24-ded8c4d1",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#98a8a8"
+ },
+ "engagement-proposals/26-8e96d3ed": {
+  "w": 3840,
+  "h": 2560,
+  "base": "/media/engagement-proposals/26-8e96d3ed",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#f8f8f8"
+ },
+ "engagement-proposals/25-a2769b7b": {
+  "w": 3840,
+  "h": 5760,
+  "base": "/media/engagement-proposals/25-a2769b7b",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#f8e8d8"
+ },
+ "engagement-proposals/28-af37e653": {
+  "w": 3840,
+  "h": 2560,
+  "base": "/media/engagement-proposals/28-af37e653",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#e8e8e8"
+ },
+ "engagement-proposals/23-9a151641": {
+  "w": 3840,
+  "h": 5760,
+  "base": "/media/engagement-proposals/23-9a151641",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#e8d8c8"
+ },
+ "engagement-proposals/27-2171f2b5": {
+  "w": 3840,
+  "h": 5760,
+  "base": "/media/engagement-proposals/27-2171f2b5",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#f8f8f8"
+ },
+ "family-photoshoots/01-f4ef8a24": {
+  "w": 3840,
+  "h": 2560,
+  "base": "/media/family-photoshoots/01-f4ef8a24",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#f8f8f8"
+ },
+ "family-photoshoots/03-43e49450": {
+  "w": 3840,
+  "h": 2560,
+  "base": "/media/family-photoshoots/03-43e49450",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#e8e8f8"
+ },
+ "family-photoshoots/02-081697bb": {
+  "w": 3840,
+  "h": 5760,
+  "base": "/media/family-photoshoots/02-081697bb",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#f8f8f8"
+ },
+ "family-photoshoots/05-c457e8c3": {
+  "w": 3840,
+  "h": 2560,
+  "base": "/media/family-photoshoots/05-c457e8c3",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#f8f8e8"
+ },
+ "family-photoshoots/04-f85c1f40": {
+  "w": 3840,
+  "h": 5760,
+  "base": "/media/family-photoshoots/04-f85c1f40",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#f8f8f8"
+ },
+ "family-photoshoots/06-2f34cc74": {
+  "w": 3840,
+  "h": 5760,
+  "base": "/media/family-photoshoots/06-2f34cc74",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#f8f8f8"
+ },
+ "family-photoshoots/07-fe364714": {
+  "w": 3840,
+  "h": 5760,
+  "base": "/media/family-photoshoots/07-fe364714",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#f8f8c8"
+ },
+ "family-photoshoots/09-f12bae99": {
+  "w": 3840,
+  "h": 2560,
+  "base": "/media/family-photoshoots/09-f12bae99",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#585848"
+ },
+ "family-photoshoots/08-e98f74f4": {
+  "w": 3840,
+  "h": 5760,
+  "base": "/media/family-photoshoots/08-e98f74f4",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#f8f8f8"
+ },
+ "family-photoshoots/10-ad22314b": {
+  "w": 3840,
+  "h": 5760,
+  "base": "/media/family-photoshoots/10-ad22314b",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#e8e8b8"
+ },
+ "family-photoshoots/11-a4091038": {
+  "w": 3840,
+  "h": 5760,
+  "base": "/media/family-photoshoots/11-a4091038",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#b8c888"
+ },
+ "family-photoshoots/13-4e32f98d": {
+  "w": 3840,
+  "h": 2560,
+  "base": "/media/family-photoshoots/13-4e32f98d",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#f8f8f8"
+ },
+ "family-photoshoots/12-1c54719b": {
+  "w": 3840,
+  "h": 5760,
+  "base": "/media/family-photoshoots/12-1c54719b",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#687858"
+ },
+ "family-photoshoots/15-0a46c1c7": {
+  "w": 3840,
+  "h": 2560,
+  "base": "/media/family-photoshoots/15-0a46c1c7",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#080808"
+ },
+ "family-photoshoots/14-ae0d5203": {
+  "w": 3840,
+  "h": 5760,
+  "base": "/media/family-photoshoots/14-ae0d5203",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#f8f8d8"
+ },
+ "family-photoshoots/16-5732a929": {
+  "w": 3840,
+  "h": 5760,
+  "base": "/media/family-photoshoots/16-5732a929",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#181808"
+ },
+ "family-photoshoots/19-3ced6f9c": {
+  "w": 3840,
+  "h": 2560,
+  "base": "/media/family-photoshoots/19-3ced6f9c",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#f8f8f8"
+ },
+ "family-photoshoots/17-f4812630": {
+  "w": 3840,
+  "h": 5760,
+  "base": "/media/family-photoshoots/17-f4812630",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#f8f8f8"
+ },
+ "family-photoshoots/20-bf11e879": {
+  "w": 3840,
+  "h": 2560,
+  "base": "/media/family-photoshoots/20-bf11e879",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#f8f8f8"
+ },
+ "family-photoshoots/18-1e333437": {
+  "w": 3840,
+  "h": 5760,
+  "base": "/media/family-photoshoots/18-1e333437",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#f8f8f8"
+ },
+ "family-photoshoots/21-d8b85c42": {
+  "w": 3840,
+  "h": 2560,
+  "base": "/media/family-photoshoots/21-d8b85c42",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#f8f8f8"
+ },
+ "family-photoshoots/23-2c2375ae": {
+  "w": 3840,
+  "h": 2560,
+  "base": "/media/family-photoshoots/23-2c2375ae",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#f8f8f8"
+ },
+ "family-photoshoots/24-8381bf64": {
+  "w": 3840,
+  "h": 2560,
+  "base": "/media/family-photoshoots/24-8381bf64",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#888888"
+ },
+ "family-photoshoots/25-fb7a9fa8": {
+  "w": 3840,
+  "h": 2560,
+  "base": "/media/family-photoshoots/25-fb7a9fa8",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#f8f8f8"
+ },
+ "family-photoshoots/22-2f81ff0a": {
+  "w": 3840,
+  "h": 5760,
+  "base": "/media/family-photoshoots/22-2f81ff0a",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#a8a8a8"
+ },
+ "family-photoshoots/28-2ef014d5": {
+  "w": 3840,
+  "h": 2560,
+  "base": "/media/family-photoshoots/28-2ef014d5",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#f8f8f8"
+ },
+ "family-photoshoots/26-1e1f721a": {
+  "w": 3840,
+  "h": 5760,
+  "base": "/media/family-photoshoots/26-1e1f721a",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#f8f8f8"
+ },
+ "family-photoshoots/27-634a8ba1": {
+  "w": 3840,
+  "h": 5760,
+  "base": "/media/family-photoshoots/27-634a8ba1",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#f8f8f8"
+ },
+ "family-photoshoots/29-7984c737": {
+  "w": 3840,
+  "h": 2560,
+  "base": "/media/family-photoshoots/29-7984c737",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#080808"
+ },
+ "family-photoshoots/30-7df92a1b": {
+  "w": 3840,
+  "h": 2560,
+  "base": "/media/family-photoshoots/30-7df92a1b",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#484838"
+ },
+ "family-photoshoots/32-b2ddc7e8": {
+  "w": 3840,
+  "h": 2560,
+  "base": "/media/family-photoshoots/32-b2ddc7e8",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#383828"
+ },
+ "family-photoshoots/33-3464e9a2": {
+  "w": 3840,
+  "h": 2560,
+  "base": "/media/family-photoshoots/33-3464e9a2",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#282818"
+ },
+ "family-photoshoots/31-085cc3aa": {
+  "w": 3840,
+  "h": 5760,
+  "base": "/media/family-photoshoots/31-085cc3aa",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#f8f8f8"
+ },
+ "graduation-photoshoots/02-5f1f5b7a": {
+  "w": 3840,
+  "h": 2496,
+  "base": "/media/graduation-photoshoots/02-5f1f5b7a",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#f8f8f8"
+ },
+ "graduation-photoshoots/01-9f2de73e": {
+  "w": 1920,
+  "h": 2880,
+  "base": "/media/graduation-photoshoots/01-9f2de73e",
+  "webp": [
+   480,
+   960,
+   1600,
+   1920
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#f8f8f8"
+ },
+ "graduation-photoshoots/03-75cd70aa": {
+  "w": 3840,
+  "h": 2560,
+  "base": "/media/graduation-photoshoots/03-75cd70aa",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#082888"
+ },
+ "family-photoshoots/34-78500145": {
+  "w": 3840,
+  "h": 5760,
+  "base": "/media/family-photoshoots/34-78500145",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#f8f8f8"
+ },
+ "graduation-photoshoots/05-dd08b521": {
+  "w": 3840,
+  "h": 2560,
+  "base": "/media/graduation-photoshoots/05-dd08b521",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#f8f8f8"
+ },
+ "graduation-photoshoots/04-212e94d5": {
+  "w": 3840,
+  "h": 2560,
+  "base": "/media/graduation-photoshoots/04-212e94d5",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#f8f8f8"
+ },
+ "graduation-photoshoots/06-7733ee93": {
+  "w": 3840,
+  "h": 2560,
+  "base": "/media/graduation-photoshoots/06-7733ee93",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#f8f8f8"
+ },
+ "graduation-photoshoots/07-91f63caf": {
+  "w": 3840,
+  "h": 2560,
+  "base": "/media/graduation-photoshoots/07-91f63caf",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#e8e8e8"
+ },
+ "graduation-photoshoots/08-e66c2bfa": {
+  "w": 3840,
+  "h": 5760,
+  "base": "/media/graduation-photoshoots/08-e66c2bfa",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#f8f8f8"
+ },
+ "graduation-photoshoots/10-2322cd02": {
+  "w": 3840,
+  "h": 2560,
+  "base": "/media/graduation-photoshoots/10-2322cd02",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#f8f8f8"
+ },
+ "graduation-photoshoots/09-27741545": {
+  "w": 3840,
+  "h": 5760,
+  "base": "/media/graduation-photoshoots/09-27741545",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#e8e8e8"
+ },
+ "graduation-photoshoots/11-5f621742": {
+  "w": 3840,
+  "h": 2560,
+  "base": "/media/graduation-photoshoots/11-5f621742",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#f8f8f8"
+ },
+ "graduation-photoshoots/13-9b0ba014": {
+  "w": 3840,
+  "h": 2560,
+  "base": "/media/graduation-photoshoots/13-9b0ba014",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#d8d8d8"
+ },
+ "graduation-photoshoots/12-67965088": {
+  "w": 3840,
+  "h": 5760,
+  "base": "/media/graduation-photoshoots/12-67965088",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#e8e8e8"
+ },
+ "graduation-photoshoots/15-13c80db8": {
+  "w": 3840,
+  "h": 2560,
+  "base": "/media/graduation-photoshoots/15-13c80db8",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#f8f8f8"
+ },
+ "graduation-photoshoots/14-fcb9982c": {
+  "w": 3840,
+  "h": 5760,
+  "base": "/media/graduation-photoshoots/14-fcb9982c",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#e8e8e8"
+ },
+ "graduation-photoshoots/16-48cd8282": {
+  "w": 3840,
+  "h": 2560,
+  "base": "/media/graduation-photoshoots/16-48cd8282",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#e8e8e8"
+ },
+ "graduation-photoshoots/19-ec20ced8": {
+  "w": 3840,
+  "h": 2560,
+  "base": "/media/graduation-photoshoots/19-ec20ced8",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#f8f8f8"
+ },
+ "graduation-photoshoots/20-34433d5e": {
+  "w": 3840,
+  "h": 2560,
+  "base": "/media/graduation-photoshoots/20-34433d5e",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#383838"
+ },
+ "graduation-photoshoots/17-d1ffd243": {
+  "w": 3840,
+  "h": 5760,
+  "base": "/media/graduation-photoshoots/17-d1ffd243",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#e8e8e8"
+ },
+ "graduation-photoshoots/18-ca143a57": {
+  "w": 3840,
+  "h": 5760,
+  "base": "/media/graduation-photoshoots/18-ca143a57",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#e8e8e8"
+ },
+ "graduation-photoshoots/23-99aa3cc1": {
+  "w": 3840,
+  "h": 2560,
+  "base": "/media/graduation-photoshoots/23-99aa3cc1",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#786858"
+ },
+ "graduation-photoshoots/21-f63cade9": {
+  "w": 3840,
+  "h": 5760,
+  "base": "/media/graduation-photoshoots/21-f63cade9",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#f8f8f8"
+ },
+ "graduation-photoshoots/25-ba2b6fff": {
+  "w": 3840,
+  "h": 2560,
+  "base": "/media/graduation-photoshoots/25-ba2b6fff",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#f8f8f8"
+ },
+ "graduation-photoshoots/22-518e36ff": {
+  "w": 3840,
+  "h": 5760,
+  "base": "/media/graduation-photoshoots/22-518e36ff",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#f8f8f8"
+ },
+ "graduation-photoshoots/24-ffca31bd": {
+  "w": 3840,
+  "h": 5760,
+  "base": "/media/graduation-photoshoots/24-ffca31bd",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#f8f8f8"
+ },
+ "graduation-photoshoots/27-0b4d289e": {
+  "w": 3840,
+  "h": 2560,
+  "base": "/media/graduation-photoshoots/27-0b4d289e",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#f8f8f8"
+ },
+ "graduation-photoshoots/29-0cfe12ab": {
+  "w": 3840,
+  "h": 2560,
+  "base": "/media/graduation-photoshoots/29-0cfe12ab",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#f8f8f8"
+ },
+ "graduation-photoshoots/26-90394ca0": {
+  "w": 3840,
+  "h": 5760,
+  "base": "/media/graduation-photoshoots/26-90394ca0",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#f8f8f8"
+ },
+ "graduation-photoshoots/28-ea457675": {
+  "w": 3840,
+  "h": 5760,
+  "base": "/media/graduation-photoshoots/28-ea457675",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#e8e8e8"
+ },
+ "graduation-photoshoots/30-7b7db0a9": {
+  "w": 3840,
+  "h": 2560,
+  "base": "/media/graduation-photoshoots/30-7b7db0a9",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#080808"
+ },
+ "graduation-photoshoots/31-646f354b": {
+  "w": 3840,
+  "h": 2560,
+  "base": "/media/graduation-photoshoots/31-646f354b",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#f8f8f8"
+ },
+ "graduation-photoshoots/33-87c40b7f": {
+  "w": 3840,
+  "h": 2560,
+  "base": "/media/graduation-photoshoots/33-87c40b7f",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#f8f8f8"
+ },
+ "graduation-photoshoots/32-1147c21c": {
+  "w": 1920,
+  "h": 2880,
+  "base": "/media/graduation-photoshoots/32-1147c21c",
+  "webp": [
+   480,
+   960,
+   1600,
+   1920
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#d8e8f8"
+ },
+ "graduation-photoshoots/34-03828987": {
+  "w": 1920,
+  "h": 2880,
+  "base": "/media/graduation-photoshoots/34-03828987",
+  "webp": [
+   480,
+   960,
+   1600,
+   1920
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#f8f8f8"
+ },
+ "graduation-photoshoots/35-7b045dc4": {
+  "w": 3840,
+  "h": 2560,
+  "base": "/media/graduation-photoshoots/35-7b045dc4",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#181808"
+ },
+ "video-production/01-e12b9e31": {
+  "w": 1381,
+  "h": 1080,
+  "base": "/media/video-production/01-e12b9e31",
+  "webp": [
+   480,
+   960,
+   1381
+  ],
+  "avif": [
+   480,
+   960,
+   1381
+  ],
+  "color": "#b8b8b8"
+ },
+ "video-production/03-4e826515": {
+  "w": 1080,
+  "h": 844,
+  "base": "/media/video-production/03-4e826515",
+  "webp": [
+   480,
+   960,
+   1080
+  ],
+  "avif": [
+   480,
+   960,
+   1080
+  ],
+  "color": "#c8c8c8"
+ },
+ "video-production/02-49466d51": {
+  "w": 2494,
+  "h": 1950,
+  "base": "/media/video-production/02-49466d51",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#081818"
+ },
+ "graduation-photoshoots/36-5ff196ca": {
+  "w": 1920,
+  "h": 2880,
+  "base": "/media/graduation-photoshoots/36-5ff196ca",
+  "webp": [
+   480,
+   960,
+   1600,
+   1920
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#d8e8f8"
+ },
+ "work/02-58b4672d": {
+  "w": 750,
+  "h": 586,
+  "base": "/media/work/02-58b4672d",
+  "webp": [
+   480,
+   750
+  ],
+  "avif": [
+   480,
+   750
+  ],
+  "color": "#f8f8f8"
+ },
+ "work/01-401c4809": {
+  "w": 1637,
+  "h": 1280,
+  "base": "/media/work/01-401c4809",
+  "webp": [
+   480,
+   960,
+   1600,
+   1637
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#888888"
+ },
+ "work/03-6052118a": {
+  "w": 1170,
+  "h": 914,
+  "base": "/media/work/03-6052118a",
+  "webp": [
+   480,
+   960,
+   1170
+  ],
+  "avif": [
+   480,
+   960,
+   1170
+  ],
+  "color": "#f8f8f8"
+ },
+ "video-production/04-9f6351ca": {
+  "w": 5120,
+  "h": 4003,
+  "base": "/media/video-production/04-9f6351ca",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#f8f8f8"
+ },
+ "work/04-d2ec6bd5": {
+  "w": 2546,
+  "h": 1990,
+  "base": "/media/work/04-d2ec6bd5",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#484828"
+ },
+ "work/05-7f86d446": {
+  "w": 2486,
+  "h": 1944,
+  "base": "/media/work/05-7f86d446",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#686868"
+ },
+ "work/06-09973472": {
+  "w": 2545,
+  "h": 1990,
+  "base": "/media/work/06-09973472",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#181818"
+ },
+ "klema-ios-app/01-a689249e": {
+  "w": 750,
+  "h": 1642,
+  "base": "/media/klema-ios-app/01-a689249e",
+  "webp": [
+   480,
+   750
+  ],
+  "avif": [
+   480,
+   750
+  ],
+  "color": "#f8f8f8"
+ },
+ "klema-ios-app/02-66007f19": {
+  "w": 750,
+  "h": 1916,
+  "base": "/media/klema-ios-app/02-66007f19",
+  "webp": [
+   480,
+   750
+  ],
+  "avif": [
+   480,
+   750
+  ],
+  "color": "#f8f8f8"
+ },
+ "klema-ios-app/03-15d4eba2": {
+  "w": 750,
+  "h": 1642,
+  "base": "/media/klema-ios-app/03-15d4eba2",
+  "webp": [
+   480,
+   750
+  ],
+  "avif": [
+   480,
+   750
+  ],
+  "color": "#f8f8f8"
+ },
+ "klema-ios-app/04-6807c78e": {
+  "w": 750,
+  "h": 1642,
+  "base": "/media/klema-ios-app/04-6807c78e",
+  "webp": [
+   480,
+   750
+  ],
+  "avif": [
+   480,
+   750
+  ],
+  "color": "#f8f8f8"
+ },
+ "klema-web-pages/02-deca608e": {
+  "w": 3840,
+  "h": 12392,
+  "base": "/media/klema-web-pages/02-deca608e",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#f8f8f8"
+ },
+ "klema-web-pages/01-40e5b3c2": {
+  "w": 3840,
+  "h": 12392,
+  "base": "/media/klema-web-pages/01-40e5b3c2",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#f8f8f8"
+ },
+ "foodfriend-ios-app/01-85f64953": {
+  "w": 1194,
+  "h": 2556,
+  "base": "/media/foodfriend-ios-app/01-85f64953",
+  "webp": [
+   480,
+   960,
+   1194
+  ],
+  "avif": [
+   480,
+   960,
+   1194
+  ],
+  "color": "#f8f8f8"
+ },
+ "klema-web-pages/03-9b7e313a": {
+  "w": 3840,
+  "h": 12392,
+  "base": "/media/klema-web-pages/03-9b7e313a",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#f8f8f8"
+ },
+ "foodfriend-ios-app/02-60b4329b": {
+  "w": 1194,
+  "h": 2556,
+  "base": "/media/foodfriend-ios-app/02-60b4329b",
+  "webp": [
+   480,
+   960,
+   1194
+  ],
+  "avif": [
+   480,
+   960,
+   1194
+  ],
+  "color": "#f8f8f8"
+ },
+ "foodfriend-ios-app/03-8109dd34": {
+  "w": 1194,
+  "h": 2556,
+  "base": "/media/foodfriend-ios-app/03-8109dd34",
+  "webp": [
+   480,
+   960,
+   1194
+  ],
+  "avif": [
+   480,
+   960,
+   1194
+  ],
+  "color": "#f8f8f8"
+ },
+ "cosie-co/01-6c00387e": {
+  "w": 3097,
+  "h": 1991,
+  "base": "/media/cosie-co/01-6c00387e",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#585838"
+ },
+ "cec-building/02-0867de5a": {
+  "w": 2500,
+  "h": 1094,
+  "base": "/media/cec-building/02-0867de5a",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#080808"
+ },
+ "cec-building/01-cf1fdb88": {
+  "w": 3102,
+  "h": 1944,
+  "base": "/media/cec-building/01-cf1fdb88",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#686868"
+ },
+ "the-cultivation-project/01-9e245a9d": {
+  "w": 3094,
+  "h": 1990,
+  "base": "/media/the-cultivation-project/01-9e245a9d",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#181818"
+ },
+ "cosie-co/02-274280b1": {
+  "w": 3025,
+  "h": 8909,
+  "base": "/media/cosie-co/02-274280b1",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#f8f8f8"
+ },
+ "the-cultivation-project/02-b5a8f289": {
+  "w": 2745,
+  "h": 4960,
+  "base": "/media/the-cultivation-project/02-b5a8f289",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#f8f8f8"
+ },
+ "the-cultivation-project/03-3704442e": {
+  "w": 2741,
+  "h": 4960,
+  "base": "/media/the-cultivation-project/03-3704442e",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#f8f8f8"
+ },
+ "cosie-co/03-8b5e7580": {
+  "w": 3028,
+  "h": 8798,
+  "base": "/media/cosie-co/03-8b5e7580",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#f8f8f8"
+ },
+ "graphic-design/02-79839ef2": {
+  "w": 2026,
+  "h": 1584,
+  "base": "/media/graphic-design/02-79839ef2",
+  "webp": [
+   480,
+   960,
+   1600,
+   2026
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#585858"
+ },
+ "graphic-design/01-440b7c0c": {
+  "w": 5120,
+  "h": 4004,
+  "base": "/media/graphic-design/01-440b7c0c",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#98b898"
+ },
+ "graphic-design/03-14c72167": {
+  "w": 3683,
+  "h": 2880,
+  "base": "/media/graphic-design/03-14c72167",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#089878"
+ },
+ "5-years-of-the-cultivation-project/01-3bd96dde": {
+  "w": 3840,
+  "h": 2160,
+  "base": "/media/5-years-of-the-cultivation-project/01-3bd96dde",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#789898"
+ },
+ "graphic-design/04-ec302b67": {
+  "w": 5120,
+  "h": 4004,
+  "base": "/media/graphic-design/04-ec302b67",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#484858"
+ },
+ "5-years-of-the-cultivation-project/02-dfaf5a16": {
+  "w": 3840,
+  "h": 2160,
+  "base": "/media/5-years-of-the-cultivation-project/02-dfaf5a16",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#f8f8f8"
+ },
+ "5-years-of-the-cultivation-project/03-29b563b8": {
+  "w": 3840,
+  "h": 2160,
+  "base": "/media/5-years-of-the-cultivation-project/03-29b563b8",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#789898"
+ },
+ "5-years-of-the-cultivation-project/06-d7852615": {
+  "w": 3840,
+  "h": 2160,
+  "base": "/media/5-years-of-the-cultivation-project/06-d7852615",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#789898"
+ },
+ "5-years-of-the-cultivation-project/04-4bef7132": {
+  "w": 3840,
+  "h": 2160,
+  "base": "/media/5-years-of-the-cultivation-project/04-4bef7132",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#f8f8f8"
+ },
+ "5-years-of-the-cultivation-project/05-f0e61cc4": {
+  "w": 3840,
+  "h": 2160,
+  "base": "/media/5-years-of-the-cultivation-project/05-f0e61cc4",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#789898"
+ },
+ "5-years-of-the-cultivation-project/07-f1e98131": {
+  "w": 3840,
+  "h": 2160,
+  "base": "/media/5-years-of-the-cultivation-project/07-f1e98131",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#789898"
+ },
+ "autonomous-vehicle-demonstration/01-fab07013": {
+  "w": 4786,
+  "h": 1584,
+  "base": "/media/autonomous-vehicle-demonstration/01-fab07013",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#585858"
+ },
+ "5-years-of-the-cultivation-project/08-6a595a21": {
+  "w": 3840,
+  "h": 2160,
+  "base": "/media/5-years-of-the-cultivation-project/08-6a595a21",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#789898"
+ },
+ "autonomous-vehicle-demonstration/02-baddd6c6": {
+  "w": 3322,
+  "h": 1498,
+  "base": "/media/autonomous-vehicle-demonstration/02-baddd6c6",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#585858"
+ },
+ "logos-flyers-signs/01-87215632": {
+  "w": 3840,
+  "h": 2880,
+  "base": "/media/logos-flyers-signs/01-87215632",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#089878"
+ },
+ "logos-flyers-signs/02-7717831b": {
+  "w": 1920,
+  "h": 1920,
+  "base": "/media/logos-flyers-signs/02-7717831b",
+  "webp": [
+   480,
+   960,
+   1600,
+   1920
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#7888c8"
+ },
+ "logos-flyers-signs/03-this-is-the-original-podcast-thumbnail-f": {
+  "w": 1500,
+  "h": 1500,
+  "base": "/media/logos-flyers-signs/03-this-is-the-original-podcast-thumbnail-f",
+  "webp": [
+   480,
+   960,
+   1500
+  ],
+  "avif": [
+   480,
+   960,
+   1500
+  ],
+  "color": "#686868"
+ },
+ "logos-flyers-signs/05-b49104b0": {
+  "w": 3840,
+  "h": 1824,
+  "base": "/media/logos-flyers-signs/05-b49104b0",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#38b8b8"
+ },
+ "video/01-poster": {
+  "w": 1920,
+  "h": 1080,
+  "base": "/media/video/01-poster",
+  "webp": [
+   480,
+   960,
+   1600,
+   1920
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#089878"
+ },
+ "logos-flyers-signs/04-bd9126ba": {
+  "w": 3840,
+  "h": 3840,
+  "base": "/media/logos-flyers-signs/04-bd9126ba",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#98a8b8"
+ },
+ "logos-flyers-signs/07-c263824c": {
+  "w": 1800,
+  "h": 1800,
+  "base": "/media/logos-flyers-signs/07-c263824c",
+  "webp": [
+   480,
+   960,
+   1600,
+   1800
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#087868"
+ },
+ "logos-flyers-signs/06-2978f183": {
+  "w": 1800,
+  "h": 1800,
+  "base": "/media/logos-flyers-signs/06-2978f183",
+  "webp": [
+   480,
+   960,
+   1600,
+   1800
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#087868"
+ },
+ "logos-flyers-signs/08-f17c1dc1": {
+  "w": 1800,
+  "h": 1800,
+  "base": "/media/logos-flyers-signs/08-f17c1dc1",
+  "webp": [
+   480,
+   960,
+   1600,
+   1800
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#087868"
+ },
+ "logos-flyers-signs/09-ee71f1dc": {
+  "w": 1800,
+  "h": 1800,
+  "base": "/media/logos-flyers-signs/09-ee71f1dc",
+  "webp": [
+   480,
+   960,
+   1600,
+   1800
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#087868"
+ },
+ "logos-flyers-signs/11-0d862ac3": {
+  "w": 1800,
+  "h": 1800,
+  "base": "/media/logos-flyers-signs/11-0d862ac3",
+  "webp": [
+   480,
+   960,
+   1600,
+   1800
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#087868"
+ },
+ "logos-flyers-signs/10-612e6840": {
+  "w": 1800,
+  "h": 1800,
+  "base": "/media/logos-flyers-signs/10-612e6840",
+  "webp": [
+   480,
+   960,
+   1600,
+   1800
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#087868"
+ },
+ "logos-flyers-signs/12-c12d315f": {
+  "w": 1800,
+  "h": 1800,
+  "base": "/media/logos-flyers-signs/12-c12d315f",
+  "webp": [
+   480,
+   960,
+   1600,
+   1800
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#087868"
+ },
+ "logos-flyers-signs/13-d1ea7268": {
+  "w": 1800,
+  "h": 1800,
+  "base": "/media/logos-flyers-signs/13-d1ea7268",
+  "webp": [
+   480,
+   960,
+   1600,
+   1800
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#087868"
+ },
+ "logos-flyers-signs/16-this-is-a-bi-fold-insert-design-for-a-we": {
+  "w": 1920,
+  "h": 1491,
+  "base": "/media/logos-flyers-signs/16-this-is-a-bi-fold-insert-design-for-a-we",
+  "webp": [
+   480,
+   960,
+   1600,
+   1920
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#f8f8f8"
+ },
+ "logos-flyers-signs/15-this-is-a-bi-fold-design-for-a-wedding-p": {
+  "w": 1920,
+  "h": 1491,
+  "base": "/media/logos-flyers-signs/15-this-is-a-bi-fold-design-for-a-wedding-p",
+  "webp": [
+   480,
+   960,
+   1600,
+   1920
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#f8f8f8"
+ },
+ "logos-flyers-signs/14-9ad73754": {
+  "w": 1920,
+  "h": 2880,
+  "base": "/media/logos-flyers-signs/14-9ad73754",
+  "webp": [
+   480,
+   960,
+   1600,
+   1920
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#f8f8f8"
+ },
+ "logos-flyers-signs/19-8b96ca56": {
+  "w": 3840,
+  "h": 2560,
+  "base": "/media/logos-flyers-signs/19-8b96ca56",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#080808"
+ },
+ "presentations-workshops/01-2f2c45a7": {
+  "w": 3840,
+  "h": 2161,
+  "base": "/media/presentations-workshops/01-2f2c45a7",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#484858"
+ },
+ "logos-flyers-signs/18-47f815ef": {
+  "w": 3840,
+  "h": 2967,
+  "base": "/media/logos-flyers-signs/18-47f815ef",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#282828"
+ },
+ "presentations-workshops/02-ef8d121b": {
+  "w": 3840,
+  "h": 2161,
+  "base": "/media/presentations-workshops/02-ef8d121b",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#f8f8f8"
+ },
+ "logos-flyers-signs/17-f3dde03b": {
+  "w": 1650,
+  "h": 2550,
+  "base": "/media/logos-flyers-signs/17-f3dde03b",
+  "webp": [
+   480,
+   960,
+   1600,
+   1650
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#f8f8f8"
+ },
+ "presentations-workshops/03-269118ad": {
+  "w": 3840,
+  "h": 2161,
+  "base": "/media/presentations-workshops/03-269118ad",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#f8f8f8"
+ },
+ "presentations-workshops/06-565d0173": {
+  "w": 3840,
+  "h": 2161,
+  "base": "/media/presentations-workshops/06-565d0173",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#e8e8e8"
+ },
+ "presentations-workshops/04-d9bc42f0": {
+  "w": 3840,
+  "h": 2161,
+  "base": "/media/presentations-workshops/04-d9bc42f0",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#e8e8e8"
+ },
+ "presentations-workshops/05-a551574f": {
+  "w": 3840,
+  "h": 2161,
+  "base": "/media/presentations-workshops/05-a551574f",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#f8f8f8"
+ },
+ "presentations-workshops/07-aa17305b": {
+  "w": 3840,
+  "h": 2161,
+  "base": "/media/presentations-workshops/07-aa17305b",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#f8f8f8"
+ },
+ "presentations-workshops/09-f7be3089": {
+  "w": 3840,
+  "h": 2161,
+  "base": "/media/presentations-workshops/09-f7be3089",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#f8f8f8"
+ },
+ "presentations-workshops/08-7987388c": {
+  "w": 3840,
+  "h": 2161,
+  "base": "/media/presentations-workshops/08-7987388c",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#f8f8f8"
+ },
+ "presentations-workshops/11-ca63f8b4": {
+  "w": 3840,
+  "h": 2161,
+  "base": "/media/presentations-workshops/11-ca63f8b4",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#f8f8f8"
+ },
+ "presentations-workshops/10-e38a2ea4": {
+  "w": 3840,
+  "h": 2161,
+  "base": "/media/presentations-workshops/10-e38a2ea4",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#f8f8f8"
+ },
+ "presentations-workshops/12-895a21c4": {
+  "w": 3840,
+  "h": 2161,
+  "base": "/media/presentations-workshops/12-895a21c4",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#f8f8f8"
+ },
+ "presentations-workshops/14-f04008df": {
+  "w": 3840,
+  "h": 2161,
+  "base": "/media/presentations-workshops/14-f04008df",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#f8f8f8"
+ },
+ "presentations-workshops/15-95f82013": {
+  "w": 3840,
+  "h": 2161,
+  "base": "/media/presentations-workshops/15-95f82013",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#f8f8f8"
+ },
+ "presentations-workshops/16-bc8af7b8": {
+  "w": 3840,
+  "h": 2161,
+  "base": "/media/presentations-workshops/16-bc8af7b8",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#f8f8f8"
+ },
+ "presentations-workshops/13-718ff28f": {
+  "w": 3840,
+  "h": 2161,
+  "base": "/media/presentations-workshops/13-718ff28f",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#f8f8f8"
+ },
+ "presentations-workshops/18-27675136": {
+  "w": 3840,
+  "h": 2161,
+  "base": "/media/presentations-workshops/18-27675136",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#f8f8f8"
+ },
+ "presentations-workshops/17-f36fde8c": {
+  "w": 3840,
+  "h": 2161,
+  "base": "/media/presentations-workshops/17-f36fde8c",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#f8f8f8"
+ },
+ "audio-production/01-0bcb341f": {
+  "w": 1500,
+  "h": 1172,
+  "base": "/media/audio-production/01-0bcb341f",
+  "webp": [
+   480,
+   960,
+   1500
+  ],
+  "avif": [
+   480,
+   960,
+   1500
+  ],
+  "color": "#686868"
+ },
+ "presentations-workshops/19-ada93861": {
+  "w": 7996,
+  "h": 4500,
+  "base": "/media/presentations-workshops/19-ada93861",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#f8f8f8"
+ }
+}

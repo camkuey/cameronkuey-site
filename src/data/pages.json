@@ -1,0 +1,2533 @@
+{
+ "menu": [
+  {
+   "title": "Photography",
+   "slug": "photography",
+   "children": [
+    {
+     "title": "Wedding Photography",
+     "slug": "wedding-photography"
+    },
+    {
+     "title": "Engagements & Proposals",
+     "slug": "engagement-proposals"
+    },
+    {
+     "title": "Family Photoshoots",
+     "slug": "family-photoshoots"
+    },
+    {
+     "title": "Graduation Photoshoots",
+     "slug": "graduation-photoshoots"
+    }
+   ]
+  },
+  {
+   "title": "Video Production",
+   "slug": "video-production",
+   "children": [
+    {
+     "title": "Promotional & Corporate",
+     "slug": "promotional-corporate"
+    },
+    {
+     "title": "Documentaries & Short Stories",
+     "slug": "documentaries"
+    },
+    {
+     "title": "Commercials & Social Media Ads",
+     "slug": "commercials-social-media-ads"
+    },
+    {
+     "title": "Wedding Videography",
+     "slug": "wedding-videography"
+    }
+   ]
+  },
+  {
+   "title": "Product Design",
+   "slug": "work",
+   "children": [
+    {
+     "title": "The Money Maker App",
+     "slug": "the-money-maker-app"
+    },
+    {
+     "title": "Klema Web Pages",
+     "slug": "klema-web-pages"
+    },
+    {
+     "title": "Klema iOS App",
+     "slug": "klema-ios-app"
+    },
+    {
+     "title": "FoodFriend iOS App",
+     "slug": "foodfriend-ios-app"
+    },
+    {
+     "title": "Website for Cosie Co.",
+     "slug": "cosie-co"
+    },
+    {
+     "title": "Website for CEC Building Project",
+     "slug": "cec-building"
+    },
+    {
+     "title": "Website for The Cultivation Project",
+     "slug": "the-cultivation-project"
+    }
+   ]
+  },
+  {
+   "title": "Designs, Graphics & Presentations",
+   "slug": "graphic-design",
+   "children": [
+    {
+     "title": "Adobe InDesign",
+     "slug": "5-years-of-the-cultivation-project"
+    },
+    {
+     "title": "Adobe After Effects",
+     "slug": "autonomous-vehicle-demonstration"
+    },
+    {
+     "title": "Adobe Illustrator & Photoshop",
+     "slug": "logos-flyers-signs"
+    },
+    {
+     "title": "Keynote & Slides",
+     "slug": "presentations-workshops"
+    }
+   ]
+  },
+  {
+   "title": "Audio Production",
+   "slug": "audio-production",
+   "children": [
+    {
+     "title": "Coffee Meets Bible Podcast",
+     "slug": "coffee-meets-bible-podcast"
+    }
+   ]
+  }
+ ],
+ "pages": [
+  {
+   "slug": "home",
+   "title": "About Me",
+   "navLabel": "About Me",
+   "category": null,
+   "type": "project",
+   "oldTitle": "Cameron Kuey",
+   "blocks": [
+    {
+     "t": "images",
+     "layout": "single",
+     "items": [
+      {
+       "id": "home/01-b8f082cc",
+       "src": "images/home/01-b8f082cc.jpeg",
+       "alt": "",
+       "caption": null
+      }
+     ]
+    },
+    {
+     "t": "html",
+     "html": "<p>Hi, I'm Cameron Kuey, a former candy bar seller in high school who now specializes in telling stories through interactive design and multimedia.</p><p>In 2012, I started <a href=\"https://cosiephotos.com/\" rel=\"noopener\" target=\"_blank\"><strong>Cosie Co.</strong></a>, a wedding, family &amp; corporate videography and photography freelance company. Over the past 10 years, I have photographed over 100 weddings &amp; events, produced over 50 video projects, and have designed dozens of brand materials.</p><p>In 2015, I founded <a href=\"https://www.cultivationproject.org/\" rel=\"noopener\" target=\"_blank\"><strong>The Cultivation Project</strong></a>, a faith-based media non-profit organization raising the next generation of Christian storytellers through mentorship and multimedia creation. I serve as the Chairman &amp; Executive Director of The Cultivation Project and have guided the team to create over 70 documentaries, promotional videos, podcasts, and educational content for missionary organizations. I've had the honor of presenting keynotes and leading workshops on video production, storytelling, and faith. In 2020, I led a 4-week long bootcamp for filmmaking students, teaching them about pre-production, production and post-production techniques and ideas.</p><p>I'm a creative entrepreneur who loves to tell stories, solve difficult problems, and figure out more effective ways to pass information from one source to another.</p>"
+    },
+    {
+     "t": "html",
+     "html": "<h3>My Skills &amp; Traits</h3>"
+    },
+    {
+     "t": "html",
+     "html": "<h3>Software</h3><ul class=\"taglist\"><li>Final Cut Pro X</li><li>Adobe Premiere Pro</li><li>Adobe Lightroom</li><li>Adobe Photoshop</li><li>Adobe Audition</li><li>Adobe After Effects</li><li>Adobe Illustrator</li><li>Adobe Experience Design</li><li>Figma</li><li>Sketch</li><li>Apple Keynote</li><li>Microsoft Office</li><li>Google Suite</li><li>Hootsuite</li></ul>"
+    },
+    {
+     "t": "html",
+     "html": "<h3>Professional Skills</h3><ul class=\"taglist\"><li>Team Management</li><li>Film Producing</li><li>Cinematography</li><li>Photography</li><li>Audio Design &amp; Editing</li><li>Storyboarding</li><li>Script &amp; Copy Writing</li><li>Graphic Design</li><li>Animation</li><li>Fundraising &amp; Support Building</li><li>Budgeting &amp; Bookkeeping</li></ul><h3>Personal Qualities</h3><ul class=\"taglist\"><li>Logistics King</li><li>Driven by Creativity</li><li>Detail Oriented</li><li>Solution Oriented</li><li>Self-Starter</li><li>Collaborator &amp; Teammate</li><li>Calm &amp; Collected</li></ul>"
+    },
+    {
+     "t": "html",
+     "html": "<h3>My Resume</h3>"
+    },
+    {
+     "t": "images",
+     "layout": "single",
+     "items": [
+      {
+       "id": "home/02-3e0a0db9",
+       "src": "images/home/02-3e0a0db9.jpg",
+       "alt": "",
+       "caption": null
+      }
+     ]
+    }
+   ],
+   "covers": [],
+   "categorySlug": null
+  },
+  {
+   "slug": "photography",
+   "title": "Photography",
+   "navLabel": "Photography",
+   "category": null,
+   "type": "gallery",
+   "oldTitle": "Cameron Kuey - Photography",
+   "blocks": [],
+   "covers": [
+    {
+     "title": "Wedding Photography",
+     "href": "/wedding-photography",
+     "image": {
+      "id": "photography/01-7fe5208b",
+      "src": "images/photography/01-7fe5208b.jpg",
+      "alt": ""
+     }
+    },
+    {
+     "title": "Engagements & Proposals",
+     "href": "/engagement-proposals",
+     "image": {
+      "id": "photography/02-3f39fcda",
+      "src": "images/photography/02-3f39fcda.jpg",
+      "alt": ""
+     }
+    },
+    {
+     "title": "Family Photoshoots",
+     "href": "/family-photoshoots",
+     "image": {
+      "id": "photography/03-9654e573",
+      "src": "images/photography/03-9654e573.jpg",
+      "alt": ""
+     }
+    },
+    {
+     "title": "Graduation Photoshoots",
+     "href": "/graduation-photoshoots",
+     "image": {
+      "id": "photography/04-35c4abc5",
+      "src": "images/photography/04-35c4abc5.jpg",
+      "alt": ""
+     }
+    }
+   ],
+   "categorySlug": null
+  },
+  {
+   "slug": "wedding-photography",
+   "title": "Wedding Photography",
+   "navLabel": "Wedding Photography",
+   "category": "Photography",
+   "type": "project",
+   "oldTitle": "Cameron Kuey - Wedding Photography",
+   "blocks": [
+    {
+     "t": "html",
+     "html": "<p>I am <strong><a href=\"https://www.weddingwire.com/biz/cameron-kuey-productions-san-diego/9b01103d6f1bea3d.html\" rel=\"noopener\" target=\"_blank\">5-star wedding wire</a></strong> photographer with over 10 years of experience</p>"
+    },
+    {
+     "t": "images",
+     "layout": "grid",
+     "items": [
+      {
+       "id": "wedding-photography/01-106b2676",
+       "src": "images/wedding-photography/01-106b2676.jpg",
+       "alt": "",
+       "caption": null
+      },
+      {
+       "id": "wedding-photography/02-47466e09",
+       "src": "images/wedding-photography/02-47466e09.jpg",
+       "alt": "",
+       "caption": null
+      },
+      {
+       "id": "wedding-photography/03-55fde249",
+       "src": "images/wedding-photography/03-55fde249.jpg",
+       "alt": "",
+       "caption": null
+      },
+      {
+       "id": "wedding-photography/04-07ba7613",
+       "src": "images/wedding-photography/04-07ba7613.jpg",
+       "alt": "",
+       "caption": null
+      },
+      {
+       "id": "wedding-photography/05-e634651b",
+       "src": "images/wedding-photography/05-e634651b.jpg",
+       "alt": "",
+       "caption": null
+      },
+      {
+       "id": "wedding-photography/06-83ea1356",
+       "src": "images/wedding-photography/06-83ea1356.jpg",
+       "alt": "",
+       "caption": null
+      },
+      {
+       "id": "wedding-photography/07-5475057c",
+       "src": "images/wedding-photography/07-5475057c.jpg",
+       "alt": "",
+       "caption": null
+      },
+      {
+       "id": "wedding-photography/08-28822710",
+       "src": "images/wedding-photography/08-28822710.jpg",
+       "alt": "",
+       "caption": null
+      },
+      {
+       "id": "wedding-photography/09-b1b6bcc4",
+       "src": "images/wedding-photography/09-b1b6bcc4.jpg",
+       "alt": "",
+       "caption": null
+      },
+      {
+       "id": "wedding-photography/10-ea7e2733",
+       "src": "images/wedding-photography/10-ea7e2733.jpg",
+       "alt": "",
+       "caption": null
+      },
+      {
+       "id": "wedding-photography/11-a1061a14",
+       "src": "images/wedding-photography/11-a1061a14.jpg",
+       "alt": "",
+       "caption": null
+      }
+     ]
+    },
+    {
+     "t": "images",
+     "layout": "grid",
+     "items": [
+      {
+       "id": "wedding-photography/12-88c55e0f",
+       "src": "images/wedding-photography/12-88c55e0f.jpg",
+       "alt": "",
+       "caption": null
+      },
+      {
+       "id": "wedding-photography/13-f0187212",
+       "src": "images/wedding-photography/13-f0187212.jpg",
+       "alt": "",
+       "caption": null
+      },
+      {
+       "id": "wedding-photography/14-d069bd1b",
+       "src": "images/wedding-photography/14-d069bd1b.jpg",
+       "alt": "",
+       "caption": null
+      },
+      {
+       "id": "wedding-photography/15-15c52aba",
+       "src": "images/wedding-photography/15-15c52aba.jpg",
+       "alt": "",
+       "caption": null
+      },
+      {
+       "id": "wedding-photography/16-2b73644f",
+       "src": "images/wedding-photography/16-2b73644f.jpg",
+       "alt": "",
+       "caption": null
+      },
+      {
+       "id": "wedding-photography/17-f44d38cb",
+       "src": "images/wedding-photography/17-f44d38cb.jpg",
+       "alt": "",
+       "caption": null
+      },
+      {
+       "id": "wedding-photography/18-dc2a2b02",
+       "src": "images/wedding-photography/18-dc2a2b02.jpg",
+       "alt": "",
+       "caption": null
+      },
+      {
+       "id": "wedding-photography/19-6607846a",
+       "src": "images/wedding-photography/19-6607846a.jpg",
+       "alt": "",
+       "caption": null
+      },
+      {
+       "id": "wedding-photography/20-962d461e",
+       "src": "images/wedding-photography/20-962d461e.jpg",
+       "alt": "",
+       "caption": null
+      },
+      {
+       "id": "wedding-photography/21-e7c24fa8",
+       "src": "images/wedding-photography/21-e7c24fa8.jpg",
+       "alt": "",
+       "caption": null
+      },
+      {
+       "id": "wedding-photography/22-6f207454",
+       "src": "images/wedding-photography/22-6f207454.jpg",
+       "alt": "",
+       "caption": null
+      },
+      {
+       "id": "wedding-photography/23-47178ac5",
+       "src": "images/wedding-photography/23-47178ac5.jpg",
+       "alt": "",
+       "caption": null
+      },
+      {
+       "id": "wedding-photography/24-f0cfab45",
+       "src": "images/wedding-photography/24-f0cfab45.jpg",
+       "alt": "",
+       "caption": null
+      },
+      {
+       "id": "wedding-photography/25-80980ee6",
+       "src": "images/wedding-photography/25-80980ee6.jpg",
+       "alt": "",
+       "caption": null
+      },
+      {
+       "id": "wedding-photography/26-e5ed7ad2",
+       "src": "images/wedding-photography/26-e5ed7ad2.jpg",
+       "alt": "",
+       "caption": null
+      },
+      {
+       "id": "wedding-photography/27-10d82c2c",
+       "src": "images/wedding-photography/27-10d82c2c.jpg",
+       "alt": "",
+       "caption": null
+      },
+      {
+       "id": "wedding-photography/28-c23da5ee",
+       "src": "images/wedding-photography/28-c23da5ee.jpg",
+       "alt": "",
+       "caption": null
+      },
+      {
+       "id": "wedding-photography/29-f868a292",
+       "src": "images/wedding-photography/29-f868a292.jpg",
+       "alt": "",
+       "caption": null
+      },
+      {
+       "id": "wedding-photography/30-38a99ee5",
+       "src": "images/wedding-photography/30-38a99ee5.jpg",
+       "alt": "",
+       "caption": null
+      },
+      {
+       "id": "wedding-photography/31-eebcbe16",
+       "src": "images/wedding-photography/31-eebcbe16.jpg",
+       "alt": "",
+       "caption": null
+      },
+      {
+       "id": "wedding-photography/32-866b0b6c",
+       "src": "images/wedding-photography/32-866b0b6c.jpg",
+       "alt": "",
+       "caption": null
+      },
+      {
+       "id": "wedding-photography/33-00faa5c5",
+       "src": "images/wedding-photography/33-00faa5c5.jpg",
+       "alt": "",
+       "caption": null
+      },
+      {
+       "id": "wedding-photography/34-62d488a7",
+       "src": "images/wedding-photography/34-62d488a7.jpg",
+       "alt": "",
+       "caption": null
+      }
+     ]
+    },
+    {
+     "t": "images",
+     "layout": "grid",
+     "items": [
+      {
+       "id": "wedding-photography/35-44464320",
+       "src": "images/wedding-photography/35-44464320.jpg",
+       "alt": "",
+       "caption": null
+      },
+      {
+       "id": "wedding-photography/36-9dbce447",
+       "src": "images/wedding-photography/36-9dbce447.jpg",
+       "alt": "",
+       "caption": null
+      },
+      {
+       "id": "wedding-photography/37-75d6bc78",
+       "src": "images/wedding-photography/37-75d6bc78.jpg",
+       "alt": "",
+       "caption": null
+      },
+      {
+       "id": "wedding-photography/38-b23a980b",
+       "src": "images/wedding-photography/38-b23a980b.jpg",
+       "alt": "",
+       "caption": null
+      },
+      {
+       "id": "wedding-photography/39-d86a75d6",
+       "src": "images/wedding-photography/39-d86a75d6.jpg",
+       "alt": "",
+       "caption": null
+      },
+      {
+       "id": "wedding-photography/40-07f45647",
+       "src": "images/wedding-photography/40-07f45647.jpg",
+       "alt": "",
+       "caption": null
+      }
+     ]
+    }
+   ],
+   "covers": [],
+   "categorySlug": "photography"
+  },
+  {
+   "slug": "engagement-proposals",
+   "title": "Engagements & Proposals",
+   "navLabel": "Engagements & Proposals",
+   "category": "Photography",
+   "type": "project",
+   "oldTitle": "Cameron Kuey - Engagements & Proposals",
+   "blocks": [
+    {
+     "t": "images",
+     "layout": "grid",
+     "items": [
+      {
+       "id": "engagement-proposals/01-81090a43",
+       "src": "images/engagement-proposals/01-81090a43.jpg",
+       "alt": "",
+       "caption": null
+      },
+      {
+       "id": "engagement-proposals/02-2f561268",
+       "src": "images/engagement-proposals/02-2f561268.jpg",
+       "alt": "",
+       "caption": null
+      },
+      {
+       "id": "engagement-proposals/03-9554103e",
+       "src": "images/engagement-proposals/03-9554103e.jpg",
+       "alt": "",
+       "caption": null
+      },
+      {
+       "id": "engagement-proposals/04-899f7f78",
+       "src": "images/engagement-proposals/04-899f7f78.jpg",
+       "alt": "",
+       "caption": null
+      },
+      {
+       "id": "engagement-proposals/05-a5cf9c89",
+       "src": "images/engagement-proposals/05-a5cf9c89.jpg",
+       "alt": "",
+       "caption": null
+      },
+      {
+       "id": "engagement-proposals/06-26eca29d",
+       "src": "images/engagement-proposals/06-26eca29d.jpg",
+       "alt": "",
+       "caption": null
+      },
+      {
+       "id": "engagement-proposals/07-840f415e",
+       "src": "images/engagement-proposals/07-840f415e.jpg",
+       "alt": "",
+       "caption": null
+      },
+      {
+       "id": "engagement-proposals/08-58a6f429",
+       "src": "images/engagement-proposals/08-58a6f429.jpg",
+       "alt": "",
+       "caption": null
+      },
+      {
+       "id": "engagement-proposals/09-9efda6cb",
+       "src": "images/engagement-proposals/09-9efda6cb.jpg",
+       "alt": "",
+       "caption": null
+      },
+      {
+       "id": "engagement-proposals/10-f2408a6d",
+       "src": "images/engagement-proposals/10-f2408a6d.jpg",
+       "alt": "",
+       "caption": null
+      },
+      {
+       "id": "engagement-proposals/11-43ba0781",
+       "src": "images/engagement-proposals/11-43ba0781.jpg",
+       "alt": "",
+       "caption": null
+      },
+      {
+       "id": "engagement-proposals/12-95c34024",
+       "src": "images/engagement-proposals/12-95c34024.jpg",
+       "alt": "",
+       "caption": null
+      },
+      {
+       "id": "engagement-proposals/13-59f65445",
+       "src": "images/engagement-proposals/13-59f65445.jpg",
+       "alt": "",
+       "caption": null
+      },
+      {
+       "id": "engagement-proposals/14-5a0203f7",
+       "src": "images/engagement-proposals/14-5a0203f7.jpg",
+       "alt": "",
+       "caption": null
+      },
+      {
+       "id": "engagement-proposals/15-1e4148ee",
+       "src": "images/engagement-proposals/15-1e4148ee.jpg",
+       "alt": "",
+       "caption": null
+      },
+      {
+       "id": "engagement-proposals/16-07a3a6c4",
+       "src": "images/engagement-proposals/16-07a3a6c4.jpg",
+       "alt": "",
+       "caption": null
+      },
+      {
+       "id": "engagement-proposals/17-4286c1a1",
+       "src": "images/engagement-proposals/17-4286c1a1.jpg",
+       "alt": "",
+       "caption": null
+      }
+     ]
+    },
+    {
+     "t": "images",
+     "layout": "grid",
+     "items": [
+      {
+       "id": "engagement-proposals/18-5dd78679",
+       "src": "images/engagement-proposals/18-5dd78679.jpg",
+       "alt": "",
+       "caption": null
+      },
+      {
+       "id": "engagement-proposals/19-db94c354",
+       "src": "images/engagement-proposals/19-db94c354.jpg",
+       "alt": "",
+       "caption": null
+      },
+      {
+       "id": "engagement-proposals/20-dc187f17",
+       "src": "images/engagement-proposals/20-dc187f17.jpg",
+       "alt": "",
+       "caption": null
+      },
+      {
+       "id": "engagement-proposals/21-c1f2f98d",
+       "src": "images/engagement-proposals/21-c1f2f98d.jpg",
+       "alt": "",
+       "caption": null
+      }
+     ]
+    },
+    {
+     "t": "images",
+     "layout": "grid",
+     "items": [
+      {
+       "id": "engagement-proposals/22-9bb4b262",
+       "src": "images/engagement-proposals/22-9bb4b262.jpg",
+       "alt": "",
+       "caption": null
+      },
+      {
+       "id": "engagement-proposals/23-9a151641",
+       "src": "images/engagement-proposals/23-9a151641.jpg",
+       "alt": "",
+       "caption": null
+      },
+      {
+       "id": "engagement-proposals/24-ded8c4d1",
+       "src": "images/engagement-proposals/24-ded8c4d1.jpg",
+       "alt": "",
+       "caption": null
+      },
+      {
+       "id": "engagement-proposals/25-a2769b7b",
+       "src": "images/engagement-proposals/25-a2769b7b.jpg",
+       "alt": "",
+       "caption": null
+      },
+      {
+       "id": "engagement-proposals/26-8e96d3ed",
+       "src": "images/engagement-proposals/26-8e96d3ed.jpg",
+       "alt": "",
+       "caption": null
+      },
+      {
+       "id": "engagement-proposals/27-2171f2b5",
+       "src": "images/engagement-proposals/27-2171f2b5.jpg",
+       "alt": "",
+       "caption": null
+      },
+      {
+       "id": "engagement-proposals/28-af37e653",
+       "src": "images/engagement-proposals/28-af37e653.jpg",
+       "alt": "",
+       "caption": null
+      }
+     ]
+    }
+   ],
+   "covers": [],
+   "categorySlug": "photography"
+  },
+  {
+   "slug": "family-photoshoots",
+   "title": "Family Photoshoots",
+   "navLabel": "Family Photoshoots",
+   "category": "Photography",
+   "type": "project",
+   "oldTitle": "Cameron Kuey - Family Photoshoots",
+   "blocks": [
+    {
+     "t": "images",
+     "layout": "grid",
+     "items": [
+      {
+       "id": "family-photoshoots/01-f4ef8a24",
+       "src": "images/family-photoshoots/01-f4ef8a24.jpg",
+       "alt": "",
+       "caption": null
+      },
+      {
+       "id": "family-photoshoots/02-081697bb",
+       "src": "images/family-photoshoots/02-081697bb.jpg",
+       "alt": "",
+       "caption": null
+      },
+      {
+       "id": "family-photoshoots/03-43e49450",
+       "src": "images/family-photoshoots/03-43e49450.jpg",
+       "alt": "",
+       "caption": null
+      },
+      {
+       "id": "family-photoshoots/04-f85c1f40",
+       "src": "images/family-photoshoots/04-f85c1f40.jpg",
+       "alt": "",
+       "caption": null
+      },
+      {
+       "id": "family-photoshoots/05-c457e8c3",
+       "src": "images/family-photoshoots/05-c457e8c3.jpg",
+       "alt": "",
+       "caption": null
+      },
+      {
+       "id": "family-photoshoots/06-2f34cc74",
+       "src": "images/family-photoshoots/06-2f34cc74.jpg",
+       "alt": "",
+       "caption": null
+      },
+      {
+       "id": "family-photoshoots/07-fe364714",
+       "src": "images/family-photoshoots/07-fe364714.jpg",
+       "alt": "",
+       "caption": null
+      },
+      {
+       "id": "family-photoshoots/08-e98f74f4",
+       "src": "images/family-photoshoots/08-e98f74f4.jpg",
+       "alt": "",
+       "caption": null
+      },
+      {
+       "id": "family-photoshoots/09-f12bae99",
+       "src": "images/family-photoshoots/09-f12bae99.jpg",
+       "alt": "",
+       "caption": null
+      },
+      {
+       "id": "family-photoshoots/10-ad22314b",
+       "src": "images/family-photoshoots/10-ad22314b.jpg",
+       "alt": "",
+       "caption": null
+      },
+      {
+       "id": "family-photoshoots/11-a4091038",
+       "src": "images/family-photoshoots/11-a4091038.jpg",
+       "alt": "",
+       "caption": null
+      },
+      {
+       "id": "family-photoshoots/12-1c54719b",
+       "src": "images/family-photoshoots/12-1c54719b.jpg",
+       "alt": "",
+       "caption": null
+      },
+      {
+       "id": "family-photoshoots/13-4e32f98d",
+       "src": "images/family-photoshoots/13-4e32f98d.jpg",
+       "alt": "",
+       "caption": null
+      },
+      {
+       "id": "family-photoshoots/14-ae0d5203",
+       "src": "images/family-photoshoots/14-ae0d5203.jpg",
+       "alt": "",
+       "caption": null
+      }
+     ]
+    },
+    {
+     "t": "images",
+     "layout": "grid",
+     "items": [
+      {
+       "id": "family-photoshoots/15-0a46c1c7",
+       "src": "images/family-photoshoots/15-0a46c1c7.jpg",
+       "alt": "",
+       "caption": null
+      },
+      {
+       "id": "family-photoshoots/16-5732a929",
+       "src": "images/family-photoshoots/16-5732a929.jpg",
+       "alt": "",
+       "caption": null
+      },
+      {
+       "id": "family-photoshoots/17-f4812630",
+       "src": "images/family-photoshoots/17-f4812630.jpg",
+       "alt": "",
+       "caption": null
+      },
+      {
+       "id": "family-photoshoots/18-1e333437",
+       "src": "images/family-photoshoots/18-1e333437.jpg",
+       "alt": "",
+       "caption": null
+      },
+      {
+       "id": "family-photoshoots/19-3ced6f9c",
+       "src": "images/family-photoshoots/19-3ced6f9c.jpg",
+       "alt": "",
+       "caption": null
+      },
+      {
+       "id": "family-photoshoots/20-bf11e879",
+       "src": "images/family-photoshoots/20-bf11e879.jpg",
+       "alt": "",
+       "caption": null
+      },
+      {
+       "id": "family-photoshoots/21-d8b85c42",
+       "src": "images/family-photoshoots/21-d8b85c42.jpg",
+       "alt": "",
+       "caption": null
+      },
+      {
+       "id": "family-photoshoots/22-2f81ff0a",
+       "src": "images/family-photoshoots/22-2f81ff0a.jpg",
+       "alt": "",
+       "caption": null
+      },
+      {
+       "id": "family-photoshoots/23-2c2375ae",
+       "src": "images/family-photoshoots/23-2c2375ae.jpg",
+       "alt": "",
+       "caption": null
+      }
+     ]
+    },
+    {
+     "t": "images",
+     "layout": "grid",
+     "items": [
+      {
+       "id": "family-photoshoots/24-8381bf64",
+       "src": "images/family-photoshoots/24-8381bf64.jpg",
+       "alt": "",
+       "caption": null
+      },
+      {
+       "id": "family-photoshoots/25-fb7a9fa8",
+       "src": "images/family-photoshoots/25-fb7a9fa8.jpg",
+       "alt": "",
+       "caption": null
+      },
+      {
+       "id": "family-photoshoots/26-1e1f721a",
+       "src": "images/family-photoshoots/26-1e1f721a.jpg",
+       "alt": "",
+       "caption": null
+      },
+      {
+       "id": "family-photoshoots/27-634a8ba1",
+       "src": "images/family-photoshoots/27-634a8ba1.jpg",
+       "alt": "",
+       "caption": null
+      },
+      {
+       "id": "family-photoshoots/28-2ef014d5",
+       "src": "images/family-photoshoots/28-2ef014d5.jpg",
+       "alt": "",
+       "caption": null
+      },
+      {
+       "id": "family-photoshoots/29-7984c737",
+       "src": "images/family-photoshoots/29-7984c737.jpg",
+       "alt": "",
+       "caption": null
+      }
+     ]
+    },
+    {
+     "t": "images",
+     "layout": "grid",
+     "items": [
+      {
+       "id": "family-photoshoots/30-7df92a1b",
+       "src": "images/family-photoshoots/30-7df92a1b.jpg",
+       "alt": "",
+       "caption": null
+      },
+      {
+       "id": "family-photoshoots/31-085cc3aa",
+       "src": "images/family-photoshoots/31-085cc3aa.jpg",
+       "alt": "",
+       "caption": null
+      },
+      {
+       "id": "family-photoshoots/32-b2ddc7e8",
+       "src": "images/family-photoshoots/32-b2ddc7e8.jpg",
+       "alt": "",
+       "caption": null
+      },
+      {
+       "id": "family-photoshoots/33-3464e9a2",
+       "src": "images/family-photoshoots/33-3464e9a2.jpg",
+       "alt": "",
+       "caption": null
+      },
+      {
+       "id": "family-photoshoots/34-78500145",
+       "src": "images/family-photoshoots/34-78500145.jpg",
+       "alt": "",
+       "caption": null
+      }
+     ]
+    }
+   ],
+   "covers": [],
+   "categorySlug": "photography"
+  },
+  {
+   "slug": "graduation-photoshoots",
+   "title": "Graduation Photoshoots",
+   "navLabel": "Graduation Photoshoots",
+   "category": "Photography",
+   "type": "project",
+   "oldTitle": "Cameron Kuey - Graduation Photoshoots",
+   "blocks": [
+    {
+     "t": "images",
+     "layout": "grid",
+     "items": [
+      {
+       "id": "graduation-photoshoots/01-9f2de73e",
+       "src": "images/graduation-photoshoots/01-9f2de73e.jpg",
+       "alt": "",
+       "caption": null
+      },
+      {
+       "id": "graduation-photoshoots/02-5f1f5b7a",
+       "src": "images/graduation-photoshoots/02-5f1f5b7a.jpg",
+       "alt": "",
+       "caption": null
+      },
+      {
+       "id": "graduation-photoshoots/03-75cd70aa",
+       "src": "images/graduation-photoshoots/03-75cd70aa.jpg",
+       "alt": "",
+       "caption": null
+      },
+      {
+       "id": "graduation-photoshoots/04-212e94d5",
+       "src": "images/graduation-photoshoots/04-212e94d5.jpg",
+       "alt": "",
+       "caption": null
+      },
+      {
+       "id": "graduation-photoshoots/05-dd08b521",
+       "src": "images/graduation-photoshoots/05-dd08b521.jpg",
+       "alt": "",
+       "caption": null
+      },
+      {
+       "id": "graduation-photoshoots/06-7733ee93",
+       "src": "images/graduation-photoshoots/06-7733ee93.jpg",
+       "alt": "",
+       "caption": null
+      }
+     ]
+    },
+    {
+     "t": "images",
+     "layout": "grid",
+     "items": [
+      {
+       "id": "graduation-photoshoots/07-91f63caf",
+       "src": "images/graduation-photoshoots/07-91f63caf.jpg",
+       "alt": "",
+       "caption": null
+      },
+      {
+       "id": "graduation-photoshoots/08-e66c2bfa",
+       "src": "images/graduation-photoshoots/08-e66c2bfa.jpg",
+       "alt": "",
+       "caption": null
+      },
+      {
+       "id": "graduation-photoshoots/09-27741545",
+       "src": "images/graduation-photoshoots/09-27741545.jpg",
+       "alt": "",
+       "caption": null
+      },
+      {
+       "id": "graduation-photoshoots/10-2322cd02",
+       "src": "images/graduation-photoshoots/10-2322cd02.jpg",
+       "alt": "",
+       "caption": null
+      },
+      {
+       "id": "graduation-photoshoots/11-5f621742",
+       "src": "images/graduation-photoshoots/11-5f621742.jpg",
+       "alt": "",
+       "caption": null
+      },
+      {
+       "id": "graduation-photoshoots/12-67965088",
+       "src": "images/graduation-photoshoots/12-67965088.jpg",
+       "alt": "",
+       "caption": null
+      },
+      {
+       "id": "graduation-photoshoots/13-9b0ba014",
+       "src": "images/graduation-photoshoots/13-9b0ba014.jpg",
+       "alt": "",
+       "caption": null
+      },
+      {
+       "id": "graduation-photoshoots/14-fcb9982c",
+       "src": "images/graduation-photoshoots/14-fcb9982c.jpg",
+       "alt": "",
+       "caption": null
+      },
+      {
+       "id": "graduation-photoshoots/15-13c80db8",
+       "src": "images/graduation-photoshoots/15-13c80db8.jpg",
+       "alt": "",
+       "caption": null
+      },
+      {
+       "id": "graduation-photoshoots/16-48cd8282",
+       "src": "images/graduation-photoshoots/16-48cd8282.jpg",
+       "alt": "",
+       "caption": null
+      },
+      {
+       "id": "graduation-photoshoots/17-d1ffd243",
+       "src": "images/graduation-photoshoots/17-d1ffd243.jpg",
+       "alt": "",
+       "caption": null
+      },
+      {
+       "id": "graduation-photoshoots/18-ca143a57",
+       "src": "images/graduation-photoshoots/18-ca143a57.jpg",
+       "alt": "",
+       "caption": null
+      }
+     ]
+    },
+    {
+     "t": "images",
+     "layout": "grid",
+     "items": [
+      {
+       "id": "graduation-photoshoots/19-ec20ced8",
+       "src": "images/graduation-photoshoots/19-ec20ced8.jpg",
+       "alt": "",
+       "caption": null
+      },
+      {
+       "id": "graduation-photoshoots/20-34433d5e",
+       "src": "images/graduation-photoshoots/20-34433d5e.jpg",
+       "alt": "",
+       "caption": null
+      },
+      {
+       "id": "graduation-photoshoots/21-f63cade9",
+       "src": "images/graduation-photoshoots/21-f63cade9.jpg",
+       "alt": "",
+       "caption": null
+      },
+      {
+       "id": "graduation-photoshoots/22-518e36ff",
+       "src": "images/graduation-photoshoots/22-518e36ff.jpg",
+       "alt": "",
+       "caption": null
+      },
+      {
+       "id": "graduation-photoshoots/23-99aa3cc1",
+       "src": "images/graduation-photoshoots/23-99aa3cc1.jpg",
+       "alt": "",
+       "caption": null
+      },
+      {
+       "id": "graduation-photoshoots/24-ffca31bd",
+       "src": "images/graduation-photoshoots/24-ffca31bd.jpg",
+       "alt": "",
+       "caption": null
+      },
+      {
+       "id": "graduation-photoshoots/25-ba2b6fff",
+       "src": "images/graduation-photoshoots/25-ba2b6fff.jpg",
+       "alt": "",
+       "caption": null
+      },
+      {
+       "id": "graduation-photoshoots/26-90394ca0",
+       "src": "images/graduation-photoshoots/26-90394ca0.jpg",
+       "alt": "",
+       "caption": null
+      },
+      {
+       "id": "graduation-photoshoots/27-0b4d289e",
+       "src": "images/graduation-photoshoots/27-0b4d289e.jpg",
+       "alt": "",
+       "caption": null
+      },
+      {
+       "id": "graduation-photoshoots/28-ea457675",
+       "src": "images/graduation-photoshoots/28-ea457675.jpg",
+       "alt": "",
+       "caption": null
+      },
+      {
+       "id": "graduation-photoshoots/29-0cfe12ab",
+       "src": "images/graduation-photoshoots/29-0cfe12ab.jpg",
+       "alt": "",
+       "caption": null
+      },
+      {
+       "id": "graduation-photoshoots/30-7b7db0a9",
+       "src": "images/graduation-photoshoots/30-7b7db0a9.jpg",
+       "alt": "",
+       "caption": null
+      }
+     ]
+    },
+    {
+     "t": "images",
+     "layout": "grid",
+     "items": [
+      {
+       "id": "graduation-photoshoots/31-646f354b",
+       "src": "images/graduation-photoshoots/31-646f354b.jpg",
+       "alt": "",
+       "caption": null
+      },
+      {
+       "id": "graduation-photoshoots/32-1147c21c",
+       "src": "images/graduation-photoshoots/32-1147c21c.jpg",
+       "alt": "",
+       "caption": null
+      },
+      {
+       "id": "graduation-photoshoots/33-87c40b7f",
+       "src": "images/graduation-photoshoots/33-87c40b7f.jpg",
+       "alt": "",
+       "caption": null
+      },
+      {
+       "id": "graduation-photoshoots/34-03828987",
+       "src": "images/graduation-photoshoots/34-03828987.jpg",
+       "alt": "",
+       "caption": null
+      },
+      {
+       "id": "graduation-photoshoots/35-7b045dc4",
+       "src": "images/graduation-photoshoots/35-7b045dc4.jpg",
+       "alt": "",
+       "caption": null
+      },
+      {
+       "id": "graduation-photoshoots/36-5ff196ca",
+       "src": "images/graduation-photoshoots/36-5ff196ca.jpg",
+       "alt": "",
+       "caption": null
+      }
+     ]
+    }
+   ],
+   "covers": [],
+   "categorySlug": "photography"
+  },
+  {
+   "slug": "video-production",
+   "title": "Video Production",
+   "navLabel": "Video Production",
+   "category": null,
+   "type": "gallery",
+   "oldTitle": "Cameron Kuey - Video Production",
+   "blocks": [],
+   "covers": [
+    {
+     "title": "Promotional & Corporate",
+     "href": "/promotional-corporate",
+     "image": {
+      "id": "video-production/01-e12b9e31",
+      "src": "images/video-production/01-e12b9e31.jpg",
+      "alt": ""
+     }
+    },
+    {
+     "title": "Documentaries & Short Stories",
+     "href": "/documentaries",
+     "image": {
+      "id": "video-production/02-49466d51",
+      "src": "images/video-production/02-49466d51.jpg",
+      "alt": ""
+     }
+    },
+    {
+     "title": "Commercials & Social Media Ads",
+     "href": "/commercials-social-media-ads",
+     "image": {
+      "id": "video-production/03-4e826515",
+      "src": "images/video-production/03-4e826515.jpg",
+      "alt": ""
+     }
+    },
+    {
+     "title": "Wedding Videography",
+     "href": "/wedding-videography",
+     "image": {
+      "id": "video-production/04-9f6351ca",
+      "src": "images/video-production/04-9f6351ca.jpg",
+      "alt": ""
+     }
+    }
+   ],
+   "categorySlug": null
+  },
+  {
+   "slug": "promotional-corporate",
+   "title": "Promotional & Corporate",
+   "navLabel": "Promotional & Corporate",
+   "category": "Video Production",
+   "type": "project",
+   "oldTitle": "Cameron Kuey - Promotional & Corporate",
+   "blocks": [
+    {
+     "t": "html",
+     "html": "<p>I've had the roles of directing, producing, cinematography, videography and editing for these projects:</p>"
+    },
+    {
+     "t": "embed",
+     "kind": "youtube",
+     "embed": "https://www.youtube.com/embed/pGM-wIk_KbU?controls=0",
+     "watch": "https://www.youtube.com/watch?v=pGM-wIk_KbU",
+     "title": "Urbanlife 2019 Year in Review by The Cultivation Project",
+     "caption": null,
+     "ratio": null,
+     "maxWidth": null
+    },
+    {
+     "t": "embed",
+     "kind": "youtube",
+     "embed": "https://www.youtube.com/embed/c12s_w8ZM1w",
+     "watch": "https://www.youtube.com/watch?v=c12s_w8ZM1w",
+     "title": "Why Join The Barnabas Group - by The Cultivation Project",
+     "caption": null,
+     "ratio": 56.25,
+     "maxWidth": 560
+    },
+    {
+     "t": "embed",
+     "kind": "youtube",
+     "embed": "https://www.youtube.com/embed/wLsKi_0YJbo",
+     "watch": "https://www.youtube.com/watch?v=wLsKi_0YJbo",
+     "title": "CEC's New Worship & Education Building",
+     "caption": null,
+     "ratio": 56.25,
+     "maxWidth": 560
+    },
+    {
+     "t": "embed",
+     "kind": "youtube",
+     "embed": "https://www.youtube.com/embed/5iW1o0QBH5g",
+     "watch": "https://www.youtube.com/watch?v=5iW1o0QBH5g",
+     "title": "CEO Global USA - by The Cultivation Project",
+     "caption": null,
+     "ratio": 56.25,
+     "maxWidth": 560
+    },
+    {
+     "t": "embed",
+     "kind": "youtube",
+     "embed": "https://www.youtube.com/embed/um8G1v3aslw",
+     "watch": "https://www.youtube.com/watch?v=um8G1v3aslw",
+     "title": "Called to Work - About Us - by The Cultivation Project",
+     "caption": null,
+     "ratio": 56.25,
+     "maxWidth": 560
+    }
+   ],
+   "covers": [],
+   "categorySlug": "video-production"
+  },
+  {
+   "slug": "documentaries",
+   "title": "Documentaries & Short Stories",
+   "navLabel": "Documentaries & Short Stories",
+   "category": "Video Production",
+   "type": "project",
+   "oldTitle": "Cameron Kuey - Documentaries & Short Stories",
+   "blocks": [
+    {
+     "t": "html",
+     "html": "<p>I've had the roles of directing, producing, cinematography, videography, and editing for these various projects:</p>"
+    },
+    {
+     "t": "embed",
+     "kind": "youtube",
+     "embed": "https://www.youtube.com/embed/64MkT4c_sB0",
+     "watch": "https://www.youtube.com/watch?v=64MkT4c_sB0",
+     "title": "Over the Rhine - Acts Ministries Int. by The Cultivation Project",
+     "caption": null,
+     "ratio": null,
+     "maxWidth": null
+    },
+    {
+     "t": "embed",
+     "kind": "vimeo",
+     "embed": "https://player.vimeo.com/video/325314612?h=b4a6c76cc8",
+     "watch": "https://vimeo.com/325314612/b4a6c76cc8",
+     "title": "Hope for San Diego - Sowing Seeds",
+     "caption": null,
+     "ratio": 56.25,
+     "maxWidth": 640
+    },
+    {
+     "t": "embed",
+     "kind": "vimeo",
+     "embed": "https://player.vimeo.com/video/323306832?h=26251a0e74",
+     "watch": "https://vimeo.com/323306832/26251a0e74",
+     "title": "Ordinary People ft. The King's Craft Coffee Co.",
+     "caption": null,
+     "ratio": 56.25,
+     "maxWidth": 640
+    },
+    {
+     "t": "embed",
+     "kind": "facebook",
+     "embed": "https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2Fthecultivationproject%2Fvideos%2F2294804577202088%2F&show_text=0&width=560",
+     "watch": "https://www.facebook.com/thecultivationproject/videos/2294804577202088/",
+     "title": null,
+     "caption": null,
+     "ratio": 56.25,
+     "maxWidth": 560
+    },
+    {
+     "t": "embed",
+     "kind": "facebook",
+     "embed": "https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2Fthecultivationproject%2Fvideos%2F2148828268466387%2F&show_text=0&width=560",
+     "watch": "https://www.facebook.com/thecultivationproject/videos/2148828268466387/",
+     "title": null,
+     "caption": null,
+     "ratio": 56.25,
+     "maxWidth": 560
+    },
+    {
+     "t": "embed",
+     "kind": "facebook",
+     "embed": "https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2Fthecultivationproject%2Fvideos%2F2125823920766822%2F&show_text=0&width=560",
+     "watch": "https://www.facebook.com/thecultivationproject/videos/2125823920766822/",
+     "title": null,
+     "caption": null,
+     "ratio": 56.25,
+     "maxWidth": 560
+    },
+    {
+     "t": "embed",
+     "kind": "facebook",
+     "embed": "https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2Fthecultivationproject%2Fvideos%2F2139810302701517%2F&show_text=0&width=560",
+     "watch": "https://www.facebook.com/thecultivationproject/videos/2139810302701517/",
+     "title": null,
+     "caption": null,
+     "ratio": 56.25,
+     "maxWidth": 560
+    }
+   ],
+   "covers": [],
+   "categorySlug": "video-production"
+  },
+  {
+   "slug": "commercials-social-media-ads",
+   "title": "Commercials & Social Media Ads",
+   "navLabel": "Commercials & Social Media Ads",
+   "category": "Video Production",
+   "type": "project",
+   "oldTitle": "Cameron Kuey - Commercials & Social Media Ads",
+   "blocks": [
+    {
+     "t": "html",
+     "html": "<p>I've had the roles of directing, producing, cinematography, videography, and editing in these various projects:</p>"
+    },
+    {
+     "t": "embed",
+     "kind": "youtube",
+     "embed": "https://www.youtube.com/embed/XwFj7o7C3iw",
+     "watch": "https://www.youtube.com/watch?v=XwFj7o7C3iw",
+     "title": "Unboxing - Cosie Co.",
+     "caption": null,
+     "ratio": 56.25,
+     "maxWidth": 560
+    },
+    {
+     "t": "embed",
+     "kind": "youtube",
+     "embed": "https://www.youtube.com/embed/whF_bPaanCM",
+     "watch": "https://www.youtube.com/watch?v=whF_bPaanCM",
+     "title": "Psalms - Cosie Co.",
+     "caption": null,
+     "ratio": 56.25,
+     "maxWidth": 560
+    },
+    {
+     "t": "embed",
+     "kind": "youtube",
+     "embed": "https://www.youtube.com/embed/wU8OcnwJVVs?controls=0",
+     "watch": "https://www.youtube.com/watch?v=wU8OcnwJVVs",
+     "title": "Gift Wrapping - Cosie Co.",
+     "caption": null,
+     "ratio": 56.25,
+     "maxWidth": 560
+    },
+    {
+     "t": "embed",
+     "kind": "youtube",
+     "embed": "https://www.youtube.com/embed/7UMlZ-y9HLg?controls=0",
+     "watch": "https://www.youtube.com/watch?v=7UMlZ-y9HLg",
+     "title": "Proverbs - Cosie Co.",
+     "caption": null,
+     "ratio": 56.25,
+     "maxWidth": 560
+    },
+    {
+     "t": "embed",
+     "kind": "youtube",
+     "embed": "https://www.youtube.com/embed/L8WIJTuJn0w",
+     "watch": "https://www.youtube.com/watch?v=L8WIJTuJn0w",
+     "title": "Esther - Cosie Co.",
+     "caption": null,
+     "ratio": 56.25,
+     "maxWidth": 560
+    },
+    {
+     "t": "embed",
+     "kind": "youtube",
+     "embed": "https://www.youtube.com/embed/2baTsAXbW4M",
+     "watch": "https://www.youtube.com/watch?v=2baTsAXbW4M",
+     "title": "Dance of the Ornaments - Cosie Co. for Alabaster Co.",
+     "caption": null,
+     "ratio": 56.25,
+     "maxWidth": 560
+    },
+    {
+     "t": "embed",
+     "kind": "youtube",
+     "embed": "https://www.youtube.com/embed/YqMJTaWYBIw",
+     "watch": "https://www.youtube.com/watch?v=YqMJTaWYBIw",
+     "title": "Silent Night - Cosie Co. for Alabaster Co.",
+     "caption": null,
+     "ratio": 56.25,
+     "maxWidth": 560
+    },
+    {
+     "t": "embed",
+     "kind": "youtube",
+     "embed": "https://www.youtube.com/embed/gVBPIfHMGiU",
+     "watch": "https://www.youtube.com/watch?v=gVBPIfHMGiU",
+     "title": "Hot Cocoa - Cosie Co. for Alabaster Co.",
+     "caption": null,
+     "ratio": 56.25,
+     "maxWidth": 560
+    }
+   ],
+   "covers": [],
+   "categorySlug": "video-production"
+  },
+  {
+   "slug": "wedding-videography",
+   "title": "Wedding Videography",
+   "navLabel": "Wedding Videography",
+   "category": "Video Production",
+   "type": "project",
+   "oldTitle": "Cameron Kuey - Wedding Videography",
+   "blocks": [
+    {
+     "t": "html",
+     "html": "<p>I've had the roles of directing, producing, cinematography, videography, and editing in these various projects:</p>"
+    },
+    {
+     "t": "embed",
+     "kind": "youtube",
+     "embed": "https://www.youtube.com/embed/hXcjuPOKPho?controls=0",
+     "watch": "https://www.youtube.com/watch?v=hXcjuPOKPho",
+     "title": "Jonie & Kai's Wedding Highlights - Cosie Co.",
+     "caption": null,
+     "ratio": null,
+     "maxWidth": null
+    },
+    {
+     "t": "embed",
+     "kind": "youtube",
+     "embed": "https://www.youtube.com/embed/qlHt2i5skNQ?controls=0",
+     "watch": "https://www.youtube.com/watch?v=qlHt2i5skNQ",
+     "title": "Tim & Karyna's Wedding Highlights (Official)",
+     "caption": null,
+     "ratio": 56.25,
+     "maxWidth": 560
+    },
+    {
+     "t": "embed",
+     "kind": "youtube",
+     "embed": "https://www.youtube.com/embed/CT4QSeOKhjI?controls=0",
+     "watch": "https://www.youtube.com/watch?v=CT4QSeOKhjI",
+     "title": "Daniel and Antoinette's Wedding Highlights (Official)",
+     "caption": null,
+     "ratio": 56.25,
+     "maxWidth": 560
+    },
+    {
+     "t": "embed",
+     "kind": "youtube",
+     "embed": "https://www.youtube.com/embed/5dCoPNNQ4lA?controls=0",
+     "watch": "https://www.youtube.com/watch?v=5dCoPNNQ4lA",
+     "title": "Richard & Michelle's Wedding Highlights Video (Official)",
+     "caption": null,
+     "ratio": 56.25,
+     "maxWidth": 560
+    },
+    {
+     "t": "embed",
+     "kind": "youtube",
+     "embed": "https://www.youtube.com/embed/rFIRO2GKNuY?controls=0",
+     "watch": "https://www.youtube.com/watch?v=rFIRO2GKNuY",
+     "title": "Daniel & Doris   Wedding Highlights (Official)",
+     "caption": null,
+     "ratio": 56.25,
+     "maxWidth": 560
+    },
+    {
+     "t": "embed",
+     "kind": "youtube",
+     "embed": "https://www.youtube.com/embed/bBFCQYZ0cCM?controls=0",
+     "watch": "https://www.youtube.com/watch?v=bBFCQYZ0cCM",
+     "title": "Jonathan and Jennifer's Wedding Highlights Video (Official)",
+     "caption": null,
+     "ratio": 56.25,
+     "maxWidth": 560
+    },
+    {
+     "t": "embed",
+     "kind": "youtube",
+     "embed": "https://www.youtube.com/embed/sOqDcR0Afl4?controls=0",
+     "watch": "https://www.youtube.com/watch?v=sOqDcR0Afl4",
+     "title": "Josh & Karen's Wedding Highlights (Official)",
+     "caption": null,
+     "ratio": 56.25,
+     "maxWidth": 560
+    },
+    {
+     "t": "html",
+     "html": "<p>To view more samples of my wedding videography work, please visit:</p>"
+    },
+    {
+     "t": "button",
+     "text": "cosie co. wedding videography",
+     "href": "https://youtube.com/playlist?list=PLpv-mauWJaBBOBQnFZHrHvg1dMA8qEwB4"
+    }
+   ],
+   "covers": [],
+   "categorySlug": "video-production"
+  },
+  {
+   "slug": "work",
+   "title": "Product Design",
+   "navLabel": "Product Design",
+   "category": null,
+   "type": "gallery",
+   "oldTitle": "Cameron Kuey - Product Design",
+   "blocks": [],
+   "covers": [
+    {
+     "title": "The Money Maker App",
+     "href": "/the-money-maker-app",
+     "image": null
+    },
+    {
+     "title": "Klema Web Pages",
+     "href": "/klema-web-pages",
+     "image": {
+      "id": "work/01-401c4809",
+      "src": "images/work/01-401c4809.jpeg",
+      "alt": ""
+     }
+    },
+    {
+     "title": "Klema iOS App",
+     "href": "/klema-ios-app",
+     "image": {
+      "id": "work/02-58b4672d",
+      "src": "images/work/02-58b4672d.png",
+      "alt": ""
+     }
+    },
+    {
+     "title": "FoodFriend iOS App",
+     "href": "/foodfriend-ios-app",
+     "image": {
+      "id": "work/03-6052118a",
+      "src": "images/work/03-6052118a.jpg",
+      "alt": ""
+     }
+    },
+    {
+     "title": "Website for Cosie Co.",
+     "href": "/cosie-co",
+     "image": {
+      "id": "work/04-d2ec6bd5",
+      "src": "images/work/04-d2ec6bd5.jpg",
+      "alt": ""
+     }
+    },
+    {
+     "title": "Website for CEC Building Project",
+     "href": "/cec-building",
+     "image": {
+      "id": "work/05-7f86d446",
+      "src": "images/work/05-7f86d446.png",
+      "alt": ""
+     }
+    },
+    {
+     "title": "Website for The Cultivation Project",
+     "href": "/the-cultivation-project",
+     "image": {
+      "id": "work/06-09973472",
+      "src": "images/work/06-09973472.png",
+      "alt": ""
+     }
+    }
+   ],
+   "categorySlug": null
+  },
+  {
+   "slug": "the-money-maker-app",
+   "title": "The Money Maker App",
+   "navLabel": "The Money Maker App",
+   "category": "Product Design",
+   "type": "project",
+   "oldTitle": "Cameron Kuey - The Money Maker App",
+   "blocks": [
+    {
+     "t": "embed",
+     "kind": "figma",
+     "embed": "https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fproto%2F9ZYQSLQx9MKOAIvxflQAvW%2Fthe-money-maker-app%3Fpage-id%3D0%253A1%26node-id%3D2%253A2%26viewport%3D289%252C48%252C0.24%26scaling%3Dscale-down%26starting-point-node-id%3D2%253A2%26hide-ui%3D1",
+     "watch": "https://www.figma.com/proto/9ZYQSLQx9MKOAIvxflQAvW/the-money-maker-app?page-id=0%3A1&node-id=2%3A2&viewport=289%2C48%2C0.24&scaling=scale-down&starting-point-node-id=2%3A2&hide-ui=1",
+     "title": null,
+     "caption": null,
+     "ratio": 175.0,
+     "maxWidth": 400
+    },
+    {
+     "t": "html",
+     "html": "<h3>Context</h3><p>Our modern digital society makes handling our finances easier than ever, but there is still no perfect all-in-one app that allows us to invest, manage our finances, serves as our bank, and let's us send and receive money instantly. Imagine if Robinhood, Mint, and Venmo all merged into an intuitive platform.</p><h3>Goal</h3><p>The Money Maker App is designed to be a single platform in which people can manage their finances, invest their money, and send &amp; receive payments.</p><h3>How it Works (try it)</h3><p>I designed the app to minimize the overwhelming complexity of financial information and numbers, and package that information into a mobile screen in which anyone with a high school education can understand. </p><p>Each screen serves a unique purpose in helping the user understand specific information related to their money that is tied up in a certain way. The amount of information a bank statement or brokerage account can be very overwhelming, which is every category of information has its own label and drop down arrow to allow the user to hide that section at will.</p><p>The search screen allows the user to find information on any stock or cryptocurrency, while also showing them any of their past or current trades related to that stock or cryptocurrency. A user can simply add the stock or cryptocurrency to their main watchlist, or press the \"trade\" button to open or close a position.</p><p>The watchlist screen acts as a hub for all stocks and cryptocurrencies that the user wants to follow on a daily basis. This hub will constantly refresh to show the latest prices of all followed assets.</p><p>The investment screen makes it clear about what the value of the user's investment account is, how much cash they have available to trade, and what assets they already own. They can simply click on any stock, option, or cryptocurrency that they own to see more details about that asset. Since this screen only shows what the user already owns, it will prevent more mistakes and confusion for the user.</p><p>At any given moment, the user can click on the trading icon to trade a stock, option or cryptocurrency. Once again, this was designed to make trading as clear and transparent as possible. The user can select all of the aspects of the trade, such as what order type they want, how many they want to buy/sell, and how long they want the order to stay active. Level II data is also built into the trading screen so that users can see a live feed of bids and asks, giving them all of the tools needed to make the best investment decisions.</p><p>The accounts icon gives the user a live calculation of all assets, an easy to understand graph showing their money in and out flows, and instant management of all cash and credit accounts. Users can transfer money between accounts and investments, use the built in Zelle, and/or pay bills all within the same app. Since the information is organized clearly and simply, the user will always have the most accurate picture of what their financial situation is like.</p>"
+    }
+   ],
+   "covers": [],
+   "categorySlug": "work"
+  },
+  {
+   "slug": "klema-web-pages",
+   "title": "Klema Web Pages",
+   "navLabel": "Klema Web Pages",
+   "category": "Product Design",
+   "type": "project",
+   "oldTitle": "Cameron Kuey - Klema Web Pages",
+   "blocks": [
+    {
+     "t": "html",
+     "html": "<p>I designed and prototyped the splash page for Klema.io, a communication and support network for missionaries. This project was designed using Adobe Experience Design:</p>"
+    },
+    {
+     "t": "embed",
+     "kind": "adobe-xd",
+     "embed": "https://xd.adobe.com/embed/9f31f731-4c82-4d98-b455-3853bde40c25-ca62/",
+     "watch": "https://xd.adobe.com/view/9f31f731-4c82-4d98-b455-3853bde40c25-ca62/",
+     "title": null,
+     "caption": null,
+     "ratio": 56.25,
+     "maxWidth": 1920
+    },
+    {
+     "t": "html",
+     "html": "<p>If the above embedded frame does not load, please <a href=\"https://xd.adobe.com/view/9f31f731-4c82-4d98-b455-3853bde40c25-ca62/\" rel=\"noopener\" target=\"_blank\">click here</a>.</p>"
+    },
+    {
+     "t": "images",
+     "layout": "grid",
+     "items": [
+      {
+       "id": "klema-web-pages/01-40e5b3c2",
+       "src": "images/klema-web-pages/01-40e5b3c2.jpg",
+       "alt": "",
+       "caption": null
+      },
+      {
+       "id": "klema-web-pages/02-deca608e",
+       "src": "images/klema-web-pages/02-deca608e.jpg",
+       "alt": "",
+       "caption": null
+      },
+      {
+       "id": "klema-web-pages/03-9b7e313a",
+       "src": "images/klema-web-pages/03-9b7e313a.jpg",
+       "alt": "",
+       "caption": null
+      }
+     ]
+    }
+   ],
+   "covers": [],
+   "categorySlug": "work"
+  },
+  {
+   "slug": "klema-ios-app",
+   "title": "Klema iOS App",
+   "navLabel": "Klema iOS App",
+   "category": "Product Design",
+   "type": "project",
+   "oldTitle": "Cameron Kuey - Klema iOS App",
+   "blocks": [
+    {
+     "t": "embed",
+     "kind": "invision",
+     "embed": "https://invis.io/BKTDT8YF3WX",
+     "watch": "https://invis.io/BKTDT8YF3WX",
+     "title": "I was the mobile product designer for The Cultivation Project's Klema iOS app. I designed this app using Sketch.",
+     "caption": "I was the mobile product designer for The Cultivation Project's Klema iOS app. I designed this app using Sketch.",
+     "ratio": 200.0,
+     "maxWidth": 500
+    },
+    {
+     "t": "html",
+     "html": "<h3>Problem</h3><p>There is no single, secure platform for missionaries to fundraise and share updates with supporters. Missionaries want to spend less time creating newsletters, email blasts, and taking care of mailing lists, and more time doing the work they were called to do.</p><h3>Goal</h3><p>Klema exists to provide missionaries with a single platform to efficiently write updates, grow partnerships, and fundraise with supporters around the world. Klema also acts as a one-stop-shop for every missionary &amp; ministry that a person supports. </p><h3>How it Works (try it)</h3><p>I designed the app to be intuitive from both a supporter's perspective as well as a missionaries' perspective. As a missionary, they can simply click the \"+\" button on the bottom navigation bar to instantly write a prayer request (almost like a status update), blog post, create a community, or start a fundraiser.</p><p>As a supporter (or follower), the main content feed shows all of the latest blog posts, fundraisers, and prayer requests from people who they choose to follow. Supporters have the option to \"like\", add to a journal (to save for later), and instantly comment or donate if they choose.</p><p>The best part of working on the Klema iOS app design was the ability to talk to missionaries to get their feedback and implement changes instantly. I had the opportunity to present Klema to a room full of people to gather instant feedback and impressions.</p>"
+    },
+    {
+     "t": "images",
+     "layout": "grid",
+     "items": [
+      {
+       "id": "klema-ios-app/01-a689249e",
+       "src": "images/klema-ios-app/01-a689249e.png",
+       "alt": "",
+       "caption": null
+      },
+      {
+       "id": "klema-ios-app/02-66007f19",
+       "src": "images/klema-ios-app/02-66007f19.png",
+       "alt": "",
+       "caption": null
+      },
+      {
+       "id": "klema-ios-app/03-15d4eba2",
+       "src": "images/klema-ios-app/03-15d4eba2.png",
+       "alt": "",
+       "caption": null
+      },
+      {
+       "id": "klema-ios-app/04-6807c78e",
+       "src": "images/klema-ios-app/04-6807c78e.png",
+       "alt": "",
+       "caption": null
+      }
+     ]
+    },
+    {
+     "t": "button",
+     "text": "Click Here for Live Prototype",
+     "href": "https://invis.io/4ZT9YG9EXW6"
+    }
+   ],
+   "covers": [],
+   "categorySlug": "work"
+  },
+  {
+   "slug": "foodfriend-ios-app",
+   "title": "FoodFriend iOS App",
+   "navLabel": "FoodFriend iOS App",
+   "category": "Product Design",
+   "type": "project",
+   "oldTitle": "Cameron Kuey - FoodFriend iOS App",
+   "blocks": [
+    {
+     "t": "html",
+     "html": "<p>I designed this app with the goal of making the entire grocery shopping experience easier and more fun. FoodFriend finds the best grocery deals from all stores within a set radius, allowing the user to simply add an item to their list and create custom multi-store grocery lists or delivery bundles. FoodFriend tracks individual food item price trends over time and compares to other zip codes to help you save the most money.</p>"
+    },
+    {
+     "t": "images",
+     "layout": "grid",
+     "items": [
+      {
+       "id": "foodfriend-ios-app/01-85f64953",
+       "src": "images/foodfriend-ios-app/01-85f64953.png",
+       "alt": "",
+       "caption": null
+      },
+      {
+       "id": "foodfriend-ios-app/02-60b4329b",
+       "src": "images/foodfriend-ios-app/02-60b4329b.png",
+       "alt": "",
+       "caption": null
+      },
+      {
+       "id": "foodfriend-ios-app/03-8109dd34",
+       "src": "images/foodfriend-ios-app/03-8109dd34.png",
+       "alt": "",
+       "caption": null
+      }
+     ]
+    },
+    {
+     "t": "embed",
+     "kind": "figma",
+     "embed": "https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fproto%2Fv4WpQG5zrFifBEocQdvoCg%2Ffoodfriend%3Fpage-id%3D0%253A1%26node-id%3D30%253A1640%26viewport%3D241%252C48%252C0.79%26scaling%3Dscale-down%26starting-point-node-id%3D30%253A1640%26hide-ui%3D1",
+     "watch": "https://www.figma.com/proto/v4WpQG5zrFifBEocQdvoCg/foodfriend?page-id=0%3A1&node-id=30%3A1640&viewport=241%2C48%2C0.79&scaling=scale-down&starting-point-node-id=30%3A1640&hide-ui=1",
+     "title": null,
+     "caption": null,
+     "ratio": 160.0,
+     "maxWidth": 500
+    }
+   ],
+   "covers": [],
+   "categorySlug": "work"
+  },
+  {
+   "slug": "cosie-co",
+   "title": "Website for Cosie Co.",
+   "navLabel": "Website for Cosie Co.",
+   "category": "Product Design",
+   "type": "project",
+   "oldTitle": "Cameron Kuey - Website for Cosie Co.",
+   "blocks": [
+    {
+     "t": "images",
+     "layout": "single",
+     "items": [
+      {
+       "id": "cosie-co/01-6c00387e",
+       "src": "images/cosie-co/01-6c00387e.png",
+       "alt": "",
+       "caption": null
+      }
+     ]
+    },
+    {
+     "t": "html",
+     "html": "<p>I designed the website, graphics and logos for <strong>cosie co.</strong>, while organizing each page to focus on a different photography or videography service. Since the goal of the website is to give prospective clients a sense of my work quality and to ultimately sell them on my products, each page contains a contact form or button so that prospective clients can get connected with me right away.</p>"
+    },
+    {
+     "t": "images",
+     "layout": "single",
+     "items": [
+      {
+       "id": "cosie-co/02-274280b1",
+       "src": "images/cosie-co/02-274280b1.jpg",
+       "alt": "",
+       "caption": null
+      },
+      {
+       "id": "cosie-co/03-8b5e7580",
+       "src": "images/cosie-co/03-8b5e7580.jpg",
+       "alt": "",
+       "caption": null
+      }
+     ]
+    },
+    {
+     "t": "button",
+     "text": "visit cosie co. photography",
+     "href": "http://www.cosiephotos.com"
+    }
+   ],
+   "covers": [],
+   "categorySlug": "work"
+  },
+  {
+   "slug": "cec-building",
+   "title": "Website for CEC Building Project",
+   "navLabel": "Website for CEC Building Project",
+   "category": "Product Design",
+   "type": "project",
+   "oldTitle": "Cameron Kuey - Website for CEC Building Project",
+   "blocks": [
+    {
+     "t": "images",
+     "layout": "single",
+     "items": [
+      {
+       "id": "cec-building/01-cf1fdb88",
+       "src": "images/cec-building/01-cf1fdb88.png",
+       "alt": "",
+       "caption": null
+      },
+      {
+       "id": "cec-building/02-0867de5a",
+       "src": "images/cec-building/02-0867de5a.png",
+       "alt": "",
+       "caption": null
+      }
+     ]
+    },
+    {
+     "t": "html",
+     "html": "<p>I designed the website, graphics, and produced the videos for the <a href=\"https://www.cecbuilding.org\" rel=\"noopener\" target=\"_blank\"><strong>Chinese Evangelical Church's New Building Project</strong></a> website. The purpose for this website is to raise support for a new building expansion project for Chinese Evangelical Church of San Diego. Since the main audience is the church's congregation, I designed the site to share about the church's mission, history, and project's vision, to help remind everybody of their shared journey and common love for the church.</p>"
+    },
+    {
+     "t": "embed",
+     "kind": "youtube",
+     "embed": "https://www.youtube.com/embed/wLsKi_0YJbo",
+     "watch": "https://www.youtube.com/watch?v=wLsKi_0YJbo",
+     "title": "CEC's New Worship & Education Building",
+     "caption": null,
+     "ratio": null,
+     "maxWidth": null
+    },
+    {
+     "t": "button",
+     "text": "visit the CEC Building Project website",
+     "href": "https://cecbuilding.org/"
+    }
+   ],
+   "covers": [],
+   "categorySlug": "work"
+  },
+  {
+   "slug": "the-cultivation-project",
+   "title": "Website for The Cultivation Project",
+   "navLabel": "Website for The Cultivation Project",
+   "category": "Product Design",
+   "type": "project",
+   "oldTitle": "Cameron Kuey - Website for The Cultivation Project",
+   "blocks": [
+    {
+     "t": "images",
+     "layout": "single",
+     "items": [
+      {
+       "id": "the-cultivation-project/01-9e245a9d",
+       "src": "images/the-cultivation-project/01-9e245a9d.png",
+       "alt": "",
+       "caption": null
+      }
+     ]
+    },
+    {
+     "t": "html",
+     "html": "<p>I designed the website, graphics and logos for <strong>The Cultivation Project</strong>, which is intended to be viewed by donors and partner organizations. The Cultivation Project works on variety of multimedia projects that need a home for donors and supporters to find.</p>"
+    },
+    {
+     "t": "images",
+     "layout": "single",
+     "items": [
+      {
+       "id": "the-cultivation-project/02-b5a8f289",
+       "src": "images/the-cultivation-project/02-b5a8f289.jpg",
+       "alt": "",
+       "caption": null
+      },
+      {
+       "id": "the-cultivation-project/03-3704442e",
+       "src": "images/the-cultivation-project/03-3704442e.jpg",
+       "alt": "",
+       "caption": null
+      }
+     ]
+    },
+    {
+     "t": "button",
+     "text": "visit The Cultivation Project",
+     "href": "https://www.cultivationproject.org/"
+    }
+   ],
+   "covers": [],
+   "categorySlug": "work"
+  },
+  {
+   "slug": "graphic-design",
+   "title": "Designs, Graphics & Presentations",
+   "navLabel": "Designs, Graphics & Presentations",
+   "category": null,
+   "type": "gallery",
+   "oldTitle": "Cameron Kuey - Designs, Graphics & Presentations",
+   "blocks": [],
+   "covers": [
+    {
+     "title": "Adobe InDesign",
+     "href": "/5-years-of-the-cultivation-project",
+     "image": {
+      "id": "graphic-design/01-440b7c0c",
+      "src": "images/graphic-design/01-440b7c0c.jpg",
+      "alt": ""
+     }
+    },
+    {
+     "title": "Adobe After Effects",
+     "href": "/autonomous-vehicle-demonstration",
+     "image": {
+      "id": "graphic-design/02-79839ef2",
+      "src": "images/graphic-design/02-79839ef2.png",
+      "alt": ""
+     }
+    },
+    {
+     "title": "Adobe Illustrator & Photoshop",
+     "href": "/logos-flyers-signs",
+     "image": {
+      "id": "graphic-design/03-14c72167",
+      "src": "images/graphic-design/03-14c72167.jpg",
+      "alt": ""
+     }
+    },
+    {
+     "title": "Keynote & Slides",
+     "href": "/presentations-workshops",
+     "image": {
+      "id": "graphic-design/04-ec302b67",
+      "src": "images/graphic-design/04-ec302b67.jpg",
+      "alt": ""
+     }
+    }
+   ],
+   "categorySlug": null
+  },
+  {
+   "slug": "5-years-of-the-cultivation-project",
+   "title": "Adobe InDesign",
+   "navLabel": "Adobe InDesign",
+   "category": "Designs, Graphics & Presentations",
+   "type": "project",
+   "oldTitle": "Cameron Kuey - Adobe InDesign",
+   "blocks": [
+    {
+     "t": "html",
+     "html": "<h3>The Project: </h3><p>For The Cultivation Project's 5th anniversary, I made a special newsletter that broke down the various milestones and major projects that were achieved over the years. Since The Cultivation Project is mainly funded by individual donors, it is important to design and communicate as simply as possible so that every donor can understand what is going on at any given time. I designed each page to emphasize one major milestone or project that was achieved, and when together, create a timeline of The Cultivation Project's history. I designed every page using Adobe InDesign.</p>"
+    },
+    {
+     "t": "images",
+     "layout": "grid",
+     "items": [
+      {
+       "id": "5-years-of-the-cultivation-project/01-3bd96dde",
+       "src": "images/5-years-of-the-cultivation-project/01-3bd96dde.jpg",
+       "alt": "",
+       "caption": null
+      },
+      {
+       "id": "5-years-of-the-cultivation-project/02-dfaf5a16",
+       "src": "images/5-years-of-the-cultivation-project/02-dfaf5a16.jpg",
+       "alt": "",
+       "caption": null
+      },
+      {
+       "id": "5-years-of-the-cultivation-project/03-29b563b8",
+       "src": "images/5-years-of-the-cultivation-project/03-29b563b8.jpg",
+       "alt": "",
+       "caption": null
+      },
+      {
+       "id": "5-years-of-the-cultivation-project/04-4bef7132",
+       "src": "images/5-years-of-the-cultivation-project/04-4bef7132.jpg",
+       "alt": "",
+       "caption": null
+      },
+      {
+       "id": "5-years-of-the-cultivation-project/05-f0e61cc4",
+       "src": "images/5-years-of-the-cultivation-project/05-f0e61cc4.jpg",
+       "alt": "",
+       "caption": null
+      },
+      {
+       "id": "5-years-of-the-cultivation-project/06-d7852615",
+       "src": "images/5-years-of-the-cultivation-project/06-d7852615.jpg",
+       "alt": "",
+       "caption": null
+      },
+      {
+       "id": "5-years-of-the-cultivation-project/07-f1e98131",
+       "src": "images/5-years-of-the-cultivation-project/07-f1e98131.jpg",
+       "alt": "",
+       "caption": null
+      },
+      {
+       "id": "5-years-of-the-cultivation-project/08-6a595a21",
+       "src": "images/5-years-of-the-cultivation-project/08-6a595a21.jpg",
+       "alt": "",
+       "caption": null
+      }
+     ]
+    }
+   ],
+   "covers": [],
+   "categorySlug": "graphic-design"
+  },
+  {
+   "slug": "autonomous-vehicle-demonstration",
+   "title": "Adobe After Effects",
+   "navLabel": "Adobe After Effects",
+   "category": "Designs, Graphics & Presentations",
+   "type": "project",
+   "oldTitle": "Cameron Kuey - Adobe After Effects",
+   "blocks": [
+    {
+     "t": "images",
+     "layout": "single",
+     "items": [
+      {
+       "id": "autonomous-vehicle-demonstration/01-fab07013",
+       "src": "images/autonomous-vehicle-demonstration/01-fab07013.png",
+       "alt": "",
+       "caption": null
+      }
+     ]
+    },
+    {
+     "t": "html",
+     "html": "<p>I designed the image (above) using Adobe Illustrator and then animated the scene using Adobe After Effects (below).</p>"
+    },
+    {
+     "t": "images",
+     "layout": "single",
+     "items": [
+      {
+       "id": "autonomous-vehicle-demonstration/02-baddd6c6",
+       "src": "images/autonomous-vehicle-demonstration/02-baddd6c6.png",
+       "alt": "",
+       "caption": null
+      }
+     ]
+    },
+    {
+     "t": "embed",
+     "kind": "youtube",
+     "embed": "https://www.youtube.com/embed/CyolH4ye1GI",
+     "watch": "https://www.youtube.com/watch?v=CyolH4ye1GI",
+     "title": "Driving Down the Road - Cameron Kuey",
+     "caption": null,
+     "ratio": null,
+     "maxWidth": null
+    }
+   ],
+   "covers": [],
+   "categorySlug": "graphic-design"
+  },
+  {
+   "slug": "logos-flyers-signs",
+   "title": "Adobe Illustrator & Photoshop",
+   "navLabel": "Adobe Illustrator & Photoshop",
+   "category": "Designs, Graphics & Presentations",
+   "type": "project",
+   "oldTitle": "Cameron Kuey - Adobe Illustrator & Photoshop",
+   "blocks": [
+    {
+     "t": "html",
+     "html": "<p>Logo Designs (created with Adobe Illustrator &amp; Photoshop):</p>"
+    },
+    {
+     "t": "images",
+     "layout": "grid",
+     "items": [
+      {
+       "id": "logos-flyers-signs/01-87215632",
+       "src": "images/logos-flyers-signs/01-87215632.jpg",
+       "alt": "",
+       "caption": null
+      },
+      {
+       "id": "logos-flyers-signs/02-7717831b",
+       "src": "images/logos-flyers-signs/02-7717831b.jpg",
+       "alt": "",
+       "caption": null
+      },
+      {
+       "id": "logos-flyers-signs/03-this-is-the-original-podcast-thumbnail-f",
+       "src": "images/logos-flyers-signs/03-this-is-the-original-podcast-thumbnail-f.jpg",
+       "alt": "This is the original podcast thumbnail for Coffee Meets Bible",
+       "caption": null
+      },
+      {
+       "id": "logos-flyers-signs/04-bd9126ba",
+       "src": "images/logos-flyers-signs/04-bd9126ba.jpg",
+       "alt": "",
+       "caption": null
+      },
+      {
+       "id": "logos-flyers-signs/05-b49104b0",
+       "src": "images/logos-flyers-signs/05-b49104b0.jpg",
+       "alt": "",
+       "caption": null
+      }
+     ]
+    },
+    {
+     "t": "video",
+     "src": "videos/logos-flyers-signs/01-cultivation-project-logo-animation_1080.mp4",
+     "poster": "videos/logos-flyers-signs/01-poster.jpg",
+     "caption": "I designed the logo for The Cultivation Project using Adobe Illustrator and then animated it using Adobe After Effects",
+     "title": "I designed the logo for The Cultivation Project using Adobe Illustrator and then animated it using Adobe After Effects"
+    },
+    {
+     "t": "html",
+     "html": "<p>Podcast Thumbnail Graphics (created with Adobe Illustrator &amp; Photoshop):</p>"
+    },
+    {
+     "t": "images",
+     "layout": "grid",
+     "items": [
+      {
+       "id": "logos-flyers-signs/06-2978f183",
+       "src": "images/logos-flyers-signs/06-2978f183.jpg",
+       "alt": "",
+       "caption": null
+      },
+      {
+       "id": "logos-flyers-signs/07-c263824c",
+       "src": "images/logos-flyers-signs/07-c263824c.jpg",
+       "alt": "",
+       "caption": null
+      },
+      {
+       "id": "logos-flyers-signs/08-f17c1dc1",
+       "src": "images/logos-flyers-signs/08-f17c1dc1.jpg",
+       "alt": "",
+       "caption": null
+      },
+      {
+       "id": "logos-flyers-signs/09-ee71f1dc",
+       "src": "images/logos-flyers-signs/09-ee71f1dc.jpg",
+       "alt": "",
+       "caption": null
+      },
+      {
+       "id": "logos-flyers-signs/10-612e6840",
+       "src": "images/logos-flyers-signs/10-612e6840.jpg",
+       "alt": "",
+       "caption": null
+      },
+      {
+       "id": "logos-flyers-signs/11-0d862ac3",
+       "src": "images/logos-flyers-signs/11-0d862ac3.jpg",
+       "alt": "",
+       "caption": null
+      },
+      {
+       "id": "logos-flyers-signs/12-c12d315f",
+       "src": "images/logos-flyers-signs/12-c12d315f.jpg",
+       "alt": "",
+       "caption": null
+      },
+      {
+       "id": "logos-flyers-signs/13-d1ea7268",
+       "src": "images/logos-flyers-signs/13-d1ea7268.jpg",
+       "alt": "",
+       "caption": null
+      }
+     ]
+    },
+    {
+     "t": "html",
+     "html": "<p>Wedding Programs &amp; Signage (Adobe Illustrator &amp; Photoshop):<br>I love to design using images as the main influence and foundation for the rest of the information</p>"
+    },
+    {
+     "t": "images",
+     "layout": "grid",
+     "items": [
+      {
+       "id": "logos-flyers-signs/14-9ad73754",
+       "src": "images/logos-flyers-signs/14-9ad73754.jpg",
+       "alt": "",
+       "caption": null
+      },
+      {
+       "id": "logos-flyers-signs/15-this-is-a-bi-fold-design-for-a-wedding-p",
+       "src": "images/logos-flyers-signs/15-this-is-a-bi-fold-design-for-a-wedding-p.jpg",
+       "alt": "This is a bi-fold design for a wedding program",
+       "caption": null
+      },
+      {
+       "id": "logos-flyers-signs/16-this-is-a-bi-fold-insert-design-for-a-we",
+       "src": "images/logos-flyers-signs/16-this-is-a-bi-fold-insert-design-for-a-we.jpg",
+       "alt": "This is a bi-fold insert design for a wedding program",
+       "caption": null
+      },
+      {
+       "id": "logos-flyers-signs/17-f3dde03b",
+       "src": "images/logos-flyers-signs/17-f3dde03b.jpg",
+       "alt": "",
+       "caption": null
+      },
+      {
+       "id": "logos-flyers-signs/18-47f815ef",
+       "src": "images/logos-flyers-signs/18-47f815ef.jpg",
+       "alt": "",
+       "caption": null
+      },
+      {
+       "id": "logos-flyers-signs/19-8b96ca56",
+       "src": "images/logos-flyers-signs/19-8b96ca56.jpg",
+       "alt": "",
+       "caption": null
+      }
+     ]
+    }
+   ],
+   "covers": [],
+   "categorySlug": "graphic-design"
+  },
+  {
+   "slug": "presentations-workshops",
+   "title": "Keynote & Slides",
+   "navLabel": "Keynote & Slides",
+   "category": "Designs, Graphics & Presentations",
+   "type": "project",
+   "oldTitle": "Cameron Kuey - Keynote & Slides",
+   "blocks": [
+    {
+     "t": "html",
+     "html": "<h3>Annual Report for The Cultivation Project - Keynote Presentation</h3><p>This is an example of a keynote presentation that I put together for The Cultivation Project's annual board meeting. The purpose of this presentation is to provide the board with a general summary of the milestones achieved during the year, a review of the financial situation of the organization, a roadmap of the upcoming year, and a budget for the upcoming year to vote on. These meetings usually consist of a lot of talking and information sharing, so having easy-to-read and clear slides makes the experience a lot better for the board.</p>"
+    },
+    {
+     "t": "images",
+     "layout": "grid",
+     "items": [
+      {
+       "id": "presentations-workshops/01-2f2c45a7",
+       "src": "images/presentations-workshops/01-2f2c45a7.jpg",
+       "alt": "",
+       "caption": null
+      },
+      {
+       "id": "presentations-workshops/02-ef8d121b",
+       "src": "images/presentations-workshops/02-ef8d121b.jpg",
+       "alt": "",
+       "caption": null
+      },
+      {
+       "id": "presentations-workshops/03-269118ad",
+       "src": "images/presentations-workshops/03-269118ad.jpg",
+       "alt": "",
+       "caption": null
+      },
+      {
+       "id": "presentations-workshops/04-d9bc42f0",
+       "src": "images/presentations-workshops/04-d9bc42f0.jpg",
+       "alt": "",
+       "caption": null
+      },
+      {
+       "id": "presentations-workshops/05-a551574f",
+       "src": "images/presentations-workshops/05-a551574f.jpg",
+       "alt": "",
+       "caption": null
+      },
+      {
+       "id": "presentations-workshops/06-565d0173",
+       "src": "images/presentations-workshops/06-565d0173.jpg",
+       "alt": "",
+       "caption": null
+      },
+      {
+       "id": "presentations-workshops/07-aa17305b",
+       "src": "images/presentations-workshops/07-aa17305b.jpg",
+       "alt": "",
+       "caption": null
+      },
+      {
+       "id": "presentations-workshops/08-7987388c",
+       "src": "images/presentations-workshops/08-7987388c.jpg",
+       "alt": "",
+       "caption": null
+      },
+      {
+       "id": "presentations-workshops/09-f7be3089",
+       "src": "images/presentations-workshops/09-f7be3089.jpg",
+       "alt": "",
+       "caption": null
+      },
+      {
+       "id": "presentations-workshops/10-e38a2ea4",
+       "src": "images/presentations-workshops/10-e38a2ea4.jpg",
+       "alt": "",
+       "caption": null
+      },
+      {
+       "id": "presentations-workshops/11-ca63f8b4",
+       "src": "images/presentations-workshops/11-ca63f8b4.jpg",
+       "alt": "",
+       "caption": null
+      },
+      {
+       "id": "presentations-workshops/12-895a21c4",
+       "src": "images/presentations-workshops/12-895a21c4.jpg",
+       "alt": "",
+       "caption": null
+      },
+      {
+       "id": "presentations-workshops/13-718ff28f",
+       "src": "images/presentations-workshops/13-718ff28f.jpg",
+       "alt": "",
+       "caption": null
+      },
+      {
+       "id": "presentations-workshops/14-f04008df",
+       "src": "images/presentations-workshops/14-f04008df.jpg",
+       "alt": "",
+       "caption": null
+      },
+      {
+       "id": "presentations-workshops/15-95f82013",
+       "src": "images/presentations-workshops/15-95f82013.jpg",
+       "alt": "",
+       "caption": null
+      },
+      {
+       "id": "presentations-workshops/16-bc8af7b8",
+       "src": "images/presentations-workshops/16-bc8af7b8.jpg",
+       "alt": "",
+       "caption": null
+      },
+      {
+       "id": "presentations-workshops/17-f36fde8c",
+       "src": "images/presentations-workshops/17-f36fde8c.jpg",
+       "alt": "",
+       "caption": null
+      },
+      {
+       "id": "presentations-workshops/18-27675136",
+       "src": "images/presentations-workshops/18-27675136.jpg",
+       "alt": "",
+       "caption": null
+      }
+     ]
+    },
+    {
+     "t": "html",
+     "html": "<h3>The Cultivation project's Flow Chart</h3><p>I created this flow chart to help The Cultivation Project's team and support base understand the roles and purpose of each project that is being worked on within the organization. Before this chart, it would get really confusing for people to understand the many different divisions, project names, and purposes that each aspect had toward the overall mission.</p>"
+    },
+    {
+     "t": "images",
+     "layout": "single",
+     "items": [
+      {
+       "id": "presentations-workshops/19-ada93861",
+       "src": "images/presentations-workshops/19-ada93861.jpg",
+       "alt": "",
+       "caption": null
+      }
+     ]
+    }
+   ],
+   "covers": [],
+   "categorySlug": "graphic-design"
+  },
+  {
+   "slug": "audio-production",
+   "title": "Audio Production",
+   "navLabel": "Audio Production",
+   "category": null,
+   "type": "gallery",
+   "oldTitle": "Cameron Kuey - Audio Production",
+   "blocks": [],
+   "covers": [
+    {
+     "title": "Coffee Meets Bible Podcast",
+     "href": "/coffee-meets-bible-podcast",
+     "image": {
+      "id": "audio-production/01-0bcb341f",
+      "src": "images/audio-production/01-0bcb341f.jpg",
+      "alt": ""
+     }
+    }
+   ],
+   "categorySlug": null
+  },
+  {
+   "slug": "coffee-meets-bible-podcast",
+   "title": "Coffee Meets Bible Podcast",
+   "navLabel": "Coffee Meets Bible Podcast",
+   "category": "Audio Production",
+   "type": "project",
+   "oldTitle": "Cameron Kuey - Coffee Meets Bible Podcast",
+   "blocks": [
+    {
+     "t": "html",
+     "html": "<p>I'm the producer, technical director and co-host for the Coffee Meets Bible podcast by The Cultivation Project:</p>"
+    },
+    {
+     "t": "embed",
+     "kind": "apple-podcasts",
+     "embed": "https://embed.podcasts.apple.com/us/podcast/coffee-meets-bible/id1505410877",
+     "watch": "https://podcasts.apple.com/us/podcast/coffee-meets-bible/id1505410877",
+     "title": null,
+     "caption": null,
+     "ratio": 56.25,
+     "maxWidth": 800
+    },
+    {
+     "t": "button",
+     "text": "click here to listen to coffee meets bible",
+     "href": "https://www.cultivationproject.org/podcasts"
+    }
+   ],
+   "covers": [],
+   "categorySlug": "audio-production"
+  },
+  {
+   "slug": "contact",
+   "title": "Contact",
+   "navLabel": "Contact",
+   "category": null,
+   "type": "project",
+   "oldTitle": "Cameron Kuey - Contact",
+   "blocks": [
+    {
+     "t": "html",
+     "html": "<ul class=\"taglist\"><li>Email: camkuey93@gmail.com</li><li>www.cosiephotos.com</li><li>www.cultivationproject.org</li></ul>"
+    }
+   ],
+   "covers": [],
+   "categorySlug": null
+  }
+ ]
+}
