@@ -87,8 +87,8 @@ export const roles: Role[] = [
 ];
 
 export const cases = [
-  { href: '/case-studies/circles-scheduling', title: 'Turning a manual, multi-tab Circles setup into a one-step workflow', text: 'Zendesk to a finished Zoom event in one Zapier workflow, with Airtable as the source of truth and the producer still in the loop.', tools: 'Zapier · Airtable · Zoom · Zendesk' },
-  { href: '/case-studies/contract-automation', title: 'One button from an Airtable record to a signed Ironclad contract', text: 'I simplified the process with legal first, then automated it, keeping Ironclad as the system of record.', tools: 'Airtable · Apps Script · Ironclad' },
+  { href: '/case-studies/circles-scheduling', title: 'Turning a manual, multi-tab Circles setup into a one-step workflow', text: 'Zendesk to a finished Zoom event in one Zapier workflow, with the producer still in the loop.', tools: 'Zapier · Airtable · Zoom · Zendesk' },
+  { href: '/case-studies/contract-automation', title: 'One button from an Airtable record to a signed Ironclad contract', text: 'Simplified with legal first, then automated around Ironclad.', tools: 'Airtable · Apps Script · Ironclad' },
 ];
 
 /** Chart range (years) for the ruler. */

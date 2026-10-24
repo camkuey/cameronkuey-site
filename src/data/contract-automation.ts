@@ -11,44 +11,40 @@ export const meta = {
 };
 
 export const stats = [
-  { value: 'One click', label: 'From an Airtable record to an Ironclad contract' },
+  { value: 'One click', label: 'Airtable record to Ironclad contract' },
   { value: 'Fewer steps', label: 'Removed with legal’s agreement' },
   { value: 'Ironclad', label: 'Stayed legal’s system of record' },
-  { value: '150+', label: 'Automations I built across projects at Modern Health' },
+  { value: '150+', label: 'Automations across Modern Health projects' },
 ];
 
 export const note =
-  'This is operations and automation work, built with Airtable, Google Apps Script and Ironclad. I’ve left out figures, names and internal details, and I can’t show real contracts.';
+  'Figures, names and internal details are left out, and I can’t show real contracts.';
 
 export const platforms = ['Airtable', 'Airtable custom extension', 'Google Apps Script', 'Ironclad', 'Slack'];
 
 export const problem = [
-  'Leadership at Modern Health wanted payments automated for the mental health providers we pay, and for freelance audio and video teams. Providers are paid for every webinar they lead, content they help develop, podcasts and slides.',
-  'Every one of those needed an order form and a contract. Dozens of new ones had to be created by hand every day, and each went through many steps across multiple teams before one therapist could be paid.',
+  'Leadership wanted payments automated for the providers we pay and for freelance audio and video teams. Each payment needed an order form and a contract: dozens created by hand every day, through many steps across multiple teams before one therapist could be paid.',
 ];
 
 export const rethink = [
-  'My first stab was to automate the process as it stood. Then I learned how it really worked, and found steps that didn’t need to exist and teams reviewing things other teams had already reviewed.',
-  'For example, legal reviewed the contract before it was sent, then signed it again after the person signed. I asked whether it could be signed once. Legal confirmed it could, and those steps went away. Only then did I automate it.',
+  'I first tried to automate the process as it stood, then found steps that didn’t need to exist. Legal, for example, reviewed the contract before it was sent and signed again after the person signed. I asked whether it could be signed once. Legal confirmed it could, and those steps went away before I automated anything.',
 ];
 
 export const decision = [
-  'One proposal was to build everything in Looker Studio and generate the contracts from there. I pushed back. Ironclad is how our legal team tracked contracts and signatures, so the automation had to work with Ironclad, not around it. That’s the version we built.',
+  'One proposal was to build everything in Looker Studio. I pushed back: Ironclad is how legal tracked contracts and signatures, so the automation had to work with it, not around it. That’s the version we built.',
 ];
 
 export const flows = {
   button: {
     title: 'The button',
     body: [
-      'Each provider or order-form record in Airtable has a button. Clicking it runs a script, either an Airtable custom extension or a Google Apps Script.',
-      'The script sends an API request that makes a copy of the contract template, pre-filled with the person’s details from our Airtable database. It starts a new workflow in Ironclad and uploads the file, then tags the right managers and a single legal signer and places the signature boxes. Last, it updates the status back in Airtable.',
+      'A button on each Airtable record runs a script (an Airtable custom extension or Google Apps Script). It copies the pre-filled contract template, starts an Ironclad workflow, uploads the file, tags the managers and one legal signer, places the signature boxes and writes the status back to Airtable.',
     ],
   },
   after: {
     title: 'After the person signs',
     body: [
-      'Once the person signs, automations download the signed form into the database and update the statuses in Airtable.',
-      'Depending on the contract type, the record is then handed to billing so the person gets paid. Billing’s handoff feeds payment data back into the database, so the whole trail is documented in one place.',
+      'Automations save the signed form and update statuses in Airtable. Depending on contract type, the record goes to billing so the person gets paid, and billing’s handoff feeds payment data back, keeping the whole trail in one place.',
     ],
   },
 };
@@ -56,11 +52,11 @@ export const flows = {
 export const results = [
   'Creating a contract went from hand-built to one click.',
   'The extra review and sign-off steps were removed, with legal’s agreement.',
-  'Everyone could see where a contract stood, in one place.',
+  'Everyone could see where a contract stood.',
 ];
 
 export const learned = [
-  'Simplify the process first, then automate it. Automating the old process would have just made the unnecessary steps faster.',
-  'Keep the legal team’s system of record in the loop. The automation worked because it fed Ironclad instead of replacing it.',
-  'Show more of this with screenshots. I’ve used diagrams here because the real contracts and records are private.',
+  'Simplify first, then automate. Otherwise you just make unnecessary steps faster.',
+  'Keep legal’s system of record in the loop. It worked because it fed Ironclad instead of replacing it.',
+  'Show more with screenshots. I used diagrams because the real contracts are private.',
 ];

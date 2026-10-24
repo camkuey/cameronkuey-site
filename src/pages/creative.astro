@@ -2,7 +2,8 @@
 import Base from '../layouts/Base.astro';
 import Covers from '../components/Covers.astro';
 import CreativeNav from '../components/CreativeNav.astro';
-import { CATEGORIES, page } from '../lib/site';
+import Pic from '../components/Pic.astro';
+import { CATEGORIES, IMAGES, page } from '../lib/site';
 // Subsets of each category (shoot types), not a count of separate projects.
 const SHOOT_TYPES: Record<string, string> = {
   photography: 'Weddings · Engagements · Family · Graduation',
@@ -14,19 +15,94 @@ const covers = CATEGORIES.map((c) => {
   const img = p.covers.find((x: any) => x.image)?.image ?? null;
   return { title: c.title, href: `/${c.slug}`, image: img, tag: SHOOT_TYPES[c.slug] ?? '' };
 });
+
+// ---- Collage -------------------------------------------------------------------------------
+// Every tile links to its category page. Shoot types, colours and captions per category.
+const KIND: Record<string, { label: string; href: string; color: string; cap: string }> = {
+  wed:  { label: 'Weddings',    href: '/wedding-photography',   color: '#881919', cap: 'Wedding · Cosie Co.' },
+  eng:  { label: 'Engagements', href: '/engagement-proposals',  color: '#2E5E92', cap: 'Engagement · Cosie Co.' },
+  fam:  { label: 'Family',      href: '/family-photoshoots',    color: '#DAB057', cap: 'Family · Cosie Co.' },
+  grad: { label: 'Graduation',  href: '/graduation-photoshoots', color: '#1B1A18', cap: 'Graduation · Cosie Co.' },
+  vid:  { label: 'Video',       href: '/video-production',      color: '#881919', cap: 'Video production' },
+  aud:  { label: 'Podcast',     href: '/audio-production',      color: '#2E5E92', cap: 'Audio · Coffee Meets Bible' },
+};
+const FULL: Record<string, string> = { wed: 'wedding-photography', eng: 'engagement-proposals', fam: 'family-photoshoots', grad: 'graduation-photoshoots' };
+const find = (prefix: string, n: number) => {
+  const k = Object.keys(IMAGES).find((x) => x.startsWith(`${prefix}/${String(n).padStart(2, '0')}-`));
+  if (!k) throw new Error(`creative: no image ${prefix} #${n}`);
+  return k;
+};
+// "w2" = existing wedding photo #2, "W1" = new Cosie Co. wedding #1 (cosie-wed-01), "v2" = video cover #2, "a" = podcast cover.
+const CODE: Record<string, string> = { w: 'wed', e: 'eng', f: 'fam', g: 'grad', v: 'vid' };
+const resolve = (t: string) => {
+  if (t === 'a') return { kind: 'aud', id: find('audio-production', 1) };
+  const m = t.match(/^([a-zA-Z])(\d+)$/)!;
+  const kind = CODE[m[1].toLowerCase()], n = +m[2];
+  if (kind === 'vid') return { kind, id: find('video-production', n) };
+  if (m[1] === m[1].toUpperCase()) return { kind, id: `cosie-${kind}-${String(n).padStart(2, '0')}` };
+  return { kind, id: find(FULL[kind], n) };
+};
+// "tile:<kind>" drops a colour block into the flow.
+const MOSAIC_SRC = [
+  'w2', 'E6', 'g10', 'f2', 'W3', 'e9', 'tile:wed', 'f5', 'G3', 'w39', 'e20', 'v1',
+  'g9', 'F6', 'w12', 'E12', 'g19', 'a', 'W8', 'e3', 'E9', 'tile:eng', 'f24', 'g18',
+  'w35', 'F7', 'v2', 'e25', 'w22', 'G5', 'f11', 'E10', 'w40', 'g20', 'F4', 'tile:fam',
+  'v4', 'g1', 'e28', 'w36', 'E5', 'e15', 'tile:grad',
+];
+const mosaic = MOSAIC_SRC.map((t) => {
+  if (t.startsWith('tile:')) { const k = t.slice(5); return { tile: true as const, kind: k, ...KIND[k] }; }
+  const r = resolve(t);
+  const i = IMAGES[r.id];
+  return { tile: false as const, kind: r.kind, id: r.id, ar: +(i.w / i.h).toFixed(4), color: i.color, ...KIND[r.kind] };
+});
+const STRIP_A = ['W2', 'e2', 'f1', 'G1', 'E1', 'w5', 'F3', 'E3', 'g2', 'W6', 'E8', 'F5', 'v3', 'G4', 'W7'];
+const STRIP_B = ['E2', 'w21', 'G2', 'F8', 'e17', 'W4', 'g13', 'E11', 'f19', 'G6', 'E14', 'w6', 'f15', 'g28', 'E15'];
+const strip = (list: string[]) => list.map((t) => { const r = resolve(t); const i = IMAGES[r.id]; return { id: r.id, ar: +(i.w / i.h).toFixed(4), color: i.color, ...KIND[r.kind] }; });
+const stripA = strip(STRIP_A), stripB = strip(STRIP_B);
+const EAGER = 7; // tiles that sit in the first rows on desktop
 ---
 <Base title="Creative work" section="creative"
   description="Creative work by Cameron Kuey: wedding, engagement, family and graduation photography; video production; and the Coffee Meets Bible podcast.">
   <CreativeNav current="creative" />
+  <div class="band"><div class="cs-stripe" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
   <div class="wrap">
     <header class="page-head wide">
       <p class="eyebrow">Creative</p>
       <h1>Photography, film <em>&amp; audio.</em></h1>
       <p class="lede">Ten years of work through Cosie Co. and The Cultivation Project: 200+ clients served as a freelancer, and 100+ documentaries, promotional videos and podcast episodes produced with a team of 10+.</p>
+      <ul class="cl-chips" aria-label="Browse by type">
+        {['wed', 'eng', 'fam', 'grad', 'vid', 'aud'].map((k) => <li><a href={KIND[k].href} style={`--c:${KIND[k].color}`}>{KIND[k].label}</a></li>)}
+      </ul>
     </header>
+  </div></div>
+  <section class="cl-sec"><div class="wrap">
+    <div class="cl-mosaic">
+      {mosaic.map((t, n) => t.tile
+        ? <a class="cl-tile" href={t.href} style={`--c:${t.color};--ar:1`} data-k={t.kind}><span class="cl-n eyebrow">Browse</span><b>{t.label}</b><span class="cl-go">See the photos →</span></a>
+        : <a class="cl-ph" href={t.href} style={`--ar:${t.ar};--c:${t.color}`} data-wide={t.ar >= 1.2 ? '' : undefined}>
+            <Pic id={t.id} sizes="(max-width: 700px) 50vw, 340px" eager={n < EAGER} />
+            <span class="cl-cap"><i style={`background:${t.color}`}></i>{t.cap}</span>
+          </a>)}
+    </div>
+  </div></section>
+  <section class="cl-sec cl-strips" aria-label="More frames"><div class="wrap">
+    <div class="sec-head"><h2>More frames</h2><p class="eyebrow">Hover to pause</p></div>
   </div>
+    {[stripA, stripB].map((row, r) => (
+      <div class={`cl-strip${r ? ' rev' : ''}`}>
+        <div class="cl-track">
+          {[0, 1].map((copy) => row.map((t) => (
+            <a href={t.href} style={`--ar:${t.ar};--c:${t.color}`} tabindex={copy ? -1 : undefined} aria-hidden={copy ? 'true' : undefined} class={copy ? 'dup' : undefined}>
+              <Pic id={t.id} sizes="(max-width: 700px) 240px, 320px" alt={copy ? '' : undefined} />
+            </a>
+          )))}
+        </div>
+      </div>
+    ))}
+  </section>
   <section style="padding-top:8px"><div class="wrap">
-    <Covers covers={covers} three eager />
+    <div class="sec-head"><h2>By category</h2><p class="eyebrow">Shoot types</p></div>
+    <Covers covers={covers} three eager={false} />
     <div class="creative-index">
       {CATEGORIES.map((c) => (
         <div>

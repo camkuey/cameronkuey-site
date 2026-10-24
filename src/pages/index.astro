@@ -2,6 +2,7 @@
 import Base from '../layouts/Base.astro';
 import Pic from '../components/Pic.astro';
 import DataFlowDiagram from '../components/DataFlowDiagram.astro';
+import CaseMotif from '../components/CaseMotif.astro';
 import { SITE, page } from '../lib/site';
 
 const work = [
@@ -32,6 +33,7 @@ const jsonld = {
 };
 ---
 <Base title="Cameron Kuey" description="Cameron Kuey — Director of Business Operations at Doodle Pirates Foundation, builder of internal tools with AI agents, and a photographer and filmmaker (Cosie Co., The Cultivation Project)." jsonld={jsonld}>
+<div class="cs-stripe" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
 <section class="hero" aria-labelledby="h"><div class="wrap">
   <p class="eyebrow">Operations · AI builds · Photo, film &amp; audio</p>
   <div class="hero-bar">
@@ -62,16 +64,19 @@ const jsonld = {
   <div class="sec-head"><h2 id="paths-h">Three ways I work</h2><p class="eyebrow">Choose a path</p></div>
   <div class="paths">
     <a class="path" href="/operations">
+      <div class="path-motif" aria-hidden="true"><CaseMotif kind="contract" variant="card" /></div>
       <span class="num">01</span><h3>Operations</h3>
       <p>Running the business side so mission work can move faster — processes, data, teams and tools.</p>
       <span class="go">Operations work →</span>
     </a>
     <a class="path" href="/ai-builds">
+      <div class="path-motif" aria-hidden="true"><CaseMotif kind="roadmap" variant="card" /></div>
       <span class="num">02</span><h3>AI &amp; Technical Builds</h3>
       <p>I design the tools and decide how they work, then have Cursor cloud agents build them fast. I review every change.</p>
       <span class="go">Technical builds →</span>
     </a>
     <a class="path" href="/creative">
+      <div class="path-motif" aria-hidden="true"><CaseMotif kind="circles" variant="card" /></div>
       <span class="num">03</span><h3>Creative Work</h3>
       <p>Photography, video and podcasting. 200+ clients served as a freelancer through Cosie Co., and 100+ documentaries, videos and podcast episodes produced with The Cultivation Project.</p>
       <span class="go">Creative portfolio →</span>
@@ -85,7 +90,7 @@ const jsonld = {
     <div class="case-body">
       <p class="eyebrow">Doodle Pirates Foundation · Internal tools</p>
       <h3 id="case-h">An all-in-one Internal Dashboard, <em>concept to production in under two weeks.</em></h3>
-      <p>Designed by me and built fast with Cursor cloud agents on top of an Airtable ERP — including Ask Otis, a Claude-powered assistant with human-in-the-loop approval built in.</p>
+      <p>Designed by me and built fast with Cursor cloud agents on an Airtable ERP, including Ask Otis, a Claude-powered assistant with human-in-the-loop approval.</p>
       <div class="stats">
         <div class="stat"><b>&lt;2 wks</b><span>Concept to production</span></div>
         <div class="stat"><b>152</b><span>Reviewed pull requests</span></div>

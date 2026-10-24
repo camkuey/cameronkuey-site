@@ -4,7 +4,7 @@ import CaseMotif from '../../components/CaseMotif.astro';
 import CaseFlow from '../../components/CaseFlow.astro';
 import Pic from '../../components/Pic.astro';
 import { fullSrc, IMAGES } from '../../lib/site';
-import { meta, stats, note, problem, design, copies, flows, owner, clientSteps, friendly, screens, results, limits } from '../../data/growth-roadmap';
+import { meta, stats, problem, design, copies, flows, owner, clientSteps, friendly, screens, results, limits } from '../../data/growth-roadmap';
 const shot = (id: string) => screens.find((s) => s.id === id)!;
 const pair = [shot('growth-overview-light'), shot('growth-overview-dark')];
 const gallery = screens.filter((s) => !pair.includes(s));
@@ -16,18 +16,17 @@ const gallery = screens.filter((s) => !pair.includes(s));
       <div class="wrap cs-herogrid">
         <header class="page-head wide">
           <ol class="crumbs eyebrow" aria-label="Breadcrumb"><li><a href="/case-studies">Case studies</a></li><li>Strategy Growth Roadmap</li></ol>
-          <h1>From sticky notes to <em>a Strategy Growth Roadmap that lives in a Google Sheet.</em></h1>
-          <p class="lede">A freelance build. A client was planning years of growth on hand-drawn sketches and sticky notes. I designed a roadmap tool that runs on Google Sheets and Apps Script. It’s easy to use and easy to roll out: one master Sheet, and each new client just makes a copy, so everyone gets their own private Sheet and nothing to install.</p>
+          <h1>From sticky notes to <em>a roadmap in a Google Sheet.</em></h1>
+          <p class="lede">A freelance build: the Strategy Growth Roadmap, a planning tool on Google Sheets and Apps Script. One master Sheet, and each new client makes a copy for their own private Sheet, with nothing to install.</p>
         </header>
         <div class="cs-motif"><CaseMotif kind="roadmap" /></div>
       </div>
       <div class="wrap">
-        <div class="cs-tiles">
-          {stats.map((s, i) => <div class={`cs-tile t${i}`}><b>{s.value}</b><span>{s.label}</span></div>)}
+        <div class="cs-tiles hl">
+          {stats.map((s, i) => <div class={`cs-tile t${i}`}><b>{s.title}</b><span>{s.text}</span></div>)}
         </div>
       </div>
     </div>
-    <div class="wrap"><p class="cs-note">{note}</p></div>
 
     <section class="cs-sec c-red"><div class="wrap">
       <div class="cs-split">
@@ -56,7 +55,7 @@ const gallery = screens.filter((s) => !pair.includes(s));
       <div class="cs-grid">
         <div class="cs-label"><span class="cs-no" aria-hidden="true">02</span><h2>From sketch to tool</h2></div>
         <div class="cs-prose">
-          <p>I designed it like a planning sketch, but one that edits itself: yearly numbers on top, a swimlane for each area of the plan below, and one shared year axis.</p>
+          <p>Designed like a planning sketch that edits itself: yearly numbers on top, swimlanes below, one shared year axis.</p>
           <ol class="numbered">{design.map((d) => <li><b>{d.title}</b><p>{d.text}</p></li>)}</ol>
         </div>
       </div>
@@ -66,7 +65,7 @@ const gallery = screens.filter((s) => !pair.includes(s));
             <a class="cs-shotlink" href={fullSrc(s.id)} data-lb data-w={IMAGES[s.id].w} data-h={IMAGES[s.id].h} data-cap={s.label} aria-label={`View larger: ${s.label}`}>
               <Pic id={s.id} alt={s.alt} sizes="(max-width: 900px) 100vw, 560px" />
             </a>
-            <figcaption><b>{s.label}</b><span>{s.note}</span></figcaption>
+            <figcaption><b>{s.label}</b>{s.note && <span>{s.note}</span>}</figcaption>
           </figure>
         ))}
       </div>
@@ -120,7 +119,7 @@ const gallery = screens.filter((s) => !pair.includes(s));
             <a class="cs-shotlink" href={fullSrc(s.id)} data-lb data-w={IMAGES[s.id].w} data-h={IMAGES[s.id].h} data-cap={s.label} aria-label={`View larger: ${s.label}`}>
               <Pic id={s.id} alt={s.alt} sizes="(max-width: 600px) 100vw, (max-width: 900px) 50vw, 380px" />
             </a>
-            <figcaption><b>{s.label}</b><span>{s.note}</span></figcaption>
+            <figcaption><b>{s.label}</b>{s.note && <span>{s.note}</span>}</figcaption>
           </figure>
         ))}
       </div>
@@ -131,7 +130,7 @@ const gallery = screens.filter((s) => !pair.includes(s));
         <div class="cs-label"><span class="cs-no" aria-hidden="true">06</span><h2>What I can show</h2></div>
         <ol class="numbered">{results.map((r) => <li><b>{r.title}</b><p>{r.text}</p></li>)}</ol>
       </div>
-      <p class="cs-note">I’m not claiming outcomes for the client here. These are the checks I ran on the build itself.</p>
+      <p class="cs-note">No client outcomes or speed measurements claimed. These checks cover the build itself, including that the code has no Sheet IDs and asks only for the Sheets and menu permissions.</p>
     </div></section>
 
     <section class="cs-sec c-ink tint"><div class="wrap">

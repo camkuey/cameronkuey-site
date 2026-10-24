@@ -145,5 +145,736 @@
    1120
   ],
   "color": "#f8f8f8"
+ },
+ "cosie-eng-01": {
+  "w": 2500,
+  "h": 1667,
+  "base": "/media/cosie/cosie-eng-01",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#f8f8f8"
+ },
+ "cosie-eng-02": {
+  "w": 2500,
+  "h": 1667,
+  "base": "/media/cosie/cosie-eng-02",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#686868"
+ },
+ "cosie-eng-03": {
+  "w": 2500,
+  "h": 1667,
+  "base": "/media/cosie/cosie-eng-03",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#484838"
+ },
+ "cosie-eng-04": {
+  "w": 2500,
+  "h": 3750,
+  "base": "/media/cosie/cosie-eng-04",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#a8a8a8"
+ },
+ "cosie-eng-05": {
+  "w": 2500,
+  "h": 3750,
+  "base": "/media/cosie/cosie-eng-05",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#e8d8b8"
+ },
+ "cosie-eng-06": {
+  "w": 2500,
+  "h": 1667,
+  "base": "/media/cosie/cosie-eng-06",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#080808"
+ },
+ "cosie-eng-07": {
+  "w": 2500,
+  "h": 3750,
+  "base": "/media/cosie/cosie-eng-07",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#f8f8f8"
+ },
+ "cosie-eng-08": {
+  "w": 2500,
+  "h": 1667,
+  "base": "/media/cosie/cosie-eng-08",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#080808"
+ },
+ "cosie-eng-09": {
+  "w": 2500,
+  "h": 1667,
+  "base": "/media/cosie/cosie-eng-09",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#f8f8f8"
+ },
+ "cosie-eng-10": {
+  "w": 2500,
+  "h": 3750,
+  "base": "/media/cosie/cosie-eng-10",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#98c8b8"
+ },
+ "cosie-eng-11": {
+  "w": 2500,
+  "h": 1667,
+  "base": "/media/cosie/cosie-eng-11",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#f8f8f8"
+ },
+ "cosie-eng-12": {
+  "w": 2500,
+  "h": 1667,
+  "base": "/media/cosie/cosie-eng-12",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#78a8d8"
+ },
+ "cosie-eng-13": {
+  "w": 2500,
+  "h": 3750,
+  "base": "/media/cosie/cosie-eng-13",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#f8f8f8"
+ },
+ "cosie-eng-14": {
+  "w": 2500,
+  "h": 3750,
+  "base": "/media/cosie/cosie-eng-14",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#e8d8c8"
+ },
+ "cosie-eng-15": {
+  "w": 2500,
+  "h": 1667,
+  "base": "/media/cosie/cosie-eng-15",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#f8f8f8"
+ },
+ "cosie-eng-16": {
+  "w": 2500,
+  "h": 3750,
+  "base": "/media/cosie/cosie-eng-16",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#f8f8f8"
+ },
+ "cosie-eng-17": {
+  "w": 2275,
+  "h": 1517,
+  "base": "/media/cosie/cosie-eng-17",
+  "webp": [
+   480,
+   960,
+   1600,
+   2275
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#484838"
+ },
+ "cosie-eng-18": {
+  "w": 2500,
+  "h": 1667,
+  "base": "/media/cosie/cosie-eng-18",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#d8c8b8"
+ },
+ "cosie-fam-01": {
+  "w": 2500,
+  "h": 1667,
+  "base": "/media/cosie/cosie-fam-01",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#f8f8f8"
+ },
+ "cosie-fam-02": {
+  "w": 2500,
+  "h": 1667,
+  "base": "/media/cosie/cosie-fam-02",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#f8f8f8"
+ },
+ "cosie-fam-03": {
+  "w": 2500,
+  "h": 1667,
+  "base": "/media/cosie/cosie-fam-03",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#e8e8f8"
+ },
+ "cosie-fam-04": {
+  "w": 2500,
+  "h": 3750,
+  "base": "/media/cosie/cosie-fam-04",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#181808"
+ },
+ "cosie-fam-05": {
+  "w": 2500,
+  "h": 3750,
+  "base": "/media/cosie/cosie-fam-05",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#e8f8f8"
+ },
+ "cosie-fam-06": {
+  "w": 2500,
+  "h": 3750,
+  "base": "/media/cosie/cosie-fam-06",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#f8f8f8"
+ },
+ "cosie-fam-07": {
+  "w": 2500,
+  "h": 1667,
+  "base": "/media/cosie/cosie-fam-07",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#f8f8f8"
+ },
+ "cosie-fam-08": {
+  "w": 2500,
+  "h": 1667,
+  "base": "/media/cosie/cosie-fam-08",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#f8f8f8"
+ },
+ "cosie-grad-01": {
+  "w": 2500,
+  "h": 3750,
+  "base": "/media/cosie/cosie-grad-01",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#f8f8f8"
+ },
+ "cosie-grad-02": {
+  "w": 2500,
+  "h": 3750,
+  "base": "/media/cosie/cosie-grad-02",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#786858"
+ },
+ "cosie-grad-03": {
+  "w": 2500,
+  "h": 3750,
+  "base": "/media/cosie/cosie-grad-03",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#e8e8e8"
+ },
+ "cosie-grad-04": {
+  "w": 2500,
+  "h": 3750,
+  "base": "/media/cosie/cosie-grad-04",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#786858"
+ },
+ "cosie-grad-05": {
+  "w": 2500,
+  "h": 1667,
+  "base": "/media/cosie/cosie-grad-05",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#d8d8c8"
+ },
+ "cosie-grad-06": {
+  "w": 2500,
+  "h": 3750,
+  "base": "/media/cosie/cosie-grad-06",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#e8e8e8"
+ },
+ "cosie-grad-07": {
+  "w": 2500,
+  "h": 1667,
+  "base": "/media/cosie/cosie-grad-07",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#f8f8f8"
+ },
+ "cosie-grad-08": {
+  "w": 2500,
+  "h": 1667,
+  "base": "/media/cosie/cosie-grad-08",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#f8f8f8"
+ },
+ "cosie-grad-09": {
+  "w": 2500,
+  "h": 1667,
+  "base": "/media/cosie/cosie-grad-09",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#f8f8f8"
+ },
+ "cosie-wed-01": {
+  "w": 2500,
+  "h": 3750,
+  "base": "/media/cosie/cosie-wed-01",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#d8d8d8"
+ },
+ "cosie-wed-02": {
+  "w": 2500,
+  "h": 1667,
+  "base": "/media/cosie/cosie-wed-02",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#f8f8f8"
+ },
+ "cosie-wed-03": {
+  "w": 2500,
+  "h": 3750,
+  "base": "/media/cosie/cosie-wed-03",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#f8f8f8"
+ },
+ "cosie-wed-04": {
+  "w": 2500,
+  "h": 1667,
+  "base": "/media/cosie/cosie-wed-04",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#f8f8f8"
+ },
+ "cosie-wed-05": {
+  "w": 2500,
+  "h": 1667,
+  "base": "/media/cosie/cosie-wed-05",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#f8f8f8"
+ },
+ "cosie-wed-06": {
+  "w": 2500,
+  "h": 3750,
+  "base": "/media/cosie/cosie-wed-06",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#f8f8f8"
+ },
+ "cosie-wed-07": {
+  "w": 2500,
+  "h": 1667,
+  "base": "/media/cosie/cosie-wed-07",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#f8f8f8"
+ },
+ "cosie-wed-08": {
+  "w": 2500,
+  "h": 3750,
+  "base": "/media/cosie/cosie-wed-08",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#f8f8f8"
  }
 }

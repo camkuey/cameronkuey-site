@@ -90,7 +90,7 @@ const nav = [
   </main>
 
   {footer && (
-  <footer id="contact" class="contact" aria-labelledby="footer-title"><div class="wrap">
+  <footer id="contact" class="contact" aria-labelledby="footer-title"><div class="cs-stripe" aria-hidden="true"><i></i><i></i><i></i><i></i></div><div class="wrap">
     <p class="eyebrow" style="margin-bottom:20px">Contact</p>
     <h2 id="footer-title">Let’s build something.<br /><a href={`mailto:${SITE.email}`}>{SITE.email}</a></h2>
     <div class="contact-row">
@@ -120,6 +120,14 @@ const nav = [
   </dialog>
 
   <script>
+    // Sticky nav shadow once scrolled
+    const navEl = document.querySelector('header.nav');
+    if (navEl) {
+      const onScroll = () => navEl.classList.toggle('scrolled', window.scrollY > 8);
+      onScroll();
+      addEventListener('scroll', onScroll, { passive: true });
+    }
+
     // Mobile menu
     const btn = document.querySelector<HTMLButtonElement>('.menu-btn');
     const menu = document.getElementById('mobile-menu');

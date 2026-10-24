@@ -3,28 +3,29 @@ import Base from '../layouts/Base.astro';
 import Pic from '../components/Pic.astro';
 import BuildFlow from '../components/BuildFlow.astro';
 const minis = [
-  { title: 'Ask Otis', body: 'A Claude-powered assistant inside the Internal Dashboard. It creates and updates tasks, suggests milestones and catches duplicates, and nothing is saved until a person approves it.', tag: 'Claude · human-in-the-loop', kind: 'otis' },
+  { title: 'Ask Otis', body: 'A Claude-powered assistant in the Internal Dashboard. It creates and updates tasks, suggests milestones and catches duplicates. Nothing saves until a person approves.', tag: 'Claude · human-in-the-loop', kind: 'otis' },
   { title: 'Meeting-to-task pipeline', body: 'Turns meeting transcripts into approved tasks, which the dashboard’s AI then assigns as each person’s daily focus. Saves about 5 hours a week.', tag: 'Claude Code · Grok Bot', kind: 'meeting' },
-  { title: '~20 AI agents, mapped to the org chart', body: 'An organization-wide agentic operating model that defines which work belongs to AI, to people, or to both, with about 20 AI agents mapped to org-chart roles across all six departments.', tag: 'Operating model', kind: 'agents' },
+  { title: '~20 AI agents, mapped to the org chart', body: 'An agentic operating model that defines which work belongs to AI, people or both, with about 20 AI agents mapped to org-chart roles across all six departments.', tag: 'Operating model', kind: 'agents' },
   { title: 'Four connected Airtable bases', body: 'The data layer behind the Foundation, including a 30-table operations backbone and a 32-table manufacturing ERP.', tag: 'Airtable · schema design', kind: 'bases' },
 ];
 ---
 <Base title="AI & technical builds" section="ai"
   description="AI and technical builds by Cameron Kuey: the Internal Dashboard, Ask Otis, a meeting-to-task pipeline, ~20 AI agents mapped to org roles, and four connected Airtable bases.">
+  <div class="band"><div class="cs-stripe" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
   <div class="wrap">
     <header class="page-head">
       <p class="eyebrow">AI &amp; Technical Builds</p>
       <h1>I design the tools. <em>AI helps me build them fast.</em></h1>
       <p class="lede">I decide what gets built and how it works: the problem, the workflow, the data and the approvals. Then I direct AI agents to build it far faster than I could alone, and I review every change.</p>
     </header>
-  </div>
+  </div></div>
   <section style="padding-top:16px"><div class="wrap">
     <div class="sec-head"><h2>Featured case study</h2><p class="eyebrow">Doodle Pirates Foundation</p></div>
     <article class="case">
       <div class="case-body">
         <p class="eyebrow">Doodle Pirates Foundation · Internal tools</p>
         <h3>An all-in-one Internal Dashboard, <em>concept to production in under two weeks.</em></h3>
-        <p>Designed by me and built fast with Cursor cloud agents on top of an Airtable ERP — including Ask Otis, a Claude-powered assistant with human-in-the-loop approval built in.</p>
+        <p>Designed by me and built fast with Cursor cloud agents on an Airtable ERP, including Ask Otis, a Claude-powered assistant with human-in-the-loop approval.</p>
         <div class="stats">
           <div class="stat"><b>&lt;2 wks</b><span>Concept to production</span></div>
           <div class="stat"><b>152</b><span>Reviewed pull requests</span></div>
@@ -40,7 +41,7 @@ const minis = [
   </div></section>
   <section style="padding-top:0"><div class="wrap">
     <div class="sec-head"><h2>More builds</h2><p class="eyebrow">Doodle Pirates Foundation</p></div>
-    <div class="minis">
+    <div class="minis tinted">
       {minis.map((m, i) => (
         <div class="mini">
           <BuildFlow kind={m.kind} />
