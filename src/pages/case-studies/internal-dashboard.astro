@@ -20,7 +20,6 @@ import { stats, modules, stack, broke, differently, screenshots, shot } from '..
 
     <section style="padding-top:8px"><div class="wrap">
       <figure class="cs-vis cs-hero-vis">
-        <span class="tag">Sample data</span>
         <Pic id={shot.myWork.id} alt={shot.myWork.alt} eager sizes="(max-width: 1280px) 100vw, 1200px" />
       </figure>
       <div class="stats cs-statbar">
@@ -32,10 +31,9 @@ import { stats, modules, stack, broke, differently, screenshots, shot } from '..
     <section class="cs-vspace"><div class="wrap cs-split">
       <div class="cs-text">
         <h2>The problem</h2>
-        <p>Doodle Pirates Foundation is a nonprofit, and much of the team is neurodivergent. I built the dashboard partly to give each person one simple place that shows what to focus on each day.</p>
+        <p>At Doodle Pirates Foundation, the team was disconnected: projects and tasks lived in different places, so it was hard to see who was doing what or how the work fit together. As a nonprofit startup we also have limited funds and couldn’t afford a stack of separate software subscriptions. And we employ neurodivergent people, so everyone learns and works differently, at every level of experience. I designed the dashboard to solve all three: one affordable, universal and easy-to-use system that works for every kind of employee, and gives each person one simple place that shows what to focus on each day.</p>
       </div>
       <div class="cs-vis phones">
-        <span class="tag">Sample data</span>
         <Pic id={shot.phoneFocus.id} alt={shot.phoneFocus.alt} sizes="240px" />
         <Pic id={shot.phoneOtis.id} alt={shot.phoneOtis.alt} sizes="240px" />
       </div>
@@ -48,8 +46,17 @@ import { stats, modules, stack, broke, differently, screenshots, shot } from '..
         <ul class="taglist">{modules.map((m) => <li>{m}</li>)}</ul>
       </div>
       <figure class="cs-vis">
-        <span class="tag">Sample data</span>
-        <Pic id={shot.projects.id} alt={shot.projects.alt} sizes="(max-width: 900px) 100vw, 700px" />
+        <Pic id={shot.tasks.id} alt={shot.tasks.alt} sizes="(max-width: 900px) 100vw, 700px" />
+      </figure>
+    </div></section>
+
+    <section class="cs-vspace"><div class="wrap">
+      <div class="cs-text" style="max-width:62ch">
+        <h2>Plan: milestones and a live timeline</h2>
+        <p>The Plan side gives each department a Gantt-style timeline of its projects and milestones, with counts for open projects, open milestones, the next milestone and what is blocked. Dependency lines show what is waiting on what. Hover for details and what it unblocks, and click to edit the record in Airtable.</p>
+      </div>
+      <figure class="cs-vis" style="margin-top:28px">
+        <Pic id={shot.projects.id} alt={shot.projects.alt} sizes="(max-width: 1280px) 100vw, 1200px" />
       </figure>
     </div></section>
 
@@ -69,7 +76,6 @@ import { stats, modules, stack, broke, differently, screenshots, shot } from '..
         <p>Every weekday at 6:30 AM, the dashboard picks 3 to 5 tasks for each person’s daily focus, using AI with a short reason for each. If the AI is slow or down, a rule-based picker fills in.</p>
       </div>
       <figure class="cs-vis">
-        <span class="tag">Sample data</span>
         <Pic id={shot.focusDeck.id} alt={shot.focusDeck.alt} sizes="(max-width: 900px) 100vw, 700px" />
       </figure>
     </div></section>
@@ -104,19 +110,17 @@ import { stats, modules, stack, broke, differently, screenshots, shot } from '..
         </dl>
       </div>
       <div class="cs-vis pair">
-        <span class="tag">Sample data</span>
-        <figure><Pic id={shot.docs.id} alt={shot.docs.alt} sizes="(max-width: 900px) 100vw, 340px" /><figcaption>{shot.docs.label}</figcaption></figure>
-        <figure><Pic id={shot.onboarding.id} alt={shot.onboarding.alt} sizes="(max-width: 900px) 100vw, 340px" /><figcaption>{shot.onboarding.label}</figcaption></figure>
+        <figure><Pic id={shot.docs.id} alt={shot.docs.alt} sizes="(max-width: 900px) 100vw, 560px" /><figcaption>{shot.docs.label}</figcaption></figure>
+        <figure><Pic id={shot.onboarding.id} alt={shot.onboarding.alt} sizes="(max-width: 900px) 100vw, 560px" /><figcaption>{shot.onboarding.label}</figcaption></figure>
       </div>
     </div></section>
 
     <section class="cs-vspace"><div class="wrap">
-      <div class="sec-head"><h2>Screens</h2><p class="eyebrow">Sample data only</p></div>
+      <div class="sec-head"><h2>Screens</h2></div>
       <div class="shots dash-shots" data-gallery>
         {screenshots.map((s) => (
           <figure class={`shot${s.phone ? ' is-phone' : ''}`}>
-            <a class="shot-img" href={fullSrc(s.id)} data-lb data-w={IMAGES[s.id].w} data-h={IMAGES[s.id].h} data-cap={`${s.label} (sample data)`} aria-label={`View larger: ${s.alt}`}>
-              <span class="tag">Sample data</span>
+            <a class="shot-img" href={fullSrc(s.id)} data-lb data-w={IMAGES[s.id].w} data-h={IMAGES[s.id].h} data-cap={s.label} aria-label={`View larger: ${s.alt}`}>
               <Pic id={s.id} alt={s.alt} sizes={s.phone ? '(max-width: 900px) 50vw, 260px' : '(max-width: 900px) 100vw, 560px'} />
             </a>
             <figcaption><b>{s.label}</b>{s.note && <span>{s.note}</span>}</figcaption>

@@ -135,6 +135,40 @@
   ],
   "color": "#386898"
  },
+ "dash-weekly-signoff": {
+  "w": 2880,
+  "h": 1800,
+  "base": "/media/dashboard/weekly-signoff",
+  "webp": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#f8f8f8"
+ },
+ "dash-hero-focus": {
+  "w": 2000,
+  "h": 1600,
+  "base": "/media/dashboard/hero-focus",
+  "webp": [
+   480,
+   960,
+   1600,
+   2000
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#f8f8f8"
+ },
  "dash-projects-milestones": {
   "w": 2880,
   "h": 1800,
@@ -281,22 +315,5 @@
    1440
   ],
   "color": "#f8f8f8"
- },
- "dash-hero-focus": {
-  "w": 2000,
-  "h": 1600,
-  "base": "/media/dashboard/hero-focus",
-  "webp": [
-   480,
-   960,
-   1600,
-   2000
-  ],
-  "avif": [
-   480,
-   960,
-   1600
-  ],
-  "color": "#386898"
  }
 }

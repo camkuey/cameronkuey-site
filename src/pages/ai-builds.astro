@@ -1,11 +1,12 @@
 ---
 import Base from '../layouts/Base.astro';
 import Pic from '../components/Pic.astro';
+import BuildFlow from '../components/BuildFlow.astro';
 const minis = [
-  { title: 'Ask Otis', body: 'A Claude-powered assistant inside the Internal Dashboard. It creates and updates tasks, suggests milestones and catches duplicates, and nothing is saved until a person approves it.', tag: 'Claude · human-in-the-loop' },
-  { title: 'Meeting-to-task pipeline', body: 'Turns meeting transcripts into approved tasks, which the dashboard’s AI then assigns as each person’s daily focus. Saves about 5 hours a week.', tag: 'Claude Code · Grok Bot' },
-  { title: '~20 AI agents, mapped to the org chart', body: 'An organization-wide agentic operating model that defines which work belongs to AI, to people, or to both, with about 20 AI agents mapped to org-chart roles across all six departments.', tag: 'Operating model' },
-  { title: 'Four connected Airtable bases', body: 'The data layer behind the Foundation, including a 30-table operations backbone and a 32-table manufacturing ERP.', tag: 'Airtable · schema design' },
+  { title: 'Ask Otis', body: 'A Claude-powered assistant inside the Internal Dashboard. It creates and updates tasks, suggests milestones and catches duplicates, and nothing is saved until a person approves it.', tag: 'Claude · human-in-the-loop', kind: 'otis' },
+  { title: 'Meeting-to-task pipeline', body: 'Turns meeting transcripts into approved tasks, which the dashboard’s AI then assigns as each person’s daily focus. Saves about 5 hours a week.', tag: 'Claude Code · Grok Bot', kind: 'meeting' },
+  { title: '~20 AI agents, mapped to the org chart', body: 'An organization-wide agentic operating model that defines which work belongs to AI, to people, or to both, with about 20 AI agents mapped to org-chart roles across all six departments.', tag: 'Operating model', kind: 'agents' },
+  { title: 'Four connected Airtable bases', body: 'The data layer behind the Foundation, including a 30-table operations backbone and a 32-table manufacturing ERP.', tag: 'Airtable · schema design', kind: 'bases' },
 ];
 ---
 <Base title="AI & technical builds" section="ai"
@@ -42,6 +43,7 @@ const minis = [
     <div class="minis">
       {minis.map((m, i) => (
         <div class="mini">
+          <BuildFlow kind={m.kind} />
           <span class="num">{String(i + 1).padStart(2, '0')}</span>
           <h3>{m.title}</h3>
           <p>{m.body}</p>

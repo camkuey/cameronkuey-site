@@ -31,6 +31,8 @@ const images = {
   'kiosk-clocked-in': S('desktop-kiosk-clocked-in@2x.png'),
   'work-schedule-pto-saved': S('desktop-work-schedule-pto-saved@2x.png'),
   'time-review-week': S('desktop-time-review-week@2x.png'),
+  'weekly-signoff': S('desktop-weekly-signoff@2x.png'),
+  'hero-focus': S('desktop-today-focus-hero-1000x800@2x.png'),
   'projects-milestones': S('desktop-projects-milestones@2x.png'),
   'documentation-editor': S('desktop-documentation-editor@2x.png'),
   'onboarding': S('desktop-onboarding@2x.png'),

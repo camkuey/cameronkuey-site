@@ -64,6 +64,7 @@ export const shot = {
   kiosk: { id: 'dash-kiosk-clocked-in', label: 'Shop-floor kiosk', note: 'Clocked in, with the task\u2019s step checklist', alt: 'Kiosk screen for a woodworking station: a large 9:41 AM clock, “On the clock”, and a task card “Sew 10 pieces of fabric” with a four-step checklist and I finished it, I need help and Not today buttons.' },
   pto: { id: 'dash-work-schedule-pto-saved', label: 'Work Schedule', note: 'PTO saves right away', alt: 'Work Schedule week of Oct 26: blue 9 to 5:30 shifts Monday to Wednesday, and PTO tags on Thursday and Friday with those shifts shown in red.' },
   review: { id: 'dash-time-review-week', label: 'Review your week', note: 'Confirm hours or ask for a correction', alt: 'A “Review your week” card listing four days of clock-in and clock-out times with meal and rest breaks, and Confirm this week and Request a correction buttons.' },
+  signoff: { id: 'dash-weekly-signoff', label: 'Weekly sign-off', note: 'Managers approve each person\u2019s confirmed week', alt: 'Shop payroll, Weekly sign-off: a table of people with their week, where one person shows \u201cConfirmed by worker\u201d with an Approve week button and the rest show \u201cNot confirmed yet\u201d.' },
   projects: { id: 'dash-projects-milestones', label: 'Milestones & projects', note: 'Timeline, next milestone and what\u2019s blocked', alt: 'Operations Milestones & Projects: counts for open projects, open milestones, next milestone and blocked, above a timeline of projects and milestones with a Today line.' },
   docs: { id: 'dash-documentation-editor', label: 'Documentation', note: 'Each page is a real Google Doc', alt: 'Documentation page “How we apply for a grant”, labelled as a Google Doc with an Open in Google Docs link, a formatting toolbar and the page text.' },
   onboarding: { id: 'dash-onboarding', label: 'Onboarding', note: 'A personal checklist, with progress for managers', alt: 'Welcome aboard page: “7 / 23 done” progress, the About you section with contact info, emergency contact and shirt size marked Done, and side panels for team onboarding, your people and key dates.' },
@@ -73,7 +74,7 @@ export const shot = {
 } satisfies Record<string, Shot>;
 
 /** The "Screens" gallery. */
-export const screenshots: Shot[] = [shot.phoneFocus, shot.projects, shot.phoneOtis, shot.docs, shot.onboarding, shot.otisSaved];
+export const screenshots: Shot[] = [shot.phoneFocus, shot.kiosk, shot.phoneOtis, shot.docs, shot.onboarding, shot.otisSaved];
 
 /** "See it in motion" clips (re-encoded into public/media/dashboard/video). */
 export const videos = [
@@ -119,7 +120,7 @@ export const daySequence: {
     { id: 'week', title: 'Confirm the week', body: 'At the end of the week, each person confirms their hours or asks for a correction. Their manager approves the week.' },
   ],
   screenshots: {
-    tasks: shot.tasks, focus: shot.focusDeck, work: shot.finishing, otis: shot.otisCard,
-    shop: shot.kiosk, schedule: shot.pto, week: shot.review,
+    tasks: shot.tasks, focus: shot.focusDeck, work: shot.myWork, otis: shot.otisCard,
+    shop: shot.kiosk, schedule: shot.pto, week: shot.signoff,
   },
 };

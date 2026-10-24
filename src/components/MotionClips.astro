@@ -13,7 +13,6 @@ const poster = (id: string) => { const i = IMAGES[id]; return `${i.base}-${i.web
   {list.map((v) => (
     <figure class="mc-clip">
       <div class="mc-frame">
-        <span class="tag">Sample data</span>
         <video src={`/media/dashboard/video/${v.file}.mp4`} poster={poster(v.poster)} width="1440" height="900"
           muted loop playsinline controls preload="none" aria-label={v.label}></video>
       </div>

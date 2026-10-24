@@ -1,0 +1,261 @@
+---
+/* Small looping data-flow graphics for the "More builds" cards.
+   Pure inline SVG: dots travel on SMIL animateMotion paths (no JS). All four share
+   one 400x225 viewBox, one panel and one node/dot style. With reduced motion the
+   moving dots are swapped for static ones. */
+type Kind = 'otis' | 'meeting' | 'agents' | 'bases';
+type Tone = 'ink' | 'blue' | 'gold' | 'red' | 'light';
+type Pt = [number, number];
+type Node = { x: number; y: number; w: number; h: number; t: string; s?: string; tone?: 'core' | 'ai' | 'human' | 'person' | 'both' | 'small'; dots?: boolean };
+type Blob = { off: number; tone: Tone; still?: number; swaps?: { seg: number; frac: number; tone: Tone }[] };
+type Route = { pts: Pt[]; w?: number[]; T: number; idle?: number; holds?: Record<number, number>; blobs: Blob[]; gate?: string };
+type Line = { d: string; tone?: 'red' | 'dash'; end?: boolean };
+type Def = { label: string; nodes: Node[]; lines: Line[]; routes: Route[]; notes?: { x: number; y: number; t: string }[]; extra?: 'depts' };
+
+interface Props { kind: Kind }
+const { kind } = Astro.props as Props;
+
+const COL: Record<Tone, string> = { ink: '#1B1A18', blue: '#2E5E92', gold: '#DAB057', red: '#881919', light: '#FFFFFF' };
+const f = (n: number) => +n.toFixed(3);
+
+// ── shared snake route used by "otis" and "meeting" (3 columns x 2 rows) ──
+const X = [8, 148, 288], W = 104, TOP = 40, BOT = 146, H = 42;
+const cy1 = TOP + H / 2, cy2 = BOT + H / 2;
+const cx = X.map((x) => x + W / 2);
+const snake: Pt[] = [
+  [cx[0], cy1], [X[0] + W, cy1], [X[1], cy1], [X[1] + W, cy1], [X[2] - 8, cy1], [X[2], cy1],
+  [cx[2], cy1], [cx[2], TOP + H], [cx[2], BOT], [cx[2], cy2],
+  [X[2], cy2], [X[1] + W, cy2], [cx[1], cy2], [X[1], cy2], [X[0] + W, cy2], [cx[0] + 4, cy2],
+];
+// segment weights: 1 in the open, .15 behind a node (blobs dash through nodes)
+const snakeW = [0.15, 1, 0.15, 1, 1, 0.15, 0.15, 1, 0.15, 0.15, 1, 0.15, 0.15, 1, 0.15];
+const snakeLines: Line[] = [
+  { d: `M${X[0] + W + 2},${cy1} H${X[1] - 5}`, end: true },
+  { d: `M${X[1] + W + 2},${cy1} H${X[2] - 5}`, tone: 'red', end: true },
+  { d: `M${cx[2]},${TOP + H + 2} V${BOT - 5}`, tone: 'red', end: true },
+  { d: `M${X[2] - 2},${cy2} H${X[1] + W + 5}`, end: true },
+  { d: `M${X[1] - 2},${cy2} H${X[0] + W + 5}`, end: true },
+];
+const snakeNodes = (labels: [string, string?][], tones: (Node['tone'])[]): Node[] => [
+  { x: X[0], y: TOP, w: W, h: H, t: labels[0][0], s: labels[0][1], tone: tones[0] },
+  { x: X[1], y: TOP, w: W, h: H, t: labels[1][0], s: labels[1][1], tone: tones[1] },
+  { x: X[2], y: TOP, w: W, h: H, t: labels[2][0], s: labels[2][1], tone: 'human' },
+  { x: X[2], y: BOT, w: W, h: H, t: labels[3][0], s: labels[3][1], tone: tones[3] },
+  { x: X[1], y: BOT, w: W, h: H, t: labels[4][0], s: labels[4][1], tone: tones[4] },
+  { x: X[0], y: BOT, w: W, h: H, t: labels[5][0], s: labels[5][1], tone: tones[5] },
+];
+// holds[4] = the dot waits at the approval gate (hold is at point index 4)
+const snakeRoute = (swapAfter?: { seg: number; frac: number; tone: Tone }): Route => ({
+  pts: snake, w: snakeW, T: 10, idle: 0.4, holds: { 4: 1.8 }, gate: 'human',
+  blobs: [
+    { off: 0, tone: 'ink', still: 3.4, swaps: [{ seg: 2, frac: 0.5, tone: 'blue' }, { seg: 5, frac: 0.5, tone: 'red' }, ...(swapAfter ? [swapAfter] : [])] },
+    { off: 5, tone: 'ink', still: 7.6, swaps: [{ seg: 2, frac: 0.5, tone: 'blue' }, { seg: 5, frac: 0.5, tone: 'red' }, ...(swapAfter ? [swapAfter] : [])] },
+  ],
+});
+
+// ── agents: org-chart tree ──
+const dx = Array.from({ length: 6 }, (_, i) => 13 + 27 + i * 64); // dept centres
+const wx = [64, 200, 336]; // AI / Both / People
+const agentNodes: Node[] = [
+  { x: 140, y: 10, w: 120, h: 42, t: 'Org chart', s: '6 departments' },
+  ...dx.map((c): Node => ({ x: c - 27, y: 76, w: 54, h: 36, t: 'Dept', tone: 'small', dots: true })),
+  { x: 12, y: 158, w: 104, h: 44, t: 'AI', s: '~20 agents', tone: 'ai' },
+  { x: 148, y: 158, w: 104, h: 44, t: 'Both', s: 'AI + people', tone: 'both' },
+  { x: 284, y: 158, w: 104, h: 44, t: 'People', s: 'human work', tone: 'person' },
+];
+const targets: [number, Tone][] = [[wx[0], 'blue'], [wx[1], 'ink'], [wx[2], 'gold'], [wx[0], 'blue'], [wx[1], 'ink'], [wx[2], 'gold']];
+const agentRoutes: Route[] = [
+  ...dx.map((c, i): Route => ({ pts: [[200, 52], [200, 64], [c, 64], [c, 76]], w: [1, 1, 1], T: 4.2, idle: 1.2, blobs: [{ off: (i * 0.7) % 4.2, tone: 'ink', still: 1.6 }] })),
+  ...dx.map((c, i): Route => ({ pts: [[c, 112], [c, 134], [targets[i][0], 134], [targets[i][0], 158]], w: [1, 1, 1], T: 4.8, idle: 1.4, blobs: [{ off: (i * 0.8 + 1.1) % 4.8, tone: targets[i][1], still: 1.5 }] })),
+  // between AI / Both / People
+  { pts: [[100, 173], [164, 173]], T: 3.4, idle: 1.2, blobs: [{ off: 0.4, tone: 'blue', still: 1.1 }] },
+  { pts: [[164, 187], [100, 187]], T: 3.4, idle: 1.2, blobs: [{ off: 1.5, tone: 'gold', still: 1.1 }] },
+  { pts: [[236, 173], [300, 173]], T: 3.4, idle: 1.2, blobs: [{ off: 2.2, tone: 'blue', still: 1.1 }] },
+  { pts: [[300, 187], [236, 187]], T: 3.4, idle: 1.2, blobs: [{ off: 3.0, tone: 'gold', still: 1.1 }] },
+];
+const agentLines: Line[] = [
+  { d: `M200,54 V64` }, { d: `M${dx[0]},64 H${dx[5]}` },
+  ...dx.map((c) => ({ d: `M${c},64 V74` })),
+  ...dx.map((c) => ({ d: `M${c},114 V134` })), { d: `M${dx[0]},134 H${dx[5]}` },
+  ...wx.map((c) => ({ d: `M${c},134 V156`, end: true })),
+  { d: 'M118,173 H145', end: true }, { d: 'M145,187 H118', end: true },
+  { d: 'M254,173 H281', end: true }, { d: 'M281,187 H254', end: true },
+];
+
+// ── bases: dashboard hub ──
+const BX = 292, BW = 100, BH = 38, by = [12, 66, 120, 175], bc = by.map((y) => y + BH / 2);
+const baseNodes: Node[] = [
+  { x: 8, y: 91, w: 100, h: 43, t: 'Google', s: 'Workspace' },
+  { x: 146, y: 12, w: 108, h: 201, t: 'Dashboard' },
+  { x: BX, y: by[0], w: BW, h: BH, t: 'Operations', s: 'read + write', tone: 'core' },
+  { x: BX, y: by[1], w: BW, h: BH, t: 'Manufacturing', s: 'read + write', tone: 'core' },
+  { x: BX, y: by[2], w: BW, h: BH, t: 'Fundraising', s: 'read only', tone: 'core' },
+  { x: BX, y: by[3], w: BW, h: BH, t: 'Expenses', s: 'read only', tone: 'core' },
+];
+const laneOut = (y: number, off: number, tone: Tone): Route => ({ pts: [[200, y], [254, y], [BX, y], [BX + 50, y]], w: [0.15, 1, 0.15], T: 4, idle: 1.0, blobs: [{ off, tone, still: 1.4 }] });
+const laneIn = (y: number, off: number): Route => ({ pts: [[BX + 50, y], [BX, y], [254, y], [200, y]], w: [0.15, 1, 0.15], T: 4, idle: 1.0, blobs: [{ off, tone: 'light', still: 1.4 }] });
+const wsOut = (y: number, off: number, tone: Tone): Route => ({ pts: [[200, y], [146, y], [108, y], [58, y]], w: [0.15, 1, 0.15], T: 4, idle: 1.0, blobs: [{ off, tone, still: 1.4 }] });
+const wsIn = (y: number, off: number): Route => ({ pts: [[58, y], [108, y], [146, y], [200, y]], w: [0.15, 1, 0.15], T: 4, idle: 1.0, blobs: [{ off, tone: 'light', still: 1.4 }] });
+const arrow = (x1: number, x2: number, y: number): Line => ({ d: `M${x1},${y} H${x2}`, end: true });
+const baseLines: Line[] = [
+  arrow(256, BX - 5, bc[0] - 6), arrow(BX - 2, 261, bc[0] + 6),
+  arrow(256, BX - 5, bc[1] - 6), arrow(BX - 2, 261, bc[1] + 6),
+  arrow(BX - 2, 261, bc[2]), arrow(BX - 2, 261, bc[3]),
+  arrow(110, 141, 106), arrow(144, 113, 119),
+];
+
+const DEFS: Record<Kind, Def> = {
+  otis: {
+    label: 'Animated diagram: a person asks Ask Otis in the dashboard chat, Claude drafts an editable task card, the person approves it at a gate, the server checks permissions, and only then is the task saved to Airtable and shown on the dashboard.',
+    nodes: snakeNodes([['Dashboard chat', 'person asks'], ['Ask Otis', 'drafts a card'], ['Approval', 'person decides'], ['Server check', 'permissions'], ['Airtable', 'saved here'], ['Dashboard', 'task appears']], [undefined, 'ai', undefined, undefined, 'core', undefined]),
+    lines: snakeLines, routes: [snakeRoute()],
+  },
+  meeting: {
+    label: 'Animated diagram: a meeting transcript goes to Claude, which extracts action items. A person approves the tasks, they are saved in Airtable, and the dashboard picks each person’s daily focus. The meeting-to-task step happens outside the dashboard.',
+    nodes: snakeNodes([['Meeting', 'transcript'], ['Claude / AI', 'action items'], ['Approval', 'person approves'], ['Airtable', 'tasks'], ['Dashboard', 'picks daily focus'], ['Daily focus', 'each person']], [undefined, 'ai', undefined, 'core', undefined, 'person']),
+    notes: [{ x: 8, y: 27, t: 'OUTSIDE THE DASHBOARD' }],
+    lines: snakeLines, routes: [snakeRoute({ seg: 12, frac: 0.5, tone: 'gold' })],
+  },
+  agents: {
+    label: 'Animated diagram: an org chart with a top node and six departments. Each department has AI-agent and people dots. Dots flow down from the org chart to departments, then to the three work types: work for about 20 AI agents, work for people, and work for both. Dots also pass between AI, Both and People.',
+    nodes: agentNodes, lines: agentLines, routes: agentRoutes,
+  },
+  bases: {
+    label: 'Animated diagram: the Dashboard sits between Google Workspace and four Airtable bases: Operations, Manufacturing, Fundraising and Expenses. Data is written to and read from the Operations and Manufacturing bases, and only read from the Fundraising and Expenses bases.',
+    nodes: baseNodes, lines: baseLines,
+    routes: [
+      laneOut(bc[0] - 6, 0, 'ink'), laneIn(bc[0] + 6, 2), laneOut(bc[1] - 6, 1, 'ink'), laneIn(bc[1] + 6, 3),
+      laneIn(bc[2], 0.6), laneIn(bc[3], 2.6),
+      wsOut(106, 1.4, 'ink'), wsIn(119, 3.4),
+    ],
+  },
+};
+const def = DEFS[kind];
+
+// ── timeline maths ──
+const dist = (a: Pt, b: Pt) => Math.hypot(b[0] - a[0], b[1] - a[1]);
+const build = (r: Route) => {
+  const lens = r.pts.slice(1).map((p, i) => dist(r.pts[i], p));
+  const total = lens.reduce((a, b) => a + b, 0);
+  const idle = r.idle ?? 0;
+  const holdSum = Object.values(r.holds ?? {}).reduce((a, b) => a + b, 0);
+  const wl = lens.map((l, i) => l * (r.w?.[i] ?? 1));
+  const wsum = wl.reduce((a, b) => a + b, 0);
+  const travel = r.T - idle - holdSum;
+  const segT = wl.map((v) => (v / wsum) * travel);
+  const ev: { t: number; s: number }[] = [{ t: 0, s: 0 }];
+  const depart: number[] = [0], arrive: number[] = [0];
+  let t = 0, s = 0;
+  lens.forEach((l, i) => {
+    t += segT[i]; s += l / total; arrive[i + 1] = t; ev.push({ t, s });
+    const h = r.holds?.[i + 1] ?? 0;
+    if (h) { t += h; ev.push({ t, s }); }
+    depart[i + 1] = t;
+  });
+  if (idle) ev.push({ t: r.T, s: 1 }); else ev[ev.length - 1].t = r.T;
+  const posAtS = (sn: number): Pt => {
+    let d = sn * total;
+    for (let i = 0; i < lens.length; i++) {
+      if (d <= lens[i] || i === lens.length - 1) { const k = lens[i] ? Math.min(1, d / lens[i]) : 0; return [r.pts[i][0] + (r.pts[i + 1][0] - r.pts[i][0]) * k, r.pts[i][1] + (r.pts[i + 1][1] - r.pts[i][1]) * k]; }
+      d -= lens[i];
+    }
+    return r.pts[0];
+  };
+  const posAt = (c: number): Pt => {
+    for (let i = 1; i < ev.length; i++) if (c <= ev[i].t) { const a = ev[i - 1], b = ev[i]; return posAtS(b.t === a.t ? b.s : a.s + ((c - a.t) / (b.t - a.t)) * (b.s - a.s)); }
+    return posAtS(1);
+  };
+  const te = (r.T - idle) / r.T;
+  return { d: 'M' + r.pts.map((p) => p.join(',')).join(' L'), keyPoints: ev.map((e) => f(e.s)).join(';'), keyTimes: ev.map((e) => f(e.t / r.T)).join(';'), segT, depart, arrive, posAt, te };
+};
+const routes = def.routes.map((r) => ({ r, b: build(r) }));
+const toneAt = (bl: Blob, rt: ReturnType<typeof build>, c: number): Tone => {
+  let tone = bl.tone;
+  (bl.swaps ?? []).forEach((s) => { if (rt.depart[s.seg] + s.frac * rt.segT[s.seg] <= c) tone = s.tone; });
+  return tone;
+};
+const fade = 0.05;
+const id = `bf-${kind}`;
+---
+<svg class="bf" viewBox="0 0 400 225" role="img" aria-label={def.label} data-kind={kind}>
+  <defs>
+    <marker id={`${id}-a`} viewBox="0 0 8 8" refX="6" refY="4" markerWidth="6" markerHeight="6" orient="auto"><path d="M1,1 L6,4 L1,7" fill="none" stroke="#A69B88" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" /></marker>
+    <marker id={`${id}-r`} viewBox="0 0 8 8" refX="6" refY="4" markerWidth="6" markerHeight="6" orient="auto"><path d="M1,1 L6,4 L1,7" fill="none" stroke="#881919" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" /></marker>
+  </defs>
+  <rect class="bf-panel" x=".5" y=".5" width="399" height="224" rx="4" />
+  <g class="bf-lines" aria-hidden="true">
+    {def.lines.map((l) => <path d={l.d} class={l.tone ? `ln-${l.tone}` : undefined} marker-end={l.end ? `url(#${id}-${l.tone === 'red' ? 'r' : 'a'})` : undefined} />)}
+    {def.notes?.map((n) => <text class="bf-note" x={n.x} y={n.y}>{n.t}</text>)}
+  </g>
+  <g class="bf-blobs" aria-hidden="true">
+    {routes.flatMap(({ r, b }) => r.blobs.map((bl) => {
+      const swaps = bl.swaps ?? [];
+      const sw = swaps.map((s) => ({ t: (b.depart[s.seg] + s.frac * b.segT[s.seg]) / r.T, tone: s.tone }));
+      const kt = ['0', ...sw.map((s) => f(s.t))];
+      const vals = [COL[bl.tone], ...sw.map((s) => COL[s.tone])];
+      const op = b.te < 1
+        ? { v: '0;1;1;0;0', k: `0;${fade};${f(b.te - fade)};${f(b.te)};1` }
+        : { v: '0;1;1;0', k: `0;${fade};${f(1 - fade)};1` };
+      const begin = `-${bl.off}s`;
+      return (
+        <g class={`bf-blob t-${bl.tone}`} opacity="0">
+          <circle r="5" fill={COL[bl.tone]} stroke={bl.tone === 'light' ? '#1B1A18' : undefined} stroke-width={bl.tone === 'light' ? 1 : undefined}>
+            {swaps.length > 0 && <animate attributeName="fill" calcMode="discrete" values={vals.join(';')} keyTimes={kt.join(';')} dur={`${r.T}s`} begin={begin} repeatCount="indefinite" />}
+          </circle>
+          <animateMotion path={b.d} dur={`${r.T}s`} begin={begin} repeatCount="indefinite" calcMode="linear" keyPoints={b.keyPoints} keyTimes={b.keyTimes} />
+          <animate attributeName="opacity" values={op.v} keyTimes={op.k} dur={`${r.T}s`} begin={begin} repeatCount="indefinite" />
+        </g>
+      );
+    }))}
+  </g>
+  <g class="bf-pins" aria-hidden="true">
+    {routes.flatMap(({ r, b }) => r.blobs.map((bl) => {
+      const c = bl.still ?? r.T * 0.4;
+      const [px, py] = b.posAt(c);
+      const tone = toneAt(bl, b, c);
+      return <circle cx={f(px)} cy={f(py)} r="5" fill={COL[tone]} stroke={tone === 'light' ? '#1B1A18' : undefined} stroke-width={tone === 'light' ? 1 : undefined} />;
+    }))}
+  </g>
+  <g class="bf-nodes" aria-hidden="true">
+    {def.nodes.map((n) => {
+      const mid = n.y + n.h / 2;
+      const two = !!n.s;
+      return (
+        <g class={`bf-node${n.tone ? ` k-${n.tone}` : ''}`}>
+          <rect x={n.x} y={n.y} width={n.w} height={n.h} rx={n.tone === 'small' ? 6 : 8} class={n.tone === 'human' ? 'gate' : undefined}>
+            {n.tone === 'human' && routes.filter(({ r }) => r.gate).flatMap(({ r, b }) => r.blobs.map((bl) => {
+              const hi = Object.keys(r.holds ?? {})[0];
+              const t0 = b.arrive[+hi], hold = r.holds![+hi];
+              const begin = (((t0 - bl.off) % r.T) + r.T) % r.T;
+              return <animate attributeName="fill" values="#fff;#F4E3E1;#F4E3E1;#fff;#fff" keyTimes={`0;0.02;${f((hold + 0.2) / r.T)};${f((hold + 0.5) / r.T)};1`} dur={`${r.T}s`} begin={`${f(begin)}s`} repeatCount="indefinite" />;
+            }))}
+          </rect>
+          <text class="nt" x={n.x + n.w / 2} y={n.tone === 'small' ? n.y + 15 : two ? mid - 2 : mid + 4.5} text-anchor="middle">{n.t}</text>
+          {two && <text class="ns" x={n.x + n.w / 2} y={mid + 12} text-anchor="middle">{n.s}</text>}
+          {n.dots && <><circle cx={n.x + n.w / 2 - 7} cy={n.y + 26} r="3.2" fill="#2E5E92" /><circle cx={n.x + n.w / 2 + 7} cy={n.y + 26} r="3.2" fill="#DAB057" /></>}
+        </g>
+      );
+    })}
+  </g>
+</svg>
+
+<style>
+  .bf{display:block;width:100%;height:auto;aspect-ratio:16/9;font-family:var(--fb);overflow:hidden}
+  .bf-panel{fill:#F3EEE6;stroke:var(--line)}
+  .bf-lines path{fill:none;stroke:#C9BFAF;stroke-width:1.3}
+  .bf-lines .ln-red{stroke:var(--accent);stroke-dasharray:4 4;stroke-width:1.2}
+  .bf-note{font-size:10px;letter-spacing:.16em;fill:var(--muted);font-weight:500}
+  .bf-node rect{fill:#fff;stroke:#D9CFC0;stroke-width:1}
+  .bf-node .nt{font-size:12.5px;font-weight:500;fill:var(--ink);letter-spacing:.01em}
+  .bf-node .ns{font-size:10.5px;fill:var(--muted);letter-spacing:.02em}
+  .bf-node.k-small .nt{font-size:11px}
+  .bf-node.k-core rect{fill:var(--ink);stroke:var(--ink)}
+  .bf-node.k-core .nt{fill:#F4F0E8}.bf-node.k-core .ns{fill:#B9B2A6}
+  .bf-node.k-human rect{stroke:var(--accent);stroke-width:1.4}
+  .bf-node.k-human .nt{fill:var(--accent)}
+  .bf-node.k-ai rect{stroke:#2E5E92;stroke-width:1.3}
+  .bf-node.k-person rect{stroke:#DAB057;stroke-width:1.6}
+  .bf-node.k-both rect{stroke:var(--ink);stroke-width:1.3}
+  .bf-pins{display:none}
+  @media (prefers-reduced-motion:reduce){.bf-blobs{display:none}.bf-pins{display:inline}}
+</style>

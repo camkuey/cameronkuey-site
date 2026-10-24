@@ -31,7 +31,6 @@ const n2 = (i: number) => String(i + 1).padStart(2, '0');
           <div class={`dy-art${shot ? ' has-shot' : ''}`} data-screenshot-slot={s.id}>
             {shot ? (
               <>
-                <span class="tag">Sample data</span>
                 <Pic id={shot.id} alt={shot.alt} sizes="(max-width: 900px) 100vw, 760px" />
               </>
             ) : (
