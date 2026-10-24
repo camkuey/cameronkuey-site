@@ -42,6 +42,12 @@ const n2 = (i: number) => String(i + 1).padStart(2, '0');
       );
     })}
   </ol>
+  <div class="dy-ctrl" hidden>
+    <button class="dy-arrow dy-prev" type="button" aria-label="Previous step"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+    <span class="dy-count" aria-live="polite"><b class="dy-cur">01</b> / {String(steps.length).padStart(2, '0')}</span>
+    <button class="dy-arrow dy-next" type="button" aria-label="Next step"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+    <span class="dy-dots" aria-hidden="true">{steps.map(() => <i></i>)}</span>
+  </div>
 </div>
 
 <script>
@@ -50,16 +56,27 @@ const n2 = (i: number) => String(i + 1).padStart(2, '0');
     const steps = [...root.querySelectorAll<HTMLElement>('.dy-step')];
     const nav = root.querySelector<HTMLElement>('.dy-nav')!;
     const btn = root.querySelector<HTMLButtonElement>('.dy-pause')!;
+    const ctrl = root.querySelector<HTMLElement>('.dy-ctrl')!;
+    const cnt = root.querySelector<HTMLElement>('.dy-cur')!;
+    const dots = [...root.querySelectorAll<HTMLElement>('.dy-dots i')];
+    const track = root.querySelector<HTMLElement>('.dy-steps')!;
     const still = matchMedia('(prefers-reduced-motion: reduce)').matches;
     let cur = 0, userPaused = false, hover = false, seen = false;
     root.classList.add('is-live');
     if (still) root.classList.add('is-static');
     nav.hidden = false;
+    ctrl.hidden = false;
+    ctrl.appendChild(btn);
     btn.hidden = still;
     steps.forEach((s) => s.setAttribute('role', 'tabpanel'));
     const sync = () => { root.classList.toggle('is-paused', still || userPaused || hover || !seen); };
-    const show = (i: number, focus = false) => {
+    const show = (i: number, focus = false, dir = 0) => {
+      const prev = cur;
       cur = (i + steps.length) % steps.length;
+      const d = dir || (cur >= prev ? 1 : -1);
+      root.style.setProperty('--dir', String(d));
+      cnt.textContent = String(cur + 1).padStart(2, '0');
+      dots.forEach((x, k) => x.classList.toggle('on', k === cur));
       tabs.forEach((t, k) => { t.setAttribute('aria-selected', String(k === cur)); t.tabIndex = k === cur ? 0 : -1; });
       steps.forEach((s, k) => { s.hidden = k !== cur; s.classList.toggle('is-active', k === cur); });
       if (focus) tabs[cur].focus();
@@ -73,9 +90,14 @@ const n2 = (i: number) => String(i + 1).padStart(2, '0');
       });
     });
     btn.addEventListener('click', () => pause(!userPaused));
+    root.querySelector('.dy-prev')!.addEventListener('click', () => { show(cur - 1, false, -1); pause(true); });
+    root.querySelector('.dy-next')!.addEventListener('click', () => { show(cur + 1, false, 1); pause(true); });
+    let x0 = 0;
+    track.addEventListener('touchstart', (e) => { x0 = e.touches[0].clientX; }, { passive: true });
+    track.addEventListener('touchend', (e) => { const dx = e.changedTouches[0].clientX - x0; if (Math.abs(dx) > 50) { show(cur + (dx < 0 ? 1 : -1), false, dx < 0 ? 1 : -1); pause(true); } }, { passive: true });
     // the progress bar's CSS animation drives auto-advance
-    root.addEventListener('animationend', (e) => { if (!still && (e.target as Element).classList.contains('dy-fill')) show(cur + 1); });
-    const art = root.querySelector('.dy-steps')!;
+    root.addEventListener('animationend', (e) => { if (!still && (e.target as Element).classList.contains('dy-fill')) show(cur + 1, false, 1); });
+    const art = track;
     art.addEventListener('pointerenter', () => { hover = true; sync(); });
     art.addEventListener('pointerleave', () => { hover = false; sync(); });
     new IntersectionObserver(([e]) => { seen = e.isIntersecting; sync(); }, { threshold: 0.35 }).observe(root);
@@ -117,13 +139,25 @@ const n2 = (i: number) => String(i + 1).padStart(2, '0');
   .dy-art :global(picture){display:block;width:100%}
   .dy-art :global(img){display:block;width:100%;height:auto;border-radius:6px;box-shadow:0 20px 40px -24px rgba(40,30,20,.4)}
   @keyframes dy-fill{to{transform:scaleX(1)}}
-  @keyframes dy-in{from{opacity:0;transform:translateY(8px)}}
+  @keyframes dy-in{from{opacity:0;transform:translateX(calc(var(--dir,1) * 36px))}}
+  .dy-ctrl{display:flex;align-items:center;gap:14px;margin-top:20px;justify-content:flex-end}
+  .dy-ctrl[hidden]{display:none}
+  .dy-arrow{all:unset;cursor:pointer;width:44px;height:44px;border:1px solid var(--ink);border-radius:50%;display:inline-flex;align-items:center;justify-content:center;color:var(--ink);transition:background .15s,color .15s}
+  .dy-arrow:hover{background:var(--ink);color:var(--bg)}
+  .dy-arrow:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+  .dy-count{font-size:13px;letter-spacing:.18em;color:var(--muted);min-width:70px;text-align:center}
+  .dy-count b{color:var(--ink);font-weight:500}
+  .dy-dots{display:flex;gap:6px;margin-left:8px}
+  .dy-dots i{width:6px;height:6px;border-radius:50%;background:var(--line);transition:background .2s,transform .2s}
+  .dy-dots i.on{background:var(--accent);transform:scale(1.4)}
+  .dy-ctrl .dy-pause{float:none;margin:0 0 0 8px}
 
   @media (max-width:900px){
     .dy-step{grid-template-columns:1fr;gap:18px}
     .dy-nav{gap:8px}
     .dy-t{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
-    .dy-pause{float:none;display:inline-block;margin:0 0 24px}
+    .dy-ctrl{justify-content:space-between}
+    .dy-dots{display:none}
   }
   @media (max-width:560px){
     .dy-art.has-shot{padding:44px 8px 8px}
