@@ -426,9 +426,10 @@ picture{display:contents}
 .about-copy>div:first-child p{font-size:clamp(20px,2vw,25px);font-weight:300;line-height:1.45}
 .about-copy a{color:var(--ink);text-underline-offset:3px}
 /* featured case: phone panel */
-.case-phone{margin:0;background:#E9DFD0;display:flex;align-items:center;justify-content:center;padding:44px 28px 28px;position:relative}
-.case-phone .tag{position:absolute;top:20px;left:20px;font-size:11px;letter-spacing:.14em;text-transform:uppercase;background:#fff;color:var(--muted);padding:6px 10px;border:1px dashed #B9B2A6}
-.case-phone img{display:block;height:min(520px,60vw);width:auto;max-width:100%;border-radius:18px;box-shadow:0 30px 60px -20px rgba(40,30,20,.45)}
+.case-phone{margin:0;background:#1d3d5f;position:relative;min-height:540px;display:grid;grid-template-columns:1fr 1fr;gap:3px;overflow:hidden}
+.case-phone picture{display:block;min-height:0;height:100%}
+.case-phone img{display:block;width:100%;height:100%;object-fit:cover;object-position:50% 0}
+.case-phone .tag{position:absolute;bottom:66px;left:12px;z-index:1;font-size:11px;letter-spacing:.14em;text-transform:uppercase;background:#fff;color:var(--muted);padding:6px 10px;border:1px dashed #B9B2A6}
 /* category range strip */
 .range{margin-top:22px;padding:16px 0 4px;border-top:1px solid var(--line)}
 .range .eyebrow{margin-bottom:12px;color:var(--ink)}
