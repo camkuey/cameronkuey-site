@@ -32,7 +32,7 @@ export const roles: Role[] = [
     ],
     more: { href: '/case-studies/internal-dashboard', text: 'Read the Internal Dashboard case study' },
     from: 2026.4, to: null, tone: 'red', quote: 'taking it from concept to a live production site in under two weeks',
-    hats: ['Product owner', 'Systems architect', 'Automation builder', 'Team trainer'],
+    hats: ['Product owner', 'Systems architect', 'Automation builder', 'Revenue operations', 'Project manager', 'Strategy operations', 'Team trainer'],
   },
   {
     when: 'May 2024 – April 2026', title: 'Content Operations Manager', org: 'Modern Health',
