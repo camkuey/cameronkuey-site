@@ -2,10 +2,11 @@ import pagesData from '../data/pages.json';
 import images from '../data/images.json';
 import dashImages from '../data/dashboard-images.json';
 import extraImages from '../data/extra-images.json';
+import docsImages from '../data/documentation-images.json';
 import alts from '../data/alt.json';
 
 export type Img = { w: number; h: number; base: string; webp: number[]; avif: number[]; color: string };
-export const IMAGES = { ...images, ...dashImages, ...extraImages } as Record<string, Img>;
+export const IMAGES = { ...images, ...dashImages, ...extraImages, ...docsImages } as Record<string, Img>;
 export const ALT = alts as Record<string, string>;
 /** Creative categories hidden from the site for now (content stays in pages.json; remove a slug here to bring it back). */
 export const HIDDEN_CATEGORIES = ['work', 'graphic-design'];

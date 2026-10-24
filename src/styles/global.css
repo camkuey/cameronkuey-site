@@ -613,7 +613,7 @@ a.mini:focus-visible{outline:2px solid var(--accent);outline-offset:4px}
 .cs-row2 .cs-text .eyebrow{margin-bottom:14px}
 @media (max-width:900px){.cs-row2{margin-top:40px}}
 
-/* Operations page: Case studies cards (same motifs as /case-studies) */
+/* Case study card motifs (shared across the site) */
 .opc-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:28px}
 .opc{display:flex;flex-direction:column;border:1px solid var(--line);border-radius:4px;overflow:hidden;background:#fff;color:inherit;text-decoration:none;transition:border-color .2s,transform .2s}
 .opc:focus-visible{outline:2px solid var(--accent);outline-offset:4px}
@@ -1107,3 +1107,55 @@ nav.primary a:hover{color:var(--red)}
 .work figcaption{align-items:baseline}
 .pg-grid>*,.feat-grid>*,.film-grid>*,.cs-herogrid>*{min-width:0}
 .row .ey{font-size:10.5px;letter-spacing:.14em;line-height:1.5;color:var(--muted)}
+
+/* ---- Documentation case study (src/pages/case-studies/documentation.astro) ---- */
+/* file-name standard: one example name, split into its parts */
+.docs-name{display:flex;flex-wrap:wrap;gap:6px 0;margin-top:14px;font-family:var(--mono)}
+.docs-np{display:flex;flex-direction:column;gap:5px;padding:0 14px 0 0;margin-right:14px;border-right:1px solid rgba(27,26,24,.14)}
+.docs-np:last-child{border-right:0;margin-right:0;padding-right:0}
+.docs-np code{font-family:inherit;font-size:13px;color:var(--ink);padding:6px 10px;background:#fff;border:1px solid var(--cs-soft-line);border-radius:2px;white-space:nowrap}
+.docs-np:first-child code{border-color:var(--cs-primary);color:var(--cs-primary-ink)}
+.docs-np small{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.docs-roles-h{margin-top:32px;font-family:var(--mono);font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
+.docs-roles{margin-top:0;max-width:none}
+.docs-roles div{grid-template-columns:minmax(180px,1fr) 1.4fr}
+/* stacked screens: large, one per row */
+.docs-stack{display:grid;gap:56px;margin-top:32px}
+.docs-shot{margin:0}
+.docs-shot figcaption,.docs-phones-cap{display:flex;flex-direction:column;gap:4px;margin-top:14px;font-size:15.5px;color:var(--muted)}
+.docs-shot figcaption b,.docs-phones-cap b,.docs-phone figcaption b{font-family:var(--mono);font-weight:400;font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink)}
+.docs-shot .cs-shotlink{border-radius:8px}
+.docs-phones{display:grid;grid-template-columns:minmax(0,1fr) 280px 280px;gap:32px;align-items:end}
+.docs-phones-cap{margin:0;align-self:center;max-width:30ch}
+.docs-phone{margin:0}
+.docs-phone .cs-shotlink{border-radius:22px}
+.docs-phone figcaption{margin-top:12px;display:block}
+/* outcomes timeline and limits: hairline lists */
+.docs-hl{list-style:none;border-top:1px solid var(--ink);padding:0}
+.docs-hl li{display:grid;grid-template-columns:minmax(150px,200px) 1fr;gap:6px 24px;align-items:baseline;padding:18px 0;border-bottom:1px solid rgba(27,26,24,.14);font-size:18px;font-weight:300}
+.docs-tl{list-style:none;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0 28px;padding:0;position:relative}
+.docs-tl::before{content:"";position:absolute;left:0;right:0;top:6px;height:1px;background:var(--ink)}
+.docs-tl li{position:relative;padding-top:30px}
+.docs-tl li::before{content:"";position:absolute;left:0;top:0;width:13px;height:13px;border-radius:50%;background:var(--cs-primary);border:2px solid var(--cs-tint,#F0F3F7);box-sizing:border-box;width:13px;height:13px;box-shadow:0 0 0 1px var(--cs-primary)}
+.docs-tl .when{display:block;font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;font-weight:400;color:var(--cs-primary-ink);margin-bottom:8px}
+.docs-tl .what{display:block;font-size:20px;font-weight:300;line-height:1.3;max-width:20ch}
+
+.docs-hl li b{font-weight:500;font-size:18px}
+@media (max-width:900px){
+  .docs-stack{gap:40px}
+  .docs-phones{grid-template-columns:1fr 1fr;gap:20px}
+  .docs-phones-cap{grid-column:1/-1;max-width:none}
+  .docs-roles div{grid-template-columns:1fr}
+}
+@media (max-width:700px){
+  .docs-tl{grid-template-columns:1fr;gap:26px 0;padding-left:28px}
+  .docs-tl::before{left:6px;right:auto;top:6px;bottom:6px;width:1px;height:auto}
+  .docs-tl li{padding-top:0}
+  .docs-tl li::before{left:-28px;top:3px}
+}
+@media (max-width:600px){
+  .docs-hl li{grid-template-columns:1fr}
+  .docs-np{padding-right:10px;margin-right:10px}
+}
+
+.docs-page .cs-herogrid .lede{text-wrap:pretty}

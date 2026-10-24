@@ -1,0 +1,7 @@
+# Old URLs after the Experience / Projects restructure (301). Evaluated before static assets.
+/operations /experience 301
+/operations/ /experience 301
+/ai-builds /projects 301
+/ai-builds/ /projects 301
+/case-studies /projects 301
+/case-studies/ /projects 301

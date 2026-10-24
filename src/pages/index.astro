@@ -15,8 +15,8 @@ const work = [
   { cls: 'w7', id: 'graduation-photoshoots/10-2322cd02', href: '/graduation-photoshoots', title: 'Graduation Photoshoots', tag: 'Photo', alt: 'Graduates jumping on the beach', sizes: '(max-width: 900px) 100vw, 720px' },
 ];
 const paths = [
-  { href: '/operations', title: 'Operations', text: 'Running the business side so mission work can move faster: processes, data, teams and tools.', tag: 'Operations' },
-  { href: '/ai-builds', title: 'AI & Technical Builds', text: 'I design the tools and decide how they work, then have Cursor cloud agents build them fast. I review every change.', tag: 'Technical builds' },
+  { href: '/experience', title: 'Experience', text: 'My work history since 2012, from founding two businesses to running operations: roles, hats worn and highlights.', tag: 'Work history' },
+  { href: '/projects', title: 'Projects', text: 'Case studies and builds: the Internal Dashboard, Modern Health automations and more.', tag: 'Case studies' },
   { href: '/creative', title: 'Creative Work', text: 'Photography, video and podcasting. 200+ clients served as a freelancer through Cosie Co., and 100+ documentaries, videos and podcast episodes produced with The Cultivation Project.', tag: 'Creative' },
 ];
 
@@ -40,7 +40,7 @@ const jsonld = {
 <Base title="Cameron Kuey" description="Cameron Kuey, Director of Business Operations at Doodle Pirates Foundation, builder of internal tools with AI agents, and a photographer and filmmaker (Cosie Co., The Cultivation Project)." jsonld={jsonld}>
 <header class="pg" aria-labelledby="h"><div class="wrap pg-grid">
   <div>
-    <p class="ey">Operations · AI builds · Photo, film &amp; audio</p>
+    <p class="ey">Experience · Projects · Photo, film &amp; audio</p>
     <h1 id="h">I run operations, <em>design the tools,</em> and tell stories.</h1>
     <p class="intro">Director of Business Operations at Doodle Pirates Foundation, designing internal tools and building them fast with AI agents. Photographer and filmmaker since 2012.</p>
     <div class="btns"><a class="btn solid" href="/contact">Get in touch</a><a class="btn" href="/resume.pdf">Resume (PDF)</a></div>
@@ -56,9 +56,9 @@ const jsonld = {
 
 <section class="home-mosaic" aria-label="Highlights"><div class="wrap">
   <div class="hero-mosaic">
-    <a class="hm hm-ui" href="/case-studies/internal-dashboard" aria-label="Case study: Internal Dashboard">
+    <a class="hm hm-ui" href="/case-studies/internal-dashboard" aria-label="Project: Internal Dashboard">
       <Pic id="dash-hero-focus" eager sizes="(max-width: 900px) 100vw, 760px" alt="The Internal Dashboard's Today's focus: a weekly progress meter and the day's focus card with Done, Continue tomorrow and Skip today buttons" />
-      <span class="hm-cap"><span><b>Internal Dashboard</b><small>Operations &amp; AI builds · case study</small></span><span>→</span></span>
+      <span class="hm-cap"><span><b>Internal Dashboard</b><small>Projects · case study</small></span><span>→</span></span>
     </a>
     <a class="hm" href="/photography" aria-label="Photography">
       <Pic id="engagement-proposals/09-9efda6cb" eager sizes="(max-width: 900px) 50vw, 360px" style="object-position:50% 70%" alt="Couple embracing on a granite outcrop with Yosemite Valley behind them" />
@@ -92,7 +92,7 @@ const jsonld = {
       <Pic id={shot.myWork.id} sizes="(max-width: 900px) 100vw, 600px" alt={shot.myWork.alt} />
     </figure>
     <div>
-      <p class="ey"><b>02</b> / Featured case study · AI &amp; Technical Builds</p>
+      <p class="ey"><b>02</b> / Featured project · Doodle Pirates Foundation</p>
       <h3 id="case-h">An all-in-one Internal Dashboard, <em>concept to production in under two weeks.</em></h3>
       <p class="desc">Designed by me and built fast with Cursor cloud agents on an Airtable ERP, including Ask Otis, a Claude-powered assistant with human-in-the-loop approval.</p>
       <div class="nums">

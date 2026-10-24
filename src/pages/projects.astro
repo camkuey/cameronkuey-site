@@ -1,0 +1,115 @@
+---
+import Base from '../layouts/Base.astro';
+import Pic from '../components/Pic.astro';
+import { shot } from '../data/internal-dashboard';
+import { CASES } from '../data/case-list';
+import { spec, featured, more, steps, tools } from '../data/projects';
+---
+<Base title="Projects" section="projects"
+  description="Projects by Cameron Kuey: case studies and builds, from the Internal Dashboard and documentation library at Doodle Pirates Foundation to Modern Health automations and a freelance Google Sheets roadmap.">
+  <header class="pg pj"><div class="cs-stripe" aria-hidden="true"></div><div class="wrap pj-grid">
+    <div class="pj-text">
+      <p class="ey">Projects</p>
+      <h1>Systems I’ve designed <em>and built.</em></h1>
+      <p class="intro">Each starts with a messy real-world problem and ends with a process that runs on its own.</p>
+      <dl class="spec-t">{spec.map(([k, v]) => <div><dt>{k}</dt><dd>{v}</dd></div>)}</dl>
+    </div>
+    <figure class="pj-vis">
+      <a href="/case-studies/internal-dashboard" aria-label="Read the Internal Dashboard case study">
+        <Pic id={shot.myWork.id} eager sizes="(max-width: 900px) 100vw, 640px" alt={shot.myWork.alt} />
+      </a>
+      <figcaption><span>Featured · Internal Dashboard</span><a href="/case-studies/internal-dashboard">Read the case study →</a></figcaption>
+    </figure>
+  </div></header>
+
+  <section class="sec pj-feat" aria-labelledby="feat-h"><div class="wrap">
+    <div class="pj-feat-grid">
+      <div>
+        <p class="ey"><b>01</b> / Featured · {featured.org}</p>
+        <h2 id="feat-h">An all-in-one Internal Dashboard, <em>concept to production in under two weeks.</em></h2>
+        <p class="desc">{featured.desc}</p>
+        <div class="btns"><a class="btn solid" href="/case-studies/internal-dashboard">Read the case study →</a></div>
+      </div>
+      <div class="nums" style="--n:2">
+        {featured.nums.map((n) => <div><b>{n.value}</b><span>{n.label}</span></div>)}
+      </div>
+    </div>
+  </div></section>
+
+  <section class="sec" style="padding-top:0" aria-labelledby="all-h"><div class="wrap">
+    <div class="sec-top"><div><p class="ey"><b>02</b> / Case studies</p><h2 id="all-h">All projects</h2></div></div>
+    <ul class="rows pj-rows">
+      {CASES.map((c, i) => (
+        <li><a class="row" href={`/case-studies/${c.slug}`}>
+          <span class="n">{String(i + 1).padStart(2, '0')}</span>
+          <div><p class="ey" style="margin-bottom:8px">{c.kind} · {c.org}</p><h3>{c.title}</h3></div>
+          <p>{c.summary}</p>
+          <span class="tag">{c.tags.join(' · ')}<span class="go">Read the case study →</span></span>
+        </a></li>
+      ))}
+    </ul>
+  </div></section>
+
+  <section class="sec" style="padding-top:0" aria-labelledby="more-h"><div class="wrap">
+    <div class="sec-top"><div><p class="ey"><b>03</b> / Doodle Pirates Foundation</p><h2 id="more-h">More builds</h2></div></div>
+    <ul class="rows pj-rows">
+      {more.map((m, i) => (
+        <li><div class="row">
+          <span class="n">{String(i + 1).padStart(2, '0')}</span>
+          <h3>{m.title}</h3>
+          <p>{m.body}</p>
+          <span class="tag">{m.tag}</span>
+        </div></li>
+      ))}
+    </ul>
+  </div></section>
+
+  <section class="sec" style="padding-top:0" aria-labelledby="how-h"><div class="wrap">
+    <div class="sec-top"><div><p class="ey"><b>04</b> / Approach</p><h2 id="how-h">How I build</h2></div></div>
+    <ol class="proc">
+      {steps.map((s, i) => (
+        <li>
+          <span class={`badge${i === steps.length - 1 ? ' on' : ''}`} aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
+          <span class="sub">{s.sub}</span>
+          <b>{s.title}</b>
+          <p>{s.text}</p>
+        </li>
+      ))}
+    </ol>
+  </div></section>
+
+  <section class="pj-tools" aria-labelledby="tools-h"><div class="wrap">
+    <p class="ey"><b>05</b> / Tools</p>
+    <h2 id="tools-h">Tools I build with</h2>
+    <ul class="pj-pills">{tools.map((t) => <li>{t}</li>)}</ul>
+    <div class="btns"><a class="btn solid" href="/experience">Experience →</a><a class="btn" href="/resume.pdf">Résumé (PDF)</a><a class="btn" href="/contact">Get in touch</a></div>
+  </div></section>
+</Base>
+
+<style>
+  .pj-grid{display:grid;grid-template-columns:minmax(0,9fr) minmax(0,11fr);gap:40px 48px;align-items:center;padding-top:48px;padding-bottom:52px}
+  .pj .pj-text h1{max-width:none;font-size:clamp(34px,3.7vw,52px);text-wrap:balance}
+  .pj .pj-text .intro{max-width:34ch;margin-top:18px}
+  .pj .pj-text .spec-t{margin-top:26px;max-width:460px}
+  .pj-vis{margin:0}
+  .pj-vis img{display:block;width:100%;height:auto;border-radius:8px;box-shadow:0 24px 48px -28px rgba(40,30,20,.45)}
+  .pj-vis figcaption{display:flex;justify-content:space-between;gap:16px;margin-top:12px;font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+  .pj-vis figcaption a{color:var(--ink);text-decoration:none;border-bottom:1px solid var(--tan-line)}
+  .pj-vis figcaption a:hover{color:var(--red);border-color:var(--red)}
+  @media (min-width:901px){:global(.pj-rows .row){grid-template-columns:56px minmax(0,4fr) minmax(0,6fr) 250px}}
+  .pj-feat{padding:72px 0 96px}
+  .pj-feat-grid{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:40px 72px;align-items:end}
+  .pj-feat h2{font-weight:300;font-size:clamp(26px,2.8vw,38px);letter-spacing:-.02em;line-height:1.1;max-width:20ch}
+  .pj-feat h2 em{font-style:normal;color:var(--red)}
+  .pj-feat .desc{margin-top:18px;font-weight:300;font-size:18px;line-height:1.55;max-width:52ch}
+  .pj-tools{background:var(--tan);border-top:1px solid var(--tan-line);padding:64px 0 72px}
+  .pj-tools h2{font-weight:300;font-size:clamp(28px,3vw,40px);letter-spacing:-.02em;line-height:1.08}
+  .pj-pills{list-style:none;display:flex;flex-wrap:wrap;gap:10px;margin-top:26px;padding:0}
+  .pj-pills li{background:#fff;border:1px solid var(--tan-line);border-radius:999px;padding:8px 18px;font-size:15px;font-weight:500}
+  @media (max-width:900px){
+    .pj-grid{grid-template-columns:1fr;padding-top:36px;padding-bottom:40px}
+    .pj .pj-text h1{max-width:none}
+    .pj-feat{padding:48px 0 40px}
+    .pj-feat-grid{grid-template-columns:1fr;gap:32px}
+  }
+</style>

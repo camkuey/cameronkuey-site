@@ -1,4 +1,4 @@
-/** Experience data for /operations. */
+/** Experience data for /experience. */
 export type Tone = 'red' | 'blue' | 'gold' | 'ink';
 export type Role = {
   /** Date text (used under the year on desktop and as the card label on mobile when `sub` is absent). */
@@ -31,7 +31,7 @@ export const roles: Role[] = [
       'Set up Foundation operations and migrated the team from Microsoft 365 to Google Workspace and Slack.',
     ],
     more: { href: '/case-studies/internal-dashboard', text: 'Read the Internal Dashboard case study' },
-    from: 2026.4, to: null, tone: 'red', quote: 'taking it from concept to a live production site in under two weeks',
+    from: 2026.4, to: null, tone: 'red', quote: 'Took the Internal Dashboard from concept to a live production site in under two weeks',
     hats: ['Product owner', 'Systems architect', 'Automation builder', 'Revenue operations', 'Project manager', 'Strategy operations', 'Team trainer'],
   },
   {
@@ -66,7 +66,7 @@ export const roles: Role[] = [
     ],
     more: { href: '/documentaries', text: 'See The Cultivation Project’s films' },
     from: 2015.2, to: 2022.3, tone: 'gold',
-    quote: 'I ran the whole organization, from operations and strategy to finance, fundraising, marketing, the creative team and the board, and set up the process behind each one.',
+    quote: 'Led all nonprofit operations, from strategy, finance and fundraising to marketing, the creative team and the board, and built the process behind each function.',
     hats: ['Executive director', 'Fundraiser', 'Marketer', 'Finance lead', 'Producer & director', 'Recruiter & team lead', 'Board chairman'],
     openDetails: true,
   },
@@ -80,15 +80,10 @@ export const roles: Role[] = [
     ],
     more: { href: '/photography', text: 'See the photography' },
     from: 2012.5, to: 2022.3, tone: 'ink',
-    quote: 'I shot, directed, produced and edited every project myself, with a repeatable process behind each of those roles.',
+    quote: 'Shot, directed, produced and edited every project, with a repeatable process behind each role.',
     hats: ['Photographer', 'Videographer', 'Producer', 'Director', 'Editor', 'Account manager', 'Bookkeeper'],
     openDetails: true,
   },
-];
-
-export const cases = [
-  { href: '/case-studies/circles-scheduling', title: 'Turning a manual, multi-tab Circles setup into a one-step workflow', text: 'Zendesk to a finished Zoom event in one Zapier workflow, with the producer still in the loop.', tools: 'Zapier · Airtable · Zoom · Zendesk' },
-  { href: '/case-studies/contract-automation', title: 'One button from an Airtable record to a signed Ironclad contract', text: 'Simplified with legal first, then automated around Ironclad.', tools: 'Airtable · Apps Script · Ironclad' },
 ];
 
 /** Chart range (years) for the ruler. */

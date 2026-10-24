@@ -1,0 +1,69 @@
+---
+/* "The approach" graphic: the dashboard as the single front door to one shared drive,
+   one Process Documentation folder per department, one subfolder per business line.
+   Static inline SVG (illustration, not a screenshot). Folder names are the ones in the real library. */
+import { THEMES, type ThemeName } from '../data/themes';
+interface Props { theme?: ThemeName }
+const { theme = 'documentation' } = Astro.props as Props;
+const TH = THEMES[theme];
+const subs = [
+  { x: 56, y: 178, t: 'Grants' },
+  { x: 198, y: 178, t: 'Community Fundraising' },
+  { x: 56, y: 208, t: 'Systems & Automation' },
+  { x: 198, y: 208, t: 'General' },
+];
+const folder = (x: number, y: number) => `M${x},${y + 3} h5.5 l1.6,-2.4 h5 v9.4 h-12.1 z`;
+---
+<svg class="dsf" viewBox="0 0 360 352" role="img" aria-label="Illustration: the dashboard sits on top as the single front door to the shared drive. In the shared drive, each department has one Process Documentation folder. Operations is open and shows a subfolder per business line, Grants, Community Fundraising and Systems and Automation, plus a General folder. Manufacturing and the other departments each have their own folder." style={`--p:${TH.primary};--soft:${TH.soft};--line:${TH.softLine}`}>
+  <defs><marker id="dsf-a" viewBox="0 0 8 8" refX="4" refY="4" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M1,1 L6,4 L1,7" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" /></marker></defs>
+  <rect class="dsf-panel" x=".5" y=".5" width="359" height="351" rx="4" />
+  <rect class="dsf-dash" x="12" y="14" width="336" height="42" rx="8" />
+  <text class="dsf-nt dsf-p" x="180" y="32" text-anchor="middle">Dashboard</text>
+  <text class="dsf-ns" x="180" y="46" text-anchor="middle">the single front door</text>
+  <path class="dsf-ar" d="M180,58 V84" marker-start="url(#dsf-a)" marker-end="url(#dsf-a)" />
+  <text class="dsf-lg" x="192" y="75">find · start · edit</text>
+  <rect class="dsf-root" x="12" y="88" width="336" height="36" rx="8" />
+  <text class="dsf-nt dsf-w" x="180" y="110" text-anchor="middle">Shared drive</text>
+
+  <path class="dsf-tree" d="M26,124 V261 M26,153 H40 M26,261 H40" />
+  <rect class="dsf-dep" x="40" y="138" width="308" height="30" rx="6" />
+  <path class="dsf-fo" d={folder(52, 148)} />
+  <text class="dsf-nt" x="74" y="157">Operations Process Documentation</text>
+
+  <path class="dsf-tree" d="M44,168 V221 M44,191 H52 M44,221 H52" />
+  {subs.map((s) => (
+    <g>
+      <rect class="dsf-sub" x={s.x} y={s.y} width={s.t === 'Community Fundraising' || s.t === 'General' ? 142 : 136} height="26" rx="5" />
+      <path class="dsf-fo" d={folder(s.x + 9, s.y + 8)} />
+      <text class="dsf-st" x={s.x + 28} y={s.y + 17}>{s.t}</text>
+    </g>
+  ))}
+
+  <rect class="dsf-dep dsf-quiet" x="40" y="246" width="308" height="30" rx="6" />
+  <path class="dsf-fo" d={folder(52, 256)} />
+  <text class="dsf-nt" x="74" y="265">Manufacturing Process Documentation</text>
+
+  <rect class="dsf-dep dsf-dash2" x="40" y="288" width="308" height="30" rx="6" />
+  <text class="dsf-ns" x="194" y="307" text-anchor="middle">One Process Documentation folder per department</text>
+  <text class="dsf-lg" x="44" y="340">Subfolders: one per business line, plus General</text>
+</svg>
+<style>
+  .dsf{display:block;width:100%;height:auto;aspect-ratio:360/352;font-family:var(--fb);overflow:hidden}
+  .dsf{color:var(--p)}
+  .dsf-panel{fill:#FFFDF9;stroke:#D9CFC0}
+  .dsf-dash{fill:var(--soft);stroke:var(--p);stroke-width:1.6}
+  .dsf-root{fill:#1B1A18}
+  .dsf-dep{fill:#fff;stroke:#1B1A18;stroke-width:1.1}
+  .dsf-quiet{fill:var(--cs-tint,#F0F3F7);stroke:#B9B2A6}
+  .dsf-dash2{fill:none;stroke:#8A8172;stroke-dasharray:4 3}
+  .dsf-sub{fill:var(--cs-tint,#F0F3F7);stroke:#B9B2A6}
+  .dsf-tree{fill:none;stroke:#B8AC9A;stroke-width:1.2}
+  .dsf-ar{fill:none;stroke:var(--p);stroke-width:1.5}
+  .dsf-fo{fill:var(--line);stroke:var(--p);stroke-width:.9;stroke-linejoin:round}
+  .dsf-nt{font-size:11.2px;font-weight:500;fill:#1B1A18}
+  .dsf-p{fill:var(--p)}
+  .dsf-w{fill:#F4F0E8}
+  .dsf-st{font-size:10.4px;fill:#1B1A18}
+  .dsf-ns{font-size:10.4px;fill:#5A544B;letter-spacing:.02em}
+  .dsf-lg{font-family:var(--mono);font-size:8.6px;letter-spacing:.08em;fill:#5A544B}
+</style>

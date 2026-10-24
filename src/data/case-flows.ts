@@ -195,6 +195,28 @@ export const FLOWS: Record<string, FDef> = {
     legend: [['ink', 'your edit'], ['gold', 'the save'], ['red', 'edited elsewhere']],
   },
 
+  /* ── Documentation library: create a page, edit live, stored as a Google Doc ── */
+  'docs-create': {
+    accent: 'red',
+    label:
+      'Animated diagram in three steps. Step 1, create a page: either start a new page, or paste an anyone-with-link Google Doc link, which is copied in and tidied while the original stays untouched. Step 2, edit live in the dashboard editor, which saves to Google Docs about 3 seconds after typing stops. Step 3, the page is stored as a Google Doc in the shared drive.',
+    nodes: [
+      { id: 'new', c: 0, r: 0, t: 'New page', s: 'start typing', col: 'white', step: 1 },
+      { id: 'paste', c: 2, r: 0, t: 'Paste a Doc link', s: 'anyone-with-link', col: 'white', step: 1 },
+      { id: 'copy', c: 2, r: 1, t: 'Copied, tidied', s: 'original kept', col: 'sand', step: false },
+      { id: 'edit', c: 0, r: 2, span: 3, t: 'Edit live in the dashboard', s: 'saves ~3 seconds after typing stops', tone: 'human', step: 2 },
+      { id: 'doc', c: 0, r: 3, span: 3, t: 'A Google Doc in the shared drive', s: 'in its department and business line folder', col: 'ink', step: 3 },
+    ],
+    links: [
+      { a: 'new', b: 'edit' }, { a: 'paste', b: 'copy' }, { a: 'copy', b: 'edit' }, { a: 'edit', b: 'doc' },
+    ],
+    routes: [
+      { via: ['new', 'edit', 'doc'], T: 10, idle: 1.6, blobs: [{ tone: 'ink', still: 6, swaps: [{ at: 2, tone: 'red' }] }] },
+      { via: ['paste', 'copy', 'edit'], T: 10, idle: 1.6, blobs: [{ delay: 5, tone: 'ink', still: 4.6 }] },
+    ],
+    legend: [['ink', 'a page'], ['red', 'a Google Doc']],
+  },
+
   /* ── Strategy Growth Roadmap: one master Sheet, a copy per client ── */
   'growth-copies': {
     accent: 'red',

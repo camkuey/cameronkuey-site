@@ -4,7 +4,7 @@ import { SITE, CATEGORIES } from '../lib/site';
 interface Props {
   title: string;
   description: string;
-  section?: 'operations' | 'cases' | 'ai' | 'creative' | 'contact' | 'home';
+  section?: 'experience' | 'projects' | 'creative' | 'contact' | 'home';
   image?: string;
   jsonld?: object;
   noindex?: boolean;
@@ -16,9 +16,8 @@ const canonical = new URL(path, SITE.url).href.replace(/\/$/, path === '/' ? '/'
 const ogImage = new URL(image, SITE.url).href;
 const fullTitle = title === SITE.name ? title : `${title} · ${SITE.name}`;
 const nav = [
-  { href: '/operations', label: 'Operations', key: 'operations' },
-  { href: '/case-studies', label: 'Case Studies', key: 'cases' },
-  { href: '/ai-builds', label: 'AI Builds', key: 'ai' },
+  { href: '/experience', label: 'Experience', key: 'experience' },
+  { href: '/projects', label: 'Projects', key: 'projects' },
   { href: '/creative', label: 'Creative', key: 'creative' },
   { href: '/contact', label: 'Contact', key: 'contact' },
 ];
@@ -70,9 +69,8 @@ const nav = [
     <nav aria-label="Mobile">
       <ul>
         <li><a href="/">Home</a></li>
-        <li><a href="/operations">Operations</a></li>
-        <li><a href="/case-studies">Case Studies</a></li>
-        <li><a href="/ai-builds">AI Builds</a></li>
+        <li><a href="/experience">Experience</a></li>
+        <li><a href="/projects">Projects</a></li>
         <li>
           <a href="/creative">Creative</a>
           <ul class="sub">

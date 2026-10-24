@@ -5,7 +5,7 @@
  * bands and shapes follow them; the SVG diagrams read the same object for their SMIL colours.
  * Site chrome (nav, footer, type) stays on the base brand.
  */
-export type ThemeName = 'brand' | 'dashboard' | 'roadmap';
+export type ThemeName = 'brand' | 'dashboard' | 'documentation' | 'roadmap';
 export type Theme = {
   primary: string; //    fills, step marks, diagram emphasis
   primaryInk: string; // primary when used as text (>= 4.5:1 on cream and on the tint)
@@ -34,6 +34,15 @@ export const THEMES: Record<ThemeName, Theme> = {
     primary: '#356698', primaryInk: '#356698', soft: '#E3EBF4', softLine: '#A9C1DB',
     tint: '#F0F3F7', band: '#E7EDF4', second: '#2F7CCF', accent: '#2E9D5C',
     keyBg: '#285080', keyNum: '#FFFFFF', keyLabel: '#D6E2F0', keyBar: '#2E9D5C',
+    warn: '#8A8172',
+    shape: 'rgba(53,102,152,.05)', shape2: 'rgba(53,102,152,.03)', shapeAlt: 'rgba(47,124,207,.04)',
+  },
+  // Documentation library (part of the Internal Dashboard): same blue, tile and tints as the dashboard; the one accent is the site red,
+  // used rarely (key-tile rule, the "which one?" mark in the problem graphic)
+  documentation: {
+    primary: '#356698', primaryInk: '#356698', soft: '#E3EBF4', softLine: '#A9C1DB',
+    tint: '#F0F3F7', band: '#E7EDF4', second: '#2F7CCF', accent: '#881919',
+    keyBg: '#285080', keyNum: '#FFFFFF', keyLabel: '#D6E2F0', keyBar: '#881919',
     warn: '#8A8172',
     shape: 'rgba(53,102,152,.05)', shape2: 'rgba(53,102,152,.03)', shapeAlt: 'rgba(47,124,207,.04)',
   },

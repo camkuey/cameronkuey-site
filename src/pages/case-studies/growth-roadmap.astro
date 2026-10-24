@@ -9,13 +9,13 @@ const shot = (id: string) => screens.find((s) => s.id === id)!;
 const pair = [shot('growth-overview-light'), shot('growth-overview-dark')];
 const gallery = screens.filter((s) => !pair.includes(s));
 ---
-<Base title={meta.title} section="cases" description={meta.description}>
+<Base title={meta.title} section="projects" description={meta.description}>
   <article class="cs-page" data-theme="roadmap" style={themeVars('roadmap')}>
     <div class="cs-heroband">
       <div class="cs-stripe" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
       <div class="wrap cs-herogrid">
         <header class="page-head wide">
-          <ol class="crumbs eyebrow mono" aria-label="Breadcrumb"><li><a href="/case-studies">Case studies</a></li><li>Strategy Growth Roadmap</li></ol>
+          <ol class="crumbs eyebrow mono" aria-label="Breadcrumb"><li><a href="/projects">Projects</a></li><li>Strategy Growth Roadmap</li></ol>
           <h1>From sticky notes to <em>a roadmap in a Google Sheet.</em></h1>
           <p class="lede">A freelance build: the Strategy Growth Roadmap, a planning tool on Google Sheets and Apps Script. One master Sheet, and each new client makes a copy for their own private Sheet, with nothing to install.</p>
           <dl class="spec-t"><div><dt>Type</dt><dd>Freelance build</dd></div><div><dt>Client</dt><dd>Anonymous</dd></div><div><dt>Tools</dt><dd>Google Sheets, Apps Script</dd></div></dl>
@@ -143,7 +143,7 @@ const gallery = screens.filter((s) => !pair.includes(s));
 
     <section class="cs-cta"><div class="wrap">
       <p class="eyebrow">Keep reading</p>
-      <div class="btns"><a class="btn solid" href="/case-studies">All case studies →</a><a class="btn" href="/contact">Ask me about it</a></div>
+      <div class="btns"><a class="btn solid" href="/projects">All projects →</a><a class="btn" href="/contact">Ask me about it</a></div>
     </div></section>
   </article>
 </Base>

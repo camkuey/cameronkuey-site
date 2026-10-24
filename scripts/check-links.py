@@ -6,7 +6,7 @@ import os, re, sys, html
 from urllib.parse import urlparse, unquote
 ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'dist')
 OLD = ['home','contact','photography','wedding-photography','engagement-proposals','family-photoshoots','graduation-photoshoots','video-production','promotional-corporate','documentaries','commercials-social-media-ads','wedding-videography','work','the-money-maker-app','klema-web-pages','klema-ios-app','foodfriend-ios-app','cosie-co','cec-building','the-cultivation-project','graphic-design','5-years-of-the-cultivation-project','autonomous-vehicle-demonstration','logos-flyers-signs','presentations-workshops','audio-production','coffee-meets-bible-podcast']
-NEW = ['', 'operations', 'ai-builds', 'creative', 'case-studies/internal-dashboard']
+NEW = ['', 'experience', 'projects', 'creative', 'contact', 'operations', 'ai-builds', 'case-studies', 'case-studies/internal-dashboard', 'case-studies/documentation', 'case-studies/circles-scheduling', 'case-studies/contract-automation', 'case-studies/growth-roadmap']
 
 def resolve(path):
     p = unquote(path).lstrip('/')

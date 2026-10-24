@@ -1,19 +1,19 @@
 ---
 import Base from '../layouts/Base.astro';
 import Reveal from '../components/RevealOnScroll.astro';
-import { roles, cases, quoteText, startYear, rest, SPAN } from '../data/operations-roles';
+import { roles, quoteText, startYear, rest, SPAN } from '../data/operations-roles';
 const pct = (y: number) => ((y - SPAN.start) / (SPAN.end - SPAN.start)) * 100;
 const years = [2012, 2014, 2016, 2018, 2020, 2022, 2024, 2026];
 const chronoRoles = [...roles].reverse();
 ---
-<Base title="Operations" section="operations"
-  description="Cameron Kuey’s operations experience: Director of Business Operations at Doodle Pirates Foundation, Modern Health, and founder of The Cultivation Project and Cosie Co.">
+<Base title="Experience" section="experience"
+  description="Cameron Kuey’s work history since 2012: Director of Business Operations at Doodle Pirates Foundation, Modern Health, and founder of The Cultivation Project and Cosie Co.">
   <header class="pg"><div class="cs-stripe" aria-hidden="true"></div><div class="wrap pg-grid">
     <div>
-      <p class="ey">Operations</p>
-      <h1>Running the business side so <em>mission work moves faster.</em></h1>
-      <p class="intro">Processes, data, teams and tools: I design the big picture, then build the systems that make it run.</p>
-      <div class="btns"><a class="btn solid" href="/resume.pdf">Download résumé (PDF)</a><a class="btn" href="/ai-builds">AI builds →</a></div>
+      <p class="ey">Experience</p>
+      <h1>Building organizations, tools <em>and stories since 2012.</em></h1>
+      <p class="intro">Operations, process automation and media production across startups, nonprofits and two businesses I founded.</p>
+      <div class="btns"><a class="btn solid" href="/resume.pdf">Download résumé (PDF)</a><a class="btn" href="/projects">See the projects →</a></div>
     </div>
     <dl class="spec-t">
       <div><dt>Now</dt><dd>Director of Business Operations, Doodle Pirates Foundation</dd></div>
@@ -23,7 +23,7 @@ const chronoRoles = [...roles].reverse();
     </dl>
   </div></header>
   <section class="sec"><div class="wrap">
-    <div class="sec-top"><div><p class="ey"><b>01</b> / Experience · 2012 – now</p><h2>One career, <em>five chapters.</em></h2></div></div>
+    <div class="sec-top"><div><p class="ey"><b>01</b> / Work history · 2012 – now</p><h2>Five roles, <em>one thread.</em></h2></div></div>
 
     <div class="ruler" aria-hidden="true">
       <div class="r-line"></div>
@@ -63,23 +63,18 @@ const chronoRoles = [...roles].reverse();
       ))}
     </ol>
   </div></section>
-  <section class="sec" style="padding-top:24px"><div class="wrap">
-    <div class="sec-top"><div><p class="ey"><b>02</b> / Modern Health</p><h2>Case studies</h2></div></div>
-    <ul class="rows">
-      {cases.map((c, i) => (
-        <li><a class="row" href={c.href}>
-          <span class="n">{String(i + 1).padStart(2, '0')}</span>
-          <h3>{c.title}</h3>
-          <p>{c.text}</p>
-          <span class="tag">{c.tools}<span class="go">Read the case study →</span></span>
-        </a></li>
-      ))}
-    </ul>
+  <section class="exp-next" aria-labelledby="next-h"><div class="wrap">
+    <p class="ey"><b>02</b> / Next</p>
+    <h2 id="next-h">The work behind <em>these roles.</em></h2>
+    <div class="btns"><a class="btn solid" href="/projects">See the projects →</a><a class="btn" href="/resume.pdf">Résumé (PDF)</a></div>
   </div></section>
   <Reveal />
 </Base>
 
 <style>
+  .exp-next{border-top:1px solid var(--tan-line);padding:64px 0 72px}
+  .exp-next h2{font-weight:300;font-size:clamp(28px,3vw,40px);letter-spacing:-.02em;line-height:1.08;max-width:18ch}
+  .exp-next h2 em{font-style:normal;color:var(--red)}
   /* year ruler */
   .ruler{position:relative;height:64px;margin:28px 14px 8px}
   .r-line{position:absolute;left:0;right:0;top:20px;height:2px;background:var(--line)}

@@ -65,7 +65,7 @@ The original images (about 800 MB) are not in this repo. To re-run the pipeline,
 
 1. Copy `src/data/internal-dashboard.ts` to `src/data/<name>.ts` and fill in the content: stats, problem, modules, stack, "What broke", "What I'd do differently", and screenshot labels. Sections whose arrays are empty are hidden.
 2. Copy `src/pages/case-studies/internal-dashboard.astro` to `src/pages/case-studies/<name>.astro` and import the new data file.
-3. Link it from `src/pages/ai-builds.astro` (featured card or a mini card) and, if relevant, from `operations.astro`.
+3. Link it from `src/pages/projects.astro` (a row in the list or a build card) and, if relevant, from `experience.astro`.
 4. Real screenshots: replace the "Screenshots coming soon" placeholders with `<Pic>` once they are sanitized (sample data, no personal info).
 
 ## Deploy: Cloudflare Pages

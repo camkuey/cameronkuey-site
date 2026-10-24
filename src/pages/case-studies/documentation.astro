@@ -1,0 +1,136 @@
+---
+import Base from '../../layouts/Base.astro';
+import { fullSrc, IMAGES } from '../../lib/site';
+import Pic from '../../components/Pic.astro';
+import CaseFlow from '../../components/CaseFlow.astro';
+import DocsProblem from '../../components/DocsProblem.astro';
+import DocsFolders from '../../components/DocsFolders.astro';
+import { themeVars } from '../../data/themes';
+import { meta, spec, stats, statsNote, problem, approach, how, decisions, nameParts, roles, shots, stack, phones, timeline, limits } from '../../data/documentation';
+---
+<Base title={meta.title} section="projects" description={meta.description}>
+  <article class="cs-page docs-page" data-theme="documentation" style={themeVars('documentation')}>
+    <div class="cs-heroband">
+      <div class="cs-stripe" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+      <div class="wrap cs-herogrid">
+        <header class="page-head wide">
+          <ol class="crumbs eyebrow mono" aria-label="Breadcrumb"><li><a href="/projects">Projects</a></li><li>Documentation</li></ol>
+          <h1>One library for every process doc, <em>synced to the shared Drive.</em></h1>
+          <p class="lede">As Director of Business Operations at Doodle Pirates Foundation, I built one place in the Internal Dashboard to find, start and edit every process doc. Each page is a real Google Doc in the shared Drive.</p>
+          <dl class="spec-t">{spec.map(([k, v]) => <div><dt>{k}</dt><dd>{v}</dd></div>)}</dl>
+        </header>
+        <figure class="cs-herovis is-shot">
+          <Pic id={shots.library.id} alt={shots.library.alt} eager sizes="(max-width: 900px) 100vw, 720px" />
+        </figure>
+      </div>
+      <div class="wrap">
+        <div class="cs-tiles">
+          {stats.map((s, i) => <div class={`cs-tile t${i}`}><b>{s.value}</b><span>{s.label}</span></div>)}
+        </div>
+      </div>
+    </div>
+    <div class="wrap"><p class="cs-note">{statsNote}</p></div>
+
+    <section class="cs-sec"><div class="wrap cs-split">
+      <div class="cs-text">
+        <span class="cs-no" aria-hidden="true">01</span>
+        <h2>The problem</h2>
+        {problem.map((p) => <p>{p}</p>)}
+      </div>
+      <figure class="cs-vis cs-flow"><DocsProblem /></figure>
+    </div></section>
+
+    <section class="cs-sec tint"><div class="wrap cs-split rev">
+      <div class="cs-text">
+        <span class="cs-no" aria-hidden="true">02</span>
+        <h2>The approach</h2>
+        {approach.map((p) => <p>{p}</p>)}
+      </div>
+      <figure class="cs-vis cs-flow"><DocsFolders /></figure>
+    </div></section>
+
+    <section class="cs-sec"><div class="wrap cs-split">
+      <div class="cs-text">
+        <span class="cs-no" aria-hidden="true">03</span>
+        <h2>How it works</h2>
+        {how.map((p) => <p>{p}</p>)}
+      </div>
+      <figure class="cs-vis cs-flow"><CaseFlow flow="docs-create" theme="documentation" /></figure>
+    </div></section>
+
+    <section class="cs-sec tint"><div class="wrap">
+      <div class="cs-grid">
+        <div class="cs-label"><span class="cs-no" aria-hidden="true">04</span><h2>Design decisions</h2></div>
+        <div class="cs-prose">
+          <ol class="numbered">
+            {decisions.map((d, i) => (
+              <li><b>{d.title}</b><p>{d.text}</p>
+                {i === decisions.length - 1 && (
+                  <div class="docs-name" role="img" aria-label="An example file name: DPF prefix, then initials, then the Pacific date and time, then the page title.">
+                    {nameParts.map((n) => <span class="docs-np"><code>{n.part}</code><small>{n.label}</small></span>)}
+                  </div>
+                )}
+              </li>
+            ))}
+          </ol>
+          <p class="eyebrow mono docs-roles-h">Who can do what</p>
+          <dl class="spec-t docs-roles" aria-label="Who can do what">
+            {roles.map(([k, v]) => <div><dt>{k}</dt><dd>{v}</dd></div>)}
+          </dl>
+        </div>
+      </div>
+    </div></section>
+
+    <section class="cs-sec"><div class="wrap">
+      <div class="cs-label"><span class="cs-no" aria-hidden="true">05</span><h2>Screens</h2></div>
+      <div class="docs-stack" data-gallery>
+        {stack.map((s) => (
+          <figure class="docs-shot">
+            <a class="cs-shotlink" href={fullSrc(s.id)} data-lb data-w={IMAGES[s.id].w} data-h={IMAGES[s.id].h} data-cap={s.label} aria-label={`View larger: ${s.label}`}>
+              <Pic id={s.id} alt={s.alt} sizes="(max-width: 1280px) 100vw, 1200px" />
+            </a>
+            <figcaption><b>{s.label}</b><span>{s.text}</span></figcaption>
+          </figure>
+        ))}
+        <div class="docs-phones">
+          <div class="docs-phones-cap"><b>On a phone</b><span>The library and the editor on a small screen.</span></div>
+          {phones.map((s) => (
+            <figure class="docs-phone">
+              <a class="cs-shotlink" href={fullSrc(s.id)} data-lb data-w={IMAGES[s.id].w} data-h={IMAGES[s.id].h} data-cap={`${s.label}, on a phone`} aria-label={`View larger: ${s.label}, on a phone`}>
+                <Pic id={s.id} alt={s.alt} sizes="(max-width: 700px) 45vw, 280px" />
+              </a>
+              <figcaption><b>{s.label}</b></figcaption>
+            </figure>
+          ))}
+        </div>
+      </div>
+    </div></section>
+
+    <section class="cs-sec tint"><div class="wrap">
+      <div class="cs-grid">
+        <div class="cs-label"><span class="cs-no" aria-hidden="true">06</span><h2>Outcomes</h2></div>
+        <div class="cs-prose">
+          <ol class="docs-tl">
+            {timeline.map((t) => <li><span class="when">{t.when}</span><span class="what">{t.text}</span></li>)}
+          </ol>
+        </div>
+      </div>
+    </div></section>
+
+    <section class="cs-sec"><div class="wrap">
+      <div class="cs-grid">
+        <div class="cs-label"><span class="cs-no" aria-hidden="true">07</span><h2>Limits and what is next</h2></div>
+        <div class="cs-prose">
+          <ul class="docs-hl">
+            {limits.map((l) => <li><b>{l.title}</b><span>{l.text}</span></li>)}
+          </ul>
+        </div>
+      </div>
+    </div></section>
+
+    <section class="cs-cta"><div class="wrap">
+      <p class="eyebrow">Keep reading</p>
+      <div class="btns"><a class="btn solid" href="/case-studies/internal-dashboard">The Internal Dashboard →</a><a class="btn" href="/projects">All projects</a><a class="btn" href="/contact">Ask me about it</a></div>
+    </div></section>
+  </article>
+</Base>

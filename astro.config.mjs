@@ -8,5 +8,12 @@ export default defineConfig({
   // Adobe Portfolio URLs (/photography, /klema-ios-app, ...) with no redirect.
   build: { format: 'file' },
   trailingSlash: 'never',
+  // Old URLs. In the static build these become small meta-refresh pages (dist/operations.html, ...);
+  // public/_redirects adds the real 301s on Cloudflare (it is evaluated before assets).
+  redirects: {
+    '/operations': '/experience',
+    '/ai-builds': '/projects',
+    '/case-studies': '/projects',
+  },
   integrations: [sitemap()],
 });

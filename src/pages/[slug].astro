@@ -23,7 +23,7 @@ const aboutSkills = isAbout ? (aboutHtml[1] ?? '').replace(/^<h3>Skills<\/h3>/, 
 const aboutImg = isAbout ? p.blocks.find((b: any) => b.t === 'images')?.items?.[0]?.id : null;
 
 let description: string;
-if (isAbout) description = 'About Cameron Kuey: operations leader, AI-assisted systems builder, photographer and filmmaker.';
+if (isAbout) description = 'About Cameron Kuey: operations leader, systems builder, photographer and filmmaker.';
 else if (isCategory) description = `${p.title} by Cameron Kuey: ${CATEGORIES.find((c) => c.slug === p.slug)!.children.map((c) => c.title).join(', ')}.`;
 else description = firstText ? (firstText.length > 155 ? firstText.slice(0, 152).replace(/\s+\S*$/, '') + '…' : firstText) : `${p.title}: ${p.category} work by Cameron Kuey.`;
 if (description.length < 70 && !isCategory) description = `${p.title}: ${p.category ?? 'creative'} work by Cameron Kuey. ${description}`.slice(0, 158);

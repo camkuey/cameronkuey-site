@@ -1,0 +1,132 @@
+{
+ "docs-library": {
+  "w": 2400,
+  "h": 1500,
+  "base": "/media/documentation/library",
+  "webp": [
+   480,
+   960,
+   1600,
+   1800
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#285888"
+ },
+ "docs-editor": {
+  "w": 2400,
+  "h": 1730,
+  "base": "/media/documentation/editor",
+  "webp": [
+   480,
+   960,
+   1600,
+   1800
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#f8f8f8"
+ },
+ "docs-new-page": {
+  "w": 2400,
+  "h": 1540,
+  "base": "/media/documentation/new-page",
+  "webp": [
+   480,
+   960,
+   1600,
+   1800
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#285888"
+ },
+ "docs-new-page-editor": {
+  "w": 2400,
+  "h": 1700,
+  "base": "/media/documentation/new-page-editor",
+  "webp": [
+   480,
+   960,
+   1600,
+   1800
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#f8f8f8"
+ },
+ "docs-intern-access": {
+  "w": 2400,
+  "h": 1740,
+  "base": "/media/documentation/intern-access",
+  "webp": [
+   480,
+   960,
+   1600,
+   1800
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#f8f8f8"
+ },
+ "docs-intern-view": {
+  "w": 2400,
+  "h": 1130,
+  "base": "/media/documentation/intern-view",
+  "webp": [
+   480,
+   960,
+   1600,
+   1800
+  ],
+  "avif": [
+   480,
+   960,
+   1600
+  ],
+  "color": "#285888"
+ },
+ "docs-phone-library": {
+  "w": 780,
+  "h": 1688,
+  "base": "/media/documentation/phone-library",
+  "webp": [
+   480,
+   780
+  ],
+  "avif": [
+   480,
+   780
+  ],
+  "color": "#f8f8f8"
+ },
+ "docs-phone-editor": {
+  "w": 780,
+  "h": 1688,
+  "base": "/media/documentation/phone-editor",
+  "webp": [
+   480,
+   780
+  ],
+  "avif": [
+   480,
+   780
+  ],
+  "color": "#f8f8f8"
+ }
+}

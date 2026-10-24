@@ -1,0 +1,50 @@
+---
+/* "The problem" graphic for the Documentation case study: one process doc, saved in several
+   places in several versions, and the open question. Static inline SVG (illustration, not a screenshot).
+   Titles are generic stand-ins, not real documents. The red "?" is the page's one accent. */
+import { THEMES, type ThemeName } from '../data/themes';
+interface Props { theme?: ThemeName }
+const { theme = 'documentation' } = Astro.props as Props;
+const TH = THEMES[theme];
+const cols = [
+  { x: 8, name: 'My Drive', docs: ['Intake process', 'Intake process 2'] },
+  { x: 126, name: 'Another drive', docs: ['Intake process (old)', 'Intake steps'] },
+  { x: 244, name: 'Some folder', docs: ['Intake draft'] },
+];
+const CW = 108;
+---
+<svg class="dsp" viewBox="0 0 360 292" role="img" aria-label="Illustration: the same process doc saved as several versions across three different drives and folders, with the question 'Which one is official?' beneath them." style={`--p:${TH.primary};--warn:${TH.accent}`}>
+  <rect class="dsp-panel" x=".5" y=".5" width="359" height="291" rx="4" />
+  {cols.map((c) => (
+    <g>
+      <path class="dsp-fold" d={`M${c.x},44 h30 l8,-9 h${CW - 38} a4,4 0 0 1 4,4 v138 a4,4 0 0 1 -4,4 h${-CW} a4,4 0 0 1 -4,-4 v-129 a4,4 0 0 1 4,-4 z`} transform={`translate(0,0)`} />
+      <text class="dsp-name" x={c.x + 8} y="30">{c.name}</text>
+      {c.docs.map((d, k) => (
+        <g transform={`translate(${c.x + 10},${62 + k * 64})`}>
+          <rect class="dsp-doc" width={CW - 20} height="52" rx="3" />
+          <path class="dsp-bars" d="M8,12 h46 M8,22 h58 M8,32 h40" />
+          <text class="dsp-t" x="8" y="46">{d}</text>
+        </g>
+      ))}
+    </g>
+  ))}
+  <path class="dsp-link" d="M62,196 C120,226 180,226 180,236 M180,196 C180,214 180,222 180,236 M298,172 C270,208 220,226 184,238" />
+  <g transform="translate(180,262)">
+    <circle class="dsp-q" r="15" />
+    <text class="dsp-qt" y="6" text-anchor="middle">?</text>
+  </g>
+  <text class="dsp-ask" x="204" y="266">Which one is official?</text>
+</svg>
+<style>
+  .dsp{display:block;width:100%;height:auto;aspect-ratio:360/292;font-family:var(--fb);overflow:hidden}
+  .dsp-panel{fill:#FFFDF9;stroke:#D9CFC0}
+  .dsp-fold{fill:var(--cs-tint,#F0F3F7);stroke:#B8AC9A;stroke-width:1}
+  .dsp-name{font-family:var(--mono);font-size:8.6px;letter-spacing:.1em;text-transform:uppercase;fill:#5A544B}
+  .dsp-doc{fill:#fff;stroke:#B9B2A6}
+  .dsp-bars{stroke:#D9CFC0;stroke-width:2.2;stroke-linecap:round;fill:none}
+  .dsp-t{font-size:8.6px;fill:#1B1A18}
+  .dsp-link{fill:none;stroke:#8A8172;stroke-width:1.2;stroke-dasharray:3 3}
+  .dsp-q{fill:#FFFDF9;stroke:var(--warn);stroke-width:1.8}
+  .dsp-qt{font-size:18px;font-weight:600;fill:var(--warn)}
+  .dsp-ask{font-size:11.5px;font-weight:500;fill:#1B1A18}
+</style>
