@@ -1,6 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
 import Pic from '../components/Pic.astro';
+import DataFlowDiagram from '../components/DataFlowDiagram.astro';
 import { SITE, page } from '../lib/site';
 
 const work = [
@@ -97,6 +98,11 @@ const jsonld = {
       <Pic id="dash-phone-today-focus" sizes="(max-width: 900px) 80vw, 320px" alt="The Internal Dashboard on a phone: the week meter, today's focus card and the first task to do" />
     </figure>
   </article>
+</div></section>
+
+<section id="flow" aria-labelledby="flow-h" style="padding-top:0"><div class="wrap">
+  <div class="sec-head"><h2 id="flow-h">How the dashboard fits together</h2><p class="eyebrow">How data flows</p></div>
+  <div style="margin-top:28px"><DataFlowDiagram /></div>
 </div></section>
 
 <section id="work" aria-labelledby="work-h" style="padding-top:0"><div class="wrap">
