@@ -58,8 +58,8 @@ export const flows = {
     title: 'The workshop catalogue deck',
     body: [
       'Airtable holds the details of every workshop we offer: languages, length, course types, seasonal availability and about a dozen details in all.',
-      'An Airtable automation, Zapier connectors and a Google Apps Script turn that into a Google Slides deck with templated tables, designs and fonts. It refreshes daily on a schedule, so the sales team has one shared link that works as a constantly updated catalogue of our workshops and webinars.',
-      'I kept one step manual, a “Run script” step, so nothing in the deck could change by accident.',
+      'An Airtable automation, Zapier connectors and a Google Apps Script turn that into a Google Slides deck with templated tables, designs and fonts. Refreshing it is one click, so the sales team has one shared link that works as an up-to-date catalogue of our workshops and webinars. I built several automations like this one that keep decks fresh.',
+      'The refresh is a manual “Run script” step, so nothing in the deck can change by accident.',
     ],
     related:
       'A related workflow duplicates a master workshop deck, fills in the date, speaker and company, and files it in the right folder. One failure came from free text typed into a URL field, so I made that field URL-only.',

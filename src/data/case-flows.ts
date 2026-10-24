@@ -94,12 +94,12 @@ export const FLOWS: Record<string, FDef> = {
   'circles-deck': {
     accent: 'blue',
     label:
-      'Animated diagram of the Circles slide-deck catalogue. Airtable holds the details of each workshop. An Airtable automation and Zapier connectors, then a Google Apps Script run step, feed a Google Slides deck with templated tables, designs and fonts. A daily schedule starts the refresh, and the sales team uses one shared link to the deck. A dashed box marks a next idea that is not built yet: summarise the changes in Airtable or Slack and ask the team to approve before the script runs.',
+      'Animated diagram of the Circles slide-deck catalogue. Airtable holds the details of each workshop. An Airtable automation and Zapier connectors, then a Google Apps Script run step, feed a Google Slides deck with templated tables, designs and fonts. A person starts the refresh by pressing Run script, and the sales team uses one shared link to the deck. A dashed box marks a next idea that is not built yet: summarise the changes in Airtable or Slack and ask the team to approve before the script runs.',
     nodes: [
       { id: 'at', c: 0, r: 0, t: 'Airtable', s: 'workshop details', col: 'ink' },
       { id: 'auto', c: 1, r: 0, t: 'Automations', s: 'Airtable, Zapier', col: 'blue' },
       { id: 'gas', c: 2, r: 0, t: 'Apps Script', s: 'Run script step', col: 'gold-t' },
-      { id: 'day', c: 0, r: 1, t: 'Daily schedule', s: 'starts a refresh', col: 'sand' },
+      { id: 'day', c: 0, r: 1, t: 'Manual run', s: 'I press Run script', col: 'sand' },
       { id: 'deck', c: 2, r: 1, t: 'Google Slides', s: 'catalogue deck', col: 'gold' },
       { id: 'sales', c: 2, r: 2, t: 'Sales team', s: 'one shared link', tone: 'person' },
       { id: 'next', c: 0, r: 2, span: 2, t: 'Next: approve before it runs', s: 'Airtable or Slack · not built yet', tone: 'next' },
@@ -112,7 +112,7 @@ export const FLOWS: Record<string, FDef> = {
       { via: ['at', 'auto', 'gas', 'deck', 'sales'], T: 12, idle: 1.4, blobs: [{ delay: 3.6, tone: 'ink', still: 6.2, swaps: [{ at: 3, tone: 'blue' }] }] },
       { via: ['day', 'at'], T: 12, idle: 8.2, blobs: [{ tone: 'gold', still: 2.4 }] },
     ],
-    legend: [['ink', 'workshop data'], ['blue', 'slides'], ['gold', 'daily trigger']],
+    legend: [['ink', 'workshop data'], ['blue', 'slides'], ['gold', 'manual trigger']],
   },
 
   /* ── Contract automation: the button ── */

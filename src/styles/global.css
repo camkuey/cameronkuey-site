@@ -351,17 +351,6 @@ picture{display:contents}
 .mini h3{font-weight:300;font-size:26px;letter-spacing:-.02em;line-height:1.1}
 .mini p{color:var(--muted)}
 .mini .eyebrow{margin-top:auto}
-.roles{border-top:1px solid var(--line)}
-.role{display:grid;grid-template-columns:220px 1fr;gap:16px 48px;padding:36px 0;border-bottom:1px solid var(--line)}
-.role .when{font-size:12px;letter-spacing:.16em;text-transform:uppercase;font-weight:500;color:var(--muted)}
-.role .when b{display:block;color:var(--accent);font-weight:500;margin-bottom:4px}
-.role h3{font-weight:300;font-size:clamp(28px,2.8vw,40px);letter-spacing:-.02em;line-height:1.1}
-.role .org{font-size:13px;letter-spacing:.14em;text-transform:uppercase;font-weight:500;margin-top:6px}
-.role ul{margin:18px 0 0 1.1em;max-width:70ch}
-.role li{margin:.45em 0}
-.role li::marker{color:var(--accent)}
-.role .more{margin-top:16px;font-size:14px}
-.role .more a{text-underline-offset:3px}
 .contact-list{border-top:1px solid var(--line)}
 .contact-list a{display:grid;grid-template-columns:200px 1fr auto;gap:16px;align-items:baseline;padding:24px 0;border-bottom:1px solid var(--line);text-decoration:none}
 .contact-list a span:first-child{font-size:12px;letter-spacing:.16em;text-transform:uppercase;font-weight:500;color:var(--muted)}
@@ -378,7 +367,6 @@ picture{display:contents}
   .shot-img{padding:44px 8px 8px}
   .minis{grid-template-columns:1fr}
   .mini,.mini:nth-child(odd),.mini:nth-child(2n){padding:28px 0;border-left:0}
-  .role{grid-template-columns:1fr;padding:28px 0}
   .contact-list a{grid-template-columns:1fr;gap:4px}
 }
 .creative-index{display:grid;grid-template-columns:repeat(3,1fr);gap:40px 28px;margin-top:80px;border-top:1px solid var(--ink);padding-top:28px}
@@ -461,13 +449,13 @@ picture{display:contents}
 .cs-thumb{background:#F1EDE5;display:flex;align-items:center;justify-content:center;overflow:hidden;min-height:260px}
 .cs-thumb picture,.cs-thumb img{display:block;width:100%;height:100%;object-fit:cover}
 .cs-mono{font-family:var(--fd);font-weight:300;font-size:64px;color:var(--accent);letter-spacing:-.03em}
-.cs-text{padding:40px 44px;display:flex;flex-direction:column;gap:14px}
-.cs-text h2{font-family:var(--fd);font-weight:300;font-size:clamp(24px,2.4vw,32px);letter-spacing:-.02em;line-height:1.1}
-.cs-text p:not(.eyebrow){font-weight:300;font-size:17px;line-height:1.5;max-width:52ch}
+.cs-card-text{padding:40px 44px;display:flex;flex-direction:column;gap:14px}
+.cs-card-text h2{font-family:var(--fd);font-weight:300;font-size:clamp(24px,2.4vw,32px);letter-spacing:-.02em;line-height:1.1}
+.cs-card-text p:not(.eyebrow){font-weight:300;font-size:17px;line-height:1.5;max-width:52ch}
 .cs-tags{list-style:none;display:flex;flex-wrap:wrap;gap:8px;padding:0}
 .cs-tags li{font-size:12px;letter-spacing:.1em;text-transform:uppercase;border:1px solid var(--line);border-radius:999px;padding:6px 12px}
 .cs-more{margin-top:auto;font-size:13px;text-transform:uppercase;letter-spacing:.14em;font-weight:500;color:var(--accent)}
-@media(max-width:900px){.cs-card{grid-template-columns:1fr}.cs-thumb{min-height:200px;max-height:260px}.cs-text{padding:28px 22px}}
+@media(max-width:900px){.cs-card{grid-template-columns:1fr}.cs-thumb{min-height:200px;max-height:260px}.cs-card-text{padding:28px 22px}}
 
 /* Modern Health case studies (Circles scheduling, contract automation) */
 .cs-prose p{max-width:62ch}
@@ -519,8 +507,7 @@ a.mini:focus-visible{outline:2px solid var(--accent);outline-offset:4px}
 .cs-sec .cs-label{margin:0;padding:0;border:0}
 .cs-sec .cs-label h2{font-family:var(--fd);font-weight:300;font-size:clamp(28px,2.8vw,40px);letter-spacing:-.02em;line-height:1.08}
 .cs-sec .cs-grid>div:last-child{border-top:0;padding-top:6px}
-.cs-sec .cs-text p:first-of-type{font-size:19px;font-weight:300;line-height:1.5}
-.cs-prose p:first-child{font-size:21px;font-weight:300;line-height:1.5;color:var(--ink)}
+.cs-sec .cs-text p,.cs-sec .cs-prose p{font-size:18px;font-weight:300;line-height:1.55;color:var(--ink)}
 .cs-sec .cs-vis{background:transparent;padding:0}
 .cs-sec .cs-platforms{background:#FFFDF9;border:1px solid var(--ink);border-top:6px solid var(--sc);padding:26px 24px 20px;border-radius:4px}
 .cs-sec .cs-flow{border-radius:6px;box-shadow:8px 8px 0 var(--sc)}
@@ -572,3 +559,17 @@ a.mini:focus-visible{outline:2px solid var(--accent);outline-offset:4px}
 .cs-tags li.chip{font-size:12px;letter-spacing:.1em;text-transform:uppercase;padding:6px 12px}
 .cs-tags li.chip.ch-sand{border-color:#B9B2A6}
 .cs-card.k-circles .eyebrow{color:#7A5C12}.cs-card.k-contract .eyebrow{color:#2E5E92}
+
+
+/* One header size and one copy size on the Modern Health case studies */
+.cs-sec .cs-text h2,.cs-sec .cs-label h2{font-size:clamp(28px,2.8vw,40px)}
+.cs-sec .numbered p,.cs-sec .cs-callout,.cs-sec li p{font-size:18px}
+
+/* Experience timeline on /operations: employer tones and scroll-in fade */
+[data-tone=red]{--c:#881919;--tx:#881919;--t:#F4E5E2;--on:#fff}
+[data-tone=blue]{--c:#2E5E92;--tx:#2E5E92;--t:#E3EBF4;--on:#fff}
+[data-tone=gold]{--c:#DAB057;--tx:#6F5210;--t:#F7EDD2;--on:#1B1A18}
+[data-tone=ink]{--c:#1B1A18;--tx:#1B1A18;--t:#ECE7DD;--on:#fff}
+.rv-on{opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s ease}
+.rv-on.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.rv-on{opacity:1;transform:none;transition:none}}

@@ -1,0 +1,14 @@
+<script>
+  // Scroll-in fade for [data-rv] elements. Skipped entirely for reduced motion.
+  // Experience cards that open Details by default do so on desktop only.
+  if (matchMedia('(max-width: 820px)').matches) {
+    document.querySelectorAll('details[data-open-desktop]').forEach((d) => d.removeAttribute('open'));
+  }
+  const els = Array.from(document.querySelectorAll<HTMLElement>('[data-rv]'));
+  if (!matchMedia('(prefers-reduced-motion: reduce)').matches && 'IntersectionObserver' in window) {
+    const io = new IntersectionObserver((es) => es.forEach((e) => {
+      if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+    }), { rootMargin: '0px 0px -8% 0px' });
+    els.forEach((el) => { el.classList.add('rv-on'); io.observe(el); });
+  }
+</script>

@@ -1,57 +1,10 @@
 ---
 import Base from '../layouts/Base.astro';
-const roles = [
-  {
-    when: 'Now', now: true, title: 'Director of Business Operations', org: 'Doodle Pirates Foundation',
-    bullets: [
-      'Designed and launched the Internal Dashboard as product owner, taking it from concept to a live production site in under two weeks: one role-based platform for projects and tasks, onboarding, PTO, documentation, shift scheduling, time clocking, payroll preparation and a manufacturing shop-floor kiosk.',
-      'Built Ask Otis, an embedded Claude-powered assistant with human-in-the-loop approval before any change is saved.',
-      'Designed the organization-wide agentic operating model and deployed about 20 AI agents mapped to org-chart roles across all six departments.',
-      'Architected four connected Airtable bases, including a 30-table operations backbone and a 32-table manufacturing ERP.',
-      'Built an AI meeting-to-task pipeline that turns transcripts into approved tasks, saving about 5 hours a week.',
-      'Set up Foundation operations and migrated the team from Microsoft 365 to Google Workspace and Slack.',
-    ],
-    more: { href: '/case-studies/internal-dashboard', text: 'Read the Internal Dashboard case study' },
-  },
-  {
-    when: 'May 2024 – April 2026', title: 'Content Operations Manager', org: 'Modern Health',
-    bullets: [
-      'Built and maintained 150+ automations across Zapier, Airtable, Salesforce, Quickbase, Zoom and Google Apps Script.',
-      'Partnered with Revenue, Business and Product Operations, Marketing, Clinical, Finance, Legal and Content Studio to turn ambiguous requirements into end-to-end system designs.',
-      'Designed data pipelines and API integrations that unified revenue, operations and finance data.',
-      'Automated provider contracting, order forms and invoicing across a multi-sided marketplace.',
-    ],
-    more: { href: '/case-studies/contract-automation', text: 'Read the contract automation case study' },
-  },
-  {
-    when: 'May 2022 – May 2024', title: 'Creative Producer', org: 'Modern Health',
-    bullets: [
-      'Owned scheduling, logistics and live production for 570+ provider-led group Circles.',
-      'Led continuous operational experimentation; iterations supported 60%+ year-over-year growth in a core product line.',
-    ],
-    more: { href: '/case-studies/circles-scheduling', text: 'Read the Circles scheduling case study' },
-  },
-  {
-    when: '2015 – 2022', title: 'Founder & Executive Director', org: 'The Cultivation Project',
-    bullets: [
-      'Founded and ran a nonprofit media organization: day-to-day operations, financial systems, fundraising, the creative team and the board.',
-      'Directed a 10+ person media team that produced 100+ documentaries, promotional videos and podcast episodes.',
-    ],
-    more: { href: '/documentaries', text: 'See The Cultivation Project’s films' },
-  },
-  {
-    when: '2012 – 2022', title: 'Founder', org: 'Cosie Co. Productions',
-    bullets: [
-      'Founded a media production company and grew it from solo freelance to a 10-year operation serving 200+ clients, in wedding, family and corporate photography and videography.',
-      'Ran the whole client operation myself, from lead intake and contracts to scheduling, delivery and invoicing.',
-    ],
-    more: { href: '/photography', text: 'See the photography' },
-  },
-];
-const cases = [
-  { href: '/case-studies/circles-scheduling', title: 'Turning a manual, multi-tab Circles setup into a one-step workflow', text: 'Zendesk to a finished Zoom event in one Zapier workflow, with Airtable as the source of truth and the producer still in the loop.', tools: 'Zapier · Airtable · Zoom · Zendesk' },
-  { href: '/case-studies/contract-automation', title: 'One button from an Airtable record to a signed Ironclad contract', text: 'I simplified the process with legal first, then automated it, keeping Ironclad as the system of record.', tools: 'Airtable · Apps Script · Ironclad' },
-];
+import Reveal from '../components/RevealOnScroll.astro';
+import { roles, cases, quoteText, startYear, rest, SPAN } from '../data/operations-roles';
+const pct = (y: number) => ((y - SPAN.start) / (SPAN.end - SPAN.start)) * 100;
+const years = [2012, 2014, 2016, 2018, 2020, 2022, 2024, 2026];
+const chronoRoles = [...roles].reverse();
 ---
 <Base title="Operations" section="operations"
   description="Cameron Kuey’s operations experience: Director of Business Operations at Doodle Pirates Foundation, Modern Health, and founder of The Cultivation Project and Cosie Co.">
@@ -64,20 +17,45 @@ const cases = [
     </header>
   </div>
   <section style="padding-top:24px"><div class="wrap">
-    <div class="sec-head"><h2>Experience</h2><p class="eyebrow">2012 – now</p></div>
-    <div class="roles">
-      {roles.map((r) => (
-        <article class="role">
-          <p class="when">{r.now ? <b>Now</b> : r.when}</p>
-          <div>
-            <h3>{r.title}</h3>
-            <p class="org">{r.org}</p>
-            <ul>{r.bullets.map((b) => <li>{b}</li>)}</ul>
-            {r.more && <p class="more"><a href={r.more.href}>{r.more.text} →</a></p>}
-          </div>
-        </article>
-      ))}
+    <div class="sec-head"><h2>One career, <em>five chapters.</em></h2><p class="eyebrow">Experience · 2012 – now</p></div>
+
+    <div class="ruler" aria-hidden="true">
+      <div class="r-line"></div>
+      {years.map((y) => <span class="r-tick" style={`left:${pct(y)}%`}><i></i><b>{y}</b></span>)}
+      {chronoRoles.map((r) => <span class="r-dot" data-tone={r.tone} style={`left:${pct(r.from)}%`}></span>)}
     </div>
+
+    <ol class="tl">
+      {roles.map((r) => (
+        <li class="tl-item" data-tone={r.tone} data-rv>
+          <div class="tl-year">
+            <b>{startYear(r)}</b>
+            <span>{r.sub ?? r.when}</span>
+          </div>
+          <span class="tl-node" aria-hidden="true"></span>
+          <article class="tl-card">
+            <p class="tl-when">{r.sub ?? r.when}</p>
+            <h3>{r.title}</h3>
+            <p class="tl-org">{r.org}</p>
+            <div class="hats">
+              <p class="hats-l">Hats I wore</p>
+              <ul>{r.hats.map((h) => <li>{h}</li>)}</ul>
+            </div>
+            <blockquote>
+              <span>Highlight</span>
+              {quoteText(r)}
+            </blockquote>
+            {rest(r).length > 0 && (
+              <details open={r.openDetails} data-open-desktop={r.openDetails ? '' : undefined}>
+                <summary>Details <em>· {rest(r).length} more</em></summary>
+                <ul>{rest(r).map((b) => <li>{b}</li>)}</ul>
+              </details>
+            )}
+            {r.more && <p class="tl-more"><a href={r.more.href}>{r.more.text} →</a></p>}
+          </article>
+        </li>
+      ))}
+    </ol>
   </div></section>
   <section style="padding-top:24px"><div class="wrap">
     <div class="sec-head"><h2>Case studies</h2><p class="eyebrow">Modern Health</p></div>
@@ -92,4 +70,61 @@ const cases = [
       ))}
     </div>
   </div></section>
+  <Reveal />
 </Base>
+
+<style>
+  /* year ruler */
+  .ruler{position:relative;height:64px;margin:28px 14px 8px}
+  .r-line{position:absolute;left:0;right:0;top:20px;height:2px;background:var(--line)}
+  .r-tick{position:absolute;top:14px;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:6px}
+  .r-tick i{width:1px;height:14px;background:#B9B2A6}
+  .r-tick b{font-weight:500;font-size:12px;letter-spacing:.08em;color:var(--muted)}
+  .r-dot{position:absolute;top:12px;width:18px;height:18px;margin-left:-9px;border-radius:50%;background:var(--c);box-shadow:0 0 0 4px var(--bg)}
+  .r-dot[data-tone=gold]{box-shadow:0 0 0 4px var(--bg),inset 0 0 0 1px rgba(0,0,0,.12)}
+
+  /* timeline */
+  .tl{list-style:none;margin:24px 0 24px;position:relative}
+  .tl-item{display:grid;grid-template-columns:150px 36px minmax(0,1fr);column-gap:20px;position:relative;padding-bottom:44px}
+  .tl-item::before{content:"";position:absolute;left:calc(150px + 20px + 17px);top:26px;bottom:-4px;width:2px;background:var(--c);opacity:.5}
+  .tl-item:last-child::before{background:linear-gradient(var(--c),transparent);opacity:.5;bottom:20px}
+  .tl-year{text-align:right;padding-top:2px}
+  .tl-year b{display:block;font-weight:200;font-size:54px;line-height:1;letter-spacing:-.03em;color:var(--tx)}
+  .tl-year span{display:block;margin-top:8px;font-size:13px;color:var(--muted);line-height:1.35}
+  .tl-node{width:36px;height:36px;border-radius:50%;background:var(--c);box-shadow:0 0 0 6px var(--bg);position:relative;z-index:1;margin-top:2px}
+  .tl-node::after{content:"";position:absolute;inset:11px;border-radius:50%;background:var(--bg)}
+  .tl-card{background:#fff;border:1px solid var(--line);border-top:5px solid var(--c);border-radius:4px;padding:30px 36px 28px;box-shadow:0 18px 36px -30px rgba(40,30,20,.35)}
+  .tl-when{display:none;font-size:12px;letter-spacing:.2em;text-transform:uppercase;font-weight:500;color:var(--tx);margin-bottom:10px}
+  .tl-card h3{font-weight:300;font-size:clamp(28px,3vw,40px);letter-spacing:-.02em;line-height:1.1}
+  .tl-org{margin-top:8px;font-size:13px;letter-spacing:.2em;text-transform:uppercase;font-weight:500;color:var(--tx)}
+  blockquote{margin:24px 0 8px;padding:4px 0 4px 22px;border-left:4px solid var(--c);font-weight:300;font-size:clamp(20px,2vw,26px);line-height:1.35;letter-spacing:-.01em;max-width:34em}
+  blockquote span{display:block;font-size:11px;letter-spacing:.24em;text-transform:uppercase;font-weight:500;color:var(--muted);margin-bottom:8px}
+  details{margin-top:18px;border-top:1px solid var(--line)}
+  summary{cursor:pointer;list-style:none;padding:14px 0;font-size:13px;letter-spacing:.2em;text-transform:uppercase;font-weight:500;color:var(--tx);display:flex;align-items:center;gap:10px}
+  summary::-webkit-details-marker{display:none}
+  summary::before{content:"+";display:inline-grid;place-items:center;width:24px;height:24px;border-radius:50%;background:var(--t);font-size:16px;line-height:1;letter-spacing:0}
+  details[open] summary::before{content:"–"}
+  summary em{font-style:normal;color:var(--muted);letter-spacing:.1em;text-transform:none;font-weight:400}
+  summary:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+  details ul{margin:0 0 6px 18px;max-width:62ch}
+  details li{margin-bottom:10px;line-height:1.55}
+  details li::marker{color:var(--c)}
+  .hats{margin-top:18px}
+  .hats-l{font-size:11px;letter-spacing:.24em;text-transform:uppercase;font-weight:500;color:var(--muted);margin-bottom:8px}
+  .hats ul{list-style:none;display:flex;flex-wrap:wrap;gap:6px}
+  .hats li{background:var(--c);color:var(--on);font-size:13px;line-height:1.3;font-weight:500;letter-spacing:.02em;padding:5px 12px;border-radius:999px}
+  .tl-more{margin-top:14px}
+  .tl-more a{font-weight:500;color:var(--tx);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:4px}
+
+  @media (max-width:820px){
+    .ruler{margin-inline:18px}
+    .tl-item{grid-template-columns:28px minmax(0,1fr);column-gap:14px;padding-bottom:28px}
+    .tl-item::before{left:13px;top:22px}
+    .tl-year{display:none}
+    .tl-node{width:28px;height:28px}
+    .tl-node::after{inset:8px}
+    .tl-when{display:block}
+    .tl-card{padding:22px 20px 20px}
+    blockquote{padding-left:16px}
+  }
+</style>

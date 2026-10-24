@@ -26,7 +26,7 @@ import { CHIP, chipClass } from '../../data/chips';
                   ? <div class="cs-motifwrap"><CaseMotif kind={c.motif} variant="card" /></div>
                   : <span class="cs-mono">{c.org.split(' ').map((w) => w[0]).join('').slice(0, 2)}</span>}
             </div>
-            <div class="cs-text">
+            <div class="cs-card-text">
               <p class="eyebrow">{c.kind} · {c.org}</p>
               <h2>{c.title}</h2>
               <p>{c.summary}</p>

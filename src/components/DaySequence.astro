@@ -121,7 +121,7 @@ const n2 = (i: number) => String(i + 1).padStart(2, '0');
   .dy-pause:hover{color:var(--ink);border-color:var(--ink)}
   .dy-pause:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
   .dy-pause[hidden]{display:none}
-  .dy-steps{list-style:none;clear:both}
+  .dy-steps{list-style:none;clear:both;overflow-x:clip}
   .dy-step{display:grid;grid-template-columns:minmax(220px,1fr) 2fr;gap:24px 64px;align-items:center;border-top:1px solid var(--line);padding:28px 0}
   .is-live .dy-step{border-top:0;padding:0}
   /* stack panels in one cell so the block keeps the tallest panel's height (no jumps) */
