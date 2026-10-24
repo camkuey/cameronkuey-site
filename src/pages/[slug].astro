@@ -51,12 +51,6 @@ const catCovers = isCategory
   </div>
   <section style="padding-top:8px"><div class="wrap">
     {isCategory ? <Covers covers={catCovers} eager /> : <Blocks blocks={isAbout ? p.blocks.filter((b: any) => !(b.t === 'html' && /My Resume/.test(b.html))) : p.blocks} />}
-    {isAbout && (
-      <div class="blocks" style="margin-top:48px">
-        <div class="prose block-text"><h2>My Resume</h2><p>The résumé that appeared here on the original site was from 2022. Here’s the current one:</p></div>
-        <p><a class="btn" href="/resume.pdf">Download résumé (PDF)</a></p>
-      </div>
-    )}
   </div></section>
   {(prev || next) && (
     <nav class="wrap" aria-label={`More ${cat!.title}`} style="padding-bottom:96px">
