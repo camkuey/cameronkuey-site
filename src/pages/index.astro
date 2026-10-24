@@ -1,7 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
 import Pic from '../components/Pic.astro';
-import DashboardArt from '../components/DashboardArt.astro';
 import { SITE } from '../lib/site';
 
 const work = [
@@ -30,21 +29,27 @@ const jsonld = {
 <Base title="Cameron Kuey" description="Cameron Kuey — Director of Business Operations at Doodle Pirates Foundation, builder of AI-powered internal tools, and a photographer and filmmaker (Cosie Co., The Cultivation Project)." jsonld={jsonld}>
 <section class="hero" aria-labelledby="h"><div class="wrap">
   <p class="eyebrow">Operations · AI &amp; technical builds · Photo, film &amp; design</p>
-  <h1 id="h" style="margin-top:22px">I build systems,<br /><em>stories,</em> and AI tools.</h1>
-  <div class="hero-grid">
-    <div class="hero-intro">
-      <p>I’m Cameron — Director of Business Operations at Doodle Pirates Foundation, a hands-on builder of AI-powered internal tools, and a photographer and filmmaker who has been telling stories through Cosie Co. and The Cultivation Project since 2012.</p>
-      <div class="meta">
-        <div><b>Now</b>Doodle Pirates Foundation</div>
-        <div><b>Before</b>Modern Health</div>
-        <div><b>Founder</b>Cosie Co. · The Cultivation Project</div>
-      </div>
-      <div class="btns"><a class="btn solid" href="/case-studies/internal-dashboard">See the Internal Dashboard →</a><a class="btn" href="/contact">Get in touch</a></div>
+  <div class="hero-bar">
+    <div>
+      <h1 id="h">I build systems, <em>stories,</em> and AI tools.</h1>
+      <p>Director of Business Operations at Doodle Pirates Foundation. Photographer and filmmaker since 2012.</p>
     </div>
-    <figure class="hero-photo">
-      <Pic id="engagement-proposals/09-9efda6cb" eager sizes="(max-width: 900px) 100vw, 600px" style="aspect-ratio:4/5;object-position:50% 85%" alt="Couple embracing on a granite outcrop with Yosemite Valley behind them" />
-      <figcaption><a href="/engagement-proposals">Engagement session, Yosemite</a><span>Photo — Cameron Kuey</span></figcaption>
-    </figure>
+    <div class="btns"><a class="btn solid" href="/case-studies/internal-dashboard">See the Internal Dashboard →</a><a class="btn" href="/contact">Get in touch</a></div>
+  </div>
+  <div class="hero-mosaic">
+    <a class="hm hm-ui" href="/case-studies/internal-dashboard" aria-label="Internal Dashboard case study">
+      <span class="tag">Sample data</span>
+      <Pic id="dash-today-focus" eager sizes="(max-width: 900px) 100vw, 760px" alt="The Internal Dashboard's My Work page with sample data: today's meetings, focus cards and open tasks" />
+      <span class="hm-cap"><span>Internal Dashboard</span><span>AI builds →</span></span>
+    </a>
+    <a class="hm" href="/engagement-proposals" aria-label="Photography">
+      <Pic id="engagement-proposals/09-9efda6cb" eager sizes="(max-width: 900px) 50vw, 360px" style="object-position:50% 70%" alt="Couple embracing on a granite outcrop with Yosemite Valley behind them" />
+      <span class="hm-cap"><span>Photography</span><span>→</span></span>
+    </a>
+    <a class="hm" href="/documentaries" aria-label="Film">
+      <Pic id="video-production/02-49466d51" eager sizes="(max-width: 900px) 50vw, 360px" alt="Two people in conversation during a filmed interview" />
+      <span class="hm-cap"><span>Film</span><span>→</span></span>
+    </a>
   </div>
 </div></section>
 
@@ -54,19 +59,16 @@ const jsonld = {
     <a class="path" href="/operations">
       <span class="num">01</span><h3>Operations</h3>
       <p>Running the business side so mission work can move faster — processes, data, teams and tools.</p>
-      <ul><li>Director of Business Operations, Doodle Pirates Foundation</li><li>Content Operations Manager, Modern Health (prev.)</li><li>Airtable ERP &amp; workflow design</li></ul>
       <span class="go">Operations work →</span>
     </a>
     <a class="path" href="/ai-builds">
       <span class="num">02</span><h3>AI &amp; Technical Builds</h3>
       <p>Shipping production software with Claude Code, Claude Design and AI coding agents — with humans kept in the loop.</p>
-      <ul><li>All-in-one Internal Dashboard</li><li>Ask Otis, a Claude-powered assistant</li><li>~20 AI agents mapped to org roles</li></ul>
       <span class="go">Technical builds →</span>
     </a>
     <a class="path" href="/creative">
       <span class="num">03</span><h3>Creative Work</h3>
       <p>Photography, video, design and podcasting — 100+ weddings and events, 50+ video projects, dozens of brand materials.</p>
-      <ul><li>Cosie Co. Productions, est. 2012</li><li>The Cultivation Project, est. 2015</li><li>Coffee Meets Bible podcast</li></ul>
       <span class="go">Creative portfolio →</span>
     </a>
   </div>
@@ -87,7 +89,10 @@ const jsonld = {
       </div>
       <a class="btn" href="/case-studies/internal-dashboard">Read the case study →</a>
     </div>
-    <DashboardArt />
+    <figure class="cs-vis" style="margin:0;border-radius:0;display:flex;flex-direction:column;justify-content:center">
+      <span class="tag">Sample data</span>
+      <Pic id="dash-today-focus-deck" sizes="(max-width: 900px) 100vw, 640px" alt="Daily focus card from the Internal Dashboard, shown with sample data" />
+    </figure>
   </article>
 </div></section>
 

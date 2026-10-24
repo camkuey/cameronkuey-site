@@ -18,96 +18,98 @@ import { stats, modules, stack, broke, differently, screenshots, shot } from '..
       </header>
     </div>
 
-    <section style="padding-top:16px"><div class="wrap">
-      <div class="case cs-hero">
-        <div class="case-body">
-          <p class="eyebrow">At a glance</p>
-          <div class="stats" style="margin-top:20px">
-            {stats.map((s) => <div class="stat"><b>{s.value}</b><span>{s.label}</span></div>)}
-          </div>
-          <p>Role: product owner. Doodle Pirates Foundation · Director of Business Operations.</p>
-        </div>
-        <figure class="cs-shot">
-          <span class="tag">Sample data</span>
-          <Pic id={shot.myWork.id} alt={shot.myWork.alt} eager sizes="(max-width: 900px) 100vw, 640px" />
-        </figure>
+    <section style="padding-top:8px"><div class="wrap">
+      <figure class="cs-vis cs-hero-vis">
+        <span class="tag">Sample data</span>
+        <Pic id={shot.myWork.id} alt={shot.myWork.alt} eager sizes="(max-width: 1280px) 100vw, 1200px" />
+      </figure>
+      <div class="stats cs-statbar">
+        {stats.map((s) => <div class="stat"><b>{s.value}</b><span>{s.label}</span></div>)}
       </div>
     </div></section>
 
-    <section style="padding-top:0"><div class="wrap cs-grid">
-      <div class="sec-head cs-label"><h2>The problem</h2></div>
-      <div class="prose block-text">
+    <section class="cs-vspace"><div class="wrap cs-split">
+      <div class="cs-text">
+        <h2>The problem</h2>
         <p>Doodle Pirates Foundation is a nonprofit, and much of the team is neurodivergent. I built the dashboard partly to give each person one simple place that shows what to focus on each day.</p>
       </div>
+      <div class="cs-vis phones">
+        <span class="tag">Sample data</span>
+        <Pic id={shot.phoneFocus.id} alt={shot.phoneFocus.alt} sizes="240px" />
+        <Pic id={shot.phoneOtis.id} alt={shot.phoneOtis.alt} sizes="240px" />
+      </div>
     </div></section>
 
-    <section style="padding-top:0"><div class="wrap cs-grid">
-      <div class="sec-head cs-label"><h2>What it does</h2></div>
-      <div class="prose block-text">
-        <p>One role-based platform that unifies:</p>
+    <section class="cs-vspace"><div class="wrap cs-split rev">
+      <div class="cs-text">
+        <h2>What it does</h2>
+        <p>One role-based platform for the whole team, replacing a stack of separate tools. By my estimate, it avoids <strong>$1,000+ per employee in annual software costs</strong>.</p>
         <ul class="taglist">{modules.map((m) => <li>{m}</li>)}</ul>
-        <p>By my estimate, it avoids <strong>$1,000+ per employee in annual software costs</strong>.</p>
       </div>
+      <figure class="cs-vis">
+        <span class="tag">Sample data</span>
+        <Pic id={shot.projects.id} alt={shot.projects.alt} sizes="(max-width: 900px) 100vw, 700px" />
+      </figure>
     </div></section>
 
-    <section style="padding-top:0"><div class="wrap cs-grid">
-      <div class="sec-head cs-label"><h2>Ask Otis</h2></div>
-      <div class="prose block-text">
-        <p>Ask Otis is a Claude-powered assistant built into the dashboard. Ask it to add a task, update one, or change a project or milestone, and it comes back with an editable card. Nothing changes until the person presses Approve, and the server checks their permissions again before saving.</p>
+    <section class="cs-vspace"><div class="wrap cs-split">
+      <div class="cs-text">
+        <h2>Ask Otis</h2>
+        <p>Ask Otis is a Claude-powered assistant built into the dashboard. Ask it to add a task, update one, or change a project or milestone, and it comes back with an editable card.</p>
+        <p>Nothing changes until the person presses Approve, and the server checks their permissions again before saving.</p>
+      </div>
+      <MotionClips only={['ask-otis-approve-suggestion']} cols={1} />
+    </div></section>
+
+    <section class="cs-vspace"><div class="wrap cs-split rev">
+      <div class="cs-text">
         <h2>From meetings to daily focus</h2>
-        <p>The dashboard doesn’t read meeting notes. Action items from meetings go into the task list, added by people and by AI assistants we run outside the dashboard.</p>
-        <p>Every weekday at 6:30 AM, the dashboard picks 3 to 5 tasks for each person’s daily focus, using AI with a short reason for each. If the AI is slow or down, a rule-based picker fills in, so no one starts the day without a list. By my estimate, going from meeting action items to a daily focus this way saves about 5 hours a week.</p>
+        <p>The dashboard doesn’t read meeting notes. Action items go into the task list, added by people and by AI assistants we run outside the dashboard.</p>
+        <p>Every weekday at 6:30 AM, the dashboard picks 3 to 5 tasks for each person’s daily focus, using AI with a short reason for each. If the AI is slow or down, a rule-based picker fills in. By my estimate, this saves about 5 hours a week.</p>
       </div>
+      <figure class="cs-vis">
+        <span class="tag">Sample data</span>
+        <Pic id={shot.focusDeck.id} alt={shot.focusDeck.alt} sizes="(max-width: 900px) 100vw, 700px" />
+      </figure>
     </div></section>
 
-    <section style="padding-top:0"><div class="wrap cs-grid">
-      <div class="sec-head cs-label"><h2>How it was built</h2></div>
-      <div>
-        <div class="prose block-text"><p>I directed AI coding agents as product owner and reviewed their work: 152 pull requests, each one reviewed, backed by 1,218 automated tests.</p></div>
-        <dl class="spec">
+    <section class="cs-vspace"><div class="wrap">
+      <div class="cs-split" style="margin-bottom:32px">
+        <div class="cs-text">
+          <h2>How data flows</h2>
+          <p>Everyone signs in with their work Google account. Every write goes through the API, which checks permissions and then writes to Airtable, the source of truth. Docs are real Google Docs, and shifts and PTO go one way to Google Calendar. Ask Otis only suggests; a person approves first.</p>
+        </div>
+        <div></div>
+      </div>
+      <DataFlowDiagram />
+    </div></section>
+
+    <section class="cs-vspace"><div class="wrap">
+      <div class="sec-head"><h2>A day in the dashboard</h2><p class="eyebrow">From meeting action items to a confirmed week</p></div>
+      <div style="margin-top:28px"><DaySequence /></div>
+    </div></section>
+
+    <section class="cs-vspace"><div class="wrap">
+      <div class="sec-head"><h2>See it in motion</h2><p class="eyebrow">Sample-data screen recordings</p></div>
+      <div style="margin-top:28px"><MotionClips only={['opening-the-day', 'kiosk-clock-in']} /></div>
+    </div></section>
+
+    <section class="cs-vspace"><div class="wrap cs-split">
+      <div class="cs-text">
+        <h2>How it was built</h2>
+        <p>I directed AI coding agents as product owner and reviewed their work: 152 pull requests, each one reviewed, backed by 1,218 automated tests.</p>
+        <dl class="spec" style="grid-template-columns:1fr">
           {stack.map(([k, v]) => <div><dt>{k}</dt><dd>{v}</dd></div>)}
         </dl>
       </div>
-    </div></section>
-
-    <section style="padding-top:0"><div class="wrap">
-      <div class="cs-grid">
-        <div class="sec-head cs-label"><h2>How data flows</h2></div>
-        <div class="prose block-text"><p>Everyone signs in with their work Google account. The front end and API run together on one Cloudflare Worker. Every write goes through the API, which checks permissions and then writes to Airtable, the source of truth. Docs are real Google Docs. Shifts, PTO and sick days go one way to Google Calendar, and nothing is read back from those events. Ask Otis only suggests; a person approves before anything is saved.</p></div>
+      <div class="cs-vis pair">
+        <span class="tag">Sample data</span>
+        <figure><Pic id={shot.docs.id} alt={shot.docs.alt} sizes="(max-width: 900px) 100vw, 340px" /><figcaption>{shot.docs.label}</figcaption></figure>
+        <figure><Pic id={shot.onboarding.id} alt={shot.onboarding.alt} sizes="(max-width: 900px) 100vw, 340px" /><figcaption>{shot.onboarding.label}</figcaption></figure>
       </div>
-      <div style="margin-top:32px"><DataFlowDiagram /></div>
     </div></section>
 
-    <section style="padding-top:0"><div class="wrap">
-      <div class="cs-grid">
-        <div class="sec-head cs-label"><h2>A day in the dashboard</h2></div>
-        <div class="prose block-text"><p>A typical day for someone on the team, from meeting action items to a confirmed week.</p></div>
-      </div>
-      <div style="margin-top:40px"><DaySequence /></div>
-    </div></section>
-
-    <section style="padding-top:0"><div class="wrap">
-      <div class="cs-grid">
-        <div class="sec-head cs-label"><h2>See it in motion</h2></div>
-        <div class="prose block-text"><p>Short screen recordings from the dashboard’s sample-data mode.</p></div>
-      </div>
-      <div style="margin-top:40px"><MotionClips /></div>
-    </div></section>
-
-    {broke.length > 0 && (
-      <section style="padding-top:0"><div class="wrap cs-grid">
-        <div class="sec-head cs-label"><h2>What broke &amp; how I fixed it</h2></div>
-        <ol class="numbered">{broke.map((b) => <li><b>{b.title}</b><p>{b.fix}</p></li>)}</ol>
-      </div></section>
-    )}
-    {differently.length > 0 && (
-      <section style="padding-top:0"><div class="wrap cs-grid">
-        <div class="sec-head cs-label"><h2>What I’d do differently</h2></div>
-        <ol class="numbered">{differently.map((d) => <li><p>{d}</p></li>)}</ol>
-      </div></section>
-    )}
-
-    <section style="padding-top:0"><div class="wrap">
+    <section class="cs-vspace"><div class="wrap">
       <div class="sec-head"><h2>Screens</h2><p class="eyebrow">Sample data only</p></div>
       <div class="shots dash-shots" data-gallery>
         {screenshots.map((s) => (
@@ -123,5 +125,18 @@ import { stats, modules, stack, broke, differently, screenshots, shot } from '..
       <p class="caption" style="margin-top:20px">Every name, task and number on these screens is invented sample data. One vendor name in a sample task title is blurred. The dashboard and its code belong to Doodle Pirates Foundation and are private.</p>
       <div class="btns"><a class="btn solid" href="/ai-builds">More AI builds →</a><a class="btn" href="/contact">Ask me about it</a></div>
     </div></section>
+
+    {broke.length > 0 && (
+      <section class="cs-vspace"><div class="wrap cs-grid">
+        <div class="sec-head cs-label"><h2>What broke &amp; how I fixed it</h2></div>
+        <ol class="numbered">{broke.map((b) => <li><b>{b.title}</b><p>{b.fix}</p></li>)}</ol>
+      </div></section>
+    )}
+    {differently.length > 0 && (
+      <section class="cs-vspace"><div class="wrap cs-grid">
+        <div class="sec-head cs-label"><h2>What I’d do differently</h2></div>
+        <ol class="numbered">{differently.map((d) => <li><p>{d}</p></li>)}</ol>
+      </div></section>
+    )}
   </article>
 </Base>
