@@ -79,7 +79,7 @@ const jsonld = {
   </div>
 </div></section>
 
-<section id="case" aria-labelledby="case-h" style="padding-top:0"><div class="wrap">
+<section id="case" aria-labelledby="case-h" style="padding-top:0;padding-bottom:0"><div class="wrap">
   <div class="sec-head"><h2>Featured case study</h2><p class="eyebrow">AI &amp; Technical Builds</p></div>
   <article class="case">
     <div class="case-body">
@@ -100,9 +100,12 @@ const jsonld = {
   </article>
 </div></section>
 
-<section id="flow" aria-labelledby="flow-h" style="padding-top:0"><div class="wrap">
-  <div class="sec-head"><h2 id="flow-h">How the dashboard fits together</h2><p class="eyebrow">How data flows</p></div>
-  <div style="margin-top:28px"><DataFlowDiagram /></div>
+<section id="flow" aria-labelledby="flow-h" class="flow-link"><div class="wrap">
+  <div class="flow-stem" aria-hidden="true"><i></i></div>
+  <div class="flow-card">
+    <p class="flow-tag" id="flow-h"><span>Part of the case study above</span> Under the hood: how the data flows</p>
+    <DataFlowDiagram />
+  </div>
 </div></section>
 
 <section id="work" aria-labelledby="work-h" style="padding-top:0"><div class="wrap">

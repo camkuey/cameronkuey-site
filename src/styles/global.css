@@ -439,3 +439,17 @@ picture{display:contents}
 .range a{display:inline-block;padding:9px 18px;border:1px solid var(--ink);border-radius:999px;font-size:14px;text-decoration:none;color:var(--ink);transition:background .2s,color .2s}
 .range a:hover{background:var(--accent);border-color:var(--accent);color:#fff}
 .range a[aria-current]{background:var(--ink);color:#fff}
+
+/* diagram tied to the featured case study card */
+.flow-link{padding-top:0}
+.flow-stem{position:relative;height:56px;width:2px;background:var(--ink);margin:0 auto}
+.flow-stem::after{content:"";position:absolute;left:50%;bottom:-1px;width:10px;height:10px;border-right:2px solid var(--ink);border-bottom:2px solid var(--ink);transform:translate(-50%,0) rotate(45deg)}
+.flow-stem i{position:absolute;left:50%;top:0;width:8px;height:8px;margin-left:-4px;border-radius:50%;background:var(--accent,#881919);animation:stemdot 2.2s ease-in-out infinite}
+@keyframes stemdot{0%{top:0;opacity:0}15%{opacity:1}85%{opacity:1}100%{top:46px;opacity:0}}
+.flow-card{border:2px solid var(--ink);border-radius:4px;padding:0 0 4px;margin-top:6px;overflow:hidden;background:var(--bg,#FAF8F4)}
+.flow-tag{margin:0;padding:14px 20px;background:var(--ink);color:#F4F0E8;font-size:12px;letter-spacing:.14em;text-transform:uppercase}
+.flow-tag span{color:#E7A0A0;margin-right:14px}
+.flow-card>*:not(.flow-tag){margin-left:12px;margin-right:12px}
+.flow-card>*:nth-child(2){margin-top:12px}
+@media (max-width:900px){.flow-stem{height:40px}.flow-tag span{display:block;margin:0 0 4px}@keyframes stemdot{0%{top:0;opacity:0}15%{opacity:1}85%{opacity:1}100%{top:30px;opacity:0}}}
+@media (prefers-reduced-motion:reduce){.flow-stem i{display:none}}
