@@ -64,7 +64,13 @@ import { stats, modules, stack, broke, differently, screenshots, shot } from '..
         <p>Ask Otis is a Claude-powered assistant built into the dashboard. Ask it to add a task, update one, or change a project or milestone, and it comes back with an editable card.</p>
         <p>Nothing changes until the person presses Approve, and the server checks their permissions again before saving.</p>
       </div>
-      <MotionClips only={['ask-otis-approve-suggestion']} cols={1} />
+      <figure class="phone-clip" data-clips>
+        <div class="pc-frame">
+          <video src="/media/dashboard/video/ask-otis-add-task-mobile.mp4" poster="/media/dashboard/phone-ask-otis-add-task-final-780.webp" width="780" height="1688"
+            muted loop playsinline controls preload="none" aria-label="On a phone: ask Otis to add a task, choose a project, approve the card, and see the new task in the task list"></video>
+        </div>
+        <figcaption><b>Adding a task with Ask Otis, on a phone</b><span>Type the request, pick a project, approve the card, and the task lands in the list.</span></figcaption>
+      </figure>
     </div></section>
 
     <section class="cs-vspace"><div class="wrap cs-split rev">
@@ -143,3 +149,17 @@ import { stats, modules, stack, broke, differently, screenshots, shot } from '..
     )}
   </article>
 </Base>
+<script>
+  const still = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.querySelectorAll<HTMLElement>('.phone-clip').forEach((root) => {
+    const v = root.querySelector('video') as HTMLVideoElement;
+    if (still || !('IntersectionObserver' in window)) return;
+    const io = new IntersectionObserver((es) => es.forEach(({ isIntersecting }) => {
+      if (isIntersecting && !v.dataset.userPaused) { v.preload = 'metadata'; v.play().catch(() => {}); }
+      else if (!isIntersecting && !v.paused) { v.dataset.auto = '1'; v.pause(); }
+    }), { threshold: 0.6 });
+    v.addEventListener('pause', () => { if (v.dataset.auto || v.ended || document.hidden) delete v.dataset.auto; else v.dataset.userPaused = '1'; });
+    v.addEventListener('play', () => { delete v.dataset.userPaused; });
+    io.observe(v);
+  });
+</script>

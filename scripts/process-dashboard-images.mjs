@@ -38,11 +38,14 @@ const images = {
   'onboarding': S('desktop-onboarding@2x.png'),
   'phone-today-focus': S('phone-today-focus.png'),
   'phone-ask-otis-card': S('phone-ask-otis-card.png'),
+  'phone-ask-otis-add-task-final': S('ask-otis-add-task-mobile-final@2x.png'),
 };
 // video -> poster frame (seconds). Videos come from the redacted folder.
 const videos = { 'opening-the-day': 6, 'finishing-a-task': 16.4, 'ask-otis-approve-suggestion': 19.6, 'kiosk-clock-in': 24 };
 
 fs.mkdirSync(path.join(OUT, 'video'), { recursive: true });
+// phone recording (sample mode, recorded unredacted: no vendor names on screen); its poster is the final-frame screenshot above
+fs.copyFileSync(path.join(SRC, 'videos/ask-otis-add-task-mobile.mp4'), path.join(OUT, 'video/ask-otis-add-task-mobile.mp4'));
 fs.mkdirSync(path.join(SRC, 'redacted/posters'), { recursive: true });
 for (const [v, t] of Object.entries(videos)) {
   const dst = path.join(OUT, 'video', `${v}.mp4`);

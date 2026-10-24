@@ -252,6 +252,20 @@
   ],
   "color": "#f8f8f8"
  },
+ "dash-phone-ask-otis-add-task-final": {
+  "w": 780,
+  "h": 1688,
+  "base": "/media/dashboard/phone-ask-otis-add-task-final",
+  "webp": [
+   480,
+   780
+  ],
+  "avif": [
+   480,
+   780
+  ],
+  "color": "#f8f8f8"
+ },
  "dash-poster-opening-the-day": {
   "w": 1440,
   "h": 900,

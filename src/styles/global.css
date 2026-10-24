@@ -453,3 +453,11 @@ picture{display:contents}
 .flow-card>*:nth-child(2){margin-top:12px}
 @media (max-width:900px){.flow-stem{height:40px}.flow-tag span{display:block;margin:0 0 4px}@keyframes stemdot{0%{top:0;opacity:0}15%{opacity:1}85%{opacity:1}100%{top:30px;opacity:0}}}
 @media (prefers-reduced-motion:reduce){.flow-stem i{display:none}}
+
+/* Phone recording (Ask Otis) */
+.phone-clip{margin:0;justify-self:center;width:min(100%,310px)}
+.pc-frame{background:#EDE7DC;border-radius:28px;padding:12px}
+.pc-frame video{display:block;width:100%;height:auto;aspect-ratio:780/1688;border-radius:18px;background:#2E5E92}
+.phone-clip figcaption{margin-top:14px;display:grid;gap:2px}
+.phone-clip figcaption b{font-weight:500}
+.phone-clip figcaption span{color:var(--muted);font-size:15px}
