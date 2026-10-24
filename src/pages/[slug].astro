@@ -18,7 +18,7 @@ const isCategory = p.type === 'gallery';
 const isAbout = p.slug === 'home';
 
 let description: string;
-if (isAbout) description = 'About Cameron Kuey, from his original portfolio: Cosie Co., The Cultivation Project, skills and software.';
+if (isAbout) description = 'About Cameron Kuey: operations leader, AI-assisted systems builder, photographer and filmmaker.';
 else if (isCategory) description = `${p.title} by Cameron Kuey: ${CATEGORIES.find((c) => c.slug === p.slug)!.children.map((c) => c.title).join(', ')}.`;
 else description = firstText ? (firstText.length > 155 ? firstText.slice(0, 152).replace(/\s+\S*$/, '') + '…' : firstText) : `${p.title} — ${p.category} work by Cameron Kuey.`;
 if (description.length < 70 && !isCategory) description = `${p.title} — ${p.category ?? 'creative'} work by Cameron Kuey. ${description}`.slice(0, 158);
@@ -36,21 +36,19 @@ const catCovers = isCategory
   ? p.covers.map((c: any) => ({ ...c, tag: 'View →' }))
   : [];
 ---
-<Base title={isAbout ? 'About Me (original portfolio)' : p.title} description={description} section="creative" image={image}>
+<Base title={isAbout ? 'About Me' : p.title} description={description} section="creative" image={image}>
   <CreativeNav current={isAbout ? 'home' : p.categorySlug ?? p.slug} />
   <div class="wrap">
     <header class:list={['page-head', { wide: isCategory }]}>
       <ol class="crumbs eyebrow" aria-label="Breadcrumb">
         <li><a href="/creative">Creative</a></li>
         {cat && <li><a href={`/${cat.slug}`}>{cat.title}</a></li>}
-        {isAbout && <li>Original portfolio</li>}
       </ol>
       <h1>{p.title}</h1>
-      {isAbout && <p class="lede">This is the About page from my original portfolio, kept as it was written in 2022. For what I’m doing now, see <a href="/operations">Operations</a> and <a href="/ai-builds">AI Builds</a>.</p>}
     </header>
   </div>
   <section style="padding-top:8px"><div class="wrap">
-    {isCategory ? <Covers covers={catCovers} eager /> : <Blocks blocks={isAbout ? p.blocks.filter((b: any) => !(b.t === 'html' && /My Resume/.test(b.html))) : p.blocks} />}
+    {isCategory ? <Covers covers={catCovers} eager /> : <Blocks blocks={p.blocks} />}
   </div></section>
   {(prev || next) && (
     <nav class="wrap" aria-label={`More ${cat!.title}`} style="padding-bottom:96px">
