@@ -19,7 +19,11 @@ const hueOf = (col?: string, tone?: string) => (tone === 'human' ? 'red' : col?.
 const BADGE_TXT: Record<Tone, string> = { ink: '#F4F0E8', blue: '#FFFFFF', gold: '#1B1A18', red: '#FFFFFF' };
 const f = (n: number) => +n.toFixed(3);
 const X = [8, 132, 256], W = 100, GAP = 24, Y = [16, 98, 180, 262], H = 44;
-const VB_W = 360, VB_H = 344;
+const VB_W = 360;
+// height follows the last used row: legend sits 25 units under it (4 rows = 344 as before)
+const ROWS = Math.max(...def.nodes.map((n) => n.r + 1));
+const LEG_Y = Y[ROWS - 1] + H + 25;
+const VB_H = LEG_Y + 13;
 
 const nodes = def.nodes.map((n) => {
   const span = n.span ?? 1;
@@ -178,7 +182,7 @@ const legend = def.legend.map(([tone, label]) => {
   return item;
 });
 ---
-<svg class="cf" viewBox={`0 0 ${VB_W} ${VB_H}`} role="img" aria-label={def.label} data-flow={flow}>
+<svg class="cf" viewBox={`0 0 ${VB_W} ${VB_H}`} role="img" aria-label={def.label} data-flow={flow} style={`aspect-ratio:${VB_W}/${VB_H}`}>
   <defs>
     {Object.entries(HUE).map(([h, c]) => (
       <marker id={`${id}-a-${h}`} viewBox="0 0 8 8" refX="6" refY="4" markerWidth="6" markerHeight="6" orient="auto"><path d="M1,1 L6,4 L1,7" fill="none" stroke={c} stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" /></marker>
@@ -261,8 +265,8 @@ const legend = def.legend.map(([tone, label]) => {
   <g class="cf-legend" aria-hidden="true">
     {legend.map((l) => (
       <>
-        <circle cx={l.x + 5} cy="331" r="4.5" fill={COL[l.tone]} />
-        <text x={l.x + 14} y="335" class="cf-lg">{l.label}</text>
+        <circle cx={l.x + 5} cy={LEG_Y} r="4.5" fill={COL[l.tone]} />
+        <text x={l.x + 14} y={LEG_Y + 4} class="cf-lg">{l.label}</text>
       </>
     ))}
   </g>

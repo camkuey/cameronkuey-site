@@ -13,70 +13,60 @@ export const meta = {
 };
 
 export const stats = [
-  { value: 'Seconds', label: 'What took hours of manual setup' },
-  { value: 'Dozens', label: 'Zapier workflows and Airtable automations in this project' },
-  { value: '150+', label: 'Automations I built across projects at Modern Health' },
-  { value: 'Producer', label: 'Still sends every email, so it reads personal' },
+  { value: 'Seconds', label: 'Was hours of setup' },
+  { value: 'Dozens', label: 'Zapier and Airtable automations here' },
+  { value: '150+', label: 'Automations across Modern Health projects' },
+  { value: 'Producer', label: 'Still sends every email' },
 ];
 
 export const note =
-  'This is operations and automation work, built with Zapier, Airtable and the tools my team already used. I’ve left out figures, client names and internal details.';
+  'Figures, client names and internal details are left out.';
 
 export const platforms = ['Zendesk', 'Airtable', 'Zapier', 'Zoom', 'Google Calendar', 'Google Sheets', 'Google Slides', 'Google Apps Script', 'Slack'];
 
 export const problem = [
-  'I was a creative producer at Modern Health. I worked with clinical strategists, mental health providers and clients to produce online workshops and webinars called Circles.',
-  'Setting each one up was very manual. We tracked everything across many tools and databases, and I’d have double-digit browser tabs open for a single step. Getting from a new Circle request in Zendesk to a finished Zoom event took hours of producer time.',
-  'Early on we were short on people, so we had to decline some Circles for clients.',
+  'I was a creative producer at Modern Health, running online workshops and webinars called Circles. Setup was manual: many tools, double-digit browser tabs for one step, and hours of producer time from Zendesk request to finished Zoom event. Early on, short staffing meant declining some Circles.',
 ];
 
 export const built = [
-  'I’d set Circles up many times by then. I mapped every part of the process into one giant flowchart, then built dozens and dozens of Zapier workflows and Airtable automations from it.',
-  'The main one is a long multi-step Zapier workflow with API requests, formatting steps and actions. Around it sit many smaller automations that update Airtable (or Google Sheets) and notify people in Slack when a step finishes.',
-  'I chose one large workflow because it was the most seamless way to take data from Airtable, create the Zoom event, write fresh data back to Airtable, create the Google Calendar events and generate custom Zendesk and email responses, all in one pass.',
-  'I built 150+ automations across many workflows and projects at Modern Health. This was one of those projects.',
+  'I mapped the whole process into one giant flowchart, then built dozens of Zapier workflows and Airtable automations from it. The core is one long multi-step Zapier workflow; smaller automations around it update Airtable (or Google Sheets) and notify people in Slack.',
+  'One large workflow was the most seamless way to pull from Airtable, create the Zoom event, write data back, create the Google Calendar events and generate custom Zendesk and email responses in one pass. In all, I built 150+ automations across projects at Modern Health.',
 ];
 
 export const flows = {
   schedule: {
     title: 'Circles scheduling, end to end',
     body: [
-      'A request comes in through Zendesk and becomes a record in Airtable, the source of truth. The Zapier workflow reads it and calls the Zoom API to create an event from a template, and the Zoom links come back into Airtable.',
-      'It then creates the Google Calendar events and the slide decks for the facilitators, and shares them ahead of time. Last, it writes a clean, ready-to-send email for the producer, with hyperlinks to the specific Zoom links and slide decks.',
-      'I kept the producer in the loop on purpose. They send the email themselves, so it still reads like a person wrote it. A Slack notification lets the team know.',
+      'A Zendesk request becomes an Airtable record, the source of truth. Zapier calls the Zoom API to create the event, writes the links back, builds the Calendar events and facilitator decks, and drafts the email. The producer sends it, so it still reads personal, and Slack notifies the team.',
     ],
   },
   harden: {
     title: 'What broke, and what I changed',
     body: [
-      'Most of what broke came from messy form entries. The emails from the form are plugged into JSON in the Zoom API request, so a stray trailing space in one field was enough to break that step.',
-      'I added a separate automation that checks every record as forms come in. It trims the spaces, and if it finds something else, such as several emails in one field, it flags the whole row in Airtable. The team sees it before the main automation is triggered.',
-      'A second fix came when Zoom tightened its security and started censoring the URLs its API returned. I added a find-and-replace step after the API request that puts our own IDs back.',
+      'Most breakage came from messy form entries: one trailing space could break the Zoom API request. A checker automation now trims spaces and flags anything else, like several emails in one field, in Airtable before the main workflow runs.',
+      'When Zoom began censoring URLs in its API responses, a find-and-replace step put our own IDs back.',
     ],
   },
   deck: {
     title: 'The workshop catalogue deck',
     body: [
-      'Airtable holds the details of every workshop we offer: languages, length, course types, seasonal availability and about a dozen details in all.',
-      'An Airtable automation, Zapier connectors and a Google Apps Script turn that into a Google Slides deck with templated tables, designs and fonts. Refreshing it is one click, so the sales team has one shared link that works as an up-to-date catalogue of our workshops and webinars. I built several automations like this one that keep decks fresh.',
-      'The refresh is a manual “Run script” step, so nothing in the deck can change by accident.',
+      'Airtable holds about a dozen details per workshop. An Airtable automation, Zapier connectors and a Google Apps Script turn them into a Google Slides catalogue deck. One click refreshes it, so sales has one always-current link. The refresh is a manual “Run script” step, so nothing changes by accident.',
     ],
     related:
-      'A related workflow duplicates a master workshop deck, fills in the date, speaker and company, and files it in the right folder. One failure came from free text typed into a URL field, so I made that field URL-only.',
+      'A related workflow copies a master deck, fills in the date, speaker and company, and files it. Free text in a URL field once broke it, so that field is now URL-only.',
   },
 };
 
 export const results = [
   'Setup went from hours of manual work to one step that runs in seconds.',
-  'Errors became rare over time. Each failure I found turned into a check or a fix.',
-  'It’s documented, so other people can maintain it.',
-  'In my first year we had to decline some Circles because we were short on people. By my last year, the team had shrunk while the business had grown substantially. I think this workflow was part of how that worked.',
+  'Errors became rare. Each failure turned into a check or a fix.',
+  'In my first year we declined some Circles for lack of people. By my last year the team was smaller and the business had grown substantially. I think this workflow helped make that possible.',
 ];
 
 export const success = ['It works.', 'It saves clicks and time.', 'It’s documented, so someone else can fix it.'];
 
 export const differently = [
-  'Replace the find-and-replace step with a small custom script, or use the proper security tokens, instead of patching the URLs after the fact.',
-  'Build an approval screen for the deck refresh, in Airtable or Slack. It would summarise what’s about to change and ask the team to approve before the script runs.',
-  'Show more of this with screenshots. I’ve used diagrams here because the real records and links are internal.',
+  'Swap the find-and-replace step for a small custom script or proper security tokens.',
+  'Add an approval screen for the deck refresh, in Airtable or Slack, that summarises what will change.',
+  'Show more with screenshots. I used diagrams because the real records are internal.',
 ];

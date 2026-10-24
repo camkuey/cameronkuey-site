@@ -1,9 +1,9 @@
 ---
 import Base from '../../layouts/Base.astro';
 import CaseMotif from '../../components/CaseMotif.astro';
-import { chipClass } from '../../data/chips';
+import HoursToClick from '../../components/HoursToClick.astro';
 import CaseFlow from '../../components/CaseFlow.astro';
-import { meta, stats, note, platforms, problem, built, flows, results, success, differently } from '../../data/circles-scheduling';
+import { meta, stats, note, problem, built, flows, results, success, differently } from '../../data/circles-scheduling';
 ---
 <Base title={meta.title} section="cases" description={meta.description}>
   <article class="cs-page">
@@ -13,7 +13,7 @@ import { meta, stats, note, platforms, problem, built, flows, results, success, 
         <header class="page-head wide">
         <ol class="crumbs eyebrow" aria-label="Breadcrumb"><li><a href="/case-studies">Case studies</a></li><li>Modern Health</li></ol>
         <h1>Turning a manual, multi-tab Circles setup into <em>a one-step workflow.</em></h1>
-        <p class="lede">At Modern Health I produced online workshops and webinars called Circles. Setting each one up took hours of clicking across many tools, so I mapped the whole process and automated it with Zapier and Airtable.</p>
+        <p class="lede">At Modern Health I produced online workshops and webinars called Circles. Setup took hours across many tools, so I mapped the process and automated it with Zapier and Airtable.</p>
       </header>
         <div class="cs-motif"><CaseMotif kind="circles" /></div>
       </div>
@@ -32,10 +32,7 @@ import { meta, stats, note, platforms, problem, built, flows, results, success, 
           <h2>The problem</h2>
           {problem.map((p) => <p>{p}</p>)}
         </div>
-        <figure class="cs-vis cs-platforms">
-          <ul class="chips">{platforms.map((p) => <li class={chipClass(p)}>{p}</li>)}</ul>
-          <figcaption>Some of the tools one Circle touched, each with its own tab.</figcaption>
-        </figure>
+        <figure class="cs-vis cs-flow"><HoursToClick /></figure>
       </div>
     </div></section>
     <section class="cs-sec c-blue tint"><div class="wrap">
