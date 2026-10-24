@@ -14,7 +14,7 @@ export const stats = [
 export const modules = [
   'Project & task management',
   'Daily focus',
-  'Onboarding (28-step program, intern and volunteer tracks)',
+  'Onboarding (step-by-step program, intern and volunteer tracks)',
   'PTO',
   'Documentation',
   'Shift scheduling',
