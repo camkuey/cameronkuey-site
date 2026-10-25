@@ -26,5 +26,16 @@ export const steps = [
   { sub: 'Train', title: 'Train the team and roll it out', text: 'I teach the people who use it and stay close until it sticks.' },
 ];
 
-/** Only tools stated on the site or by Cameron. */
-export const tools = ['Cursor cloud agents', 'Claude Code', 'Claude', 'Grok Bot', 'Airtable', 'Google Sheets', 'Zapier', 'Apps Script', 'Cloudflare Workers'];
+/** Only tools stated on the site or by Cameron. icon = public/media/tools/<icon>.svg (Simple Icons); none = monogram. */
+export const tools: { name: string; icon?: string }[] = [
+  { name: 'Cursor cloud agents', icon: 'cursor' }, { name: 'Claude Code', icon: 'claude' }, { name: 'Claude', icon: 'claude' },
+  { name: 'Grok Bot' }, { name: 'Airtable', icon: 'airtable' }, { name: 'Google Sheets', icon: 'googlesheets' },
+  { name: 'Zapier', icon: 'zapier' }, { name: 'Apps Script', icon: 'googleappsscript' }, { name: 'Cloudflare Workers', icon: 'cloudflareworkers' },
+];
+
+/** Headline numbers in the /projects hero. */
+export const heroNums = [
+  { value: '150+', label: 'Automations built' },
+  { value: '~20', label: 'AI agents deployed' },
+  { value: '<2 wks', label: 'Concept to production' },
+];

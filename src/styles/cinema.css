@@ -15,13 +15,12 @@ body:has(.cine){background:#141210}
 body:has(.cine) header.nav{margin-bottom:-69px;transition:background-color .25s ease,border-color .25s ease}
 body:has(.cine) header.nav:not(.scrolled){background:transparent;border-bottom-color:transparent;-webkit-backdrop-filter:none;backdrop-filter:none}
 body:has(.cine) header.nav.scrolled{background:rgba(20,18,16,.9);border-bottom-color:rgba(243,238,230,.12)}
-body:has(.cine) header.nav .logo,body:has(.cine) header.nav .logo span{color:#FAF8F4}
+body:has(.cine) header.nav .logo{color:#FAF8F4}
 body:has(.cine) header.nav nav.primary a{color:rgba(250,248,244,.82)}
 body:has(.cine) header.nav nav.primary a:hover,body:has(.cine) header.nav nav.primary a[aria-current]{color:#fff;border-bottom-color:#fff}
 body:has(.cine) header.nav .menu-btn{color:#FAF8F4;border-color:rgba(250,248,244,.85)}
 body.menu-open:has(.cine) header.nav{background:rgba(250,248,244,.97);border-bottom-color:#E2DDD4}
 body.menu-open:has(.cine) header.nav .logo{color:#1B1A18}
-body.menu-open:has(.cine) header.nav .logo span{color:#881919}
 body.menu-open:has(.cine) header.nav .menu-btn{color:#1B1A18;border-color:#1B1A18}
 
 /* hero: full-bleed photo with a very slow push-in */

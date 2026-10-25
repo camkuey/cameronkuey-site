@@ -2,9 +2,11 @@
 /* Projects hero animation (Cam's artifact, ported). 900x512 arena scaled to the column by a tiny script
    (--s), captions + progress bar kept at native size below it so they stay legible. 15 s CSS loop, paused off-screen
    and in hidden tabs. Reduced motion: final frame, caption 05, full bar. Fills its parent (.pj-hero-media). */
+interface Props { dark?: boolean }
+const { dark = false } = Astro.props;
 const label = 'Fifteen-second animation: scattered tools with broken links get lassoed together, line up into one fast automated flow, then a build loop runs from ideate to design in Claude, build with Grok Bot and Cursor, team feedback, a rebuild, and a documented changelog.';
 ---
-<div class="pha" data-pha role="img" aria-label={label}>
+<div class:list={['pha', { 'pha-dark': dark }]} data-pha role="img" aria-label={label}>
   <div class="pha-st" aria-hidden="true">
     <div class="pha-stage" data-pha-stage>
       <div class="pha-ar">
@@ -207,4 +209,30 @@ const label = 'Fifteen-second animation: scattered tools with broken links get l
 @container (max-width:480px){.pha-lab{left:16px;font-size:11px;letter-spacing:.1em;gap:8px}}
 @container (max-width:360px){.pha-lab{font-size:10.5px;letter-spacing:.08em;gap:6px}}
 @media (max-width:520px){.pha{--capH:44px}}
+
+/* Dark variant for the blueprint hero on /projects: cream and sage linework on ink, the accent lifted for contrast.
+   Overrides the inline SVG colours by attribute (CSS beats presentation attributes). */
+.pha-dark{--ln:#A9C2A1;--tx:#EFEAE1;--ac:#E08A7C;--sf:rgba(239,234,225,.06)}
+.pha-dark .pha-st{background:transparent;color:var(--tx)}
+.pha-dark .pha-cd,.pha-dark .pha-nd,.pha-dark .pha-pill,.pha-dark .pha-doc{background:var(--sf);border-color:rgba(169,194,161,.55);color:var(--tx);box-shadow:none}
+.pha-dark .pha-nd{box-shadow:inset 0 3px 0 var(--ac)}
+.pha-dark .pha-nd .pha-num,.pha-dark .pha-nd .pha-sub,.pha-dark .pha-doc .pha-hd,.pha-dark .pha-tagr{color:rgba(239,234,225,.62)}
+.pha-dark .pha-pill b,.pha-dark .pha-doc .pha-hd b,.pha-dark .pha-lab b{color:var(--ac)}
+.pha-dark .pha-bad,.pha-dark .pha-prog{background:var(--ac)}
+.pha-dark .pha-cd i[style*="#1C1A19"]{background:var(--tx)!important}
+.pha-dark .pha-cd i[style*="#7E2320"]{background:var(--ac)!important}
+.pha-dark [stroke="#1C1A19"]{stroke:var(--ln)}
+.pha-dark [stroke="#B8AFA2"]{stroke:rgba(169,194,161,.55)}
+.pha-dark [stroke="#7E2320"]{stroke:var(--ac)}
+.pha-dark [fill="#7E2320"]{fill:var(--ac)}
+.pha-dark [stroke="#FFFFFF"]{stroke:#171C1F}
+.pha-dark [fill="#FFFFFF"]{fill:#1F2528}
+.pha-dark [fill="#F1ECE6"]{fill:rgba(239,234,225,.14)}
+.pha-dark [fill="#1C1A19"]{fill:#0E1214}
+.pha-dark .pha-dl i{background:var(--tx)}
+.pha-dark .pha-dl span{background:rgba(239,234,225,.25)}
+.pha-dark .pha-dp{background:var(--ln);color:#0E1214}
+.pha-dark .pha-dp path{stroke:#0E1214}
+.pha-dark .pha-cap{background:rgba(14,18,20,.55);border-top-color:rgba(169,194,161,.25)}
+.pha-dark .pha-lab{color:var(--tx)}
 </style>

@@ -26,7 +26,6 @@ a{color:inherit}
 header.nav{position:sticky;top:0;z-index:20;background:rgba(250,248,244,.92);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
 header.nav .wrap{display:flex;align-items:center;justify-content:space-between;height:68px}
 .logo{font-weight:500;font-size:15px;letter-spacing:.26em;text-decoration:none;white-space:nowrap}
-.logo span{color:var(--accent)}
 nav.primary ul{display:flex;gap:32px;list-style:none;font-size:12.5px;font-weight:500;text-transform:uppercase;letter-spacing:.16em}
 nav.primary a{text-decoration:none;color:var(--muted);padding:6px 0;border-bottom:1px solid transparent}
 nav.primary a:hover,nav.primary a[aria-current]{color:var(--ink)}
@@ -988,7 +987,6 @@ footer.contact[style] .contact-row{border-top-color:var(--line)}
 /* nav: thin ink rule for the active page, red on hover */
 nav.primary a[aria-current]{border-bottom-color:var(--ink)}
 nav.primary a:hover{color:var(--red)}
-.logo span{color:var(--red)}
 
 /* buttons: solid red primary, outlined ink secondary */
 .btn{font-size:12.5px;letter-spacing:.14em;padding:13px 22px}
