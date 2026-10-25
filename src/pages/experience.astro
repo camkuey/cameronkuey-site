@@ -1,26 +1,28 @@
 ---
 import Base from '../layouts/Base.astro';
 import Reveal from '../components/RevealOnScroll.astro';
+import Pic from '../components/Pic.astro';
 import { roles, quoteText, startYear, rest, SPAN } from '../data/operations-roles';
 const pct = (y: number) => ((y - SPAN.start) / (SPAN.end - SPAN.start)) * 100;
 const years = [2012, 2014, 2016, 2018, 2020, 2022, 2024, 2026];
 const chronoRoles = [...roles].reverse();
+// Anchor for each role card; the ruler dots link to it.
+const roleId = (r: (typeof roles)[number]) => 'role-' + `${r.org}-${r.title}`.toLowerCase().replace(/&/g, 'and').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
 ---
 <Base title="Experience" section="experience"
   description="Cameron Kuey’s work history since 2012: Director of Business Operations at Doodle Pirates Foundation, Modern Health, and founder of The Cultivation Project and Cosie Co.">
-  <header class="pg"><div class="cs-stripe" aria-hidden="true"></div><div class="xp-bg" aria-hidden="true"><i class="xp-blob warm" style="left:62%;top:-30%"></i><i class="xp-blob sage slow" style="left:-8%;top:40%"></i></div><div class="wrap pg-grid">
-    <div>
+  <header class="pg xh"><div class="cs-stripe" aria-hidden="true"></div><div class="xp-bg" aria-hidden="true"><i class="xp-blob warm" style="left:62%;top:-30%"></i><i class="xp-blob sage slow" style="left:-8%;top:40%"></i><i class="xp-blob red" style="left:30%;top:55%"></i></div><div class="wrap xh-grid">
+    <div class="xh-text">
       <p class="ey">Experience</p>
       <h1>Building organizations, tools <em>and stories since 2012.</em></h1>
       <p class="intro">Operations, process automation and media production across startups, nonprofits and two businesses I founded.</p>
       <div class="btns"><a class="btn solid" href="/resume.pdf">Download résumé (PDF)</a><a class="btn" href="/projects">See the projects →</a></div>
     </div>
-    <dl class="spec-t">
-      <div><dt>Now</dt><dd>Director of Business Operations, Doodle Pirates Foundation</dd></div>
-      <div><dt>Before</dt><dd>Modern Health</dd></div>
-      <div><dt>Founded</dt><dd>The Cultivation Project, Cosie Co.</dd></div>
-      <div><dt>Since</dt><dd>2012</dd></div>
-    </dl>
+    <figure class="xh-portrait">
+      <span class="xh-offset" aria-hidden="true"></span>
+      <span class="xh-photo"><Pic id="home/01-b8f082cc" eager sizes="(max-width: 900px) 320px, 440px" alt="Portrait of Cameron Kuey smiling in a light blue button-down shirt outdoors" /></span>
+      <figcaption class="xh-now"><b>Now</b>Director of Business Operations · Doodle Pirates Foundation</figcaption>
+    </figure>
   </div></header>
   <div class="xp-body">
   <div class="xp-bg" aria-hidden="true">
@@ -42,17 +44,21 @@ const chronoRoles = [...roles].reverse();
     ))}
   </div>
   <section class="sec"><div class="wrap">
-    <div class="sec-top"><div><p class="ey"><b>01</b> / Work history · 2012 – now</p><h2>Five roles, <em>one thread.</em></h2></div></div>
+    <div class="sec-top"><div><p class="ey"><b>01</b> / Work history · 2012 – now</p><h2>Every role built <em>on the last.</em></h2></div></div>
 
-    <div class="ruler" aria-hidden="true">
-      <div class="r-line"></div>
-      {years.map((y) => <span class="r-tick" style={`left:${pct(y)}%`}><i></i><b>{y}</b></span>)}
-      {chronoRoles.map((r) => <span class="r-dot" data-tone={r.tone} style={`left:${pct(r.from)}%`}></span>)}
-    </div>
+    <nav class="ruler" aria-label="Jump to a role">
+      <div class="r-line" aria-hidden="true"></div>
+      {years.map((y) => <span class="r-tick" aria-hidden="true" style={`left:${pct(y)}%`}><i></i><b>{y}</b></span>)}
+      {chronoRoles.map((r, i) => (
+        <a class:list={['r-dot', { first: i === 0, last: i === chronoRoles.length - 1 }]} data-tone={r.tone} href={`#${roleId(r)}`} style={`left:${pct(r.from)}%`}>
+          <span class="r-tip"><b>{r.title}</b><span>{r.org} · {r.sub ?? r.when}</span></span>
+        </a>
+      ))}
+    </nav>
 
     <ol class="tl" data-thread>
       {roles.map((r) => (
-        <li class="tl-item" data-tone={r.tone} data-rv>
+        <li class="tl-item" id={roleId(r)} data-tone={r.tone} data-rv>
           <div class="tl-year">
             <b>{startYear(r)}</b>
             <span>{r.sub ?? r.when}</span>
@@ -95,6 +101,27 @@ const chronoRoles = [...roles].reverse();
 </Base>
 
 <style>
+  /* hero: text left, portrait right in a tall frame (cropped above the photo's corner signature), offset outline behind it */
+  .xh-grid{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:48px 80px;align-items:center;padding-top:72px;padding-bottom:80px}
+  .xh h1{max-width:15ch}
+  .xh-portrait{position:relative;margin:0;justify-self:end;width:min(100%,440px)}
+  .xh-offset{position:absolute;inset:22px -22px -22px 22px;border:1px solid var(--red);border-radius:10px;opacity:.5}
+  .xh-photo{position:relative;display:block;aspect-ratio:4/5;overflow:hidden;border-radius:10px;box-shadow:0 30px 60px -34px rgba(40,30,20,.55)}
+  .xh-photo :global(img){width:100%;height:100%;object-fit:cover;object-position:50% 16%;display:block}
+  .xh-now{position:absolute;left:-28px;bottom:28px;max-width:calc(100% + 28px);display:flex;flex-direction:column;gap:4px;padding:12px 16px;background:rgba(255,253,249,.94);border:1px solid var(--line);border-radius:6px;box-shadow:0 14px 30px -18px rgba(40,30,20,.45);font-size:14px;line-height:1.35}
+  .xh-now b{font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;font-weight:500;color:var(--red)}
+  @media (prefers-reduced-motion:no-preference){
+    .xh-text>*{animation:xh-up .7s cubic-bezier(.2,.7,.2,1) both}
+    .xh-text>*:nth-child(2){animation-delay:.08s}.xh-text>*:nth-child(3){animation-delay:.16s}.xh-text>*:nth-child(4){animation-delay:.24s}
+    .xh-portrait{animation:xh-up .9s cubic-bezier(.2,.7,.2,1) .15s both}
+  }
+  @keyframes xh-up{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+  @media (max-width:900px){
+    .xh-grid{grid-template-columns:1fr;gap:56px;padding-top:44px;padding-bottom:64px}
+    .xh-portrait{justify-self:start;width:min(80%,340px);margin-left:20px}
+    .xh-now{left:-20px}
+  }
+
   /* one colour per employer (overrides the site default, which greys out past roles) */
   [data-tone=blue]{--c:#2E5E92;--tx:#2E5E92;--t:#E6EDF5;--on:#1E4370}
   [data-tone=gold]{--c:#C99A3A;--tx:#7A5C12;--t:#F6EEDC;--on:#5E4510}
@@ -123,7 +150,19 @@ const chronoRoles = [...roles].reverse();
   .r-tick{position:absolute;top:14px;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:6px}
   .r-tick i{width:1px;height:14px;background:#B9B2A6}
   .r-tick b{font-weight:500;font-size:12px;letter-spacing:.08em;color:var(--muted)}
-  .r-dot{position:absolute;top:12px;width:18px;height:18px;margin-left:-9px;border-radius:50%;background:var(--c);box-shadow:0 0 0 4px var(--bg)}
+  .r-dot{position:absolute;top:12px;width:18px;height:18px;margin-left:-9px;border-radius:50%;background:var(--c);box-shadow:0 0 0 4px var(--bg);transition:transform .2s ease,box-shadow .2s ease}
+  .r-dot:hover,.r-dot:focus-visible{transform:scale(1.3);box-shadow:0 0 0 4px var(--bg),0 0 0 6px var(--c);outline:none}
+  /* role label above the dot on hover / keyboard focus; edge dots anchor their label inward */
+  .r-tip{position:absolute;bottom:calc(100% + 14px);left:50%;transform:translate(-50%,6px);width:max-content;max-width:260px;padding:10px 14px;background:#fff;border:1px solid var(--line);border-top:2px solid var(--c);border-radius:6px;box-shadow:0 14px 30px -18px rgba(40,30,20,.5);opacity:0;pointer-events:none;transition:opacity .18s ease,transform .18s ease;text-align:left;z-index:3}
+  .r-tip b{display:block;font-weight:400;font-size:16px;line-height:1.25;color:var(--ink)}
+  .r-tip span{display:block;margin-top:4px;font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+  .r-dot.first .r-tip{left:-8px;transform:translate(0,6px)}
+  .r-dot.last .r-tip{left:auto;right:-8px;transform:translate(0,6px)}
+  .r-dot:hover .r-tip,.r-dot:focus-visible .r-tip{opacity:1;transform:translate(-50%,0)}
+  .r-dot.first:hover .r-tip,.r-dot.first:focus-visible .r-tip,.r-dot.last:hover .r-tip,.r-dot.last:focus-visible .r-tip{transform:translate(0,0)}
+  .tl-item{scroll-margin-top:96px}
+  .tl-item.flash .tl-card{animation:xp-flash 1.4s ease}
+  @keyframes xp-flash{0%,100%{box-shadow:0 18px 36px -30px rgba(40,30,20,.35)}30%{box-shadow:0 0 0 3px var(--c),0 18px 36px -30px rgba(40,30,20,.35)}}
 
   /* timeline */
   .tl{list-style:none;margin:24px 0 24px;position:relative}
@@ -190,6 +229,13 @@ const chronoRoles = [...roles].reverse();
   const tl = document.querySelector<HTMLElement>('[data-thread]');
   const items = tl ? Array.from(tl.querySelectorAll<HTMLElement>('.tl-item')) : [];
   const topos = Array.from(document.querySelectorAll<SVGElement>('.xp-topo'));
+  // Ruler dots: jump to the role, open its highlights and briefly outline the card.
+  document.querySelectorAll<HTMLAnchorElement>('.r-dot').forEach((a) => a.addEventListener('click', () => {
+    const li = document.querySelector<HTMLElement>(a.hash);
+    if (!li) return;
+    li.querySelector('details')?.setAttribute('open', '');
+    li.classList.remove('flash'); void li.offsetWidth; li.classList.add('flash');
+  }));
   if (tl && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
     tl.classList.add('js-thread');
     let queued = false;
