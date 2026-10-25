@@ -7,21 +7,21 @@ export const CASES: CaseCard[] = [
   {
     slug: 'internal-dashboard', kind: 'Systems design', org: 'Doodle Pirates Foundation',
     title: 'An all-in-one Internal Dashboard, concept to production in under two weeks',
-    summary: 'I designed one role-based platform for projects, onboarding, time clocking and the shop floor, and directed AI agents to build it fast.',
+    summary: 'One role-based platform for the whole team, from onboarding to the shop floor. I designed it and directed AI agents to build it.',
     tags: ['Airtable', 'Product design', 'Built with Cursor cloud agents'],
     image: 'dash-hero-focus', imageAlt: 'The Internal Dashboard’s Today’s focus screen with a weekly progress meter',
   },
   {
     slug: 'documentation', kind: 'Systems design', org: 'Doodle Pirates Foundation',
     title: 'One library for every process doc, synced to the shared Drive',
-    summary: 'Process docs were scattered across drives, with several versions of each. I built one library in the Internal Dashboard where every page is a real Google Doc in the shared Drive.',
+    summary: 'Process docs were scattered across drives in several versions. I built one library where every page is a real Google Doc in the shared Drive.',
     tags: ['Google Docs', 'Google Drive', 'Product design', 'Beta'],
     image: 'docs-library', imageAlt: 'The Documentation library, with pages grouped by department and business line',
   },
   {
     slug: 'circles-scheduling', kind: 'Operations', org: 'Modern Health',
     title: 'Scheduling group Circles end to end with Zapier and Airtable',
-    summary: 'I turned a manual, many-tab setup into one automated workflow, from a Zendesk request to a Zoom event, then hardened it against bad data.',
+    summary: 'I replaced a manual, many-tab setup with one automated flow, from Zendesk request to Zoom event, then made it hold up against bad data.',
     tags: ['Zapier', 'Airtable', 'Zendesk', 'Zoom', 'Google Slides'], motif: 'circles',
   },
   {
@@ -33,7 +33,7 @@ export const CASES: CaseCard[] = [
   {
     slug: 'growth-roadmap', kind: 'Freelance build', org: 'Anonymous client',
     title: 'A Strategy Growth Roadmap in a Google Sheet',
-    summary: 'A client planned on sticky notes. I built a roadmap on Google Sheets and Apps Script: one master Sheet, copied for each client into their own private Sheet.',
+    summary: 'A client planned growth on sticky notes. I built a master roadmap in Google Sheets and Apps Script that copies into a private Sheet for each of their clients.',
     tags: ['Google Sheets', 'Apps Script', 'One copy per client'], motif: 'roadmap',
   },
 ];

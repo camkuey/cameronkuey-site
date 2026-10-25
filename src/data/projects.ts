@@ -1,14 +1,7 @@
 /** Content for /projects. Case studies come from case-list.ts; the rest is the "More builds" list and the tools strip. */
-export const spec: [string, string][] = [
-  ['Builds', 'Internal tools, automations, Airtable bases'],
-  ['At', 'Doodle Pirates Foundation, Modern Health'],
-  ['Freelance', 'One client build, kept anonymous'],
-  ['Case studies', '5'],
-];
-
 export const featured = {
   org: 'Doodle Pirates Foundation',
-  desc: 'Designed by me and built fast with Cursor cloud agents on an Airtable ERP, including Ask Otis, a Claude-powered assistant with human-in-the-loop approval.',
+  desc: 'One place for projects, onboarding, time clocking, PTO and the shop floor. I designed it and directed AI agents to build it on Airtable, including Ask Otis, a Claude-powered assistant that needs a person’s approval before it saves anything.',
   nums: [
     { value: '<2 wks', label: 'Concept to production' },
     { value: '152', label: 'Reviewed pull requests' },
@@ -18,18 +11,19 @@ export const featured = {
 };
 
 export const more: { title: string; body: string; tag: string }[] = [
-  { title: 'Ask Otis', body: 'A Claude-powered assistant in the Internal Dashboard. It creates and updates tasks, suggests milestones and catches duplicates. Nothing saves until a person approves.', tag: 'Claude · human-in-the-loop' },
-  { title: 'Meeting-to-task pipeline', body: 'Turns meeting transcripts into approved tasks, which the dashboard’s AI then assigns as each person’s daily focus. Saves about 5 hours a week.', tag: 'Claude Code · Grok Bot' },
-  { title: '~20 AI agents, mapped to the org chart', body: 'An agentic operating model that defines which work belongs to AI, people or both, with about 20 AI agents mapped to org-chart roles across all six departments.', tag: 'Operating model' },
-  { title: 'Four connected Airtable bases', body: 'The data layer behind the Foundation, including a 30-table operations backbone and a 32-table manufacturing ERP.', tag: 'Airtable · schema design' },
+  { title: 'Meeting-to-task pipeline', body: 'Meeting transcripts become approved tasks, and the dashboard turns them into each person’s daily focus. Saves about 5 hours a week.', tag: 'Claude Code · Grok Bot' },
+  { title: '~20 AI agents, mapped to the org chart', body: 'I decided which work belongs to AI, to people or to both, then deployed about 20 agents across all six departments.', tag: 'Operating model' },
+  { title: 'Four connected Airtable bases', body: 'The data layer behind everything above, including a 30-table operations backbone and a 32-table manufacturing ERP.', tag: 'Airtable · schema design' },
 ];
 
-/** The four parts of the old "How I build" strip, in its own words. */
+/** "How I work": six steps, shown with a looping highlight on /projects. */
 export const steps = [
-  { sub: 'Decide', title: 'The problem', text: 'I decide what gets built and how it works.' },
-  { sub: 'Design', title: 'Workflow, data, approvals', text: 'The workflow, the data and the approvals.' },
-  { sub: 'Direct', title: 'AI agents build it', text: 'Far faster than I could alone.' },
-  { sub: 'Review', title: 'Every change', text: 'I review every change.' },
+  { sub: 'Define', title: 'Find the real problem', text: 'I talk to the people doing the work and decide what’s worth building.' },
+  { sub: 'Design', title: 'Map the workflow', text: 'The steps, the data and who approves what, before anything gets built.' },
+  { sub: 'Direct', title: 'I direct AI agents to build it', text: 'I set the plan and run the agents, so it ships in days instead of months.' },
+  { sub: 'Review', title: 'Check every change', text: 'Nothing goes live until I’ve reviewed it and the team has tried it.' },
+  { sub: 'Document', title: 'Write it all down', text: 'Process docs, the data schema and how-tos, so anyone can run it without me.' },
+  { sub: 'Train', title: 'Train the team and roll it out', text: 'I teach the people who use it and stay close until it sticks.' },
 ];
 
 /** Only tools stated on the site or by Cameron. */

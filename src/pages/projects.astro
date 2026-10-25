@@ -4,7 +4,7 @@ import DashboardReel from '../components/DashboardReel.astro';
 import ProjectsHeroSlot from '../components/ProjectsHeroSlot.astro';
 import { CASES } from '../data/case-list';
 import ProjectThumb from '../components/thumbs/ProjectThumb.astro';
-import { spec, featured, more, steps, tools } from '../data/projects';
+import { featured, more, steps, tools } from '../data/projects';
 ---
 <Base title="Projects" section="projects"
   description="Projects by Cameron Kuey: case studies and builds, from the Internal Dashboard and documentation library at Doodle Pirates Foundation to Modern Health automations and a freelance Google Sheets roadmap.">
@@ -12,8 +12,7 @@ import { spec, featured, more, steps, tools } from '../data/projects';
     <div class="pj-text">
       <p class="ey">Projects</p>
       <h1>Systems I’ve designed <em>and built.</em></h1>
-      <p class="intro">Each starts with a messy real-world problem and ends with a process that runs on its own.</p>
-      <dl class="spec-t">{spec.map(([k, v]) => <div><dt>{k}</dt><dd>{v}</dd></div>)}</dl>
+      <p class="intro">Each one started as a messy, manual process. Now it runs on its own.</p>
     </div>
     <ProjectsHeroSlot />
   </div></header>
@@ -31,7 +30,6 @@ import { spec, featured, more, steps, tools } from '../data/projects';
       <div class="pj-feat-side">
         <figure class="pj-feat-reel">
           <DashboardReel href="/case-studies/internal-dashboard" label="Read the Internal Dashboard case study" eager={false} />
-          <figcaption><span>Featured · Internal Dashboard</span><a href="/case-studies/internal-dashboard">Read the case study →</a></figcaption>
         </figure>
         <dl class="pj-stats">
           {featured.nums.map((n) => <div><dt>{n.label}</dt><dd>{n.value}</dd></div>)}
@@ -40,14 +38,35 @@ import { spec, featured, more, steps, tools } from '../data/projects';
     </div>
   </div></section>
 
+  <section class="sec hw" aria-labelledby="how-h"><div class="wrap">
+    <div class="sec-top"><div><p class="ey"><b>02</b> / Approach</p><h2 id="how-h">How I work</h2></div></div>
+    <ol class="proc" data-hw>
+      {steps.map((s, i) => (
+        <li style={`--i:${i}`}>
+          <span class="badge" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
+          <span class="sub">{s.sub}</span>
+          <b>{s.title}</b>
+          <p>{s.text}</p>
+        </li>
+      ))}
+    </ol>
+  </div></section>
+
   <section class="pj-all" aria-labelledby="all-h">
     <div class="pj-shapes" aria-hidden="true">
-      <i class="dg dg1"></i><i class="dg dg2"></i><i class="dg dg3"></i>
-      <svg class="rg rg1" viewBox="0 0 1440 420" preserveAspectRatio="none" focusable="false"><path d="M0 420V268L150 196L262 252L470 96L640 224L790 150L1010 40L1190 188L1300 132L1440 214V420Z"/></svg>
-      <svg class="rg rg2" viewBox="0 0 1440 420" preserveAspectRatio="none" focusable="false"><path d="M0 420V318L190 250L330 304L560 190L720 280L930 176L1120 290L1290 226L1440 292V420Z"/></svg>
+      <i class="bl bl1"></i><i class="bl bl2"></i><i class="bl bl3"></i>
+      <svg class="ct" viewBox="0 0 1440 520" preserveAspectRatio="none" focusable="false">
+        <path d="M-20 120 C 220 60 420 180 700 110 S 1180 30 1460 100"/>
+        <path d="M-20 160 C 240 100 440 220 720 150 S 1200 70 1460 140"/>
+        <path d="M-20 200 C 260 140 460 260 740 190 S 1220 110 1460 180"/>
+        <path d="M-20 400 C 300 340 520 460 820 390 S 1240 320 1460 380"/>
+        <path d="M-20 440 C 320 380 540 500 840 430 S 1260 360 1460 420"/>
+      </svg>
+      <svg class="wv wv1" viewBox="0 0 1440 320" preserveAspectRatio="none" focusable="false"><path d="M0 320V170C160 120 300 200 480 160S800 70 980 120S1280 190 1440 140V320Z"/></svg>
+      <svg class="wv wv2" viewBox="0 0 1440 320" preserveAspectRatio="none" focusable="false"><path d="M0 320V220C200 180 360 250 560 210S900 150 1100 200S1340 240 1440 210V320Z"/></svg>
     </div>
     <div class="wrap">
-    <div class="sec-top"><div><p class="ey"><b>02</b> / Case studies</p><h2 id="all-h">All projects</h2></div></div>
+    <div class="sec-top"><div><p class="ey"><b>03</b> / Case studies</p><h2 id="all-h">All projects</h2></div></div>
     <ul class="pj-cases">
       {CASES.map((c, i) => (
         <li><a class="card" href={`/case-studies/${c.slug}`} aria-labelledby={`cs-t-${c.slug}`} aria-describedby={`cs-d-${c.slug}`}>
@@ -64,8 +83,8 @@ import { spec, featured, more, steps, tools } from '../data/projects';
     </ul>
   </div></section>
 
-  <section class="sec" style="padding-top:0" aria-labelledby="more-h"><div class="wrap">
-    <div class="sec-top"><div><p class="ey"><b>03</b> / Doodle Pirates Foundation</p><h2 id="more-h">More builds</h2></div></div>
+  <section class="sec" style="padding-top:40px" aria-labelledby="more-h"><div class="wrap">
+    <div class="sec-top"><div><p class="ey"><b>04</b> / Doodle Pirates Foundation</p><h2 id="more-h">More builds</h2></div></div>
     <ul class="rows pj-rows">
       {more.map((m, i) => (
         <li><div class="row">
@@ -76,20 +95,6 @@ import { spec, featured, more, steps, tools } from '../data/projects';
         </div></li>
       ))}
     </ul>
-  </div></section>
-
-  <section class="sec" style="padding-top:0" aria-labelledby="how-h"><div class="wrap">
-    <div class="sec-top"><div><p class="ey"><b>04</b> / Approach</p><h2 id="how-h">How I build</h2></div></div>
-    <ol class="proc">
-      {steps.map((s, i) => (
-        <li>
-          <span class={`badge${i === steps.length - 1 ? ' on' : ''}`} aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
-          <span class="sub">{s.sub}</span>
-          <b>{s.title}</b>
-          <p>{s.text}</p>
-        </li>
-      ))}
-    </ol>
   </div></section>
 
   <section class="pj-tools" aria-labelledby="tools-h"><div class="wrap">
@@ -104,23 +109,28 @@ import { spec, featured, more, steps, tools } from '../data/projects';
   .pj-grid{display:grid;grid-template-columns:minmax(0,9fr) minmax(0,11fr);gap:40px 48px;align-items:center;padding-top:48px;padding-bottom:52px}
   .pj .pj-text h1{max-width:none;font-size:clamp(34px,3.7vw,52px);text-wrap:balance}
   .pj .pj-text .intro{max-width:34ch;margin-top:18px}
-  .pj .pj-text .spec-t{margin-top:26px;max-width:460px}
   .pj-feat-reel{margin:0}
   .pj-feat-reel figcaption{display:flex;flex-wrap:wrap;align-items:flex-start;justify-content:space-between;gap:6px 16px;margin-top:12px;font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
   .pj-feat-reel figcaption a{color:var(--ink);text-decoration:none;border-bottom:1px solid var(--tan-line);white-space:nowrap}
   .pj-feat-reel figcaption a:hover{color:var(--red);border-color:var(--red)}
   @media (min-width:901px){:global(.pj-rows .row){grid-template-columns:56px minmax(0,4fr) minmax(0,6fr) 250px}}
-  /* All projects: floating cards on the page cream; sage appears only as quiet shapes behind them (diagonal slabs + two ridges).
+  /* All projects: floating cards on the page cream; sage appears only as quiet shapes behind them
+     (soft drifting blobs, faint contour lines, two smooth waves at the foot).
      .pj-shapes is the only clipped box (overflow:clip), so card shadows are never cut. */
   .pj-all{position:relative;isolation:isolate;padding:72px 0 112px}
   .pj-shapes{position:absolute;inset:0;z-index:-1;overflow:clip;pointer-events:none}
-  .pj-shapes .dg{position:absolute;display:block;border-radius:14px;transform-origin:50% 50%}
-  .pj-shapes .dg1{right:-7%;top:3%;width:40%;height:250px;background:#DFE7D8;transform:rotate(-11deg)}
-  .pj-shapes .dg2{left:-9%;top:30%;width:36%;height:300px;background:#D3DDCB;opacity:.55;transform:rotate(-13deg)}
-  .pj-shapes .dg3{right:-8%;top:57%;width:34%;height:230px;background:#E8EEE2;transform:rotate(-8deg)}
-  .pj-shapes .rg{position:absolute;left:0;width:100%;display:block;bottom:0;-webkit-mask-image:linear-gradient(#000 62%,transparent 100%);mask-image:linear-gradient(#000 62%,transparent 100%)}
-  .pj-shapes .rg1{height:clamp(240px,31vw,430px);fill:#DFE7D8;opacity:.9}
-  .pj-shapes .rg2{height:clamp(170px,22vw,300px);fill:#D3DDCB;opacity:.6}
+  .pj-shapes .bl{position:absolute;display:block;border-radius:50%;filter:blur(50px);animation:pj-d1 28s ease-in-out infinite alternate}
+  .pj-shapes .bl1{right:-6%;top:2%;width:min(44vw,520px);aspect-ratio:1;background:rgba(150,172,138,.32)}
+  .pj-shapes .bl2{left:-10%;top:34%;width:min(40vw,460px);aspect-ratio:1;background:rgba(150,172,138,.26);animation-name:pj-d2;animation-duration:34s}
+  .pj-shapes .bl3{right:12%;top:62%;width:min(28vw,320px);aspect-ratio:1;background:rgba(218,176,87,.14);animation-duration:24s}
+  @keyframes pj-d1{to{transform:translate(-60px,50px) scale(1.08)}}
+  @keyframes pj-d2{to{transform:translate(70px,-40px) scale(.94)}}
+  .pj-shapes .ct{position:absolute;left:0;top:0;width:100%;height:min(60%,700px)}
+  .pj-shapes .ct path{fill:none;stroke:rgba(110,134,98,.22);stroke-width:1;vector-effect:non-scaling-stroke}
+  .pj-shapes .wv{position:absolute;left:0;bottom:0;width:100%;display:block;-webkit-mask-image:linear-gradient(#000 35%,transparent 92%);mask-image:linear-gradient(#000 35%,transparent 92%)}
+  .pj-shapes .wv1{height:clamp(200px,24vw,340px);fill:#E2E9DB}
+  .pj-shapes .wv2{height:clamp(150px,17vw,240px);fill:#D5DFCC;opacity:.7}
+  @media (prefers-reduced-motion:reduce){.pj-shapes .bl{animation:none}}
   .pj-all .sec-top{margin-bottom:34px}
   .pj-cases{list-style:none;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:32px;padding:0}
   .pj-cases>li{display:flex;min-width:0}
@@ -145,10 +155,6 @@ import { spec, featured, more, steps, tools } from '../data/projects';
   .pj-cases .card:hover .ar,.pj-cases .card:focus-visible .ar{transform:translateX(6px)}
   @media (max-width:900px){
     .pj-all{padding:60px 0 88px}
-    .pj-shapes .dg1{right:-22%;top:1.5%;width:62%;height:150px}
-    .pj-shapes .dg2{left:-24%;top:44%;width:58%;height:190px}
-    .pj-shapes .dg3,.pj-shapes .rg2{display:none}
-    .pj-shapes .rg1{height:clamp(170px,40vw,260px);opacity:.8}
     .pj-cases{grid-template-columns:minmax(0,1fr);gap:24px}
     .pj-cases .cb{padding:20px 20px 22px}
     .pj-cases .go{padding-top:14px}
@@ -176,6 +182,28 @@ import { spec, featured, more, steps, tools } from '../data/projects';
   .pj-feat h2{font-weight:300;font-size:clamp(26px,2.8vw,38px);letter-spacing:-.02em;line-height:1.1;max-width:20ch}
   .pj-feat h2 em{font-style:normal;color:var(--red)}
   .pj-feat .desc{margin-top:18px;font-weight:300;font-size:18px;line-height:1.55;max-width:52ch}
+  /* How I work: six steps in a 3 x 2 grid that light up one after another on a 12 s loop (bar fills, badge turns red), only while on screen */
+  .hw{padding-top:16px}
+  @media (min-width:901px){
+    .hw .proc{--n:3}
+    .hw .proc li:nth-child(3n+1){border-left:0}
+    .hw .proc li:nth-child(n+4){border-top:1px solid var(--line)}
+  }
+  .hw .proc li{position:relative}
+  .hw .proc li::before{content:"";position:absolute;left:0;right:0;top:-1px;height:2px;background:var(--red);transform:scaleX(0);transform-origin:left}
+  .hw .proc li:first-child::before{border-top-left-radius:4px}
+  .hw .proc li:nth-child(3)::before{border-top-right-radius:4px}
+  .hw .badge{transition:none}
+  @media (prefers-reduced-motion:no-preference){
+    .hw .proc li::before{animation:hw-bar 12s linear infinite;animation-delay:calc(var(--i) * 2s);animation-play-state:paused}
+    .hw .proc .badge{animation:hw-badge 12s ease infinite backwards;animation-delay:calc(var(--i) * 2s);animation-play-state:paused}
+    .hw .proc b{animation:hw-title 12s ease infinite backwards;animation-delay:calc(var(--i) * 2s);animation-play-state:paused}
+    .hw .proc.play li::before,.hw .proc.play .badge,.hw .proc.play b{animation-play-state:running}
+  }
+  /* each step owns 1/6 of the loop (about 16.7%) */
+  @keyframes hw-bar{0%{transform:scaleX(0);opacity:1}15%{transform:scaleX(1);opacity:1}20%,100%{transform:scaleX(1);opacity:0}}
+  @keyframes hw-badge{0%,100%{background:#fff;border-color:var(--ink);color:var(--ink);transform:none}3%,15%{background:var(--red);border-color:var(--red);color:#fff;transform:translateY(-3px)}20%{background:#fff;border-color:var(--ink);color:var(--ink);transform:none}}
+  @keyframes hw-title{0%,20%,100%{color:var(--ink)}3%,15%{color:var(--red)}}
   .pj-tools{background:var(--tan);border-top:1px solid var(--tan-line);padding:64px 0 72px}
   .pj-tools h2{font-weight:300;font-size:clamp(28px,3vw,40px);letter-spacing:-.02em;line-height:1.08}
   .pj-pills{list-style:none;display:flex;flex-wrap:wrap;gap:10px;margin-top:26px;padding:0}
@@ -204,3 +232,9 @@ import { spec, featured, more, steps, tools } from '../data/projects';
     .pj-stats dd{font-size:26px}
   }
 </style>
+
+<script>
+  // Run the How I work loop only while it is on screen.
+  const hw = document.querySelector('[data-hw]');
+  if (hw && 'IntersectionObserver' in window) new IntersectionObserver(([e]) => hw.classList.toggle('play', e.isIntersecting), { threshold: 0.3 }).observe(hw);
+</script>
