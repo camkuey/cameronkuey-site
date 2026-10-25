@@ -2,8 +2,8 @@
 import Base from '../layouts/Base.astro';
 import Pic from '../components/Pic.astro';
 import DataFlowDiagram from '../components/DataFlowDiagram.astro';
+import DashboardReel from '../components/DashboardReel.astro';
 import { SITE, page } from '../lib/site';
-import { shot } from '../data/internal-dashboard';
 
 const work = [
   { cls: 'w1', id: 'photography/01-7fe5208b', href: '/wedding-photography', title: 'Wedding Photography', tag: 'Cosie Co.', alt: 'Bride and groom in a forest clearing', sizes: '(max-width: 900px) 100vw, 720px' },
@@ -79,16 +79,18 @@ const jsonld = {
   </ul>
 </div></section>
 
-<section id="case" class="feat" aria-labelledby="case-h"><div class="wrap">
-  <div class="feat-grid">
-    <figure class="feat-shot">
-      <Pic id={shot.myWork.id} sizes="(max-width: 900px) 100vw, 600px" alt={shot.myWork.alt} />
+<section id="case" class="feat fx" aria-labelledby="case-h"><div class="wrap">
+  <div class="fx-head">
+    <p class="ey"><b>02</b> / Featured project · Doodle Pirates Foundation</p>
+    <h2 id="case-h">An all-in-one Internal Dashboard, <em>concept to production in under two weeks.</em></h2>
+  </div>
+  <div class="fx-grid">
+    <figure class="fx-reel">
+      <DashboardReel href="/case-studies/internal-dashboard" label="Read the Internal Dashboard case study" eager={false} />
     </figure>
-    <div>
-      <p class="ey"><b>02</b> / Featured project · Doodle Pirates Foundation</p>
-      <h3 id="case-h">An all-in-one Internal Dashboard, <em>concept to production in under two weeks.</em></h3>
+    <div class="fx-copy">
       <p class="desc">Designed by me and built fast with Cursor cloud agents on an Airtable ERP, including Ask Otis, a Claude-powered assistant with human-in-the-loop approval.</p>
-      <div class="nums">
+      <div class="nums" style="--n:2">
         <div><b>&lt;2 wks</b><span>Concept to production</span></div>
         <div><b>152</b><span>Reviewed pull requests</span></div>
         <div><b>1,218</b><span>Automated tests</span></div>
@@ -97,15 +99,15 @@ const jsonld = {
       <div class="btns"><a class="btn solid" href="/case-studies/internal-dashboard">Read the case study →</a></div>
     </div>
   </div>
-</div></section>
-
-<section id="flow" class="sec" aria-labelledby="flow-h" style="padding-bottom:0"><div class="wrap">
-  <div class="sec-top"><div><p class="ey"><b>03</b> / Part of the case study above</p><h2 id="flow-h">Under the hood: how the data flows</h2></div></div>
-  <DataFlowDiagram />
+  <div id="flow" class="fx-flow" aria-labelledby="flow-h">
+    <p class="ey">Under the hood</p>
+    <h3 id="flow-h">How the data flows</h3>
+    <DataFlowDiagram />
+  </div>
 </div></section>
 
 <section id="work" class="sec" aria-labelledby="work-h"><div class="wrap">
-  <div class="sec-top"><div><p class="ey"><b>04</b> / Creative</p><h2 id="work-h">Selected work</h2></div><a class="more" href="/creative">Photography · Film · Audio →</a></div>
+  <div class="sec-top"><div><p class="ey"><b>03</b> / Creative</p><h2 id="work-h">Selected work</h2></div><a class="more" href="/creative">Photography · Film · Audio →</a></div>
   <div class="work">
     {work.map((w) => (
       <figure class={w.cls}>
@@ -121,7 +123,7 @@ const jsonld = {
 <section class="sec" aria-label="About" style="padding-top:0"><div class="wrap about">
   <Pic id="home/01-b8f082cc" alt="Portrait of Cameron Kuey" sizes="(max-width: 900px) 280px, 360px" />
   <div class="about-copy">
-    <p class="ey"><b>05</b> / About</p>
+    <p class="ey"><b>04</b> / About</p>
     <div set:html={aboutLead} />
     <div set:html={aboutToday.replace(/<\/p>$/, ' <a href="/home">Read more about me</a>.</p>')} />
   </div>
@@ -209,6 +211,21 @@ body.menu-open:has(.hx) header.nav:not(.scrolled) .menu-btn{color:var(--ink);bor
   .hx .btns{margin-top:22px}
 }
 @media (max-width:360px){.hx-l2{font-size:.9em}}
+/* Featured project: one tan section holding the headline, the reel + stats, and the data flow diagram */
+.fx-head{max-width:880px;margin-bottom:44px}
+.fx-head h2{font-weight:300;font-size:clamp(32px,3.6vw,52px);letter-spacing:-.025em;line-height:1.06;margin-top:8px;text-wrap:balance}
+.fx-head h2 em{font-style:normal;color:var(--red)}
+.fx-grid{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:56px;align-items:center}
+.fx-reel{margin:0}
+.fx .desc{margin-top:0}
+.fx .nums{margin-top:28px;gap:24px 28px}
+.fx-flow{margin-top:72px;padding-top:44px;border-top:1px solid var(--tan-line)}
+.fx-flow h3{font-size:clamp(24px,2.4vw,32px);margin:6px 0 24px}
+@media (max-width:900px){
+  .fx-head{margin-bottom:28px}
+  .fx-grid{grid-template-columns:1fr;gap:32px}
+  .fx-flow{margin-top:48px;padding-top:32px}
+}
 @media (prefers-reduced-motion:reduce){.hx-video,.hx-pp,.hx-chip,.hx-prog{display:none}}
 </style>
 
