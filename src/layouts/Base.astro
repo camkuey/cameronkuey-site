@@ -17,8 +17,8 @@ const canonical = new URL(path, SITE.url).href.replace(/\/$/, path === '/' ? '/'
 const ogImage = new URL(image, SITE.url).href;
 const fullTitle = title === SITE.name ? title : `${title} · ${SITE.name}`;
 const nav = [
-  { href: '/experience', label: 'Experience', key: 'experience' },
   { href: '/projects', label: 'Projects', key: 'projects' },
+  { href: '/experience', label: 'Experience', key: 'experience' },
   { href: '/creative', label: 'Creative', key: 'creative' },
   { href: '/contact', label: 'Contact', key: 'contact' },
 ];
@@ -70,8 +70,8 @@ const nav = [
     <nav aria-label="Mobile">
       <ul>
         <li><a href="/">Home</a></li>
-        <li><a href="/experience">Experience</a></li>
         <li><a href="/projects">Projects</a></li>
+        <li><a href="/experience">Experience</a></li>
         <li>
           <a href="/creative">Creative</a>
           <ul class="sub">

@@ -8,7 +8,7 @@ const chronoRoles = [...roles].reverse();
 ---
 <Base title="Experience" section="experience"
   description="Cameron Kuey’s work history since 2012: Director of Business Operations at Doodle Pirates Foundation, Modern Health, and founder of The Cultivation Project and Cosie Co.">
-  <header class="pg"><div class="cs-stripe" aria-hidden="true"></div><div class="wrap pg-grid">
+  <header class="pg"><div class="cs-stripe" aria-hidden="true"></div><div class="xp-bg" aria-hidden="true"><i class="xp-blob warm" style="left:62%;top:-30%"></i><i class="xp-blob sage slow" style="left:-8%;top:40%"></i></div><div class="wrap pg-grid">
     <div>
       <p class="ey">Experience</p>
       <h1>Building organizations, tools <em>and stories since 2012.</em></h1>
@@ -22,6 +22,25 @@ const chronoRoles = [...roles].reverse();
       <div><dt>Since</dt><dd>2012</dd></div>
     </dl>
   </div></header>
+  <div class="xp-body">
+  <div class="xp-bg" aria-hidden="true">
+    <i class="xp-blob warm" style="left:64%;top:2%"></i>
+    <i class="xp-blob sage slow" style="left:-10%;top:16%"></i>
+    <i class="xp-blob red" style="left:44%;top:30%"></i>
+    <i class="xp-blob warm slow" style="left:-6%;top:46%"></i>
+    <i class="xp-blob sage" style="left:66%;top:60%"></i>
+    <i class="xp-blob red slow" style="left:20%;top:76%"></i>
+    <i class="xp-blob warm" style="left:58%;top:88%"></i>
+    {[8, 42, 74].map((t) => (
+      <svg class="xp-topo" style={`top:${t}%`} viewBox="0 0 1200 600" preserveAspectRatio="none" focusable="false">
+        <path d="M-20 420 C 180 360 320 470 520 400 S 860 300 1220 380"/>
+        <path d="M-20 460 C 200 400 340 510 540 440 S 880 340 1220 420"/>
+        <path d="M-20 500 C 220 440 360 550 560 480 S 900 380 1220 460"/>
+        <path d="M-20 140 C 260 90 420 200 640 150 S 980 60 1220 120"/>
+        <path d="M-20 180 C 280 130 440 240 660 190 S 1000 100 1220 160"/>
+      </svg>
+    ))}
+  </div>
   <section class="sec"><div class="wrap">
     <div class="sec-top"><div><p class="ey"><b>01</b> / Work history · 2012 – now</p><h2>Five roles, <em>one thread.</em></h2></div></div>
 
@@ -31,7 +50,7 @@ const chronoRoles = [...roles].reverse();
       {chronoRoles.map((r) => <span class="r-dot" data-tone={r.tone} style={`left:${pct(r.from)}%`}></span>)}
     </div>
 
-    <ol class="tl">
+    <ol class="tl" data-thread>
       {roles.map((r) => (
         <li class="tl-item" data-tone={r.tone} data-rv>
           <div class="tl-year">
@@ -52,8 +71,11 @@ const chronoRoles = [...roles].reverse();
               {quoteText(r)}
             </blockquote>
             {rest(r).length > 0 && (
-              <details open={r.openDetails} data-open-desktop={r.openDetails ? '' : undefined}>
-                <summary>Details <em>· {rest(r).length} more</em></summary>
+              <details>
+                <summary>
+                  <span class="tl-tease">{rest(r)[0]}</span>
+                  <span class="tl-sum">{rest(r).length === 1 ? 'Read the full highlight' : `Read ${rest(r).length} more highlights`}</span>
+                </summary>
                 <ul>{rest(r).map((b) => <li>{b}</li>)}</ul>
               </details>
             )}
@@ -68,10 +90,30 @@ const chronoRoles = [...roles].reverse();
     <h2 id="next-h">The work behind <em>these roles.</em></h2>
     <div class="btns"><a class="btn solid" href="/projects">See the projects →</a><a class="btn" href="/resume.pdf">Résumé (PDF)</a></div>
   </div></section>
+  </div>
   <Reveal />
 </Base>
 
 <style>
+  /* one colour per employer (overrides the site default, which greys out past roles) */
+  [data-tone=blue]{--c:#2E5E92;--tx:#2E5E92;--t:#E6EDF5;--on:#1E4370}
+  [data-tone=gold]{--c:#C99A3A;--tx:#7A5C12;--t:#F6EEDC;--on:#5E4510}
+  [data-tone=ink]{--c:#4A4640;--tx:var(--ink);--t:var(--sand);--on:var(--ink)}
+
+  /* background: slow drifting warm/sage/red shapes and faint contour lines with a little scroll parallax */
+  .xp-body{position:relative;isolation:isolate;overflow:clip}
+  .xp-bg{position:absolute;inset:0;z-index:-1;pointer-events:none}
+  .xp-blob{position:absolute;width:min(46vw,460px);aspect-ratio:1;border-radius:50%;filter:blur(48px);animation:xp-d1 26s ease-in-out infinite alternate}
+  .xp-blob.slow{animation:xp-d2 34s ease-in-out infinite alternate}
+  .xp-blob.warm{background:rgba(150,118,74,.15)}
+  .xp-blob.sage{background:rgba(122,140,110,.16)}
+  .xp-blob.red{width:min(30vw,300px);background:rgba(136,25,25,.06)}
+  @keyframes xp-d1{to{transform:translate(-60px,40px) scale(1.08)}}
+  @keyframes xp-d2{to{transform:translate(70px,-30px) scale(.94)}}
+  .xp-topo{position:absolute;left:0;width:100%;height:600px;transform:translateY(var(--py,0px))}
+  .xp-topo path{fill:none;stroke:rgba(150,118,74,.2);stroke-width:1;vector-effect:non-scaling-stroke}
+  @media (prefers-reduced-motion:reduce){.xp-blob{animation:none}}
+
   .exp-next{border-top:1px solid var(--tan-line);padding:64px 0 72px}
   .exp-next h2{font-weight:300;font-size:clamp(28px,3vw,40px);letter-spacing:-.02em;line-height:1.08;max-width:18ch}
   .exp-next h2 em{font-style:normal;color:var(--red)}
@@ -86,25 +128,39 @@ const chronoRoles = [...roles].reverse();
   /* timeline */
   .tl{list-style:none;margin:24px 0 24px;position:relative}
   .tl-item{display:grid;grid-template-columns:150px 36px minmax(0,1fr);column-gap:20px;position:relative;padding-bottom:44px}
-  .tl-item::before{content:"";position:absolute;left:calc(150px + 20px + 17px);top:26px;bottom:-4px;width:2px;background:var(--c);opacity:.5}
-  .tl-item:last-child::before{background:linear-gradient(var(--c),transparent);opacity:.5;bottom:20px}
+  /* the thread: a neutral base line per role, with a fill in the employer colour that draws in as you scroll (script sets --f, 0 to 1) */
+  .tl-item::before,.tl-item::after{content:"";position:absolute;left:calc(150px + 20px + 17px);top:26px;bottom:-4px;width:2px}
+  .tl-item::before{background:var(--line)}
+  .tl-item::after{background:var(--c);transform-origin:top;transform:scaleY(1)}
+  .tl.js-thread .tl-item::after{transform:scaleY(var(--f,0))}
+  .tl-item:last-child::before,.tl-item:last-child::after{bottom:20px;-webkit-mask:linear-gradient(#000 60%,transparent);mask:linear-gradient(#000 60%,transparent)}
   .tl-year{text-align:right;padding-top:2px}
+  .tl-year>*{position:sticky;top:96px}
+  .tl-year span{top:156px}
   .tl-year b{display:block;font-weight:200;font-size:54px;line-height:1;letter-spacing:-.03em;color:var(--tx)}
   .tl-year span{display:block;margin-top:8px;font-size:13px;color:var(--muted);line-height:1.35}
   .tl-node{width:36px;height:36px;border-radius:50%;background:var(--c);box-shadow:0 0 0 6px var(--bg);position:relative;z-index:1;margin-top:2px}
   .tl-node::after{content:"";position:absolute;inset:11px;border-radius:50%;background:var(--bg)}
-  .tl-card{background:#fff;border:1px solid var(--line);border-top:2px solid var(--c);border-radius:4px;padding:30px 36px 28px;box-shadow:0 18px 36px -30px rgba(40,30,20,.35)}
+  .tl-node{transition:background-color .35s ease,transform .35s ease}
+  .tl.js-thread .tl-item:not(.on) .tl-node{background:var(--line);transform:scale(.8)}
+  .tl-card{background:rgba(255,255,255,.9);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);border:1px solid var(--line);border-top:2px solid var(--c);border-radius:4px;padding:30px 36px 28px;box-shadow:0 18px 36px -30px rgba(40,30,20,.35)}
   .tl-when{display:none;font-size:12px;letter-spacing:.2em;text-transform:uppercase;font-weight:500;color:var(--tx);margin-bottom:10px}
   .tl-card h3{font-weight:300;font-size:clamp(28px,3vw,40px);letter-spacing:-.02em;line-height:1.1}
   .tl-org{margin-top:8px;font-size:13px;letter-spacing:.2em;text-transform:uppercase;font-weight:500;color:var(--tx)}
   blockquote{margin:24px 0 8px;padding:4px 0 4px 22px;border-left:4px solid var(--c);font-weight:300;font-size:clamp(20px,2vw,26px);line-height:1.35;letter-spacing:-.01em;max-width:34em}
   blockquote span{display:block;font-size:11px;letter-spacing:.24em;text-transform:uppercase;font-weight:500;color:var(--muted);margin-bottom:8px}
   details{margin-top:18px;border-top:1px solid var(--line)}
-  summary{cursor:pointer;list-style:none;padding:14px 0;font-size:13px;letter-spacing:.2em;text-transform:uppercase;font-weight:500;color:var(--tx);display:flex;align-items:center;gap:10px}
+  summary{cursor:pointer;list-style:none;display:block;padding:16px 0 12px}
   summary::-webkit-details-marker{display:none}
-  summary::before{content:"+";display:inline-grid;place-items:center;width:24px;height:24px;border-radius:50%;background:var(--t);font-size:16px;line-height:1;letter-spacing:0}
-  details[open] summary::before{content:"–"}
-  summary em{font-style:normal;color:var(--muted);letter-spacing:.1em;text-transform:none;font-weight:400}
+  .tl-tease{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden;max-width:62ch;font-weight:300;font-size:17px;line-height:1.55;letter-spacing:.005em;text-transform:none;color:var(--ink);
+    -webkit-mask:linear-gradient(to bottom,#000 30%,transparent);mask:linear-gradient(to bottom,#000 30%,transparent)}
+  details[open] .tl-tease{display:none}
+  .tl-sum{display:flex;align-items:center;gap:10px;margin-top:6px;font-size:13px;letter-spacing:.2em;text-transform:uppercase;font-weight:500;color:var(--tx)}
+  .tl-sum::before{content:"+";display:inline-grid;place-items:center;width:24px;height:24px;border-radius:50%;background:var(--t);font-size:16px;line-height:1;letter-spacing:0;transition:transform .2s}
+  summary:hover .tl-sum::before{transform:scale(1.12)}
+  details[open] .tl-sum::before{content:"–"}
+  details[open] .tl-sum{font-size:0;letter-spacing:0}
+  details[open] .tl-sum::after{content:"Show less";font-size:13px;letter-spacing:.2em}
   summary:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
   details ul{margin:0 0 6px 18px;max-width:62ch}
   details li{margin-bottom:10px;line-height:1.55}
@@ -119,7 +175,7 @@ const chronoRoles = [...roles].reverse();
   @media (max-width:820px){
     .ruler{margin-inline:18px}
     .tl-item{grid-template-columns:28px minmax(0,1fr);column-gap:14px;padding-bottom:28px}
-    .tl-item::before{left:13px;top:22px}
+    .tl-item::before,.tl-item::after{left:13px;top:22px}
     .tl-year{display:none}
     .tl-node{width:28px;height:28px}
     .tl-node::after{inset:8px}
@@ -128,3 +184,28 @@ const chronoRoles = [...roles].reverse();
     blockquote{padding-left:16px}
   }
 </style>
+
+<script>
+  // Thread fill (B) and contour parallax (D). Reduced motion: the thread shows fully drawn and the contours stay still.
+  const tl = document.querySelector<HTMLElement>('[data-thread]');
+  const items = tl ? Array.from(tl.querySelectorAll<HTMLElement>('.tl-item')) : [];
+  const topos = Array.from(document.querySelectorAll<SVGElement>('.xp-topo'));
+  if (tl && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    tl.classList.add('js-thread');
+    let queued = false;
+    const paint = () => {
+      queued = false;
+      const mid = innerHeight * 0.55;
+      items.forEach((el) => {
+        const r = el.getBoundingClientRect();
+        el.classList.toggle('on', r.top + 20 < mid);
+        el.style.setProperty('--f', String(Math.max(0, Math.min(1, (mid - r.top - 26) / Math.max(1, r.height - 30)))));
+      });
+      topos.forEach((t) => { const r = t.getBoundingClientRect(); t.style.setProperty('--py', `${(r.top + r.height / 2 - innerHeight / 2) * -0.08}px`); });
+    };
+    const queue = () => { if (!queued) { queued = true; requestAnimationFrame(paint); } };
+    addEventListener('scroll', queue, { passive: true });
+    addEventListener('resize', queue);
+    paint();
+  }
+</script>
