@@ -26,6 +26,11 @@ const aboutToday = aboutParas[1].replace(/ That includes.*?(?=<\/p>)/s, '');
 
 const cues = [[0.0, "PHOTOGRAPHY"], [1.8, "WEDDING FILM"], [3.3, "WEDDING FILM"], [4.7, "DASHBOARD"], [6.5, "WEDDING FILM"], [7.9, "FLOW CHART"], [9.8, "COMMERCIAL"], [11.23, "ENGAGEMENTS"], [12.83, "WEDDING FILM"], [14.23, "THE SITE"], [15.83, "WEDDING FILM"], [17.23, "FLOW CHART"], [19.13, "DOCUMENTARY"], [20.63, "FLOW CHART"], [22.43, "WEDDING FILM"], [23.83, "COMMERCIAL"], [25.17, "GRADUATIONS"], [26.77, "DOCUMENTARY"], [28.37, "FLOW CHART"], [30.07, "WEDDING FILM"], [31.37, "PHOTOGRAPHY"]];
 const dur = 33.37;
+// Rotating titles for the h1 blank. Article lives inside the unit so a/an always agrees. No AI framing.
+const titles = ['a photographer', 'a director of business operations', 'a wedding filmmaker', 'a systems builder', 'a documentary maker', 'an operations manager', 'a video editor', 'a workflow architect', 'a wedding photographer', 'an internal tool builder', 'a filmmaker', 'a process designer', 'a storyteller', 'a dashboard designer', 'a podcast producer', 'an automation builder', 'a creative director for small teams', 'a nonprofit operator', 'a project lead', 'a data organizer', 'a problem solver'];
+// Glue the last two words of each title with a no-break space so a wrapped phrase never leaves a single word alone on a line.
+const glue = (t: string) => t.replace(/ (?=[^ ]+$)/, '\u00A0');
+const h1Name = 'Hi, I’m Cameron. I’m a photographer, filmmaker and operations leader.';
 const jsonld = {
   '@context': 'https://schema.org',
   '@type': 'Person',
@@ -50,7 +55,8 @@ const jsonld = {
     <div class="hx-scrim" aria-hidden="true"></div>
     <div class="wrap hx-copy">
       <p class="hx-ey">Experience · Projects · Photo, film &amp; audio</p>
-      <h1 id="h">I run operations, <em>design the tools,</em> and tell stories.</h1>
+      <h1 id="h"><span class="sr-only">{h1Name}</span><span class="hx-vis" aria-hidden="true"><span class="hx-l1">Hi, I’m Cameron.</span><span class="hx-l2 hx-st">I’m a <span class="hx-u">photographer, filmmaker and operations leader.</span></span><span class="hx-l2 hx-rotl">I’m <span class="hx-rot" data-titles={JSON.stringify(titles.map((t) => { const [a, ...r] = t.split(' '); return [a, glue(r.join(' '))]; }))}><span class="hx-art">{titles[0].split(' ')[0]} </span><span class="hx-u">{glue(titles[0].split(' ').slice(1).join(' '))}</span></span></span></span></h1>
+      <script is:inline>document.querySelector('.hx').classList.add('hx-js')</script>
       <p class="hx-intro">Director of Business Operations at Doodle Pirates Foundation, designing internal tools and building them fast with AI agents. Photographer and filmmaker since 2012.</p>
       <div class="btns"><a class="btn solid" href="/contact">Get in touch</a><a class="btn hx-ghost" href="/resume.pdf">Resume (PDF)</a></div>
     </div>
@@ -163,6 +169,18 @@ const jsonld = {
 .hx-ey{font-family:var(--mono);font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:rgba(250,248,244,.86);margin-bottom:16px}
 .hx h1{font-weight:300;font-size:clamp(38px,4.8vw,68px);line-height:1.04;letter-spacing:-.03em;color:#FAF8F4;text-wrap:balance;text-shadow:0 1px 24px rgba(20,18,16,.35)}
 .hx h1 em{display:block;width:fit-content;white-space:nowrap;font-style:normal;font-weight:400;color:#FAF8F4;text-decoration:underline;text-decoration-color:#A32121;text-decoration-thickness:2px;text-underline-offset:.14em;text-decoration-skip-ink:none}
+.hx h1{max-width:780px}
+.hx-l1,.hx-l2{display:block}
+.hx-l2{margin-top:.04em}
+.hx-st{max-width:9.6em}
+.hx-u{font-weight:400;color:#FAF8F4;text-decoration:underline;text-decoration-color:#A32121;text-decoration-thickness:2px;text-underline-offset:.14em;text-decoration-skip-ink:none}
+.hx-rotl{display:none;min-height:2.08em}
+/* Rotation runs only when JS is on and motion is allowed; otherwise the static readable line shows (no JS, reduced motion) */
+@media (prefers-reduced-motion:no-preference){.hx-js .hx-st{display:none}.hx-js .hx-rotl{display:block}}
+.hx-rot{position:relative;top:0;opacity:1;transition:opacity .22s ease-in,top .22s ease-in}
+.hx-rot.is-out{opacity:0;top:-.16em}
+.hx-rot.is-pre{opacity:0;top:.16em;transition:none}
+.hx-rot.is-in{transition:opacity .23s ease-out,top .23s ease-out}
 .hx-intro{font-weight:300;font-size:19px;line-height:1.55;max-width:48ch;margin-top:22px;color:rgba(250,248,244,.94);text-wrap:pretty}
 .hx .btns{margin-top:30px}
 .hx .btn.hx-ghost{border-color:rgba(250,248,244,.85);color:#FAF8F4;background:rgba(20,18,16,.18)}
@@ -208,12 +226,13 @@ body.menu-open:has(.hx) header.nav:not(.scrolled) .menu-btn{color:var(--ink);bor
 
   .hx-copy{padding-top:96px;padding-bottom:64px}
   .hx-ey{font-size:10.5px;margin-bottom:12px}
-  .hx h1{font-size:clamp(34px,9.6vw,44px)}
+  .hx h1{font-size:clamp(34px,9.6vw,44px);max-width:none}
   .hx-intro{font-size:16.5px;margin-top:16px}
   .hx .btns{margin-top:22px}
   .hx-cue{right:50%;transform:translateX(50%);bottom:14px}
   .hx-spec{grid-template-columns:1fr 1fr;align-items:start;padding-top:22px;padding-bottom:22px}
 }
+@media (max-width:360px){.hx-l2{font-size:.9em}}
 @media (prefers-reduced-motion:reduce){.hx-video,.hx-pp,.hx-chip,.hx-prog{display:none}}
 </style>
 
@@ -248,7 +267,32 @@ body.menu-open:has(.hx) header.nav:not(.scrolled) .menu-btn{color:var(--ink);bor
     };
     const frame = () => { tick(); if ('requestVideoFrameCallback' in vid) (vid as any).requestVideoFrameCallback(frame); };
     if ('requestVideoFrameCallback' in vid) (vid as any).requestVideoFrameCallback(frame); else vid.addEventListener('timeupdate', tick);
+    // Rotating h1 titles: ~450ms swap (soft fade plus small vertical slide), ~2.4s hold. Paused with the reel, a hidden tab, off-screen, or reduced motion.
+    const rot = media.querySelector<HTMLElement>('.hx-rot');
+    const titles: string[][] = rot ? JSON.parse(rot.dataset.titles || '[]') : [];
+    const HOLD = 2400, OUT = 220;
+    let ri = 0, rt = 0, rdue = 0, rrun = false, rbusy = false;
+    const rhold = (ms: number) => { clearTimeout(rt); rdue = Date.now() + ms; rt = window.setTimeout(rstep, ms); };
+    const rstep = () => {
+      if (!rot) return;
+      rbusy = true; rot.classList.add('is-out');
+      rt = window.setTimeout(() => {
+        ri = (ri + 1) % titles.length; rot.innerHTML = ''; const ar = document.createElement('span'); ar.textContent = titles[ri][0] + ' '; const nn = document.createElement('span'); nn.className = 'hx-u'; nn.textContent = titles[ri][1]; rot.append(ar, nn);
+        rot.classList.remove('is-out'); rot.classList.add('is-pre'); void rot.offsetWidth;
+        rot.classList.remove('is-pre'); rot.classList.add('is-in');
+        rt = window.setTimeout(() => { rot.classList.remove('is-in'); rbusy = false; if (rrun) rhold(HOLD); }, 240);
+      }, OUT);
+    };
+    let rrem = HOLD;
+    const rsync = (go: boolean) => {
+      if (!rot || titles.length < 2 || go === rrun) return;
+      rrun = go;
+      if (go) { if (!rbusy) rhold(rrem); }
+      else if (!rbusy) { clearTimeout(rt); rrem = Math.max(400, rdue - Date.now()); }
+      else rrem = HOLD;
+    };
     const sync = () => {
+      rsync(!reduce.matches && !userPaused && !document.hidden && visible);
       if (reduce.matches || conn?.saveData) return;
       if (userPaused || document.hidden || !visible) { vid.pause(); return; }
       load();
