@@ -1,6 +1,7 @@
 ---
 import '../styles/global.css';
 import { SITE, CATEGORIES } from '../lib/site';
+import { EDIT_MODE } from '../data/site-flags';
 interface Props {
   title: string;
   description: string;
@@ -206,5 +207,6 @@ const nav = [
       x0 = null;
     });
   </script>
+  {EDIT_MODE && (<script is:inline>(function(){try{var s=sessionStorage,u=location.search;if(/[?&]edit=off(&|$)/.test(u)){s.removeItem('cm-edit');return}if(/[?&]edit(=(1|on|true))?(&|$)/.test(u)||location.hash==='#edit'||s.getItem('cm-edit')==='1'){s.setItem('cm-edit','1');import('/edit-mode.js')}}catch(e){}})()</script>)}
 </body>
 </html>
