@@ -1,0 +1,64 @@
+---
+/* Projects thumbnail 04: contract card above a seven-step timeline. Loop: the signature draws, the first node turns red, a dot travels the line filling steps, the dashed link to the current step pulses. */
+interface Props { label?: string }
+const { label = 'Contract automation: a signed contract linked to step four of a seven-step timeline' } = Astro.props;
+const nx = (i: number) => 260 + i * 180;
+---
+<svg class="tcon" viewBox="200 140 1280 800" role="img" aria-label={label}>
+  <rect width="1600" height="1000" fill="#F0EBE4"/>
+  <!-- contract -->
+  <rect x="620" y="156" width="360" height="460" rx="14" fill="#fff" stroke="#1B1A18" stroke-width="3"/>
+  <rect x="664" y="204" width="176" height="20" rx="10" fill="#1B1A18"/>
+  <g fill="#D1C9BD">
+    <rect x="664" y="256" width="272" height="12" rx="6"/><rect x="664" y="288" width="240" height="12" rx="6"/>
+    <rect x="664" y="320" width="260" height="12" rx="6"/><rect x="664" y="352" width="200" height="12" rx="6"/>
+    <rect x="664" y="400" width="272" height="12" rx="6"/><rect x="664" y="432" width="224" height="12" rx="6"/>
+  </g>
+  <rect x="652" y="472" width="296" height="104" rx="8" fill="#F2EDE7"/>
+  <path class="sig" d="M676 540C688 520 702 518 714 528S732 540 742 526C752 506 770 494 782 512C792 528 796 548 808 546C824 544 840 524 860 512" pathLength="100" fill="none" stroke="#1B1A18" stroke-width="3.5" stroke-linecap="round" stroke-dasharray="100"/>
+  <line x1="676" y1="556" x2="924" y2="556" stroke="#1B1A18" stroke-width="2"/>
+  <path d="M881 497l14 14M895 497l-14 14" stroke="#881919" stroke-width="4.5" stroke-linecap="round"/>
+  <!-- dashed link to the current step -->
+  <line class="link" x1="800" y1="618" x2="800" y2="726" stroke="#1B1A18" stroke-width="3" stroke-dasharray="8 8"/>
+  <!-- timeline -->
+  <line x1="260" y1="760" x2="1340" y2="760" stroke="#D9D1C5" stroke-width="3"/>
+  <line class="done" x1="260" y1="760" x2="800" y2="760" stroke="#1B1A18" stroke-width="3"/>
+  {[4, 5, 6].map((i) => <circle cx={nx(i)} cy="760" r="31" fill="#fff" stroke="#D9D1C5" stroke-width="3"/>)}
+  {[1, 2, 3].map((i) => (
+    <g>
+      <circle cx={nx(i)} cy="760" r="31" fill="#fff" stroke="#D9D1C5" stroke-width="3"/>
+      <circle class={`pass s${i}`} cx={nx(i)} cy="760" r="31" fill="#fff" stroke="#1B1A18" stroke-width="3"/>
+    </g>
+  ))}
+  <circle cx="260" cy="760" r="32" fill="#fff" stroke="#D9D1C5" stroke-width="3"/>
+  <circle class="first" cx="260" cy="760" r="32" fill="#881919"/>
+  <circle class="cur" cx="800" cy="760" r="10" fill="#1B1A18"/>
+  <circle class="dot" cx="260" cy="760" r="10" fill="#1B1A18"/>
+</svg>
+
+<style>
+  .tcon{display:block;width:100%;height:100%}
+  .done{transform-box:fill-box;transform-origin:left center}
+  .first,.cur,.pass{transform-box:fill-box;transform-origin:center}
+  .dot{opacity:0}
+  @media (prefers-reduced-motion:no-preference){
+    .tcon *{animation-duration:12s;animation-iteration-count:infinite;animation-timing-function:ease-in-out}
+    .sig{animation-name:tk-sig}
+    .first{animation-name:tk-first}
+    .done{animation-name:tk-done;animation-timing-function:linear}
+    .dot{animation-name:tk-dot;animation-timing-function:linear}
+    .s1{animation-name:tk-s1}.s2{animation-name:tk-s2}.s3{animation-name:tk-s3}
+    .cur{animation-name:tk-cur}
+    .link{animation-name:tk-link;animation-timing-function:linear}
+  }
+  /* beat 1 (2-20%): sign. beat 2 (22-58%): first node red, dot walks to step 4. beat 3 (58-80%): dashed link pulses. */
+  @keyframes tk-sig{0%,2%{stroke-dashoffset:100;opacity:1}20%,90%{stroke-dashoffset:0;opacity:1}95%{stroke-dashoffset:0;opacity:0}96%,100%{stroke-dashoffset:100;opacity:0}}
+  @keyframes tk-first{0%,20%{opacity:0;transform:scale(.3)}24%{opacity:1;transform:scale(1.12)}27%,90%{opacity:1;transform:scale(1)}95%,100%{opacity:0;transform:scale(1)}}
+  @keyframes tk-done{0%,25%{transform:scaleX(0);opacity:1}58%,90%{transform:scaleX(1);opacity:1}95%{transform:scaleX(1);opacity:0}96%,100%{transform:scaleX(0);opacity:0}}
+  @keyframes tk-dot{0%,24%{opacity:0;transform:translateX(0)}25%{opacity:1;transform:translateX(0)}58%{opacity:1;transform:translateX(540px)}60%,100%{opacity:0;transform:translateX(540px)}}
+  @keyframes tk-s1{0%,35%{opacity:0}37%,90%{opacity:1}95%,100%{opacity:0}}
+  @keyframes tk-s2{0%,46%{opacity:0}48%,90%{opacity:1}95%,100%{opacity:0}}
+  @keyframes tk-s3{0%,57%{opacity:0}59%,90%{opacity:1}95%,100%{opacity:0}}
+  @keyframes tk-cur{0%,59%{opacity:0;transform:scale(.3)}62%{opacity:1;transform:scale(1.25)}65%,90%{opacity:1;transform:scale(1)}95%,100%{opacity:0;transform:scale(1)}}
+  @keyframes tk-link{0%,60%{stroke-dashoffset:0;opacity:.35}63%{opacity:1}80%{stroke-dashoffset:-64;opacity:1}86%,100%{stroke-dashoffset:-64;opacity:.35}}
+</style>

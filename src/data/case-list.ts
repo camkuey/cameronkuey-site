@@ -8,7 +8,7 @@ export const CASES: CaseCard[] = [
     slug: 'internal-dashboard', kind: 'Systems design', org: 'Doodle Pirates Foundation',
     title: 'An all-in-one Internal Dashboard, concept to production in under two weeks',
     summary: 'I designed one role-based platform for projects, onboarding, time clocking and the shop floor, and directed AI agents to build it fast.',
-    tags: ['Airtable', 'Product design', 'AI-assisted build'],
+    tags: ['Airtable', 'Product design', 'Built with Cursor cloud agents'],
     image: 'dash-hero-focus', imageAlt: 'The Internal Dashboard’s Today’s focus screen with a weekly progress meter',
   },
   {
@@ -34,6 +34,6 @@ export const CASES: CaseCard[] = [
     slug: 'growth-roadmap', kind: 'Freelance build', org: 'Anonymous client',
     title: 'A Strategy Growth Roadmap in a Google Sheet',
     summary: 'A client planned on sticky notes. I built a roadmap on Google Sheets and Apps Script: one master Sheet, copied for each client into their own private Sheet.',
-    tags: ['Google Sheets', 'Apps Script', 'One copy per client', 'AI-assisted build'], motif: 'roadmap',
+    tags: ['Google Sheets', 'Apps Script', 'One copy per client'], motif: 'roadmap',
   },
 ];

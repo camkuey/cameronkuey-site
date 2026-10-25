@@ -1,8 +1,8 @@
 ---
 import Base from '../layouts/Base.astro';
-import Pic from '../components/Pic.astro';
-import { shot } from '../data/internal-dashboard';
+import DashboardReel from '../components/DashboardReel.astro';
 import { CASES } from '../data/case-list';
+import ProjectThumb from '../components/thumbs/ProjectThumb.astro';
 import { spec, featured, more, steps, tools } from '../data/projects';
 ---
 <Base title="Projects" section="projects"
@@ -15,9 +15,7 @@ import { spec, featured, more, steps, tools } from '../data/projects';
       <dl class="spec-t">{spec.map(([k, v]) => <div><dt>{k}</dt><dd>{v}</dd></div>)}</dl>
     </div>
     <figure class="pj-vis">
-      <a href="/case-studies/internal-dashboard" aria-label="Read the Internal Dashboard case study">
-        <Pic id={shot.myWork.id} eager sizes="(max-width: 900px) 100vw, 640px" alt={shot.myWork.alt} />
-      </a>
+      <DashboardReel href="/case-studies/internal-dashboard" label="Read the Internal Dashboard case study" />
       <figcaption><span>Featured · Internal Dashboard</span><a href="/case-studies/internal-dashboard">Read the case study →</a></figcaption>
     </figure>
   </div></header>
@@ -38,13 +36,15 @@ import { spec, featured, more, steps, tools } from '../data/projects';
 
   <section class="sec" style="padding-top:0" aria-labelledby="all-h"><div class="wrap">
     <div class="sec-top"><div><p class="ey"><b>02</b> / Case studies</p><h2 id="all-h">All projects</h2></div></div>
-    <ul class="rows pj-rows">
+    <ul class="rows pj-cases">
       {CASES.map((c, i) => (
         <li><a class="row" href={`/case-studies/${c.slug}`}>
-          <span class="n">{String(i + 1).padStart(2, '0')}</span>
-          <div><p class="ey" style="margin-bottom:8px">{c.kind} · {c.org}</p><h3>{c.title}</h3></div>
-          <p>{c.summary}</p>
-          <span class="tag">{c.tags.join(' · ')}<span class="go">Read the case study →</span></span>
+          <span class="th"><ProjectThumb slug={c.slug} decorative /></span>
+          <div class="hd"><p class="ey"><b>{String(i + 1).padStart(2, '0')}</b> / {c.kind} · {c.org}</p><h3>{c.title}</h3></div>
+          <div class="bd">
+            <p>{c.summary}</p>
+            <span class="tag">{c.tags.join(' · ')}<span class="go">Read the case study →</span></span>
+          </div>
         </a></li>
       ))}
     </ul>
@@ -97,6 +97,26 @@ import { spec, featured, more, steps, tools } from '../data/projects';
   .pj-vis figcaption a{color:var(--ink);text-decoration:none;border-bottom:1px solid var(--tan-line)}
   .pj-vis figcaption a:hover{color:var(--red);border-color:var(--red)}
   @media (min-width:901px){:global(.pj-rows .row){grid-template-columns:56px minmax(0,4fr) minmax(0,6fr) 250px}}
+  /* All projects: thumbnail column, then title block and summary block, top-aligned */
+  .pj-cases .row{grid-template-columns:288px minmax(0,5fr) minmax(0,6fr);gap:0 40px;align-items:start;padding:28px 0}
+  .pj-cases .th{display:block;border:1px solid var(--tan-line);border-radius:4px;overflow:hidden;transition:border-color .2s}
+  .pj-cases a.row:hover .th{border-color:var(--ink)}
+  .pj-cases .hd .ey{margin-bottom:10px}
+  .pj-cases .hd h3{max-width:22ch}
+  .pj-cases .bd{display:flex;flex-direction:column;gap:14px;padding-top:2px}
+  .pj-cases .bd p{max-width:52ch}
+  .pj-cases .tag{text-align:left}
+  .pj-cases .go{margin-top:6px}
+  @media (min-width:901px) and (max-width:1120px){
+    .pj-cases .row{grid-template-columns:260px minmax(0,1fr);gap:16px 32px}
+    .pj-cases .th{grid-row:span 2}
+    .pj-cases .hd,.pj-cases .bd{grid-column:2}
+  }
+  @media (max-width:900px){
+    .pj-cases .row{grid-template-columns:minmax(0,1fr);gap:14px;padding:24px 0}
+    .pj-cases .hd,.pj-cases .bd{grid-column:1}
+    .pj-cases .bd{gap:12px;padding-top:0}
+  }
   .pj-feat{padding:72px 0 96px}
   .pj-feat-grid{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:40px 72px;align-items:end}
   .pj-feat h2{font-weight:300;font-size:clamp(26px,2.8vw,38px);letter-spacing:-.02em;line-height:1.1;max-width:20ch}

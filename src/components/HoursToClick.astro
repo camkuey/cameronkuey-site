@@ -1,16 +1,16 @@
 ---
-/* "Hours to one click" loop for the Circles case study, section 01.
-   Left: seven tabs light up one after another while a clock and bar fill ("≈ 3 hours of setup").
-   Right: one Run button is pressed, the same tools light together and the bar snaps full ("1 click").
-   Pure inline SVG + CSS keyframes, 9s loop with a pause on the end state. Same panel, palette and
-   Jost type as CaseFlow. Under prefers-reduced-motion nothing moves: the static end state shows
-   both the "≈ 3 hours" and the "1 click" halves. */
+/* "Hours to one click" loop for the Circles case study hero: one white hairline card split in two.
+   Before: seven numbered hairline rows, a check pops in on each one about every second while a grey
+   bar fills, under a large light "≈ 3 hours" with a mono caption.
+   After: one primary Run setup button is pressed, the same tools (outlined pills) turn their dots to the
+   primary together, a thin bar snaps full and "1 click" darkens.
+   Plain HTML + CSS keyframes, 11 s loop with a pause on the end state, then a fade and reset.
+   Base styles are the end state, so under prefers-reduced-motion nothing moves and both halves read
+   in full: every check, both bars, "≈ 3 hours" and "1 click". */
 import { THEMES, type ThemeName } from '../data/themes';
 interface Props { theme?: ThemeName }
 const { theme = 'brand' } = Astro.props as Props;
 const TH = THEMES[theme];
-// Before: each tab lights in the same neutral sand (manual, one at a time). After: every tool lights
-// together in ink, fired by one primary Run button. No per-tool colours.
 type Tab = { t: string; short: string };
 const tabs: Tab[] = [
   { t: 'Zendesk', short: 'Zendesk' },
@@ -21,118 +21,114 @@ const tabs: Tab[] = [
   { t: 'Email', short: 'Email' },
   { t: 'Slack', short: 'Slack' },
 ];
-const LIT_B = { fill: '#E7DFD2', stroke: '#CFC4B2', ink: '#1B1A18' };
-const LIT_A = { fill: '#1B1A18', stroke: '#1B1A18', ink: '#F4F0E8' };
-const SLOW = '#9C9283';
-const T = 9;
-const ty = (i: number) => 44 + i * 24;
-const px = (i: number) => (i % 2 ? 268 : 192);
-const py = (i: number) => 128 + Math.floor(i / 2) * 19;
-const p2 = (n: number) => +n.toFixed(2);
-const tabStart = (i: number) => p2(4 + i * 6.2);
-const pillStart = (i: number) => p2(65.5 + i * 0.7);
+const T = 11;
+const p = (s: number) => `${+((s / T) * 100).toFixed(2)}%`;
+const CHECK0 = 0.5, CHECK_GAP = 0.85;
+const checkAt = (i: number) => CHECK0 + i * CHECK_GAP;
+const BEFORE_END = checkAt(tabs.length - 1) + 0.5;
+const PRESS = BEFORE_END + 0.5, LIGHT = PRESS + 0.3, DONE = LIGHT + 0.5;
+const MUTE = '#CFC8BC';
 
 let css = '';
 tabs.forEach((_, i) => {
-  const s = tabStart(i);
-  css += `@keyframes h2c-t${i}{0%,${p2(s - 0.01)}%{opacity:0}${p2(s + 1)}%,100%{opacity:1}}`;
-  const q = pillStart(i);
-  css += `@keyframes h2c-p${i}{0%,${p2(q - 0.01)}%{opacity:0}${p2(q + 1)}%,100%{opacity:1}}`;
+  const s = checkAt(i);
+  css += `@keyframes h2c-c${i}{0%,${p(s - 0.01)}{opacity:0;transform:scale(.3)}${p(s + 0.18)}{opacity:1;transform:scale(1.18)}${p(s + 0.35)},100%{opacity:1;transform:scale(1)}}`;
+  const q = LIGHT + i * 0.07;
+  css += `@keyframes h2c-p${i}{0%,${p(q - 0.01)}{--hl:0}${p(q + 0.25)},100%{--hl:1}}`;
 });
 css += `
-@keyframes h2c-root{0%{opacity:0}3%,94%{opacity:1}99%,100%{opacity:0}}
-@keyframes h2c-dim{0%,50%{opacity:1}57%,100%{opacity:.92}}
-@keyframes h2c-ghost{0%,50%{opacity:.28}56%,100%{opacity:1}}
-@keyframes h2c-cur{0%,50%{opacity:0;transform:translate(338px,168px)}52%{opacity:1;transform:translate(338px,168px)}61%,63%{opacity:1;transform:translate(284px,98px)}64%,100%{opacity:1;transform:translate(285px,100px)}}
-@keyframes h2c-press{0%,62.5%{transform:translate(0,0)}64%,66%{transform:translate(3px,4px)}68%,100%{transform:translate(0,0)}}
-@keyframes h2c-rip{0%,63.5%{opacity:0;transform:scale(.5)}64.5%{opacity:.55;transform:scale(.5)}73%,100%{opacity:0;transform:scale(1.5)}}
-@keyframes h2c-bbar{0%,3%{transform:scaleX(0)}48%,100%{transform:scaleX(1)}}
-@keyframes h2c-bhand{0%,3%{transform:rotate(0)}48%,100%{transform:rotate(1080deg)}}
-@keyframes h2c-blab{0%,44%{opacity:0}47%,100%{opacity:1}}
-@keyframes h2c-arr{0%,48%{opacity:0}52%,100%{opacity:1}}
-@keyframes h2c-abar{0%,65%{transform:scaleX(0)}68%,100%{transform:scaleX(1)}}
-@keyframes h2c-ahand{0%,65%{transform:rotate(0)}68%,100%{transform:rotate(720deg)}}
-@keyframes h2c-alab{0%,67%{opacity:0}69.5%,100%{opacity:1}}
+@property --hl{syntax:"<number>";inherits:true;initial-value:1}
+@keyframes h2c-cols{0%{opacity:0}${p(0.3)},${p(T - 0.8)}{opacity:1}100%{opacity:0}}
+@keyframes h2c-bbar{0%,${p(CHECK0)}{transform:scaleX(0)}${p(BEFORE_END)},100%{transform:scaleX(1)}}
+@keyframes h2c-press{0%,${p(PRESS)}{transform:scale(1)}${p(PRESS + 0.15)}{transform:scale(.95)}${p(PRESS + 0.35)},100%{transform:scale(1)}}
+@keyframes h2c-abar{0%,${p(LIGHT)}{transform:scaleX(0)}${p(DONE)},100%{transform:scaleX(1)}}
+@keyframes h2c-alab{0%,${p(DONE - 0.1)}{color:${MUTE}}${p(DONE + 0.3)},100%{color:#1B1A18}}
+@keyframes h2c-acap{0%,${p(DONE - 0.1)}{color:${MUTE}}${p(DONE + 0.3)},100%{color:#6B645A}}
 `;
 const A = (name: string) => `animation:${name} ${T}s linear infinite`;
-let anim = `.h2c-root{${A('h2c-root')}}.h2c-before{${A('h2c-dim')}}.h2c-after{${A('h2c-ghost')}}.h2c-cur{${A('h2c-cur')}}.h2c-press{${A('h2c-press')}}.h2c-rip{${A('h2c-rip')}}.h2c-bbar{${A('h2c-bbar')}}.h2c-bhand{${A('h2c-bhand')}}.h2c-blab{${A('h2c-blab')}}.h2c-arr{${A('h2c-arr')}}.h2c-abar{${A('h2c-abar')}}.h2c-ahand{${A('h2c-ahand')}}.h2c-alab{${A('h2c-alab')}}`;
-tabs.forEach((_, i) => { anim += `.h2c-t${i}{${A('h2c-t' + i)}}.h2c-p${i}{${A('h2c-p' + i)}}`; });
+let anim = `.h2c-cols{${A('h2c-cols')}}.h2c-bf{${A('h2c-bbar')}}.h2c-run{${A('h2c-press')}}.h2c-af{${A('h2c-abar')}}.h2c-al b{${A('h2c-alab')}}.h2c-al span{${A('h2c-acap')}}`;
+tabs.forEach((_, i) => { anim += `.h2c-c${i}{${A('h2c-c' + i)}}.h2c-p${i}{${A('h2c-p' + i)}}`; });
 css += `@media (prefers-reduced-motion:no-preference){${anim}}`;
 
 const label =
   'Animation. Before: setting up a Circle took about 3 hours, working through Zendesk, Airtable, Zoom, Google Calendar, Google Slides, email and Slack one tab at a time. After: one click on Run does it in seconds.';
 ---
-<svg class="h2c" viewBox="0 0 360 272" role="img" aria-label={label}>
-  <rect class="h2c-panel" x=".5" y=".5" width="359" height="271" rx="4" />
-  <g class="h2c-root" aria-hidden="true">
-    <path d="M184,26 V262" stroke="#D9CFC0" stroke-width="1.2" stroke-dasharray="4 4" />
-
-    <g class="h2c-before">
-      <text class="h2c-cap" x="16" y="36">Before</text>
-      {tabs.map((tb, i) => (
-        <g>
-          <rect x="16" y={ty(i)} width="160" height="20" rx="6" fill="#fff" stroke="#D9CFC0" />
-          <text class="h2c-nm" x="27" y={ty(i) + 14} fill="#4F4A42">{tb.t}</text>
-          <g class={`h2c-lit h2c-t${i}`}>
-            <rect x="16" y={ty(i)} width="160" height="20" rx="6" fill={LIT_B.fill} stroke={LIT_B.stroke} />
-            <text class="h2c-nm" x="27" y={ty(i) + 14} fill={LIT_B.ink}>{tb.t}</text>
-            <path d={`M159,${ty(i) + 10.5} l3.5,3.5 l6.5,-7.5`} fill="none" stroke={LIT_B.ink} stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
-          </g>
-        </g>
-      ))}
-      <circle cx="28" cy="228" r="11" fill="#fff" stroke="#1B1A18" stroke-width="1.6" />
-      <g class="h2c-bhand" style="transform-origin:28px 228px"><path d="M28,228 V220.5" stroke={SLOW} stroke-width="2" stroke-linecap="round" /></g>
-      <circle cx="28" cy="228" r="1.6" fill="#1B1A18" />
-      <rect x="48" y="224" width="128" height="8" rx="4" fill="#EDE7DC" />
-      <rect class="h2c-bbar" x="48" y="224" width="128" height="8" rx="4" fill={SLOW} style="transform-origin:48px 228px" />
-      <text class="h2c-big h2c-blab" x="16" y="262">≈ 3 hours of setup</text>
-    </g>
-
-    <g class="h2c-after">
-      <text class="h2c-cap" x="192" y="36">After</text>
-      <rect x="199" y="63" width="140" height="52" rx="12" fill="#1B1A18" />
-      <g class="h2c-press">
-        <rect x="196" y="59" width="140" height="52" rx="12" fill={TH.primary} stroke="#1B1A18" stroke-width="1.5" />
-        <path d="M236,76 L236,94 L250,85 Z" fill="#fff" />
-        <text class="h2c-run" x="262" y="93">Run</text>
-      </g>
-      <circle class="h2c-rip" cx="266" cy="85" r="46" fill="none" stroke={TH.primary} stroke-width="2.5" style="transform-origin:266px 85px" />
-      {tabs.map((tb, i) => (
-        <g>
-          <rect x={px(i)} y={py(i)} width="74" height="17" rx="8.5" fill="#fff" stroke="#D9CFC0" />
-          <text class="h2c-mini" x={px(i) + 37} y={py(i) + 12} text-anchor="middle" fill="#6B645A">{tb.short}</text>
-          <g class={`h2c-lit h2c-p${i}`}>
-            <rect x={px(i)} y={py(i)} width="74" height="17" rx="8.5" fill={LIT_A.fill} stroke={LIT_A.stroke} />
-            <text class="h2c-mini" x={px(i) + 37} y={py(i) + 12} text-anchor="middle" fill={LIT_A.ink}>{tb.short}</text>
-          </g>
-        </g>
-      ))}
-      <circle cx="204" cy="228" r="11" fill="#fff" stroke="#1B1A18" stroke-width="1.6" />
-      <g class="h2c-ahand" style="transform-origin:204px 228px"><path d="M204,228 V220.5" stroke={TH.primary} stroke-width="2" stroke-linecap="round" /></g>
-      <circle cx="204" cy="228" r="1.6" fill="#1B1A18" />
-      <rect x="224" y="224" width="118" height="8" rx="4" fill="#EDE7DC" />
-      <rect class="h2c-abar" x="224" y="224" width="118" height="8" rx="4" fill={TH.primary} style="transform-origin:224px 228px" />
-      <text class="h2c-big h2c-alab" x="192" y="262">1 click<tspan class="h2c-sm" dx="7">in seconds</tspan></text>
-      <g class="h2c-cur"><path d="M0,0 L0,17 L4.6,13 L7.8,20 L10.8,18.7 L7.7,11.9 L13.4,11.9 Z" fill="#fff" stroke="#1B1A18" stroke-width="1.5" stroke-linejoin="round" /></g>
-    </g>
-
-    <g class="h2c-arr">
-      <circle cx="184" cy="118" r="9.5" fill="#FFFDF9" stroke="#1B1A18" stroke-width="1.3" />
-      <path d="M179.5,118 H188.5 M185,114.5 L188.8,118 L185,121.5" fill="none" stroke="#1B1A18" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" />
-    </g>
-  </g>
+<div class="h2c" role="img" aria-label={label} style={`--h2c-acc:${TH.primary};--h2c-acc-ink:${TH.primaryInk}`}>
+  <div class="h2c-hd">
+    <span class="h2c-ey">Circles setup / Before and after</span>
+    <span class="h2c-ti">Hours of setup, or one click.</span>
+  </div>
+  <div class="h2c-cols">
+    <div class="h2c-col">
+      <span class="h2c-cap">Before</span>
+      <ol class="h2c-rows">
+        {tabs.map((tb, i) => (
+          <li>
+            <span class="h2c-n">{String(i + 1).padStart(2, '0')}</span>
+            <span class="h2c-t">{tb.t}</span>
+            <svg class={`h2c-ck h2c-c${i}`} viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5 L6.5 12 L13 4.5" /></svg>
+          </li>
+        ))}
+      </ol>
+      <span class="h2c-bar"><i class="h2c-bf"></i></span>
+      <div class="h2c-big"><b>≈ 3 hours</b><span>of setup</span></div>
+    </div>
+    <div class="h2c-col is-after">
+      <span class="h2c-cap">After</span>
+      <span class="h2c-run"><svg viewBox="0 0 12 14" aria-hidden="true"><path d="M1 1 L11 7 L1 13 Z" /></svg>Run setup</span>
+      <ul class="h2c-pills">
+        {tabs.map((tb, i) => <li class={`h2c-p${i}`}><i></i>{tb.short}</li>)}
+      </ul>
+      <span class="h2c-bar is-thin"><i class="h2c-af"></i></span>
+      <div class="h2c-big h2c-al"><b>1 click</b><span>in seconds</span></div>
+    </div>
+  </div>
   <style is:inline set:html={css}></style>
-</svg>
+</div>
 <style>
-  .h2c{display:block;width:100%;height:auto;aspect-ratio:360/272;font-family:var(--fb);overflow:hidden}
-  .h2c-panel{fill:#FFFDF9;stroke:#D9CFC0;stroke-width:1}
-  .h2c-cap{font-size:11.5px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;fill:#6B645A}
-  .h2c-nm{font-size:12.5px;font-weight:500}
-  .h2c-mini{font-size:11px;font-weight:500}
-  .h2c-big{font-size:16px;font-weight:600;fill:#1B1A18}
-  .h2c-sm{font-size:12px;font-weight:400;fill:#4F4A42}
-  .h2c-run{font-size:23px;font-weight:500;fill:#fff;letter-spacing:.02em}
-  /* "before" reads as past through its neutral sand fills, not by fading text below 4.5:1 */
-  .h2c-before{opacity:.92}
-  .h2c-cur,.h2c-rip{opacity:0}
+  .h2c{container-type:inline-size;display:block;background:#fff;border:1px solid var(--line,#E2DDD4);border-radius:6px;padding:26px 28px 24px;font-family:var(--fb);color:#1B1A18;text-align:left}
+  /* the card is the panel: no extra shadow from the hero figure */
+  :global(.cs-herovis:has(> .h2c)),:global(.cs-vis:has(> .h2c)){box-shadow:none!important;transform:none!important;background:transparent!important}
+  .h2c-hd{display:flex;flex-direction:column;gap:8px;padding-bottom:20px;border-bottom:1px solid var(--line,#E2DDD4)}
+  .h2c-ey{font-family:var(--mono);font-size:10.5px;line-height:1.4;letter-spacing:.2em;text-transform:uppercase;color:var(--h2c-acc-ink)}
+  .h2c-ti{font-family:var(--fd);font-weight:300;font-size:clamp(19px,4.2cqi,26px);line-height:1.15;letter-spacing:-.012em;text-wrap:balance}
+
+  .h2c-cols{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+  .h2c-col{display:flex;flex-direction:column;min-width:0;padding:18px 24px 0 0}
+  .h2c-col.is-after{padding:18px 0 0 24px;border-left:1px solid var(--line,#E2DDD4)}
+  .h2c-cap{font-family:var(--mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:#6B645A;margin-bottom:10px}
+
+  .h2c-rows{list-style:none;margin:0;padding:0}
+  .h2c-rows li{display:grid;grid-template-columns:24px minmax(0,1fr) 16px;align-items:center;gap:8px;padding:6px 0;border-bottom:1px solid #ECE6DC}
+  .h2c-n{font-family:var(--mono);font-size:10px;color:#8A7F72}
+  .h2c-t{font-size:14.5px;line-height:1.3;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .h2c-ck{width:16px;height:16px;fill:none;stroke:#1B1A18;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;transform-origin:center}
+
+  .h2c-bar{display:block;position:relative;height:3px;margin-top:auto;background:#ECE6DC;border-radius:2px;overflow:hidden}
+  /* both bars sit on one baseline at the foot of their column */
+  .h2c-rows,.h2c-pills{margin-bottom:18px!important}
+  .h2c-bar i{position:absolute;inset:0;background:#8A7F72;transform-origin:left center}
+  .h2c-bar.is-thin{height:2px}
+  .h2c-bar.is-thin i{background:var(--h2c-acc)}
+  .h2c-big{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:2px 12px;margin-top:10px}
+  .h2c-big b{font-family:var(--fd);font-weight:300;font-size:clamp(24px,5.6cqi,32px);line-height:1.1;letter-spacing:-.015em;color:#1B1A18;white-space:nowrap}
+  .h2c-big span{font-family:var(--mono);font-size:10px;letter-spacing:.04em;color:#6B645A}
+
+  .h2c-run{display:inline-flex;align-self:flex-start;align-items:center;gap:10px;padding:11px 20px 11px 18px;border-radius:5px;background:var(--h2c-acc);color:#fff;font-size:16px;font-weight:500;letter-spacing:.01em;line-height:1.2;transform-origin:center}
+  .h2c-run svg{width:11px;height:13px;fill:#fff}
+  .h2c-pills{list-style:none;margin:16px 0 0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}
+  .h2c-pills li{display:flex;align-items:center;gap:8px;min-width:0;padding:6px 10px;border:1px solid;border-radius:4px;font-size:13px;line-height:1.3;white-space:nowrap;
+    /* --hl: 0 = waiting (white, hairline, grey dot), 1 = done (cream, ink outline, primary dot) */
+    background:rgb(calc(255 - var(--hl) * 14) calc(255 - var(--hl) * 19) calc(255 - var(--hl) * 27));
+    border-color:rgb(calc(220 - var(--hl) * 193) calc(213 - var(--hl) * 187) calc(202 - var(--hl) * 178))}
+  .h2c-pills i{flex:none;position:relative;width:6px;height:6px;border-radius:50%;background:#CFC6B8}
+  .h2c-pills i::after{content:"";position:absolute;inset:0;border-radius:50%;background:var(--h2c-acc);opacity:var(--hl)}
+
+  /* narrow cards: Before above After */
+  @container (max-width:479px){
+    .h2c-cols{grid-template-columns:minmax(0,1fr)}
+    .h2c-col{padding:18px 0 0}
+    .h2c-col.is-after{padding:20px 0 0;margin-top:22px;border-left:0;border-top:1px solid var(--line,#E2DDD4)}
+  }
+  @media (max-width:600px){.h2c{padding:20px 18px 18px}}
 </style>

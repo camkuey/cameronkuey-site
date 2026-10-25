@@ -1,0 +1,79 @@
+---
+/* Projects thumbnail 05: sticky notes become a Gantt-style Sheet. Loop: notes settle and lean toward the arrow, the arrow draws, bars grow in one by one with the red bar last, the per-client copies slide out behind. */
+interface Props { label?: string }
+const { label = 'Growth roadmap: four sticky notes turned into a Gantt-style roadmap sheet with copies behind it' } = Astro.props;
+const notes = [
+  { x: 325, y: 343, r: -7, red: false, b: [100, 80] },
+  { x: 512, y: 405, r: 6, red: false, b: [92, 108] },
+  { x: 339, y: 576, r: 4, red: true, b: [104, 76] },
+  { x: 530, y: 623, r: -5, red: false, b: [88, 112] },
+];
+const bars = [
+  { x: 996, y: 264, w: 172, c: '#1B1A18', k: 'b1' },
+  { x: 1096, y: 344, w: 180, c: '#1B1A18', k: 'b2' },
+  { x: 1040, y: 424, w: 240, c: '#881919', k: 'b5' },
+  { x: 1200, y: 504, w: 176, c: '#1B1A18', k: 'b3' },
+  { x: 996, y: 584, w: 128, c: '#D9D1C5', k: 'b4' },
+];
+const labels = [92, 80, 92, 72, 88];
+---
+<svg class="trm" viewBox="200 140 1280 800" role="img" aria-label={label}>
+  <rect width="1600" height="1000" fill="#F0EBE4"/>
+  <!-- sticky notes -->
+  {notes.map((n, i) => (
+    <g class="note" style={`--i:${i}`}>
+      <g transform={`translate(${n.x} ${n.y}) rotate(${n.r})`}>
+        <rect x="-84" y="-86" width="168" height="172" rx="6" fill="#fff" stroke={n.red ? '#881919' : '#DDD5C9'} stroke-width={n.red ? 3 : 2}/>
+        <rect x="-60" y="-50" width={n.b[0]} height="12" rx="6" fill={n.red ? '#881919' : '#D1C9BD'} transform="rotate(3 -60 -44)"/>
+        <rect x="-58" y="-20" width={n.b[1]} height="12" rx="6" fill="#D1C9BD" transform="rotate(3 -58 -14)"/>
+      </g>
+    </g>
+  ))}
+  <!-- arrow -->
+  <line class="shaft" x1="660" y1="500" x2="782" y2="500" stroke="#1B1A18" stroke-width="3"/>
+  <polyline class="head" points="764,484 786,500 764,516" fill="none" stroke="#1B1A18" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- copies behind -->
+  <rect class="copy c2" x="888" y="216" width="552" height="580" rx="12" fill="#fff" stroke="#DDD5C9" stroke-width="2"/>
+  <rect class="copy c1" x="864" y="196" width="552" height="580" rx="12" fill="#fff" stroke="#DDD5C9" stroke-width="2"/>
+  <!-- sheet -->
+  <rect x="840" y="176" width="552" height="580" rx="14" fill="#fff"/>
+  <path d="M840 240V190a14 14 0 0 1 14-14h524a14 14 0 0 1 14 14v50z" fill="#F2EDE7"/>
+  <g stroke="#ECE6DD" stroke-width="2">
+    <line x1="980" y1="176" x2="980" y2="756"/>
+    <line x1="1082" y1="240" x2="1082" y2="756"/><line x1="1184" y1="240" x2="1184" y2="756"/><line x1="1286" y1="240" x2="1286" y2="756"/>
+    <line x1="840" y1="320" x2="1392" y2="320"/><line x1="840" y1="400" x2="1392" y2="400"/><line x1="840" y1="480" x2="1392" y2="480"/>
+    <line x1="840" y1="560" x2="1392" y2="560"/><line x1="840" y1="640" x2="1392" y2="640"/>
+  </g>
+  <line x1="840" y1="240" x2="1392" y2="240" stroke="#1B1A18" stroke-width="2.5"/>
+  <rect x="840" y="176" width="552" height="580" rx="14" fill="none" stroke="#1B1A18" stroke-width="3"/>
+  {labels.map((w, i) => <rect x="864" y={272 + i * 80} width={w} height="16" rx="8" fill="#D1C9BD"/>)}
+  {bars.map((b) => <rect class={`bar ${b.k}`} x={b.x} y={b.y} width={b.w} height="32" rx="8" fill={b.c}/>)}
+  <rect class="hl" x="1030" y="414" width="260" height="52" rx="12" fill="none" stroke="#881919" stroke-width="3"/>
+</svg>
+
+<style>
+  .trm{display:block;width:100%;height:100%}
+  .bar,.shaft{transform-box:fill-box;transform-origin:left center}
+  .hl{opacity:0}
+  @media (prefers-reduced-motion:no-preference){
+    .trm *{animation-duration:12s;animation-iteration-count:infinite;animation-timing-function:ease-in-out}
+    .note{animation-name:tr-note;animation-delay:calc(var(--i) * .25s);animation-fill-mode:backwards}
+    .shaft{animation-name:tr-shaft}
+    .head{animation-name:tr-head}
+    .b1{animation-name:tr-b1}.b2{animation-name:tr-b2}.b3{animation-name:tr-b3}.b4{animation-name:tr-b4}.b5{animation-name:tr-b5}
+    .hl{animation-name:tr-hl}
+    .c1{animation-name:tr-c1}.c2{animation-name:tr-c2}
+  }
+  /* beat 1 (0-24%): notes settle and lean toward the arrow. beat 2 (24-34%): arrow. beat 3 (36-72%): bars, red last. */
+  @keyframes tr-note{0%{opacity:0;transform:translate(-30px,-22px)}8%{opacity:1;transform:translate(3px,2px)}12%,16%{transform:translate(0,0)}21%{transform:translate(12px,0)}26%,84%{opacity:1;transform:translate(0,0)}89%,100%{opacity:0;transform:translate(0,0)}}
+  @keyframes tr-shaft{0%,22%{transform:scaleX(0)}31%,100%{transform:scaleX(1)}}
+  @keyframes tr-head{0%,28%{opacity:0;transform:translateX(-14px)}33%,92%{opacity:1;transform:translateX(0)}96%,100%{opacity:0;transform:translateX(0)}}
+  @keyframes tr-b1{0%,35%{transform:scaleX(0);opacity:1}41%,90%{transform:scaleX(1);opacity:1}94%{transform:scaleX(1);opacity:0}96%,100%{transform:scaleX(0);opacity:0}}
+  @keyframes tr-b2{0%,41%{transform:scaleX(0);opacity:1}47%,90%{transform:scaleX(1);opacity:1}94%{transform:scaleX(1);opacity:0}96%,100%{transform:scaleX(0);opacity:0}}
+  @keyframes tr-b3{0%,47%{transform:scaleX(0);opacity:1}53%,90%{transform:scaleX(1);opacity:1}94%{transform:scaleX(1);opacity:0}96%,100%{transform:scaleX(0);opacity:0}}
+  @keyframes tr-b4{0%,53%{transform:scaleX(0);opacity:1}59%,90%{transform:scaleX(1);opacity:1}94%{transform:scaleX(1);opacity:0}96%,100%{transform:scaleX(0);opacity:0}}
+  @keyframes tr-b5{0%,60%{transform:scaleX(0);opacity:1}68%,90%{transform:scaleX(1);opacity:1}94%{transform:scaleX(1);opacity:0}96%,100%{transform:scaleX(0);opacity:0}}
+  @keyframes tr-hl{0%,68%{opacity:0}72%{opacity:1}82%,100%{opacity:0}}
+  @keyframes tr-c1{0%,72%{transform:translate(-24px,-20px)}78%,92%{transform:translate(0,0)}98%,100%{transform:translate(-24px,-20px)}}
+  @keyframes tr-c2{0%,74%{transform:translate(-48px,-40px)}80%,92%{transform:translate(0,0)}98%,100%{transform:translate(-48px,-40px)}}
+</style>

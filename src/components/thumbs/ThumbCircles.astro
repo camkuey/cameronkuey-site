@@ -1,0 +1,55 @@
+---
+/* Projects thumbnail 03: seven request rows feed one Run button. Loop: rows light in turn and send a dot along their curve, Run pulses, the seven dots beneath light one after another. */
+interface Props { label?: string }
+const { label = 'Circles scheduling: seven request rows feeding one Run button that creates seven events' } = Astro.props;
+const bars = [192, 152, 120, 240, 208, 112, 132];
+const rows = bars.map((w, i) => ({ w, y: 212 + i * 80, cy: 244 + i * 80 }));
+const curve = (y: number) => y === 484 ? 'M692 484H900' : `M692 ${y}C790 ${y} 828 484 900 484`;
+---
+<svg class="tcir" viewBox="200 140 1280 800" role="img" aria-label={label}>
+  <rect width="1600" height="1000" fill="#F0EBE4"/>
+  <g fill="none" stroke="#85807A" stroke-width="2.5">
+    {rows.map((r) => <path d={curve(r.cy)}/>)}
+  </g>
+  {rows.map((r, i) => (
+    <g style={`--i:${i}`}>
+      <rect x="261" y={r.y + 1} width="418" height="62" rx="8" fill="#fff" stroke="#DDD5C9" stroke-width="2"/>
+      <circle cx="296" cy={r.cy} r="8" fill="#1B1A18"/>
+      <circle class="lit" cx="296" cy={r.cy} r="9" fill="#881919"/>
+      <rect x="324" y={r.cy - 8} width={r.w} height="16" rx="8" fill="#D1C9BD"/>
+      <path class="pk" d={curve(r.cy)} pathLength="100" fill="none" stroke="#1B1A18" stroke-width="14" stroke-linecap="round" stroke-dasharray="0.01 200"/>
+    </g>
+  ))}
+  <rect class="halo" x="940" y="392" width="460" height="184" rx="22" fill="none" stroke="#881919" stroke-width="4"/>
+  <g class="run">
+    <rect x="940" y="392" width="460" height="184" rx="22" fill="#881919"/>
+    <path d="M1060 448l60 36-60 36z" fill="#fff"/>
+    <rect x="1156" y="468" width="180" height="32" rx="16" fill="#F3E9E7"/>
+  </g>
+  {Array.from({ length: 7 }, (_, i) => (
+    <g style={`--i:${i}`}>
+      <circle cx={1000 + i * 56} cy="636" r="10" fill="#1B1A18"/>
+      <circle class="out" cx={1000 + i * 56} cy="636" r="11" fill="#881919"/>
+    </g>
+  ))}
+</svg>
+
+<style>
+  .tcir{display:block;width:100%;height:100%}
+  .lit,.pk,.out,.halo{opacity:0}
+  .run,.halo,.out{transform-box:fill-box;transform-origin:center}
+  @media (prefers-reduced-motion:no-preference){
+    .tcir *{animation-duration:12s;animation-iteration-count:infinite;animation-timing-function:ease-in-out;animation-fill-mode:backwards}
+    .lit{animation-name:tc-lit;animation-delay:calc(var(--i) * .42s)}
+    .pk{animation-name:tc-pk;animation-delay:calc(var(--i) * .42s)}
+    .run{animation-name:tc-run}
+    .halo{animation-name:tc-halo}
+    .out{animation-name:tc-out;animation-delay:calc(var(--i) * .36s)}
+  }
+  /* beat 1 (0-31%): rows light and send. beat 2 (32-44%): Run pulses. beat 3 (44-66%): outputs light. */
+  @keyframes tc-lit{0%{opacity:0}2%,9%{opacity:1}13%,100%{opacity:0}}
+  @keyframes tc-pk{0%,2%{opacity:0;stroke-dashoffset:0}3.5%{opacity:1}10%{opacity:1;stroke-dashoffset:-99}11%,100%{opacity:0;stroke-dashoffset:-100}}
+  @keyframes tc-run{0%,31%{transform:scale(1)}35%{transform:scale(1.045)}40%,100%{transform:scale(1)}}
+  @keyframes tc-halo{0%,32%{opacity:0;transform:scale(1)}34%{opacity:.6}44%,100%{opacity:0;transform:scale(1.12,1.3)}}
+  @keyframes tc-out{0%,44%{opacity:0;transform:scale(.4)}47%{opacity:1;transform:scale(1.3)}50%,76%{opacity:1;transform:scale(1)}81%,100%{opacity:0;transform:scale(1)}}
+</style>

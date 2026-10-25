@@ -1,0 +1,92 @@
+---
+/* Projects thumbnail 01: browser + phone. Loop: cursor ticks two checks, the red bar fills, the phone mirrors. */
+interface Props { label?: string }
+const { label = 'Internal Dashboard: a browser window and a phone showing the same progress bar and checklist' } = Astro.props;
+---
+<svg class="tdash" viewBox="200 140 1280 800" role="img" aria-label={label}>
+  <rect width="1600" height="1000" fill="#F0EBE4"/>
+  <!-- browser -->
+  <rect x="240" y="168" width="1000" height="660" rx="20" fill="#fff" stroke="#DDD5C9" stroke-width="2"/>
+  <line x1="240" y1="236" x2="1240" y2="236" stroke="#DDD5C9" stroke-width="2"/>
+  <line x1="460" y1="236" x2="460" y2="827" stroke="#DDD5C9" stroke-width="2"/>
+  <circle cx="280" cy="202" r="8" fill="#D9D1C5"/><circle cx="308" cy="202" r="8" fill="#D9D1C5"/><circle cx="336" cy="202" r="8" fill="#D9D1C5"/>
+  <rect x="280" y="280" width="140" height="16" rx="8" fill="#1B1A18"/>
+  <rect x="280" y="328" width="112" height="16" rx="8" fill="#DCD4C8"/>
+  <rect x="280" y="376" width="128" height="16" rx="8" fill="#DCD4C8"/>
+  <rect x="280" y="424" width="96" height="16" rx="8" fill="#DCD4C8"/>
+  <rect x="280" y="472" width="120" height="16" rx="8" fill="#DCD4C8"/>
+  <rect x="508" y="280" width="240" height="24" rx="12" fill="#1B1A18"/>
+  <rect x="508" y="340" width="500" height="192" rx="12" fill="#F2EDE7"/>
+  <rect x="544" y="376" width="300" height="20" rx="10" fill="#1B1A18"/>
+  <rect x="544" y="416" width="400" height="16" rx="8" fill="#D1C9BD"/>
+  <rect x="544" y="472" width="128" height="36" rx="6" fill="#1B1A18"/>
+  <rect x="689" y="473" width="126" height="34" rx="6" fill="#fff" stroke="#1B1A18" stroke-width="2"/>
+  <rect x="508" y="572" width="500" height="16" rx="8" fill="#F0EBE4"/>
+  <rect class="bar" x="508" y="572" width="340" height="16" rx="8" fill="#881919"/>
+  <g fill="none" stroke="#1B1A18" stroke-width="3">
+    <rect x="508" y="636" width="28" height="28" rx="5"/>
+    <rect x="508" y="692" width="28" height="28" rx="5"/>
+    <rect x="508" y="748" width="28" height="28" rx="5"/>
+  </g>
+  <g class="tick t1"><rect x="506.5" y="634.5" width="31" height="31" rx="6" fill="#1B1A18"/><path d="M514 650l6 6 11-12" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></g>
+  <g class="tick t2"><rect x="506.5" y="690.5" width="31" height="31" rx="6" fill="#1B1A18"/><path d="M514 706l6 6 11-12" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></g>
+  <circle class="ring r1" cx="522" cy="650" r="26" fill="none" stroke="#1B1A18" stroke-width="2"/>
+  <circle class="ring r2" cx="522" cy="706" r="26" fill="none" stroke="#1B1A18" stroke-width="2"/>
+  <rect x="560" y="642" width="320" height="16" rx="8" fill="#DCD4C8"/>
+  <rect x="560" y="698" width="260" height="16" rx="8" fill="#DCD4C8"/>
+  <rect x="560" y="754" width="292" height="16" rx="8" fill="#DCD4C8"/>
+  <!-- phone -->
+  <rect x="1074" y="330" width="312" height="592" rx="70" fill="#1B1A18"/>
+  <rect x="1086" y="342" width="288" height="568" rx="58" fill="#fff"/>
+  <rect x="1190" y="364" width="80" height="12" rx="6" fill="#1B1A18"/>
+  <rect x="1120" y="424" width="160" height="20" rx="10" fill="#1B1A18"/>
+  <rect x="1120" y="472" width="220" height="140" rx="10" fill="#F2EDE7"/>
+  <rect x="1144" y="500" width="140" height="16" rx="8" fill="#1B1A18"/>
+  <rect x="1144" y="536" width="172" height="12" rx="6" fill="#D1C9BD"/>
+  <rect x="1120" y="644" width="220" height="12" rx="6" fill="#F0EBE4"/>
+  <rect class="pbar" x="1120" y="644" width="148" height="12" rx="6" fill="#881919"/>
+  <g fill="none" stroke="#1B1A18" stroke-width="2.5">
+    <rect x="1120" y="691" width="20" height="21" rx="4"/>
+    <rect x="1120" y="735" width="20" height="21" rx="4"/>
+  </g>
+  <g class="tick p1"><rect x="1118.5" y="689.5" width="23" height="24" rx="5" fill="#1B1A18"/><path d="M1124 702l4 4 8-9" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></g>
+  <g class="tick p2"><rect x="1118.5" y="733.5" width="23" height="24" rx="5" fill="#1B1A18"/><path d="M1124 746l4 4 8-9" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></g>
+  <rect x="1156" y="696" width="160" height="12" rx="6" fill="#DCD4C8"/>
+  <rect x="1156" y="740" width="128" height="12" rx="6" fill="#DCD4C8"/>
+  <!-- cursor -->
+  <path class="cur" d="M0 0V56L15 42 25 64 35 60 25 39H45Z" fill="#1B1A18" stroke="#fff" stroke-width="3" stroke-linejoin="round"/>
+</svg>
+
+<style>
+  .tdash{display:block;width:100%;height:100%}
+  .bar,.pbar{transform-box:fill-box;transform-origin:left center}
+  .tick,.ring{transform-box:fill-box;transform-origin:center}
+  .ring,.cur{opacity:0}
+  @media (prefers-reduced-motion:no-preference){
+    .tdash *{animation-duration:12s;animation-iteration-count:infinite;animation-timing-function:ease-in-out}
+    .bar{animation-name:td-bar}
+    .pbar{animation-name:td-pbar}
+    .t1{animation-name:td-t1}.t2{animation-name:td-t2}
+    .p1{animation-name:td-p1}.p2{animation-name:td-p2}
+    .r1{animation-name:td-r1}.r2{animation-name:td-r2}
+    .cur{animation-name:td-cur}
+  }
+  @keyframes td-bar{0%,20%{transform:scaleX(0);opacity:1}28%,46%{transform:scaleX(.5)}54%,88%{transform:scaleX(1);opacity:1}94%{transform:scaleX(1);opacity:0}96%{transform:scaleX(0);opacity:0}100%{transform:scaleX(0);opacity:1}}
+  @keyframes td-pbar{0%,23%{transform:scaleX(0);opacity:1}31%,49%{transform:scaleX(.5)}57%,88%{transform:scaleX(1);opacity:1}94%{transform:scaleX(1);opacity:0}96%{transform:scaleX(0);opacity:0}100%{transform:scaleX(0);opacity:1}}
+  @keyframes td-t1{0%,19%{opacity:0;transform:scale(.4)}22%{opacity:1;transform:scale(1.12)}25%,88%{opacity:1;transform:scale(1)}94%,100%{opacity:0;transform:scale(1)}}
+  @keyframes td-t2{0%,45%{opacity:0;transform:scale(.4)}48%{opacity:1;transform:scale(1.12)}51%,88%{opacity:1;transform:scale(1)}94%,100%{opacity:0;transform:scale(1)}}
+  @keyframes td-p1{0%,23%{opacity:0;transform:scale(.4)}26%{opacity:1;transform:scale(1.15)}29%,88%{opacity:1;transform:scale(1)}94%,100%{opacity:0;transform:scale(1)}}
+  @keyframes td-p2{0%,49%{opacity:0;transform:scale(.4)}52%{opacity:1;transform:scale(1.15)}55%,88%{opacity:1;transform:scale(1)}94%,100%{opacity:0;transform:scale(1)}}
+  @keyframes td-r1{0%,19%{opacity:0;transform:scale(.6)}21%{opacity:.7;transform:scale(1)}28%,100%{opacity:0;transform:scale(1.7)}}
+  @keyframes td-r2{0%,45%{opacity:0;transform:scale(.6)}47%{opacity:.7;transform:scale(1)}54%,100%{opacity:0;transform:scale(1.7)}}
+  @keyframes td-cur{
+    0%{opacity:0;transform:translate(880px,600px)}
+    6%{opacity:1;transform:translate(880px,600px)}
+    18%,30%{transform:translate(526px,654px)}
+    20%{transform:translate(526px,654px) scale(.88)}
+    44%,56%{transform:translate(526px,710px)}
+    46%{transform:translate(526px,710px) scale(.88)}
+    66%{opacity:1;transform:translate(730px,800px)}
+    72%,100%{opacity:0;transform:translate(730px,800px)}
+  }
+</style>

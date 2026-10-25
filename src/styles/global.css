@@ -582,8 +582,9 @@ a.mini:focus-visible{outline:2px solid var(--accent);outline-offset:4px}
 .cs-sec .cs-notes{padding:44px 22px 16px;position:relative}
 .cs-notes svg{display:block;width:100%;height:auto;overflow:hidden}
 .cs-notes .gn-note{transform-box:fill-box;transform-origin:center;transform:rotate(var(--r,0deg))}
-@media (prefers-reduced-motion:no-preference){.cs-notes .gn-note{animation:gnsway 5s ease-in-out infinite alternate;animation-delay:var(--d,0s)}}
-@keyframes gnsway{to{transform:rotate(calc(var(--r,0deg) + 4deg)) translateY(-4px)}}
+@media (prefers-reduced-motion:no-preference){.cs-notes .gn-note{animation:gnsway 7s ease-in-out infinite alternate;animation-delay:var(--d,0s)}}
+@keyframes gnsway{to{transform:rotate(calc(var(--r,0deg) + 1.5deg)) translateY(-2px)}}
+@media (prefers-reduced-motion:reduce){.cs-notes .gn-dot{display:none}}
 .cs-gal{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:36px 28px;margin-top:56px}
 .cs-gal.two{grid-template-columns:repeat(2,minmax(0,1fr))}
 .cs-gal figure{margin:0}

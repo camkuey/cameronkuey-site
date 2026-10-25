@@ -1,7 +1,10 @@
 ---
 /* "The problem" graphic for the Documentation case study: one process doc, saved in several
-   places in several versions, and the open question. Static inline SVG (illustration, not a screenshot).
-   Titles are generic stand-ins, not real documents. The red "?" is the page's one accent. */
+   places in several versions, and the open question. Inline SVG (illustration, not a screenshot)
+   in the hairline language: mono drive headers, outlined doc rows, dashed links that all lead to
+   one question. A small dot leaves each drive in turn (SMIL, 9 s loop) and the "?" pulses when it
+   lands. Reduced motion: the same picture, no dots or pulse. Titles are generic stand-ins, not
+   real documents. The red "?" is the page's one accent. */
 import { THEMES, type ThemeName } from '../data/themes';
 interface Props { theme?: ThemeName }
 const { theme = 'documentation' } = Astro.props as Props;
@@ -12,39 +15,64 @@ const cols = [
   { x: 244, name: 'Some folder', docs: ['Intake draft'] },
 ];
 const CW = 108;
+const links = ['M62,160 C62,204 150,212 169,241', 'M180,160 V237', 'M298,160 C298,204 210,212 191,241'];
+const T = 9;
+const legs = [0.4, 2.9, 5.4].map((s) => ({ s, e: s + 1.8 })); // each drive's dot: start, landing (s)
+const k = (s: number) => (s / T).toFixed(4);
+// the "?" ring pulses as each dot lands
+const pz = {
+  t: ['0', ...legs.flatMap((l) => [k(l.e - 0.05), k(l.e), k(l.e + 1.2)]), '1'].join(';'),
+  r: ['14', ...legs.flatMap(() => ['14', '14', '24']), '24'].join(';'),
+  o: ['0', ...legs.flatMap(() => ['0', '.6', '0']), '0'].join(';'),
+};
 ---
-<svg class="dsp" viewBox="0 0 360 292" role="img" aria-label="Illustration: the same process doc saved as several versions across three different drives and folders, with the question 'Which one is official?' beneath them." style={`--p:${TH.primary};--warn:${TH.accent}`}>
-  <rect class="dsp-panel" x=".5" y=".5" width="359" height="291" rx="4" />
+<svg class="dsp" viewBox="0 0 360 300" role="img" aria-label="Illustration: the same process doc saved as several versions across three different drives and folders, with the question 'Which one is official?' beneath them." style={`--warn:${TH.accent}`}>
+  <rect class="dsp-panel" x=".5" y=".5" width="359" height="299" rx="5" />
   {cols.map((c) => (
     <g>
-      <path class="dsp-fold" d={`M${c.x},44 h30 l8,-9 h${CW - 38} a4,4 0 0 1 4,4 v138 a4,4 0 0 1 -4,4 h${-CW} a4,4 0 0 1 -4,-4 v-129 a4,4 0 0 1 4,-4 z`} transform={`translate(0,0)`} />
-      <text class="dsp-name" x={c.x + 8} y="30">{c.name}</text>
-      {c.docs.map((d, k) => (
-        <g transform={`translate(${c.x + 10},${62 + k * 64})`}>
-          <rect class="dsp-doc" width={CW - 20} height="52" rx="3" />
-          <path class="dsp-bars" d="M8,12 h46 M8,22 h58 M8,32 h40" />
-          <text class="dsp-t" x="8" y="46">{d}</text>
+      <text class="dsp-name" x={c.x + 10} y="30">{c.name}</text>
+      <path class="dsp-rule" d={`M${c.x + 10},38 h${CW - 20}`} />
+      {c.docs.map((d, j) => (
+        <g transform={`translate(${c.x + 10},${50 + j * 56})`}>
+          <rect class="dsp-doc" width={CW - 20} height="44" rx="4" />
+          <path class="dsp-ic" d="M9,10 h7 l3,3 v11 h-10 z" />
+          <path class="dsp-bars" d="M26,15 h44 M26,22 h32" />
+          <text class="dsp-t" x="9" y="37">{d}</text>
         </g>
       ))}
     </g>
   ))}
-  <path class="dsp-link" d="M62,196 C120,226 180,226 180,236 M180,196 C180,214 180,222 180,236 M298,172 C270,208 220,226 184,238" />
-  <g transform="translate(180,262)">
-    <circle class="dsp-q" r="15" />
-    <text class="dsp-qt" y="6" text-anchor="middle">?</text>
+  {links.map((d) => <path class="dsp-link" d={d} />)}
+  <g class="dsp-anim" aria-hidden="true">
+    {links.map((d, i) => (
+      <circle class="dsp-dot" r="3.2" opacity="0">
+        <animateMotion path={d} dur={`${T}s`} repeatCount="indefinite" calcMode="linear" keyPoints="0;0;1;1" keyTimes={`0;${k(legs[i].s)};${k(legs[i].e)};1`} />
+        <animate attributeName="opacity" dur={`${T}s`} repeatCount="indefinite" values="0;0;1;1;0;0" keyTimes={`0;${k(legs[i].s - 0.1)};${k(legs[i].s + 0.2)};${k(legs[i].e - 0.2)};${k(legs[i].e)};1`} />
+      </circle>
+    ))}
+    <circle class="dsp-pz" cx="180" cy="252" r="14" opacity="0">
+      <animate attributeName="r" dur={`${T}s`} repeatCount="indefinite" values={pz.r} keyTimes={pz.t} />
+      <animate attributeName="opacity" dur={`${T}s`} repeatCount="indefinite" values={pz.o} keyTimes={pz.t} />
+    </circle>
   </g>
-  <text class="dsp-ask" x="204" y="266">Which one is official?</text>
+  <circle class="dsp-q" cx="180" cy="252" r="14" />
+  <text class="dsp-qt" x="180" y="257.5" text-anchor="middle">?</text>
+  <text class="dsp-ask" x="180" y="288" text-anchor="middle">Which one is official?</text>
 </svg>
 <style>
-  .dsp{display:block;width:100%;height:auto;aspect-ratio:360/292;font-family:var(--fb);overflow:hidden}
-  .dsp-panel{fill:#FFFDF9;stroke:#D9CFC0}
-  .dsp-fold{fill:var(--cs-tint,#F0F3F7);stroke:#B8AC9A;stroke-width:1}
-  .dsp-name{font-family:var(--mono);font-size:8.6px;letter-spacing:.1em;text-transform:uppercase;fill:#5A544B}
-  .dsp-doc{fill:#fff;stroke:#B9B2A6}
-  .dsp-bars{stroke:#D9CFC0;stroke-width:2.2;stroke-linecap:round;fill:none}
-  .dsp-t{font-size:8.6px;fill:#1B1A18}
-  .dsp-link{fill:none;stroke:#8A8172;stroke-width:1.2;stroke-dasharray:3 3}
-  .dsp-q{fill:#FFFDF9;stroke:var(--warn);stroke-width:1.8}
-  .dsp-qt{font-size:18px;font-weight:600;fill:var(--warn)}
-  .dsp-ask{font-size:11.5px;font-weight:500;fill:#1B1A18}
+  .dsp{display:block;width:100%;height:auto;aspect-ratio:360/300;font-family:var(--fb);overflow:hidden}
+  .dsp-panel{fill:#fff;stroke:var(--line,#E2DDD4)}
+  .dsp-name{font-family:var(--mono);font-size:8.4px;letter-spacing:.14em;text-transform:uppercase;fill:var(--muted,#6B665E)}
+  .dsp-rule{stroke:var(--ink,#1B1A18);stroke-width:.8}
+  .dsp-doc{fill:#fff;stroke:#CFC7BA;stroke-width:1}
+  .dsp-ic{fill:#EFEAE2;stroke:#A69B88;stroke-width:.8;stroke-linejoin:round}
+  .dsp-bars{stroke:#E2DDD4;stroke-width:2;stroke-linecap:round;fill:none}
+  .dsp-t{font-size:9px;fill:var(--ink,#1B1A18)}
+  .dsp-link{fill:none;stroke:#B9B2A6;stroke-width:1;stroke-dasharray:3 3}
+  .dsp-dot{fill:var(--ink,#1B1A18)}
+  .dsp-pz{fill:none;stroke:var(--warn);stroke-width:1}
+  .dsp-q{fill:#fff;stroke:var(--warn);stroke-width:1.3}
+  .dsp-qt{font-family:var(--mono);font-size:15px;fill:var(--warn)}
+  .dsp-ask{font-size:12.5px;font-weight:400;fill:var(--ink,#1B1A18)}
+  @media (prefers-reduced-motion:reduce){.dsp-anim{display:none}}
 </style>

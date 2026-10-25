@@ -1,8 +1,10 @@
 /**
- * Flow graphics for the case studies (Modern Health, and the freelance Strategy Growth Roadmap build). One 360x344 grid for all
- * of them: 3 columns x 4 rows. Nodes sit on the grid; routes list the nodes a dot
- * travels through (orthogonal hops between node centres). CaseFlow.astro does the
- * geometry and timing. No figures, client names or real IDs here.
+ * Flow graphics for the case studies (Modern Health, and the freelance Strategy Growth Roadmap build).
+ * Every flow renders as one timeline card (CaseFlow.astro): numbered nodes on a hairline track, a
+ * travelling dot, and an optional branch row. Nodes hold the content; routes give the order and the
+ * dot colour (tone + swaps); `layout` says which nodes sit on the main track, which hang off it as a
+ * branch, which links show as small "back to" chips, and which nodes are footer notes.
+ * c/r/span are the old 3x4 grid positions, kept for reference only. No figures, client names or real IDs here.
  */
 export type Tone = 'ink' | 'blue' | 'gold' | 'red';
 /** Platform colours: solid for the main tools, -t for tinted ones. */
@@ -14,9 +16,28 @@ export type FLink = { a: string; b: string; mode?: 'h' | 'v' | 'hv' | 'vh'; styl
 /** delay: seconds into the loop when this dot starts. sync: start when another route's dot reaches a stop. */
 export type FBlob = { delay?: number; sync?: { route: number; hop: number }; tone: Tone; still?: number; swaps?: { at: number; tone: Tone }[] };
 export type FRoute = { via: string[]; T: number; idle?: number; hold?: { before: string; sec: number }; blobs: FBlob[] };
+/** How a legend tone is drawn: the page's one accent, near-black, or warm grey. */
+export type Dot = 'accent' | 'ink' | 'grey';
+export type FLayout = {
+  /** main track, in order. Defaults to the first route. A node before step 1 with no number reads as the trigger. */
+  main?: string[];
+  /** a second row hanging off the main track: `from` is the main node it leaves, `lead` a word shown instead */
+  branch?: { from?: string; lead?: string; via: string[]; route: number };
+  /** links drawn as a small chip under a node: back to an earlier step (dash), on to a later one, or blocked (x) */
+  chips?: { at: string; to: string; style?: 'dash' | 'x'; tone: Tone }[];
+  /** nodes that share one number, shown as pills in one cell */
+  group?: { at: string; ids: string[] };
+  /** note / not-built-yet nodes, shown under the track */
+  foot?: string[];
+  dots: Partial<Record<Tone, Dot>>;
+};
 export type FDef = {
   /** section colour: panel stripe, step badges, pulse */
   accent: Tone;
+  /** card header: mono eyebrow and light title, both taken from the page's own copy */
+  eyebrow: string;
+  title: string;
+  layout: FLayout;
   label: string;
   nodes: FNode[];
   links: FLink[];
@@ -28,6 +49,13 @@ export const FLOWS: Record<string, FDef> = {
   /* ── Circles: scheduling, end to end ── */
   'circles-schedule': {
     accent: 'gold',
+    eyebrow: 'Flow 01 / End to end',
+    title: 'A Zendesk request becomes an Airtable record.',
+    layout: {
+      chips: [{ at: 'zoom', to: 'at', style: 'dash', tone: 'blue' }],
+      foot: ['sec'],
+      dots: { ink: 'ink', blue: 'grey', gold: 'accent' },
+    },
     label:
       'Animated diagram of Circles scheduling. A new Circle request in Zendesk becomes an Airtable record, the source of truth. A Zapier workflow reads it and calls the Zoom API to create a templated event, and the Zoom links come back into Airtable. Google Calendar events and facilitator slide decks are generated and shared. A ready-to-send email with the links goes to the producer, who sends it personally, then Slack notifies the team. A note reads: runs in seconds, what took hours of manual setup.',
     nodes: [
@@ -61,6 +89,13 @@ export const FLOWS: Record<string, FDef> = {
   /* ── Circles: hardening ── */
   'circles-harden': {
     accent: 'red',
+    eyebrow: 'Flow 02 / What broke',
+    title: 'Clean rows only.',
+    layout: {
+      branch: { from: 'chk', via: ['flag', 'team'], route: 1 },
+      chips: [{ at: 'flag', to: 'main', style: 'x', tone: 'red' }],
+      dots: { red: 'accent', ink: 'ink', blue: 'grey' },
+    },
     label:
       'Animated diagram of how the Circles workflow was hardened. A form entry reaches a separate checking automation before anything else. A stray trailing space is trimmed and the clean record goes on to Airtable, the main Zapier workflow and the Zoom API. A record with several emails in one field is flagged on the whole row flagged, so the team sees it, and is blocked from the main workflow. When Zoom began censoring URLs in API responses, a find-and-replace step puts the company IDs back before the links are saved in Airtable.',
     nodes: [
@@ -93,6 +128,13 @@ export const FLOWS: Record<string, FDef> = {
   /* ── Circles: slide-deck catalogue ── */
   'circles-deck': {
     accent: 'blue',
+    eyebrow: 'Flow 03 / The workshop catalogue deck',
+    title: 'One always-current link.',
+    layout: {
+      main: ['day', 'at', 'auto', 'gas', 'deck', 'sales'],
+      foot: ['next'],
+      dots: { ink: 'ink', blue: 'grey', gold: 'accent' },
+    },
     label:
       'Animated diagram of the Circles slide-deck catalogue. Airtable holds the details of each workshop. An Airtable automation and Zapier connectors, then a Google Apps Script run step, feed a Google Slides deck with templated tables, designs and fonts. A person starts the refresh by pressing Run script, and the sales team uses one shared link to the deck. A dashed box marks a next idea that is not built yet: summarise the changes in Airtable or Slack and ask the team to approve before the script runs.',
     nodes: [
@@ -118,6 +160,9 @@ export const FLOWS: Record<string, FDef> = {
   /* ── Contract automation: the button ── */
   'contract-button': {
     accent: 'gold',
+    eyebrow: 'Flow 01 / The button',
+    title: 'Airtable record to Ironclad contract.',
+    layout: { dots: { ink: 'ink', blue: 'grey', gold: 'accent' } },
     label:
       'Animated diagram of the contract button. A button on the provider or order-form record in Airtable runs a script, either an Airtable custom extension or a Google Apps Script. It sends an API request that makes a copy of the contract template, pre-filled from the Airtable database. A new Ironclad workflow is created and the file uploaded, the right managers and a single legal signer are tagged with signature boxes placed, and the status is updated back in Airtable.',
     nodes: [
@@ -142,6 +187,13 @@ export const FLOWS: Record<string, FDef> = {
   /* ── Contract automation: after signing ── */
   'contract-after': {
     accent: 'ink',
+    eyebrow: 'Flow 02 / After the person signs',
+    title: 'Signed, filed and paid.',
+    layout: {
+      main: ['who', 'ic', 'auto', 'at', 'type', 'bill', 'pay'],
+      chips: [{ at: 'pay', to: 'at', style: 'dash', tone: 'ink' }],
+      dots: { gold: 'accent', blue: 'ink', ink: 'grey' },
+    },
     label:
       'Animated diagram of what happens after signing. The person signs in Ironclad. Automations download the signed form to the database and update statuses in Airtable. Depending on the contract type, the record is handed to billing so the person gets paid. Billing hands payment data back, and it is written into Airtable so the whole trail is documented in one place.',
     nodes: [
@@ -166,6 +218,14 @@ export const FLOWS: Record<string, FDef> = {
   /* ── Strategy Growth Roadmap: Sheet, script and browser ── */
   'growth-sync': {
     accent: 'gold',
+    eyebrow: 'Flow 01 / Sheet, script and browser',
+    title: 'Edits are instant.',
+    layout: {
+      branch: { from: 'lock', via: ['conf', 'choice'], route: 1 },
+      chips: [{ at: 'choice', to: 'gas', style: 'dash', tone: 'gold' }],
+      foot: ['note'],
+      dots: { ink: 'ink', gold: 'grey', red: 'accent' },
+    },
     label:
       'Animated diagram of how the Strategy Growth Roadmap saves. You edit in the browser, which holds the whole roadmap in memory. About 0.4 seconds after the last edit, a batched autosave goes to a Google Apps Script function called saveChart. The script takes a script lock and checks the revision the save started from. If it is current, the five Google Sheet tabs are written and the status changes to Saved. If someone saved first, the script reports a conflict, and you choose Reload or Keep mine; Keep mine saves again over the newer version.',
     nodes: [
@@ -198,6 +258,13 @@ export const FLOWS: Record<string, FDef> = {
   /* ── Documentation library: create a page, edit live, stored as a Google Doc ── */
   'docs-create': {
     accent: 'red',
+    eyebrow: 'Flow 01 / How it works',
+    title: 'Each page is a real Google Doc.',
+    layout: {
+      branch: { lead: 'or', via: ['paste', 'copy'], route: 1 },
+      chips: [{ at: 'copy', to: 'edit', tone: 'ink' }],
+      dots: { ink: 'ink', red: 'accent' },
+    },
     label:
       'Animated diagram in three steps. Step 1, create a page: either start a new page, or paste an anyone-with-link Google Doc link, which is copied in and tidied while the original stays untouched. Step 2, edit live in the dashboard editor, which saves to Google Docs about 3 seconds after typing stops. Step 3, the page is stored as a Google Doc in the shared drive.',
     nodes: [
@@ -220,6 +287,14 @@ export const FLOWS: Record<string, FDef> = {
   /* ── Strategy Growth Roadmap: one master Sheet, a copy per client ── */
   'growth-copies': {
     accent: 'red',
+    eyebrow: 'Flow 02 / One master Sheet',
+    title: 'Nothing to install.',
+    layout: {
+      main: ['master', 'link', 'a'],
+      group: { at: 'a', ids: ['a', 'b', 'c'] },
+      foot: ['note'],
+      dots: { ink: 'ink', blue: 'accent', gold: 'grey' },
+    },
     label:
       'Animated diagram of one master Google Sheet being copied for each client. The master Sheet is shared as a view-only copy link. Each new client, shown generically as Client A, Client B and Client C, makes a copy of it and gets their own private Sheet with their own data, with nothing to install.',
     nodes: [
@@ -244,6 +319,12 @@ export const FLOWS: Record<string, FDef> = {
   /* ── Strategy Growth Roadmap: rollout ── */
   'growth-rollout': {
     accent: 'red',
+    eyebrow: 'Flow 03 / Setting it up',
+    title: 'One setup, done once.',
+    layout: {
+      foot: ['note'],
+      dots: { ink: 'ink', blue: 'accent', gold: 'grey' },
+    },
     label:
       'Animated diagram of the rollout. I set up one master Google Sheet that holds the template and the Apps Script code, deploy one web app once, and paste its address into the code. I share the master with a copy link. A client makes their own copy, approves Google the first time, and uses the Open full screen menu item, which opens their own Sheet in the web app as them. Clients never deploy anything.',
     nodes: [

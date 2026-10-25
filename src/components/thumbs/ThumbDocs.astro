@@ -1,0 +1,70 @@
+---
+/* Projects thumbnail 02: doc stack and Drive folder. Loop: a page is sent (solid arrow), a folder row lights red as it saves, the dashed arrow returns, the bookmark settles. */
+interface Props { label?: string }
+const { label = 'Documentation library: a bookmarked doc synced to a shared Drive folder and back' } = Astro.props;
+---
+<svg class="tdoc" viewBox="200 140 1280 800" role="img" aria-label={label}>
+  <rect width="1600" height="1000" fill="#F0EBE4"/>
+  <!-- stacked sheets -->
+  <rect x="350" y="270" width="360" height="460" rx="10" fill="#fff" stroke="#DDD5C9" stroke-width="2" transform="rotate(-9 530 500)"/>
+  <rect x="412" y="226" width="330" height="470" rx="10" fill="#fff" stroke="#DDD5C9" stroke-width="2" transform="rotate(5 577 461)"/>
+  <!-- front doc -->
+  <rect x="440" y="219" width="360" height="481" rx="14" fill="#fff" stroke="#1B1A18" stroke-width="3"/>
+  <path class="mark" d="M724 220.5h48v91l-24-20-24 20z" fill="#881919"/>
+  <rect x="484" y="272" width="192" height="20" rx="10" fill="#1B1A18"/>
+  <g fill="#D1C9BD">
+    <rect x="484" y="332" width="272" height="12" rx="6"/><rect x="484" y="364" width="240" height="12" rx="6"/><rect x="484" y="396" width="260" height="12" rx="6"/>
+    <rect x="484" y="492" width="272" height="12" rx="6"/><rect x="484" y="524" width="220" height="12" rx="6"/><rect x="484" y="556" width="252" height="12" rx="6"/>
+    <rect x="484" y="608" width="180" height="12" rx="6"/>
+  </g>
+  <rect x="484" y="448" width="140" height="16" rx="8" fill="#1B1A18"/>
+  <!-- arrows -->
+  <g class="send" fill="none" stroke="#1B1A18" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+    <line x1="860" y1="420" x2="1064" y2="420"/><polyline points="1046,404 1064,420 1046,436"/>
+  </g>
+  <g class="back" fill="none" stroke="#1B1A18" stroke-width="3" stroke-linejoin="round">
+    <line class="dash" x1="1058" y1="500" x2="878" y2="500" stroke-dasharray="14 12"/><polyline points="876,484 857,500 876,516" stroke-linecap="round"/>
+  </g>
+  <circle class="dot d-out" cx="860" cy="420" r="11" fill="#1B1A18"/>
+  <circle class="dot d-in" cx="1058" cy="500" r="10" fill="#fff" stroke="#1B1A18" stroke-width="3"/>
+  <!-- folder -->
+  <path d="M1120 620V340h104l32 36h144v244z" fill="#fff" stroke="#1B1A18" stroke-width="3" stroke-linejoin="round"/>
+  <line x1="1121.5" y1="412" x2="1398.5" y2="412" stroke="#DDD5C9" stroke-width="2"/>
+  <rect x="1156" y="452" width="24" height="32" rx="3" fill="#1B1A18"/>
+  <rect x="1156" y="504" width="24" height="32" rx="3" fill="#1B1A18"/>
+  <rect x="1156" y="556" width="24" height="32" rx="3" fill="#1B1A18"/>
+  <rect class="save" x="1156" y="556" width="24" height="32" rx="3" fill="#881919"/>
+  <g fill="#D1C9BD"><rect x="1200" y="460" width="144" height="12" rx="6"/><rect x="1200" y="512" width="120" height="12" rx="6"/></g>
+  <rect class="row3" x="1200" y="564" width="160" height="12" rx="6" fill="#D1C9BD"/>
+  <rect class="glow" x="1140" y="546" width="236" height="52" rx="6" fill="#881919"/>
+</svg>
+
+<style>
+  .tdoc{display:block;width:100%;height:100%}
+  .mark{transform-box:fill-box;transform-origin:center top}
+  .save{transform-box:fill-box;transform-origin:center}
+  .row3{transform-box:fill-box;transform-origin:left center}
+  .dot,.glow{opacity:0}
+  @media (prefers-reduced-motion:no-preference){
+    .tdoc *{animation-duration:12s;animation-iteration-count:infinite;animation-timing-function:ease-in-out}
+    .send{animation-name:tdoc-send}
+    .back{animation-name:tdoc-back}
+    .dash{animation-name:tdoc-dash;animation-timing-function:linear}
+    .d-out{animation-name:tdoc-out}
+    .d-in{animation-name:tdoc-in}
+    .save{animation-name:tdoc-save}
+    .row3{animation-name:tdoc-row}
+    .glow{animation-name:tdoc-glow}
+    .mark{animation-name:tdoc-mark}
+  }
+  /* beat 1 (0-25%): send. beat 2 (25-50%): save. beat 3 (50-75%): return, bookmark settles. */
+  @keyframes tdoc-send{0%,2%{opacity:.3}6%,24%{opacity:1}32%,100%{opacity:.3}}
+  @keyframes tdoc-out{0%,5%{opacity:0;transform:translateX(0)}8%{opacity:1}21%{opacity:1;transform:translateX(190px)}24%,100%{opacity:0;transform:translateX(200px)}}
+  @keyframes tdoc-save{0%,25%{opacity:0;transform:scale(.5)}29%{opacity:1;transform:scale(1.2)}33%,88%{opacity:1;transform:scale(1)}94%,100%{opacity:0;transform:scale(1)}}
+  @keyframes tdoc-row{0%,24%{transform:scaleX(0)}34%,92%{transform:scaleX(1)}97%,100%{transform:scaleX(0)}}
+  @keyframes tdoc-glow{0%,26%{opacity:0}31%{opacity:.12}46%,100%{opacity:0}}
+  @keyframes tdoc-back{0%,48%{opacity:.3}52%,74%{opacity:1}82%,100%{opacity:.3}}
+  @keyframes tdoc-dash{0%,50%{stroke-dashoffset:0}74%,100%{stroke-dashoffset:-104}}
+  @keyframes tdoc-in{0%,52%{opacity:0;transform:translateX(0)}55%{opacity:1}70%{opacity:1;transform:translateX(-170px)}73%,100%{opacity:0;transform:translateX(-180px)}}
+  @keyframes tdoc-mark{0%{transform:scaleY(1)}8%,68%{transform:scaleY(.55)}74%{transform:scaleY(1.08)}78%,100%{transform:scaleY(1)}}
+</style>

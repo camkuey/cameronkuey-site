@@ -1,0 +1,102 @@
+---
+/* Hero visual for /projects: a ~20 s muted loop of real Internal Dashboard
+   screens (screenshots and the case study's own recordings) with fast cuts and
+   punch-ins. The chip and progress strip are HTML so they stay crisp at any
+   width; they follow the video clock using the cut times below (keep in sync
+   with the render script). The poster <img> holds the 16:10 box, so nothing
+   shifts. Reduced motion (or no JS, or blocked autoplay) = the still poster. */
+interface Props { href: string; label: string; }
+const { href, label } = Astro.props;
+const base = '/media/dashboard-reel/reel';
+/* [chip label, start s, end s] */
+const cuts: [string, number, number][] = [
+  ['Ask Otis', 0, 2.2],
+  ['Saved', 2.2, 4.2],
+  ['Kiosk · Clock in', 4.2, 6.2],
+  ['Kiosk · Tasks', 6.2, 8.2],
+  ['Projects', 8.2, 10.1],
+  ['Time card · Confirm', 10.1, 11.8],
+  ['Time card · Approve', 11.8, 13.7],
+  ['Schedule · PTO saved', 13.7, 15.6],
+  ['Today\u2019s focus · Done', 15.6, 17.4],
+  ['Onboarding', 17.4, 18.8],
+  ['Documentation', 18.8, 20.2],
+];
+const pad = (n: number) => String(n + 1).padStart(2, '0');
+const desc = 'Looping highlights of the Internal Dashboard, cut quickly: typing a request to Ask Otis and approving the task card, the saved notice, the shop-floor kiosk clock-in and task checklist, the projects and milestones timeline, a weekly time card confirmed and approved, a PTO day saved on the work schedule, a focus card marked Done, onboarding progress and the documentation editor.';
+---
+<a class="reel" href={href} aria-label={label} data-reel data-cuts={JSON.stringify(cuts)}>
+  <img class="reel-poster" src={`${base}-poster-1280.webp`}
+    srcset={`${base}-poster-640.webp 640w, ${base}-poster-1280.webp 1280w`}
+    sizes="(max-width: 900px) 100vw, 640px" width="1280" height="800" alt="" fetchpriority="high" decoding="async" />
+  <video class="reel-video" muted loop playsinline preload="metadata" width="1280" height="800"
+    poster={`${base}-poster-1280.webp`} aria-label={desc} disablepictureinpicture>
+    <source src={`${base}.mp4`} type="video/mp4" />
+    <source src={`${base}.webm`} type="video/webm" />
+  </video>
+  <span class="reel-chip" aria-hidden="true"><b data-n>01</b><span data-t>{cuts[0][0]}</span></span>
+  <span class="reel-bar" aria-hidden="true">{cuts.map(() => <i><u></u></i>)}</span>
+</a>
+
+<script>
+  const root = document.querySelector<HTMLElement>('[data-reel]');
+  if (root) {
+    const video = root.querySelector('video') as HTMLVideoElement;
+    const chipN = root.querySelector('[data-n]') as HTMLElement;
+    const chipT = root.querySelector('[data-t]') as HTMLElement;
+    const segs = Array.from(root.querySelectorAll<HTMLElement>('.reel-bar u'));
+    const cuts = JSON.parse(root.dataset.cuts || '[]') as [string, number, number][];
+    const mq = matchMedia('(prefers-reduced-motion: reduce)');
+    let cur = -1, raf = 0, shown = false;
+    const paint = () => {
+      const t = video.currentTime;
+      let i = cuts.findIndex(([, a, b]) => t >= a && t < b);
+      if (i < 0) i = t >= cuts[cuts.length - 1][2] ? cuts.length - 1 : 0;
+      if (i !== cur) {
+        cur = i;
+        chipN.textContent = String(i + 1).padStart(2, '0');
+        chipT.textContent = cuts[i][0];
+        segs.forEach((s, k) => { s.style.transform = k < i ? 'scaleX(1)' : 'scaleX(0)'; });
+      }
+      const [, a, b] = cuts[i];
+      segs[i].style.transform = `scaleX(${Math.min(1, Math.max(0, (t - a) / (b - a)))})`;
+      raf = video.paused ? 0 : requestAnimationFrame(paint);
+    };
+    const start = () => {
+      if (mq.matches || document.hidden) return;
+      video.play().then(() => { if (!shown) { shown = true; root.classList.add('is-playing'); } }).catch(() => {});
+    };
+    const stop = () => video.pause();
+    video.addEventListener('play', () => { cancelAnimationFrame(raf); raf = requestAnimationFrame(paint); });
+    video.addEventListener('seeked', paint);
+    mq.addEventListener('change', () => {
+      if (mq.matches) { stop(); video.currentTime = 0; root.classList.remove('is-playing'); shown = false; cur = -1; paint(); } else start();
+    });
+    document.addEventListener('visibilitychange', () => { document.hidden ? stop() : start(); });
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver((es) => es.forEach((e) => (e.isIntersecting ? start() : stop())), { threshold: 0.25 }).observe(root);
+    } else start();
+  }
+</script>
+
+<style>
+  .reel{position:relative;display:block;aspect-ratio:16/10;overflow:hidden;border-radius:8px;background:#2E5E92;
+    box-shadow:0 24px 48px -28px rgba(40,30,20,.45);color:var(--ink);text-decoration:none}
+  .reel:focus-visible{outline:2px solid var(--red);outline-offset:3px}
+  .reel-poster,.reel-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+  .reel-video{opacity:0;transition:opacity .25s ease}
+  .reel.is-playing .reel-video{opacity:1}
+  .reel-chip{position:absolute;bottom:15px;left:12px;display:inline-flex;align-items:center;gap:8px;max-width:calc(100% - 24px);
+    padding:5px 9px 5px 7px;background:rgba(250,248,244,.94);border:1px solid var(--line);border-radius:4px;
+    font-family:var(--mono);font-size:10px;line-height:1.2;letter-spacing:.14em;text-transform:uppercase;color:var(--ink);white-space:nowrap}
+  .reel-chip b{font-weight:500;color:var(--red)}
+  .reel-chip span{overflow:hidden;text-overflow:ellipsis}
+  .reel-bar{position:absolute;left:0;right:0;bottom:0;display:flex;gap:2px;height:5px;background:rgba(27,26,24,.6)}
+  .reel-bar i{flex:1;height:100%;overflow:hidden}
+  .reel-bar u{display:block;height:100%;background:var(--bg);transform:scaleX(0);transform-origin:left;text-decoration:none}
+  .reel-bar i:first-child u{transform:scaleX(1)}
+  @media (min-width:901px){ .reel-chip{bottom:20px;left:14px;font-size:11px} .reel-bar{height:6px} }
+  @media (prefers-reduced-motion: reduce){
+    .reel-video,.reel-bar{display:none}
+  }
+</style>

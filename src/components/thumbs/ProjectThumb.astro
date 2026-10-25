@@ -1,0 +1,25 @@
+---
+/* Animated SVG thumbnail for a case study, picked by slug (src/data/case-list.ts).
+   decorative: hide it from assistive tech when the surrounding link already names the project. */
+import ThumbDashboard from './ThumbDashboard.astro';
+import ThumbDocs from './ThumbDocs.astro';
+import ThumbCircles from './ThumbCircles.astro';
+import ThumbContract from './ThumbContract.astro';
+import ThumbRoadmap from './ThumbRoadmap.astro';
+
+interface Props { slug: string; decorative?: boolean }
+const { slug, decorative = false } = Astro.props;
+const map: Record<string, any> = {
+  'internal-dashboard': ThumbDashboard,
+  documentation: ThumbDocs,
+  'circles-scheduling': ThumbCircles,
+  'contract-automation': ThumbContract,
+  'growth-roadmap': ThumbRoadmap,
+};
+const Thumb = map[slug];
+---
+{Thumb && <span class="pthumb" aria-hidden={decorative ? 'true' : undefined}><Thumb /></span>}
+
+<style>
+  .pthumb{display:block;width:100%;aspect-ratio:16/10;overflow:hidden;background:#F0EBE4}
+</style>
