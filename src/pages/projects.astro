@@ -34,7 +34,7 @@ const SHOT: Record<string, string> = { documentation: 'docs-library' };
       <div class="pj-feat-text">
         <div>
         <p class="ey"><b>01</b> / Featured · {featured.org}</p>
-        <h2 id="feat-h">An all-in-one Internal Dashboard, <em>concept to production in under two weeks.</em></h2>
+        <h2 id="feat-h"><a href="/case-studies/internal-dashboard">An all-in-one Internal Dashboard, <em>concept to production in under two weeks.</em></a></h2>
         <p class="desc">{featured.desc}</p>
         </div>
         <div class="btns"><a class="btn solid" href="/case-studies/internal-dashboard">Read the case study →</a></div>
@@ -234,6 +234,8 @@ const SHOT: Record<string, string> = { documentation: 'docs-library' };
   .pj-stats dt{order:1;font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);line-height:1.45;text-wrap:balance}
   .pj-feat h2{font-weight:300;font-size:clamp(26px,2.8vw,38px);letter-spacing:-.02em;line-height:1.1;max-width:20ch}
   .pj-feat h2 em{font-style:normal;color:var(--red)}
+  .pj-feat h2 a{color:inherit;text-decoration:none;background:linear-gradient(currentColor,currentColor) 0 100%/0 1px no-repeat;transition:background-size .3s ease}
+  .pj-feat h2 a:hover{background-size:100% 1px}
   .pj-feat .desc{margin-top:18px;font-weight:300;font-size:18px;line-height:1.55;max-width:52ch}
   /* How I work: six steps in a 3 x 2 grid that light up one after another on a 12 s loop (bar fills, badge turns red), only while on screen */
   .hw{padding-top:16px}
