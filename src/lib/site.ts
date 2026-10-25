@@ -26,7 +26,8 @@ export const SITE = {
 };
 
 /** The five Creative categories, in the old site's menu order. */
-export const CATEGORIES = MENU.map((m) => ({ title: m.title, slug: m.slug, children: m.children }));
+// A category with a single page (Audio Production) links straight to that page; /audio-production redirects there.
+export const CATEGORIES = MENU.map((m) => ({ title: m.title, slug: m.slug, children: m.children, href: `/${m.children.length === 1 ? m.children[0].slug : m.slug}` }));
 
 export const page = (slug: string) => PAGES.find((p) => p.slug === slug);
 export const alt = (id: string, fallback = '') => ALT[id] ?? fallback;

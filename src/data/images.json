@@ -3767,21 +3767,19 @@
   ],
   "color": "#f8f8f8"
  },
- "audio-production/01-0bcb341f": {
-  "w": 1500,
-  "h": 1172,
-  "base": "/media/audio-production/01-0bcb341f",
+ "audio-production/coffee-meets-bible-logo": {
+  "w": 640,
+  "h": 640,
+  "base": "/media/audio-production/coffee-meets-bible-logo",
   "webp": [
    480,
-   960,
-   1500
+   640
   ],
   "avif": [
    480,
-   960,
-   1500
+   640
   ],
-  "color": "#686868"
+  "color": "#C8B898"
  },
  "presentations-workshops/19-ada93861": {
   "w": 7996,

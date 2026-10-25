@@ -2,6 +2,7 @@
 /* Renders an old-portfolio page's content blocks in their original order. */
 import Gallery from './Gallery.astro';
 import Embed from './Embed.astro';
+import PodcastEpisodes from './PodcastEpisodes.astro';
 import { IMAGES, fullSrc } from '../lib/site';
 interface Props { blocks: any[]; }
 const { blocks } = Astro.props;
@@ -24,6 +25,7 @@ const fix = (h: string) => h.replace(/<h3>/g, '<h2>').replace(/<\/h3>/g, '</h2>'
 <div class="blocks">
   {groups.map((g) => {
     if (g.t === 'html') return <div class="prose block-text" set:html={fix(g.html)} />;
+    if (g.t === 'podcast') return <PodcastEpisodes />;
     if (g.t === 'images') return <Gallery items={g.items} layout={g.layout} />;
     if (g.t === 'videos') {
       if (g.items.length === 1) return <Embed b={g.items[0]} />;

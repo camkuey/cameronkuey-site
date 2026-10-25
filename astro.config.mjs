@@ -29,6 +29,7 @@ export default defineConfig({
     '/operations': '/experience',
     '/ai-builds': '/projects',
     '/case-studies': '/projects',
+    '/audio-production': '/coffee-meets-bible-podcast',
   },
   integrations: [sitemap(), editMode()],
 });

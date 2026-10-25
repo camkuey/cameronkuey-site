@@ -12,7 +12,8 @@
     "astro": "astro",
     "images": "node scripts/process-images.mjs",
     "images:dashboard": "node scripts/process-dashboard-images.mjs",
-    "content": "python3 scripts/extract-content.py"
+    "content": "python3 scripts/extract-content.py",
+    "podcast": "node scripts/fetch-podcast.mjs"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.4",

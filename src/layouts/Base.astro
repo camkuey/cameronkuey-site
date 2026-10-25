@@ -75,7 +75,7 @@ const nav = [
         <li>
           <a href="/creative">Creative</a>
           <ul class="sub">
-            {CATEGORIES.map((c) => <li><a href={`/${c.slug}`}>{c.title}</a></li>)}
+            {CATEGORIES.map((c) => <li><a href={c.href}>{c.title}</a></li>)}
             <li><a href="/home">About Me</a></li>
           </ul>
         </li>

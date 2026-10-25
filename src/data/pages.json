@@ -1326,7 +1326,7 @@
           "kind": "facebook",
           "embed": "https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2Fthecultivationproject%2Fvideos%2F2294804577202088%2F&show_text=0&width=560",
           "watch": "https://www.facebook.com/thecultivationproject/videos/2294804577202088/",
-          "title": null,
+          "title": "Renewal Missions Shanghai · Sowing Seeds",
           "caption": null,
           "ratio": 56.25,
           "maxWidth": 560
@@ -1336,7 +1336,7 @@
           "kind": "facebook",
           "embed": "https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2Fthecultivationproject%2Fvideos%2F2148828268466387%2F&show_text=0&width=560",
           "watch": "https://www.facebook.com/thecultivationproject/videos/2148828268466387/",
-          "title": null,
+          "title": "Mark & Ruth Harbour · Sowing Seeds · Taiwan",
           "caption": null,
           "ratio": 56.25,
           "maxWidth": 560
@@ -1346,7 +1346,7 @@
           "kind": "facebook",
           "embed": "https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2Fthecultivationproject%2Fvideos%2F2125823920766822%2F&show_text=0&width=560",
           "watch": "https://www.facebook.com/thecultivationproject/videos/2125823920766822/",
-          "title": null,
+          "title": "Jeremy & Ruth Hsu · Sowing Seeds · Taiwan",
           "caption": null,
           "ratio": 56.25,
           "maxWidth": 560
@@ -1356,7 +1356,7 @@
           "kind": "facebook",
           "embed": "https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2Fthecultivationproject%2Fvideos%2F2139810302701517%2F&show_text=0&width=560",
           "watch": "https://www.facebook.com/thecultivationproject/videos/2139810302701517/",
-          "title": null,
+          "title": "Alex & Kristi Tan · Sowing Seeds · Taiwan",
           "caption": null,
           "ratio": 56.25,
           "maxWidth": 560
@@ -2459,8 +2459,8 @@
           "title": "Coffee Meets Bible Podcast",
           "href": "/coffee-meets-bible-podcast",
           "image": {
-            "id": "audio-production/01-0bcb341f",
-            "src": "images/audio-production/01-0bcb341f.jpg",
+            "id": "audio-production/coffee-meets-bible-logo",
+            "src": "images/audio-production/coffee-meets-bible-logo.jpg",
             "alt": ""
           }
         }
@@ -2480,14 +2480,7 @@
           "html": "<p>I'm the producer, technical director and co-host for the Coffee Meets Bible podcast by The Cultivation Project:</p>"
         },
         {
-          "t": "embed",
-          "kind": "apple-podcasts",
-          "embed": "https://embed.podcasts.apple.com/us/podcast/coffee-meets-bible/id1505410877",
-          "watch": "https://podcasts.apple.com/us/podcast/coffee-meets-bible/id1505410877",
-          "title": null,
-          "caption": null,
-          "ratio": 56.25,
-          "maxWidth": 800
+          "t": "podcast"
         },
         {
           "t": "button",

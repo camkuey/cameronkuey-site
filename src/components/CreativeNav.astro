@@ -7,7 +7,7 @@ const { current } = Astro.props;
   <div class="wrap">
     <ul>
       <li><a href="/creative" aria-current={current === 'creative' ? 'page' : undefined}>All creative</a></li>
-      {CATEGORIES.map((c) => <li><a href={`/${c.slug}`} aria-current={current === c.slug ? 'true' : undefined}>{c.title}</a></li>)}
+      {CATEGORIES.map((c) => <li><a href={c.href} aria-current={current === c.slug ? 'true' : undefined}>{c.title}</a></li>)}
       <li><a href="/home" aria-current={current === 'home' ? 'page' : undefined}>About Me</a></li>
     </ul>
   </div>

@@ -7,6 +7,8 @@ const VIMEO_THUMBS: Record<string, string> = {
   '325314612': 'https://i.vimeocdn.com/video/769005069-6ea358e59ff35d766c013a4b06d6f46c3baa4aec088d59ee84bfc26faa38b6f4-d_640?region=us',
   '323306832': 'https://i.vimeocdn.com/video/766717031-2d743a12f304c881441a914213036bce8e192001ceefa7276f3359cfe2cb1c6f-d_640?region=us',
 };
+// Facebook gives no public thumbnail, so each video's poster is saved locally (public/media/video-thumbs/fb-<id>.webp).
+const FB_THUMBS = new Set(['2294804577202088', '2148828268466387', '2125823920766822', '2139810302701517']);
 const kind: string = b.kind;
 let src = b.embed as string;
 let thumb: string | null = null;
@@ -29,6 +31,14 @@ if (kind === 'youtube') {
   src = b.embed + '&autoplay=true';
   title = title || 'The Cultivation Project video on Facebook';
   provider = 'Facebook';
+  const fbId = decodeURIComponent(b.embed).match(/videos\/(\d+)/)?.[1];
+  if (fbId && FB_THUMBS.has(fbId)) thumb = `/media/video-thumbs/fb-${fbId}.webp`;
+} else if (kind === 'spotify') {
+  src = b.embed;
+  title = title || 'Podcast on Spotify';
+  label = 'Load Spotify player';
+  provider = 'Spotify';
+  allow = 'autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture';
 } else if (kind === 'figma') {
   title = title || 'Interactive Figma prototype';
   label = 'Load interactive prototype';
@@ -51,7 +61,7 @@ const isVideo = ['youtube', 'vimeo', 'facebook'].includes(kind);
 const watchText = kind === 'facebook' ? 'Watch on Facebook' : isVideo ? `Watch on ${provider}` : `Open in ${provider}`;
 ---
 <figure class:list={['embed', { narrow }]} style={mw ? `--mw:${mw}` : undefined}>
-  <div class:list={['frame', { tall }]} style={tall ? `--ratio:${ratio}` : undefined}>
+  <div class:list={['frame', { tall, spotify: kind === 'spotify' }]} style={tall ? `--ratio:${ratio}` : undefined}>
     <button type="button" class:list={['facade', { plain: !thumb }]} data-embed={src} data-title={title} data-allow={allow}
       aria-label={`${label}: ${title}`}>
       {thumb && <img src={thumb} alt="" loading="lazy" decoding="async" width="480" height="360" />}

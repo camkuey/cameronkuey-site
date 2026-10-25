@@ -2,13 +2,15 @@
 /* Every page from the original Adobe Portfolio site, at its original URL. */
 import Base from '../layouts/Base.astro';
 import Blocks from '../components/Blocks.astro';
-import Covers from '../components/Covers.astro';
 import Pic from '../components/Pic.astro';
 import CreativeNav from '../components/CreativeNav.astro';
-import { PAGES, CATEGORIES, IMAGES } from '../lib/site';
+import { PAGES, CATEGORIES, IMAGES, page } from '../lib/site';
+import '../styles/cinema.css';
 
 export function getStaticPaths() {
-  return PAGES.filter((p) => p.slug !== 'contact').map((p) => ({ params: { slug: p.slug }, props: { p } }));
+  // contact has its own page; single-page categories (audio-production) redirect to their one page
+  const single = new Set(CATEGORIES.filter((c) => c.children.length === 1).map((c) => c.slug));
+  return PAGES.filter((p) => p.slug !== 'contact' && !single.has(p.slug)).map((p) => ({ params: { slug: p.slug }, props: { p } }));
 }
 const { p } = Astro.props as { p: any };
 
@@ -41,26 +43,53 @@ const rangeCat = cat ?? CATEGORIES.find((c) => c.slug === p.slug);
 const noun: Record<string, string> = { photography: 'photography', 'video-production': 'video', work: 'product design', 'graphic-design': 'design and graphics' };
 const showRange = !!rangeCat && rangeCat.children.length > 1 && !isAbout;
 const catCovers = isCategory
-  ? p.covers.map((c: any) => ({ ...c, tag: 'View →' }))
+  ? p.covers.filter((c: any) => c.image && IMAGES[c.image.id])
   : [];
+
+// Cinema-mode hero (every creative page except About): the category cover photo for this page; on a category landing,
+// its sharpest cover. Small source images get the "framed" treatment instead of being stretched full-bleed.
+const coverId = (c: any) => (c?.image && IMAGES[c.image.id] ? c.image.id as string : null);
+const heroId = isAbout ? null : isCategory
+  ? catCovers.map(coverId).filter(Boolean).sort((a: any, b: any) => IMAGES[b].w - IMAGES[a].w)[0] ?? null
+  : coverId(cat ? page(cat.slug).covers.find((c: any) => c.href === `/${p.slug}`) : null);
+const framed = !!heroId && IMAGES[heroId].w < 2000;
 ---
 <Base title={isAbout ? 'About Me' : p.title} description={description} section="creative" image={image}>
-  <CreativeNav current={isAbout ? 'home' : p.categorySlug ?? p.slug} />
-  <header class="pg wide"><div class="wrap pg-grid">
-    <div>
-      <ol class="crumbs" aria-label="Breadcrumb">
-        <li><a href="/creative">Creative</a></li>
-        {cat && <li><a href={`/${cat.slug}`}>{cat.title}</a></li>}
-      </ol>
-      <h1>{p.title}</h1>
-      {showRange && (
-        <nav aria-label={`Types of ${noun[rangeCat!.slug] ?? rangeCat!.title}`} style="margin-top:26px">
-          <ul class="pills">{rangeCat!.children.map((c) => <li><a href={`/${c.slug}`} aria-current={c.slug === p.slug ? 'page' : undefined}>{c.title}</a></li>)}</ul>
-        </nav>
-      )}
-    </div>
-  </div></header>
-  <section class="sec" style="padding-top:48px"><div class="wrap">
+  {isAbout ? (
+    <Fragment>
+      <CreativeNav current="home" />
+      <header class="pg wide"><div class="wrap pg-grid">
+        <div>
+          <ol class="crumbs" aria-label="Breadcrumb"><li><a href="/creative">Creative</a></li></ol>
+          <h1>{p.title}</h1>
+        </div>
+      </div></header>
+    </Fragment>
+  ) : (
+    <Fragment>
+      <div class="cine cine-top">
+        <header class:list={['cv-hero', 'sub', { framed }]} aria-labelledby="pg-h">
+          {heroId && <Pic id={heroId} class="cv-bg" sizes="100vw" eager alt={framed ? '' : undefined} />}
+          {framed && heroId && <div class="cv-frame"><Pic id={heroId} sizes="(max-width: 900px) 70vw, 560px" /></div>}
+          <div class="cv-scrim" aria-hidden="true"></div>
+          <div class="wrap cv-copy">
+            <ol class="cv-crumbs" aria-label="Breadcrumb">
+              <li><a href="/creative">Creative</a></li>
+              {cat && cat.children.length > 1 && <li><a href={cat.href}>{cat.title}</a></li>}
+            </ol>
+            <h1 id="pg-h">{p.title}</h1>
+          </div>
+        </header>
+        <CreativeNav current={p.categorySlug ?? p.slug} />
+        {showRange && (
+          <nav class="wrap cv-pills" aria-label={`Types of ${noun[rangeCat!.slug] ?? rangeCat!.title}`}>
+            <ul class="pills">{rangeCat!.children.map((c) => <li><a href={`/${c.slug}`} aria-current={c.slug === p.slug ? 'page' : undefined}>{c.title}</a></li>)}</ul>
+          </nav>
+        )}
+      </div>
+    </Fragment>
+  )}
+  <section class:list={isAbout ? 'sec' : 'cine cv-body'} style={isAbout ? 'padding-top:48px' : undefined}><div class="wrap">
     {isAbout ? (
       <div class="about-page">
         <div class="about-top">
@@ -75,15 +104,21 @@ const catCovers = isCategory
           <div class="about-skill-grid">{aboutSkills.map((g: string) => <div class="prose" set:html={g} />)}</div>
         </section>
       </div>
-    ) : isCategory ? <Covers covers={catCovers} eager /> : <Blocks blocks={p.blocks} />}
+    ) : isCategory ? (
+      <ul class:list={['cv-panels', { four: catCovers.length === 4, one: catCovers.length === 1 }]}>
+        {catCovers.map((c: any) => (
+          <li><a class="cv-panel" href={c.href}><Pic id={c.image.id} sizes="(max-width: 900px) 100vw, 400px" /><span class="cv-panel-t">{c.title} <span aria-hidden="true">→</span></span></a></li>
+        ))}
+      </ul>
+    ) : <Blocks blocks={p.blocks} />}
   </div></section>
   {(prev || next) && (
-    <nav class="wrap" aria-label={`More ${cat!.title}`} style="padding-bottom:96px">
+    <div class="cine"><nav class="wrap" aria-label={`More ${cat!.title}`} style="padding-bottom:96px">
       <div class="pager">
         {prev && <a href={`/${prev.slug}`}><span class="eyebrow">← Previous</span><b>{prev.title}</b></a>}
         {next && <a class="next" href={`/${next.slug}`}><span class="eyebrow">Next →</span><b>{next.title}</b></a>}
       </div>
-    </nav>
+    </nav></div>
   )}
 </Base>
 

@@ -3,6 +3,7 @@ import Base from '../layouts/Base.astro';
 import CreativeNav from '../components/CreativeNav.astro';
 import Pic from '../components/Pic.astro';
 import { CATEGORIES, IMAGES, page, fullSrc } from '../lib/site';
+import '../styles/cinema.css';
 
 // ---- Mosaic ----------------------------------------------------------------------------------
 // Every photo opens in the lightbox, with a link out to its category page.
@@ -12,7 +13,7 @@ const KIND: Record<string, { href: string; k: string; s: string; more: string }>
   fam:  { href: '/family-photoshoots',     k: 'Family',           s: 'Cosie Co.',          more: 'More family shoots →' },
   grad: { href: '/graduation-photoshoots', k: 'Graduation',       s: 'Cosie Co.',          more: 'More graduations →' },
   vid:  { href: '/video-production',       k: 'Video production', s: '',                   more: 'More video work →' },
-  aud:  { href: '/audio-production',       k: 'Audio',            s: 'Coffee Meets Bible', more: 'More audio →' },
+  aud:  { href: '/coffee-meets-bible-podcast', k: 'Audio',       s: 'Coffee Meets Bible', more: 'Listen to the podcast →' },
 };
 const FULL: Record<string, string> = { wed: 'wedding-photography', eng: 'engagement-proposals', fam: 'family-photoshoots', grad: 'graduation-photoshoots' };
 const find = (prefix: string, n: number) => {
@@ -23,7 +24,7 @@ const find = (prefix: string, n: number) => {
 // "w2" = existing wedding photo #2, "W1" = new Cosie Co. wedding #1 (cosie-wed-01), "v2" = video cover #2, "a" = podcast cover.
 const CODE: Record<string, string> = { w: 'wed', e: 'eng', f: 'fam', g: 'grad', v: 'vid' };
 const resolve = (t: string) => {
-  if (t === 'a') return { kind: 'aud', id: find('audio-production', 1) };
+  if (t === 'a') return { kind: 'aud', id: 'audio-production/coffee-meets-bible-logo' };
   const m = t.match(/^([a-zA-Z])(\d+)$/)!;
   const kind = CODE[m[1].toLowerCase()], n = +m[2];
   if (kind === 'vid') return { kind, id: find('video-production', n) };
@@ -48,7 +49,7 @@ const reelCues: [number, string][] = [[0, 'Photography'], [1.67, 'Wedding film']
 // ---- Category panels: one cover each, shoot types listed underneath ----
 const panels = CATEGORIES.map((c) => {
   const img = page(c.slug).covers.find((x: any) => x.image)?.image ?? null;
-  return { title: c.title, href: `/${c.slug}`, id: img?.id as string | undefined, children: c.children };
+  return { title: c.title, href: c.href, id: img?.id as string | undefined, children: c.children };
 });
 
 // ---- Kind words: short excerpts from Cosie Co. reviews on WeddingWire ----
@@ -147,49 +148,7 @@ const quotes = [
 </Base>
 
 <style is:global>
-/* Creative page "cinema mode": dark ground so photos and film carry the colour. Scoped to .cine and pages that contain it. */
-body:has(.cine){background:#141210}
-.cine{--bg:#141210;--ink:#F3EEE6;--muted:#A79F93;--line:rgba(243,238,230,.14);--line-2:rgba(243,238,230,.28);--tan-line:rgba(243,238,230,.16);
-  --accent:#E08A7C;--red:#E08A7C;color:var(--ink);background:var(--bg)}
-.cine .btn{border-color:var(--ink);color:var(--ink)}
-.cine .btn.solid{background:#A32121;border-color:#A32121;color:#fff}
-.cine .btn.solid:hover{background:#FAF8F4;border-color:#FAF8F4;color:#141210}
-.cine h2 em,.cine h1 em{font-style:normal;color:var(--accent)}
-.cine .sec-top h2{font-weight:300;font-size:clamp(30px,3.4vw,48px);letter-spacing:-.025em;line-height:1.06}
-.cine .more{color:var(--ink)}
-.cine .subnav{border-color:var(--line)}
-
-/* nav: transparent over the hero photo, dark bar once scrolled */
-body:has(.cine) header.nav{margin-bottom:-69px;transition:background-color .25s ease,border-color .25s ease}
-body:has(.cine) header.nav:not(.scrolled){background:transparent;border-bottom-color:transparent;-webkit-backdrop-filter:none;backdrop-filter:none}
-body:has(.cine) header.nav.scrolled{background:rgba(20,18,16,.9);border-bottom-color:rgba(243,238,230,.12)}
-body:has(.cine) header.nav .logo,body:has(.cine) header.nav .logo span{color:#FAF8F4}
-body:has(.cine) header.nav nav.primary a{color:rgba(250,248,244,.82)}
-body:has(.cine) header.nav nav.primary a:hover,body:has(.cine) header.nav nav.primary a[aria-current]{color:#fff;border-bottom-color:#fff}
-body:has(.cine) header.nav .menu-btn{color:#FAF8F4;border-color:rgba(250,248,244,.85)}
-body.menu-open:has(.cine) header.nav{background:rgba(250,248,244,.97);border-bottom-color:#E2DDD4}
-body.menu-open:has(.cine) header.nav .logo{color:#1B1A18}
-body.menu-open:has(.cine) header.nav .logo span{color:#881919}
-body.menu-open:has(.cine) header.nav .menu-btn{color:#1B1A18;border-color:#1B1A18}
-
-/* hero: full-bleed photo with a very slow push-in */
-.cv-hero{position:relative;isolation:isolate;overflow:hidden;height:clamp(600px,92svh,1000px);display:flex;align-items:flex-end;color:#FAF8F4}
-.cv-hero>picture{position:absolute;inset:0;z-index:-2;display:block}
-.cv-bg{width:100%;height:100%;max-width:none;object-fit:cover;object-position:55% 40%;display:block;transform-origin:58% 45%}
-@media (prefers-reduced-motion:no-preference){.cv-bg{animation:cv-push 24s ease-out both}}
-@keyframes cv-push{from{transform:scale(1.1)}to{transform:scale(1)}}
-.cv-scrim{position:absolute;inset:0;z-index:-1;pointer-events:none;background:
-  linear-gradient(to bottom,rgba(20,18,16,.55) 0,rgba(20,18,16,0) 160px),
-  linear-gradient(to right,rgba(20,18,16,.72) 0,rgba(20,18,16,.4) 38%,rgba(20,18,16,0) 62%),
-  linear-gradient(to top,#141210 0,rgba(20,18,16,.6) 22%,rgba(20,18,16,0) 50%)}
-.cv-copy{padding-bottom:72px;width:100%}
-.cv-copy .ey{color:rgba(250,248,244,.82)}
-.cv-hero h1{font-weight:300;font-size:clamp(42px,4.6vw,66px);line-height:1.02;letter-spacing:-.035em;text-shadow:0 2px 30px rgba(20,18,16,.35)}
-.cv-intro{margin-top:20px;max-width:40ch;font-weight:300;font-size:19px;line-height:1.55;color:rgba(250,248,244,.92)}
-.cv-hero .btns{margin-top:30px}
-.cv-hero .btn.cv-ghost{border-color:rgba(250,248,244,.85);color:#FAF8F4;background:rgba(20,18,16,.2)}
-.cv-hero .btn.cv-ghost:hover{background:#FAF8F4;color:#141210}
-
+/* /creative only: stats, showreel, featured film, quotes. Shared cinema-mode rules live in styles/cinema.css. */
 /* stats strip */
 .cv-stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px;padding-top:28px;padding-bottom:36px}
 .cv-stats div{border-top:1px solid var(--line-2);padding-top:14px}
@@ -236,35 +195,14 @@ body.menu-open:has(.cine) header.nav .menu-btn{color:#1B1A18;border-color:#1B1A1
 .cv-quotes p{margin-top:16px;font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
 .cv-quotes p b{color:var(--ink);font-weight:500}
 
-/* category panels */
-.cv-panels{list-style:none;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px}
-.cv-panel{position:relative;display:block;aspect-ratio:4/5;overflow:hidden;border-radius:6px;background:#221f1b;color:#FAF8F4;text-decoration:none}
-.cv-panel picture,.cv-panel img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;transition:transform .9s cubic-bezier(.2,.7,.2,1)}
-.cv-panel::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(10,9,8,.78),rgba(10,9,8,0) 55%)}
-.cv-panel:hover img{transform:scale(1.05)}
-.cv-panel-t{position:absolute;z-index:1;left:22px;bottom:20px;font-weight:300;font-size:clamp(24px,2.2vw,32px);letter-spacing:-.02em}
-.cv-panel-t span{display:inline-block;transition:transform .25s}
-.cv-panel:hover .cv-panel-t span{transform:translateX(6px)}
-.cv-sub{list-style:none;margin-top:14px}
-.cv-sub li{border-bottom:1px solid var(--line)}
-.cv-sub a{display:block;padding:10px 0;color:var(--muted);text-decoration:none;font-size:15px}
-.cv-sub a:hover{color:var(--ink)}
-
 @media (max-width:900px){
-  .cv-copy{padding-bottom:56px}
   .cv-stats{grid-template-columns:repeat(2,minmax(0,1fr));gap:20px 16px}
   .cv-sec{padding:64px 0}
   .cv-reel{aspect-ratio:4/5}
+  .cv-quotes{grid-template-columns:1fr;gap:28px}
   .cv-film-frame{aspect-ratio:16/10}
   .cv-play{width:56px;height:56px}
-  .cv-quotes,.cv-panels{grid-template-columns:1fr;gap:28px}
-  .cv-panel{aspect-ratio:16/10}
   .cine .sec-top .cv-hint{display:none}
-}
-@media (max-width:640px){
-  .cv-hero{height:clamp(560px,88svh,820px)}
-  .cv-scrim{background:linear-gradient(to bottom,rgba(20,18,16,.55) 0,rgba(20,18,16,0) 120px),linear-gradient(to top,#141210 0,rgba(20,18,16,.75) 40%,rgba(20,18,16,.1) 75%)}
-  .cv-intro{font-size:16.5px}
 }
 @media (prefers-reduced-motion:reduce){.cv-pp{display:none}}
 </style>

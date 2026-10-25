@@ -1,0 +1,114 @@
+---
+/* Coffee Meets Bible episode list, from the RSS snapshot in src/data/podcast.json (refresh with `npm run podcast`).
+   One shared <audio preload="none">: nothing is fetched until a visitor presses play. */
+import fs from 'node:fs';
+import data from '../data/podcast.json';
+// Episode artwork from cultivationproject.org/podcasts, saved as public/media/podcast/e<n>-{160,320}.webp; the show logo stands in where there is none.
+const art = (n: number | null) => (n && fs.existsSync(`public/media/podcast/e${n}-160.webp`) ? `/media/podcast/e${n}` : null);
+const LOGO = '/media/audio-production/coffee-meets-bible-logo';
+const SPOTIFY = 'https://open.spotify.com/show/18ZGKpYwA8RnraRxiWrBtG';
+const APPLE = 'https://podcasts.apple.com/us/podcast/coffee-meets-bible/id1505410877';
+const SHOW = 6; // episodes visible before "Show all"
+const eps = data.episodes.filter((e) => e.audio);
+const fmt = (d: string) => new Date(d + 'T12:00:00Z').toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+const years = [...new Set(eps.map((e) => e.date.slice(0, 4)))].sort();
+---
+<section class="pod" aria-labelledby="pod-h" data-pod>
+  <div class="pod-top">
+    <div>
+      <h2 id="pod-h">Episodes</h2>
+      <p class="pod-meta">{eps.filter((e) => e.n).length} episodes · {years[0]}–{years[years.length - 1]}</p>
+    </div>
+    <p class="pod-links"><a href={SPOTIFY} target="_blank" rel="noopener">Spotify ↗</a><a href={APPLE} target="_blank" rel="noopener">Apple Podcasts ↗</a></p>
+  </div>
+  <ol class="pod-list">
+    {eps.map((e, i) => (
+      <li class="pod-ep" data-src={e.audio} hidden={i >= SHOW ? true : undefined}>
+        <button type="button" class="pod-art pod-play" aria-label={`Play episode: ${e.title}`} aria-pressed="false">
+          {art(e.n)
+            ? <img src={`${art(e.n)}-160.webp`} srcset={`${art(e.n)}-160.webp 160w, ${art(e.n)}-320.webp 320w`} sizes="96px" width="160" height="160" alt="" loading="lazy" decoding="async" />
+            : <img src={`${LOGO}-480.webp`} width="480" height="480" alt="" loading="lazy" decoding="async" />}
+          <span class="pod-badge" aria-hidden="true"><i></i></span>
+        </button>
+        <div class="pod-body">
+          <p class="pod-n">{e.n ? `E${e.n}` : 'Trailer'}</p>
+          <h3>{e.title}</h3>
+          <p class="pod-sub">{[e.guest, fmt(e.date), `${e.minutes} min`].filter(Boolean).join(' · ')}</p>
+          <p class="pod-sum">{e.summary}</p>
+          <span class="pod-bar" aria-hidden="true"><u></u></span>
+        </div>
+      </li>
+    ))}
+  </ol>
+  {eps.length > SHOW && <button type="button" class="btn pod-more">Show all {eps.length} episodes</button>}
+  <audio preload="none"></audio>
+</section>
+
+<style>
+  .pod{margin-top:8px;max-width:920px}
+  .pod-top{display:flex;justify-content:space-between;align-items:end;gap:16px;flex-wrap:wrap;padding-bottom:18px;border-bottom:1px solid var(--line-2)}
+  .pod h2{font-weight:300;font-size:clamp(28px,3vw,40px);letter-spacing:-.02em;line-height:1.05}
+  .pod-meta{margin-top:6px;font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+  .pod-links{display:flex;gap:20px;font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase}
+  .pod-links a{color:var(--ink);text-decoration:none;border-bottom:1px solid var(--line-2)}
+  .pod-links a:hover{border-color:var(--ink)}
+  .pod-list{list-style:none}
+  .pod-ep{display:grid;grid-template-columns:112px minmax(0,1fr);gap:24px;padding:22px 0;border-bottom:1px solid var(--line);align-items:start}
+  .pod-art{position:relative;display:block;width:112px;aspect-ratio:1;padding:0;border:0;border-radius:6px;overflow:hidden;background:#C8B898;cursor:pointer}
+  .pod-art img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s ease}
+  .pod-ep[hidden]{display:none}
+  .pod-play:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+  .pod-badge{position:absolute;right:6px;bottom:6px;width:30px;height:30px;border-radius:50%;background:rgba(20,18,16,.72);color:#FAF8F4;display:grid;place-items:center;transition:background-color .2s,transform .2s}
+  .pod-badge i{display:block;margin-left:2px;border-left:9px solid currentColor;border-top:5.5px solid transparent;border-bottom:5.5px solid transparent}
+  .pod-play[aria-pressed="true"] .pod-badge i{margin-left:0;width:9px;height:10px;border:0;border-left:3px solid currentColor;border-right:3px solid currentColor}
+  .pod-play:hover .pod-badge,.pod-play[aria-pressed="true"] .pod-badge{background:#A32121;transform:scale(1.08)}
+  .pod-play:hover img{transform:scale(1.04)}
+  .pod-ep.on .pod-art{box-shadow:0 0 0 2px var(--accent)}
+  .pod-n{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
+  .pod h3{margin-top:4px;font-weight:400;font-size:clamp(19px,1.8vw,23px);letter-spacing:-.01em;line-height:1.25}
+  .pod-sub{margin-top:4px;font-size:14px;color:var(--muted)}
+  .pod-sum{margin-top:10px;font-weight:300;font-size:16px;line-height:1.55;color:var(--ink);opacity:.85;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden;max-width:68ch}
+  .pod-ep.on .pod-sum{-webkit-line-clamp:unset}
+  .pod-bar{display:none;margin-top:14px;height:3px;background:var(--line-2);border-radius:2px;overflow:hidden;cursor:pointer}
+  .pod-ep.on .pod-bar{display:block}
+  .pod-bar u{display:block;height:100%;width:0;background:var(--accent);text-decoration:none}
+  .pod-more{margin-top:28px}
+  @media (max-width:640px){.pod-ep{grid-template-columns:76px minmax(0,1fr);gap:14px}.pod-art{width:76px}.pod-badge{width:26px;height:26px;right:4px;bottom:4px}}
+</style>
+
+<script>
+  const pod = document.querySelector<HTMLElement>('[data-pod]');
+  if (pod) {
+    const audio = pod.querySelector('audio')!;
+    let cur: HTMLElement | null = null;
+    const btn = (li: HTMLElement) => li.querySelector<HTMLButtonElement>('.pod-play')!;
+    const title = (li: HTMLElement) => li.querySelector('h3')!.textContent;
+    const setState = (li: HTMLElement, playing: boolean) => {
+      btn(li).setAttribute('aria-pressed', String(playing));
+      btn(li).setAttribute('aria-label', `${playing ? 'Pause' : 'Play'} episode: ${title(li)}`);
+    };
+    pod.querySelectorAll<HTMLElement>('.pod-ep').forEach((li) => {
+      btn(li).addEventListener('click', () => {
+        if (cur === li) { audio.paused ? audio.play() : audio.pause(); return; }
+        if (cur) { setState(cur, false); cur.classList.remove('on'); }
+        cur = li; li.classList.add('on');
+        audio.src = li.dataset.src!;
+        audio.play().catch(() => {});
+      });
+      li.querySelector<HTMLElement>('.pod-bar')!.addEventListener('click', (e) => {
+        if (cur !== li || !audio.duration) return;
+        const r = (e.currentTarget as HTMLElement).getBoundingClientRect();
+        audio.currentTime = ((e.clientX - r.left) / r.width) * audio.duration;
+      });
+    });
+    audio.addEventListener('play', () => cur && setState(cur, true));
+    audio.addEventListener('pause', () => cur && setState(cur, false));
+    audio.addEventListener('timeupdate', () => {
+      if (cur && audio.duration) cur.querySelector<HTMLElement>('.pod-bar u')!.style.width = `${(audio.currentTime / audio.duration) * 100}%`;
+    });
+    pod.querySelector('.pod-more')?.addEventListener('click', (e) => {
+      pod.querySelectorAll<HTMLElement>('.pod-ep[hidden]').forEach((li) => (li.hidden = false));
+      (e.currentTarget as HTMLElement).remove();
+    });
+  }
+</script>
