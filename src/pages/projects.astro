@@ -1,6 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
 import DashboardReel from '../components/DashboardReel.astro';
+import ProjectsHeroSlot from '../components/ProjectsHeroSlot.astro';
 import { CASES } from '../data/case-list';
 import ProjectThumb from '../components/thumbs/ProjectThumb.astro';
 import { spec, featured, more, steps, tools } from '../data/projects';
@@ -14,37 +15,50 @@ import { spec, featured, more, steps, tools } from '../data/projects';
       <p class="intro">Each starts with a messy real-world problem and ends with a process that runs on its own.</p>
       <dl class="spec-t">{spec.map(([k, v]) => <div><dt>{k}</dt><dd>{v}</dd></div>)}</dl>
     </div>
-    <figure class="pj-vis">
-      <DashboardReel href="/case-studies/internal-dashboard" label="Read the Internal Dashboard case study" />
-      <figcaption><span>Featured · Internal Dashboard</span><a href="/case-studies/internal-dashboard">Read the case study →</a></figcaption>
-    </figure>
+    <ProjectsHeroSlot />
   </div></header>
 
   <section class="sec pj-feat" aria-labelledby="feat-h"><div class="wrap">
     <div class="pj-feat-grid">
-      <div>
+      <div class="pj-feat-text">
+        <div>
         <p class="ey"><b>01</b> / Featured · {featured.org}</p>
         <h2 id="feat-h">An all-in-one Internal Dashboard, <em>concept to production in under two weeks.</em></h2>
         <p class="desc">{featured.desc}</p>
+        </div>
         <div class="btns"><a class="btn solid" href="/case-studies/internal-dashboard">Read the case study →</a></div>
       </div>
-      <div class="nums" style="--n:2">
-        {featured.nums.map((n) => <div><b>{n.value}</b><span>{n.label}</span></div>)}
+      <div class="pj-feat-side">
+        <figure class="pj-feat-reel">
+          <DashboardReel href="/case-studies/internal-dashboard" label="Read the Internal Dashboard case study" eager={false} />
+          <figcaption><span>Featured · Internal Dashboard</span><a href="/case-studies/internal-dashboard">Read the case study →</a></figcaption>
+        </figure>
+        <dl class="pj-stats">
+          {featured.nums.map((n) => <div><dt>{n.label}</dt><dd>{n.value}</dd></div>)}
+        </dl>
       </div>
     </div>
   </div></section>
 
-  <section class="sec" style="padding-top:0" aria-labelledby="all-h"><div class="wrap">
+  <section class="pj-all" aria-labelledby="all-h">
+    <div class="pj-shapes" aria-hidden="true">
+      <i class="dg dg1"></i><i class="dg dg2"></i><i class="dg dg3"></i>
+      <svg class="rg rg1" viewBox="0 0 1440 420" preserveAspectRatio="none" focusable="false"><path d="M0 420V268L150 196L262 252L470 96L640 224L790 150L1010 40L1190 188L1300 132L1440 214V420Z"/></svg>
+      <svg class="rg rg2" viewBox="0 0 1440 420" preserveAspectRatio="none" focusable="false"><path d="M0 420V318L190 250L330 304L560 190L720 280L930 176L1120 290L1290 226L1440 292V420Z"/></svg>
+    </div>
+    <div class="wrap">
     <div class="sec-top"><div><p class="ey"><b>02</b> / Case studies</p><h2 id="all-h">All projects</h2></div></div>
-    <ul class="rows pj-cases">
+    <ul class="pj-cases">
       {CASES.map((c, i) => (
-        <li><a class="row" href={`/case-studies/${c.slug}`}>
+        <li><a class="card" href={`/case-studies/${c.slug}`} aria-labelledby={`cs-t-${c.slug}`} aria-describedby={`cs-d-${c.slug}`}>
           <span class="th"><ProjectThumb slug={c.slug} decorative /></span>
-          <div class="hd"><p class="ey"><b>{String(i + 1).padStart(2, '0')}</b> / {c.kind} · {c.org}</p><h3>{c.title}</h3></div>
-          <div class="bd">
-            <p>{c.summary}</p>
-            <span class="tag">{c.tags.join(' · ')}<span class="go">Read the case study →</span></span>
-          </div>
+          <span class="cb">
+            <span class="ey"><b>{String(i + 1).padStart(2, '0')}</b> / {c.kind} · {c.org}</span>
+            <h3 id={`cs-t-${c.slug}`}>{c.title}</h3>
+            <p id={`cs-d-${c.slug}`}>{c.summary}</p>
+            <span class="tag">{c.tags.join(' · ')}</span>
+            <span class="go" aria-hidden="true">Read the case study <span class="ar">→</span></span>
+          </span>
         </a></li>
       ))}
     </ul>
@@ -91,34 +105,74 @@ import { spec, featured, more, steps, tools } from '../data/projects';
   .pj .pj-text h1{max-width:none;font-size:clamp(34px,3.7vw,52px);text-wrap:balance}
   .pj .pj-text .intro{max-width:34ch;margin-top:18px}
   .pj .pj-text .spec-t{margin-top:26px;max-width:460px}
-  .pj-vis{margin:0}
-  .pj-vis img{display:block;width:100%;height:auto;border-radius:8px;box-shadow:0 24px 48px -28px rgba(40,30,20,.45)}
-  .pj-vis figcaption{display:flex;justify-content:space-between;gap:16px;margin-top:12px;font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
-  .pj-vis figcaption a{color:var(--ink);text-decoration:none;border-bottom:1px solid var(--tan-line)}
-  .pj-vis figcaption a:hover{color:var(--red);border-color:var(--red)}
+  .pj-feat-reel{margin:0}
+  .pj-feat-reel figcaption{display:flex;flex-wrap:wrap;align-items:flex-start;justify-content:space-between;gap:6px 16px;margin-top:12px;font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+  .pj-feat-reel figcaption a{color:var(--ink);text-decoration:none;border-bottom:1px solid var(--tan-line);white-space:nowrap}
+  .pj-feat-reel figcaption a:hover{color:var(--red);border-color:var(--red)}
   @media (min-width:901px){:global(.pj-rows .row){grid-template-columns:56px minmax(0,4fr) minmax(0,6fr) 250px}}
-  /* All projects: thumbnail column, then title block and summary block, top-aligned */
-  .pj-cases .row{grid-template-columns:288px minmax(0,5fr) minmax(0,6fr);gap:0 40px;align-items:start;padding:28px 0}
-  .pj-cases .th{display:block;border:1px solid var(--tan-line);border-radius:4px;overflow:hidden;transition:border-color .2s}
-  .pj-cases a.row:hover .th{border-color:var(--ink)}
-  .pj-cases .hd .ey{margin-bottom:10px}
-  .pj-cases .hd h3{max-width:22ch}
-  .pj-cases .bd{display:flex;flex-direction:column;gap:14px;padding-top:2px}
-  .pj-cases .bd p{max-width:52ch}
-  .pj-cases .tag{text-align:left}
-  .pj-cases .go{margin-top:6px}
-  @media (min-width:901px) and (max-width:1120px){
-    .pj-cases .row{grid-template-columns:260px minmax(0,1fr);gap:16px 32px}
-    .pj-cases .th{grid-row:span 2}
-    .pj-cases .hd,.pj-cases .bd{grid-column:2}
-  }
+  /* All projects: floating cards on the page cream; sage appears only as quiet shapes behind them (diagonal slabs + two ridges).
+     .pj-shapes is the only clipped box (overflow:clip), so card shadows are never cut. */
+  .pj-all{position:relative;isolation:isolate;padding:72px 0 112px}
+  .pj-shapes{position:absolute;inset:0;z-index:-1;overflow:clip;pointer-events:none}
+  .pj-shapes .dg{position:absolute;display:block;border-radius:14px;transform-origin:50% 50%}
+  .pj-shapes .dg1{right:-7%;top:3%;width:40%;height:250px;background:#DFE7D8;transform:rotate(-11deg)}
+  .pj-shapes .dg2{left:-9%;top:30%;width:36%;height:300px;background:#D3DDCB;opacity:.55;transform:rotate(-13deg)}
+  .pj-shapes .dg3{right:-8%;top:57%;width:34%;height:230px;background:#E8EEE2;transform:rotate(-8deg)}
+  .pj-shapes .rg{position:absolute;left:0;width:100%;display:block;bottom:0;-webkit-mask-image:linear-gradient(#000 62%,transparent 100%);mask-image:linear-gradient(#000 62%,transparent 100%)}
+  .pj-shapes .rg1{height:clamp(240px,31vw,430px);fill:#DFE7D8;opacity:.9}
+  .pj-shapes .rg2{height:clamp(170px,22vw,300px);fill:#D3DDCB;opacity:.6}
+  .pj-all .sec-top{margin-bottom:34px}
+  .pj-cases{list-style:none;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:32px;padding:0}
+  .pj-cases>li{display:flex;min-width:0}
+  .pj-cases .card{display:flex;flex-direction:column;width:100%;text-decoration:none;color:var(--ink);background:#fff;border:1px solid var(--line);border-radius:12px;
+    box-shadow:0 1px 2px rgba(40,34,28,.06),0 12px 32px -12px rgba(40,34,28,.18);
+    transition:transform .22s ease-out,box-shadow .22s ease-out,border-color .22s ease-out}
+  .pj-cases .th{display:block;aspect-ratio:16/10;overflow:hidden;border-radius:11px 11px 0 0;background:#F0EBE4;border-bottom:1px solid var(--line)}
+  .pj-cases .th :global(.pthumb){height:100%;transform-origin:50% 50%;transition:transform .22s ease-out}
+  .pj-cases .cb{display:flex;flex-direction:column;flex:1;padding:22px 26px 24px}
+  .pj-cases .ey{display:block;margin:0 0 10px}
+  .pj-cases h3{font-weight:400;font-size:clamp(20px,1.7vw,23px);line-height:1.2;letter-spacing:-.01em;margin:0;transition:color .22s ease-out}
+  .pj-cases .cb p{margin-top:12px;color:var(--muted);font-size:16px;line-height:1.55}
+  .pj-cases .tag{display:block;margin-top:14px;font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;line-height:1.6;color:var(--muted)}
+  .pj-cases .go{display:block;margin-top:auto;padding-top:18px;font-family:var(--mono);font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink)}
+  .pj-cases .go::before{content:"";display:block;height:1px;background:var(--line);margin-bottom:14px}
+  .pj-cases .ar{display:inline-block;transition:transform .22s ease-out;color:var(--red)}
+  .pj-cases .card:hover,.pj-cases .card:focus-visible{transform:translateY(-6px);border-color:var(--line-2);
+    box-shadow:0 2px 4px rgba(40,34,28,.08),0 26px 44px -14px rgba(40,34,28,.30)}
+  .pj-cases .card:focus-visible{outline:2px solid var(--red);outline-offset:4px}
+  .pj-cases .card:hover .th :global(.pthumb),.pj-cases .card:focus-visible .th :global(.pthumb){transform:scale(1.03)}
+  .pj-cases .card:hover h3,.pj-cases .card:focus-visible h3{color:var(--red)}
+  .pj-cases .card:hover .ar,.pj-cases .card:focus-visible .ar{transform:translateX(6px)}
   @media (max-width:900px){
-    .pj-cases .row{grid-template-columns:minmax(0,1fr);gap:14px;padding:24px 0}
-    .pj-cases .hd,.pj-cases .bd{grid-column:1}
-    .pj-cases .bd{gap:12px;padding-top:0}
+    .pj-all{padding:60px 0 88px}
+    .pj-shapes .dg1{right:-22%;top:1.5%;width:62%;height:150px}
+    .pj-shapes .dg2{left:-24%;top:44%;width:58%;height:190px}
+    .pj-shapes .dg3,.pj-shapes .rg2{display:none}
+    .pj-shapes .rg1{height:clamp(170px,40vw,260px);opacity:.8}
+    .pj-cases{grid-template-columns:minmax(0,1fr);gap:24px}
+    .pj-cases .cb{padding:20px 20px 22px}
+    .pj-cases .go{padding-top:14px}
+    .pj-all .sec-top{margin-bottom:24px}
   }
-  .pj-feat{padding:72px 0 96px}
-  .pj-feat-grid{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:40px 72px;align-items:end}
+  @media (prefers-reduced-motion:reduce){
+    .pj-cases .card,.pj-cases .th :global(.pthumb),.pj-cases .ar{transition:box-shadow .01ms,border-color .01ms}
+    .pj-cases .card:hover,.pj-cases .card:focus-visible{transform:none}
+    .pj-cases .card:hover .th :global(.pthumb),.pj-cases .card:focus-visible .th :global(.pthumb){transform:none}
+    .pj-cases .card:hover .ar,.pj-cases .card:focus-visible .ar{transform:none}
+  }
+  .pj-feat{padding:56px 0 64px}
+  .pj-feat-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:40px 64px;align-items:center}
+  .pj-feat-text{display:flex;flex-direction:column;gap:28px}
+  .pj-feat-text .btns{margin-top:0}
+  .pj-feat-side{display:flex;flex-direction:column;gap:0;min-width:0}
+  /* four compact stats in one row under the reel, same width as the video */
+  .pj-stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));margin:18px 0 0;border-top:1px solid var(--ink)}
+  .pj-stats>div{display:flex;flex-direction:column;gap:7px;padding:14px 14px 0;min-width:0}
+  .pj-stats>div:first-child{padding-left:0;position:relative}
+  .pj-stats>div:first-child::before{content:"";position:absolute;left:0;top:-1px;width:36px;height:2px;background:var(--red)}
+  .pj-stats>div+div{border-left:1px solid var(--tan-line)}
+  .pj-stats dd{margin:0;order:0;font-weight:300;font-size:clamp(24px,2.2vw,29px);line-height:1;letter-spacing:-.02em;white-space:nowrap}
+  .pj-stats dt{order:1;font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);line-height:1.45;text-wrap:balance}
   .pj-feat h2{font-weight:300;font-size:clamp(26px,2.8vw,38px);letter-spacing:-.02em;line-height:1.1;max-width:20ch}
   .pj-feat h2 em{font-style:normal;color:var(--red)}
   .pj-feat .desc{margin-top:18px;font-weight:300;font-size:18px;line-height:1.55;max-width:52ch}
@@ -126,10 +180,27 @@ import { spec, featured, more, steps, tools } from '../data/projects';
   .pj-tools h2{font-weight:300;font-size:clamp(28px,3vw,40px);letter-spacing:-.02em;line-height:1.08}
   .pj-pills{list-style:none;display:flex;flex-wrap:wrap;gap:10px;margin-top:26px;padding:0}
   .pj-pills li{background:#fff;border:1px solid var(--tan-line);border-radius:999px;padding:8px 18px;font-size:15px;font-weight:500}
+  @media (min-width:901px) and (max-width:1120px){
+    .pj-feat-grid{gap:40px 48px}
+    .pj-stats>div{padding:14px 10px 0}
+    .pj-stats>div:first-child{padding-left:0}
+    .pj-stats dt{font-size:9.5px;letter-spacing:.06em}
+    .pj-stats dd{font-size:25px}
+  }
   @media (max-width:900px){
     .pj-grid{grid-template-columns:1fr;padding-top:36px;padding-bottom:40px}
     .pj .pj-text h1{max-width:none}
     .pj-feat{padding:48px 0 40px}
     .pj-feat-grid{grid-template-columns:1fr;gap:32px}
+    .pj-feat-text{gap:24px}
+    .pj-feat-side{gap:0}
+  }
+  @media (max-width:520px){
+    .pj-stats{grid-template-columns:repeat(2,minmax(0,1fr));margin-top:16px}
+    .pj-stats>div{padding:12px 12px 0}
+    .pj-stats>div:nth-child(odd){padding-left:0;border-left:0}
+    .pj-stats>div:nth-child(n+3){margin-top:14px;border-top:1px solid var(--tan-line);padding-top:12px}
+    .pj-stats>div:nth-child(n+3)+div{border-top:1px solid var(--tan-line)}
+    .pj-stats dd{font-size:26px}
   }
 </style>

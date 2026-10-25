@@ -1,0 +1,20 @@
+---
+/* Hero media slot for /projects (right column): the systems-reel animation (ProjectsHeroAnim) in the 16:10 frame.
+   Below 520px the frame is a little taller (36:25) so the scaled artwork and the native-size caption bar both stay legible. */
+import ProjectsHeroAnim from './ProjectsHeroAnim.astro';
+---
+<figure class="pj-vis">
+  <div class="pj-hero-media">
+    <ProjectsHeroAnim />
+  </div>
+  <figcaption><span>Systems I’ve built</span><a href="#all-h">See all projects ↓</a></figcaption>
+</figure>
+
+<style>
+  .pj-vis{margin:0}
+  .pj-hero-media{position:relative;aspect-ratio:16/10;overflow:hidden;border-radius:8px;background:#fff;border:1px solid var(--tan-line)}
+  .pj-vis figcaption{display:flex;flex-wrap:wrap;align-items:flex-start;justify-content:space-between;gap:6px 16px;margin-top:12px;font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+  .pj-vis figcaption a{color:var(--ink);text-decoration:none;border-bottom:1px solid var(--tan-line)}
+  .pj-vis figcaption a:hover{color:var(--red);border-color:var(--red)}
+  @media (max-width:520px){ .pj-hero-media{aspect-ratio:36/25} }
+</style>

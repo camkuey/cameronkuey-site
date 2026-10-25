@@ -5,8 +5,8 @@
    width; they follow the video clock using the cut times below (keep in sync
    with the render script). The poster <img> holds the 16:10 box, so nothing
    shifts. Reduced motion (or no JS, or blocked autoplay) = the still poster. */
-interface Props { href: string; label: string; }
-const { href, label } = Astro.props;
+interface Props { href: string; label: string; eager?: boolean; }
+const { href, label, eager = true } = Astro.props;
 const base = '/media/dashboard-reel/reel';
 /* [chip label, start s, end s] */
 const cuts: [string, number, number][] = [
@@ -28,7 +28,7 @@ const desc = 'Looping highlights of the Internal Dashboard, cut quickly: typing 
 <a class="reel" href={href} aria-label={label} data-reel data-cuts={JSON.stringify(cuts)}>
   <img class="reel-poster" src={`${base}-poster-1280.webp`}
     srcset={`${base}-poster-640.webp 640w, ${base}-poster-1280.webp 1280w`}
-    sizes="(max-width: 900px) 100vw, 640px" width="1280" height="800" alt="" fetchpriority="high" decoding="async" />
+    sizes="(max-width: 900px) 100vw, 640px" width="1280" height="800" alt="" fetchpriority={eager ? 'high' : undefined} loading={eager ? undefined : 'lazy'} decoding="async" />
   <video class="reel-video" muted loop playsinline preload="metadata" width="1280" height="800"
     poster={`${base}-poster-1280.webp`} aria-label={desc} disablepictureinpicture>
     <source src={`${base}.mp4`} type="video/mp4" />
