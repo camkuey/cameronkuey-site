@@ -1,35 +1,19 @@
 ---
 import Base from '../layouts/Base.astro';
-import Covers from '../components/Covers.astro';
 import CreativeNav from '../components/CreativeNav.astro';
 import Pic from '../components/Pic.astro';
-import { CATEGORIES, IMAGES, page } from '../lib/site';
-// Subsets of each category (shoot types), not a count of separate projects.
-const SHOOT_TYPES: Record<string, string> = {
-  photography: 'Weddings · Engagements · Family · Graduation',
-  'video-production': 'Promotional · Documentary · Commercial · Wedding',
-  'audio-production': 'Podcast',
-};
-const covers = CATEGORIES.map((c) => {
-  const p = page(c.slug);
-  const img = p.covers.find((x: any) => x.image)?.image ?? null;
-  return { title: c.title, href: `/${c.slug}`, image: img, tag: SHOOT_TYPES[c.slug] ?? '' };
-});
+import { CATEGORIES, IMAGES, page, fullSrc } from '../lib/site';
 
-// ---- Collage -------------------------------------------------------------------------------
-// Every tile links to its category page. Shoot types and captions per category; one neutral
-// placeholder colour for all (the photos carry the colour, not the categories).
-const SAND = '#EDE7DC';
-const KIND: Record<string, { label: string; href: string; color: string; cap: string; k: string; s: string }> = {
-  wed:  { label: 'Weddings',    href: '/wedding-photography',   color: SAND, cap: 'Wedding · Cosie Co.', k: 'Wedding', s: 'Cosie Co.' },
-  eng:  { label: 'Engagements', href: '/engagement-proposals',  color: SAND, cap: 'Engagement · Cosie Co.', k: 'Engagement', s: 'Cosie Co.' },
-  fam:  { label: 'Family',      href: '/family-photoshoots',    color: SAND, cap: 'Family · Cosie Co.', k: 'Family', s: 'Cosie Co.' },
-  grad: { label: 'Graduation',  href: '/graduation-photoshoots', color: SAND, cap: 'Graduation · Cosie Co.', k: 'Graduation', s: 'Cosie Co.' },
-  vid:  { label: 'Video',       href: '/video-production',      color: SAND, cap: 'Video production', k: 'Video production', s: '' },
-  aud:  { label: 'Podcast',     href: '/audio-production',      color: SAND, cap: 'Audio · Coffee Meets Bible', k: 'Audio', s: 'Coffee Meets Bible' },
+// ---- Mosaic ----------------------------------------------------------------------------------
+// Every photo opens in the lightbox, with a link out to its category page.
+const KIND: Record<string, { href: string; k: string; s: string; more: string }> = {
+  wed:  { href: '/wedding-photography',    k: 'Wedding',          s: 'Cosie Co.',          more: 'More weddings →' },
+  eng:  { href: '/engagement-proposals',   k: 'Engagement',       s: 'Cosie Co.',          more: 'More engagements →' },
+  fam:  { href: '/family-photoshoots',     k: 'Family',           s: 'Cosie Co.',          more: 'More family shoots →' },
+  grad: { href: '/graduation-photoshoots', k: 'Graduation',       s: 'Cosie Co.',          more: 'More graduations →' },
+  vid:  { href: '/video-production',       k: 'Video production', s: '',                   more: 'More video work →' },
+  aud:  { href: '/audio-production',       k: 'Audio',            s: 'Coffee Meets Bible', more: 'More audio →' },
 };
-// "Browse the work" tags: the medium of each category's pages
-const MEDIUM: Record<string, string> = { photography: 'Photo', 'video-production': 'Video', 'audio-production': 'Podcast' };
 const FULL: Record<string, string> = { wed: 'wedding-photography', eng: 'engagement-proposals', fam: 'family-photoshoots', grad: 'graduation-photoshoots' };
 const find = (prefix: string, n: number) => {
   const k = Object.keys(IMAGES).find((x) => x.startsWith(`${prefix}/${String(n).padStart(2, '0')}-`));
@@ -46,95 +30,275 @@ const resolve = (t: string) => {
   if (m[1] === m[1].toUpperCase()) return { kind, id: `cosie-${kind}-${String(n).padStart(2, '0')}` };
   return { kind, id: find(FULL[kind], n) };
 };
-// "tile:<kind>" drops a colour block into the flow.
 const MOSAIC_SRC = [
-  'w2', 'E6', 'g10', 'f2', 'W3', 'e9', 'tile:wed', 'f5', 'G3', 'w39', 'e20', 'v1',
-  'g9', 'F6', 'w12', 'E12', 'g19', 'a', 'W8', 'e3', 'E9', 'tile:eng', 'f24', 'g18',
-  'w35', 'F7', 'v2', 'e25', 'w22', 'G5', 'f11', 'E10', 'w40', 'g20', 'F4', 'tile:fam',
-  'v4', 'g1', 'e28', 'w36', 'E5', 'e15', 'tile:grad',
+  'w2', 'E6', 'g10', 'f2', 'W3', 'e9', 'f5', 'G3', 'w39', 'e20', 'v1',
+  'g9', 'F6', 'w12', 'E12', 'g19', 'a', 'W8', 'e3', 'E9', 'f24', 'g18',
+  'w35', 'F7', 'v2', 'e25', 'w22', 'G5', 'f11', 'E10', 'w40', 'g20', 'F4',
+  'v4', 'g1', 'e28', 'w36', 'E5', 'e15',
 ];
 const mosaic = MOSAIC_SRC.map((t) => {
-  if (t.startsWith('tile:')) { const k = t.slice(5); return { tile: true as const, kind: k, ...KIND[k] }; }
   const r = resolve(t);
   const i = IMAGES[r.id];
-  return { tile: false as const, kind: r.kind, id: r.id, ar: +(i.w / i.h).toFixed(4), color: i.color, ...KIND[r.kind] };
+  return { kind: r.kind, id: r.id, w: i.w, h: i.h, ar: +(i.w / i.h).toFixed(4), color: i.color, ...KIND[r.kind] };
 });
-const STRIP_A = ['W2', 'e2', 'f1', 'G1', 'E1', 'w5', 'F3', 'E3', 'g2', 'W6', 'E8', 'F5', 'v3', 'G4', 'W7'];
-const STRIP_B = ['E2', 'w21', 'G2', 'F8', 'e17', 'W4', 'g13', 'E11', 'f19', 'G6', 'E14', 'w6', 'f15', 'g28', 'E15'];
-const strip = (list: string[]) => list.map((t) => { const r = resolve(t); const i = IMAGES[r.id]; return { id: r.id, ar: +(i.w / i.h).toFixed(4), color: i.color, ...KIND[r.kind] }; });
-const stripA = strip(STRIP_A), stripB = strip(STRIP_B);
-const EAGER = 7; // tiles that sit in the first rows on desktop
+
+// ---- Showreel: creative-only cut of the home reel (scripted with ffmpeg; cue times match the cut) ----
+const reelCues: [number, string][] = [[0, 'Photography'], [1.67, 'Wedding film'], [5.56, 'Commercial'], [6.86, 'Engagements'], [8.33, 'Wedding film'], [10.86, 'Documentary'], [12.22, 'Wedding film'], [13.49, 'Commercial'], [14.7, 'Graduations'], [16.16, 'Documentary'], [17.63, 'Wedding film'], [18.79, 'Photography']];
+
+// ---- Category panels: one cover each, shoot types listed underneath ----
+const panels = CATEGORIES.map((c) => {
+  const img = page(c.slug).covers.find((x: any) => x.image)?.image ?? null;
+  return { title: c.title, href: `/${c.slug}`, id: img?.id as string | undefined, children: c.children };
+});
+
+// ---- Kind words: short excerpts from Cosie Co. reviews on WeddingWire ----
+const WW = 'https://www.weddingwire.com/reviews/cameron-kuey-productions-san-diego/9b01103d6f1bea3d.html';
+const quotes = [
+  { q: 'They even went the extra mile (literally) by hiking up a steep trail for us, just so we could get a couple of good photos at this one spot.', who: 'Timothy', what: 'Engagement, Yosemite' },
+  { q: 'He helped make my husband and I (and bridal party) feel comfortable throughout our entire wedding day, which shows in our final photos.', who: 'Emily', what: 'Wedding photography' },
+  { q: 'Cameron’s undergraduate studies in film clearly manifest in his crisp editing.', who: 'Daniel', what: 'Wedding film' },
+];
 ---
 <Base title="Creative work" section="creative"
   description="Creative work by Cameron Kuey: wedding, engagement, family and graduation photography; video production; and the Coffee Meets Bible podcast.">
+<div class="cine">
+  <header class="cv-hero" aria-labelledby="cv-h">
+    <Pic id="photography/02-3f39fcda" class="cv-bg" sizes="100vw" eager
+      alt="A couple laughing on a granite outcrop above Yosemite Valley as he lifts her off the ground, with pines and snowy peaks behind them" />
+    <div class="cv-scrim" aria-hidden="true"></div>
+    <div class="wrap cv-copy">
+      <p class="ey">Creative · Since 2012</p>
+      <h1 id="cv-h">Photography, film<br />&amp; audio.</h1>
+      <p class="cv-intro">Weddings, engagements, families and films, made through Cosie Co. and The Cultivation Project.</p>
+      <div class="btns"><a class="btn solid" href="#reel">Watch the reel ↓</a><a class="btn cv-ghost" href="#types">Browse by type</a></div>
+    </div>
+  </header>
+
+  <dl class="cv-stats wrap">
+    <div><dt>200+</dt><dd>Clients served</dd></div>
+    <div><dt>100+</dt><dd>Films and podcast episodes</dd></div>
+    <div><dt>5.0</dt><dd><a href={WW} target="_blank" rel="noopener">19 reviews on WeddingWire ↗</a></dd></div>
+    <div><dt>2012</dt><dd>Behind the camera since</dd></div>
+  </dl>
+
   <CreativeNav current="creative" />
-  <header class="pg"><div class="wrap pg-grid">
-    <div>
-      <p class="ey">Creative</p>
-      <h1>Photography, film <em>&amp; audio.</em></h1>
-      <p class="intro">Ten years of work through Cosie Co. and The Cultivation Project: 200+ clients served as a freelancer, and 100+ documentaries, promotional videos and podcast episodes produced with a team of 10+.</p>
-      <ul class="pills" aria-label="Browse by type" style="margin-top:28px">
-        <li><a href="/creative" aria-current="page">All</a></li>
-        {['wed', 'eng', 'fam', 'grad', 'vid', 'aud'].map((k) => <li><a href={KIND[k].href}>{KIND[k].label}</a></li>)}
-      </ul>
+
+  <section id="reel" class="cv-sec" aria-labelledby="reel-h"><div class="wrap">
+    <div class="sec-top"><div><p class="ey"><b>01</b> / Showreel</p><h2 id="reel-h">Ten years, <em>twenty seconds.</em></h2></div></div>
+    <div class="cv-reel" data-cues={JSON.stringify(reelCues)}>
+      <video muted loop playsinline preload="none" poster="/media/creative-reel/poster.webp" aria-label="Silent showreel: wedding films, engagement and graduation photos, commercials and documentary interviews" disablepictureinpicture></video>
+      <span class="cv-chip" aria-hidden="true">{reelCues[0][1]}</span>
+      <button type="button" class="cv-pp" aria-pressed="false">Pause</button>
     </div>
-    <div class="nums stack">
-      <div><b>200+</b><span>Clients served as a freelancer</span></div>
-      <div><b>100+</b><span>Documentaries, videos and podcast episodes</span></div>
-      <div><b>10+</b><span>Person production team</span></div>
-      <div><b>2012</b><span>First year as a photographer and filmmaker</span></div>
-    </div>
-  </div></header>
-  <section class="cl-sec" aria-label="Photo mosaic"><div class="wrap">
-    <div class="cl-mosaic">
-      {mosaic.filter((t) => !t.tile).map((t: any, n) => (
-        <a class="cl-ph" href={t.href} style={`--ar:${t.ar}`} data-wide={t.ar >= 1.2 ? '' : undefined}>
-          <span class="cl-img"><Pic id={t.id} sizes="(max-width: 700px) 50vw, 340px" eager={n < EAGER} /></span>
+  </div></section>
+
+  <section class="cv-sec" aria-labelledby="pics-h" style="padding-top:0"><div class="wrap">
+    <div class="sec-top"><div><p class="ey"><b>02</b> / Photography</p><h2 id="pics-h">Selected frames</h2></div><p class="cv-hint">Click any photo to view it full size</p></div>
+    <div class="cl-mosaic" data-gallery>
+      {mosaic.map((t, n) => (
+        <a class="cl-ph" href={fullSrc(t.id)} data-lb data-w={t.w} data-h={t.h} data-cap={t.s ? `${t.k} · ${t.s}` : t.k}
+          data-more={t.href} data-more-text={t.more} style={`--ar:${t.ar};--c:${t.color}`}>
+          <span class="cl-img"><Pic id={t.id} sizes="(max-width: 700px) 50vw, 340px" eager={n < 4} /></span>
           <span class="cap-row"><span class="k">{t.k}</span>{t.s && <span class="s">{t.s}</span>}</span>
         </a>
       ))}
     </div>
   </div></section>
-  <section class="film" aria-labelledby="film-h"><div class="wrap film-grid">
-    <a class="film-shot" href="/commercials-social-media-ads" aria-label="Watch Silent Night, a short film for Alabaster Co.">
-      <Pic id="home-film-silent-night" sizes="(max-width: 900px) 100vw, 720px" alt="Silent Night, a short film for Alabaster Co.: hands opening a book beside candles, small lit houses and a Christmas tree" />
-      <span class="hm-play" aria-hidden="true"></span>
-    </a>
-    <div>
-      <p class="ey"><b>01</b> / Featured film</p>
-      <h2 id="film-h">Silent Night</h2>
-      <p>A short film for Alabaster Co.</p>
-      <a class="btn" href="/commercials-social-media-ads">Watch the film →</a>
-    </div>
-  </div></section>
-  <section class="cl-sec cl-strips" aria-label="More frames"><div class="wrap">
-    <div class="sec-top"><div><p class="ey"><b>02</b> / Hover to pause</p><h2>More frames</h2></div></div>
-  </div>
-    {[stripA, stripB].map((row, r) => (
-      <div class={`cl-strip${r ? ' rev' : ''}`}>
-        <div class="cl-track">
-          {[0, 1].map((copy) => row.map((t) => (
-            <a href={t.href} style={`--ar:${t.ar};--c:${t.color}`} tabindex={copy ? -1 : undefined} aria-hidden={copy ? 'true' : undefined} class={copy ? 'dup' : undefined}>
-              <Pic id={t.id} sizes="(max-width: 700px) 240px, 320px" alt={copy ? '' : undefined} />
-            </a>
-          )))}
-        </div>
+
+  <section class="cv-film" aria-labelledby="film-h">
+    <div class="wrap">
+      <p class="ey"><b>03</b> / Featured film</p>
+      <div class="cv-film-frame">
+        <button type="button" class="cv-film-play" data-embed="https://www.youtube-nocookie.com/embed/YqMJTaWYBIw?autoplay=1&rel=0"
+          data-title="Silent Night, a short film for Alabaster Co." data-allow="autoplay; fullscreen; picture-in-picture; encrypted-media"
+          aria-label="Play Silent Night, a short film for Alabaster Co.">
+          <Pic id="home-film-silent-night" sizes="(max-width: 1240px) 100vw, 1200px" alt="" />
+          <span class="cv-film-copy">
+            <span class="cv-play" aria-hidden="true"></span>
+            <span><b id="film-h">Silent Night</b><small>A short film for Alabaster Co. · Plays from YouTube</small></span>
+          </span>
+        </button>
       </div>
-    ))}
-  </section>
-  <section class="sec" style="padding-top:24px"><div class="wrap">
-    <div class="sec-top"><div><p class="ey"><b>03</b> / By category</p><h2>Shoot types</h2></div></div>
-    <Covers covers={covers} three eager={false} />
-  </div></section>
-  <section class="sec" style="padding-top:0"><div class="wrap">
-    <div class="sec-top"><div><p class="ey"><b>04</b> / Index</p><h2>Browse the work</h2></div><a class="more" href="/home">About me →</a></div>
-    <div class="browse">
-      {CATEGORIES.map((c) => (
-        <div>
-          <h3><a href={`/${c.slug}`}>{c.title}</a></h3>
-          <ul>{c.children.map((ch) => <li><a href={`/${ch.slug}`}>{ch.title}<span>{MEDIUM[c.slug] ?? ''}</span></a></li>)}</ul>
-        </div>
-      ))}
     </div>
+  </section>
+
+  <section class="cv-sec" aria-labelledby="words-h"><div class="wrap">
+    <div class="sec-top"><div><p class="ey"><b>04</b> / Kind words</p><h2 id="words-h">From the couples <em>and families.</em></h2></div><a class="more" href={WW} target="_blank" rel="noopener">All 19 reviews ↗</a></div>
+    <ul class="cv-quotes">
+      {quotes.map((x) => <li><blockquote>“{x.q}”</blockquote><p><b>{x.who}</b> · {x.what}</p></li>)}
+    </ul>
   </div></section>
+
+  <section id="types" class="cv-sec" aria-labelledby="types-h" style="padding-top:0"><div class="wrap">
+    <div class="sec-top"><div><p class="ey"><b>05</b> / By type</p><h2 id="types-h">Browse the work</h2></div><a class="more" href="/home">About me →</a></div>
+    <ul class="cv-panels">
+      {panels.map((p) => (
+        <li>
+          <a class="cv-panel" href={p.href}>
+            {p.id && IMAGES[p.id] && <Pic id={p.id} sizes="(max-width: 900px) 100vw, 400px" />}
+            <span class="cv-panel-t">{p.title} <span aria-hidden="true">→</span></span>
+          </a>
+          <ul class="cv-sub">{p.children.map((ch) => <li><a href={`/${ch.slug}`}>{ch.title}</a></li>)}</ul>
+        </li>
+      ))}
+    </ul>
+  </div></section>
+</div>
 </Base>
+
+<style is:global>
+/* Creative page "cinema mode": dark ground so photos and film carry the colour. Scoped to .cine and pages that contain it. */
+body:has(.cine){background:#141210}
+.cine{--bg:#141210;--ink:#F3EEE6;--muted:#A79F93;--line:rgba(243,238,230,.14);--line-2:rgba(243,238,230,.28);--tan-line:rgba(243,238,230,.16);
+  --accent:#E08A7C;--red:#E08A7C;color:var(--ink);background:var(--bg)}
+.cine .btn{border-color:var(--ink);color:var(--ink)}
+.cine .btn.solid{background:#A32121;border-color:#A32121;color:#fff}
+.cine .btn.solid:hover{background:#FAF8F4;border-color:#FAF8F4;color:#141210}
+.cine h2 em,.cine h1 em{font-style:normal;color:var(--accent)}
+.cine .sec-top h2{font-weight:300;font-size:clamp(30px,3.4vw,48px);letter-spacing:-.025em;line-height:1.06}
+.cine .more{color:var(--ink)}
+.cine .subnav{border-color:var(--line)}
+
+/* nav: transparent over the hero photo, dark bar once scrolled */
+body:has(.cine) header.nav{margin-bottom:-69px;transition:background-color .25s ease,border-color .25s ease}
+body:has(.cine) header.nav:not(.scrolled){background:transparent;border-bottom-color:transparent;-webkit-backdrop-filter:none;backdrop-filter:none}
+body:has(.cine) header.nav.scrolled{background:rgba(20,18,16,.9);border-bottom-color:rgba(243,238,230,.12)}
+body:has(.cine) header.nav .logo,body:has(.cine) header.nav .logo span{color:#FAF8F4}
+body:has(.cine) header.nav nav.primary a{color:rgba(250,248,244,.82)}
+body:has(.cine) header.nav nav.primary a:hover,body:has(.cine) header.nav nav.primary a[aria-current]{color:#fff;border-bottom-color:#fff}
+body:has(.cine) header.nav .menu-btn{color:#FAF8F4;border-color:rgba(250,248,244,.85)}
+body.menu-open:has(.cine) header.nav{background:rgba(250,248,244,.97);border-bottom-color:#E2DDD4}
+body.menu-open:has(.cine) header.nav .logo{color:#1B1A18}
+body.menu-open:has(.cine) header.nav .logo span{color:#881919}
+body.menu-open:has(.cine) header.nav .menu-btn{color:#1B1A18;border-color:#1B1A18}
+
+/* hero: full-bleed photo with a very slow push-in */
+.cv-hero{position:relative;isolation:isolate;overflow:hidden;height:clamp(600px,92svh,1000px);display:flex;align-items:flex-end;color:#FAF8F4}
+.cv-hero>picture{position:absolute;inset:0;z-index:-2;display:block}
+.cv-bg{width:100%;height:100%;max-width:none;object-fit:cover;object-position:55% 40%;display:block;transform-origin:58% 45%}
+@media (prefers-reduced-motion:no-preference){.cv-bg{animation:cv-push 24s ease-out both}}
+@keyframes cv-push{from{transform:scale(1.1)}to{transform:scale(1)}}
+.cv-scrim{position:absolute;inset:0;z-index:-1;pointer-events:none;background:
+  linear-gradient(to bottom,rgba(20,18,16,.55) 0,rgba(20,18,16,0) 160px),
+  linear-gradient(to right,rgba(20,18,16,.72) 0,rgba(20,18,16,.4) 38%,rgba(20,18,16,0) 62%),
+  linear-gradient(to top,#141210 0,rgba(20,18,16,.6) 22%,rgba(20,18,16,0) 50%)}
+.cv-copy{padding-bottom:72px;width:100%}
+.cv-copy .ey{color:rgba(250,248,244,.82)}
+.cv-hero h1{font-weight:300;font-size:clamp(42px,4.6vw,66px);line-height:1.02;letter-spacing:-.035em;text-shadow:0 2px 30px rgba(20,18,16,.35)}
+.cv-intro{margin-top:20px;max-width:40ch;font-weight:300;font-size:19px;line-height:1.55;color:rgba(250,248,244,.92)}
+.cv-hero .btns{margin-top:30px}
+.cv-hero .btn.cv-ghost{border-color:rgba(250,248,244,.85);color:#FAF8F4;background:rgba(20,18,16,.2)}
+.cv-hero .btn.cv-ghost:hover{background:#FAF8F4;color:#141210}
+
+/* stats strip */
+.cv-stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px;padding-top:28px;padding-bottom:36px}
+.cv-stats div{border-top:1px solid var(--line-2);padding-top:14px}
+.cv-stats div:first-child{border-top:2px solid var(--accent)}
+.cv-stats dt{font-weight:300;font-size:clamp(28px,2.8vw,40px);line-height:1;letter-spacing:-.02em}
+.cv-stats dd{margin-top:8px;font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);line-height:1.5}
+.cv-stats dd a{color:var(--muted);text-decoration:none;border-bottom:1px solid var(--line-2)}
+.cv-stats dd a:hover{color:var(--ink)}
+
+.cv-sec{padding:88px 0}
+.cv-hint{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+
+/* showreel */
+.cv-reel{position:relative;aspect-ratio:16/9;overflow:hidden;border-radius:6px;background:#0c0b0a url(/media/creative-reel/poster.webp) center/cover}
+.cv-reel video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.cv-chip{position:absolute;top:16px;left:16px;padding:6px 11px 5px;font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:#FAF8F4;border:1px solid rgba(250,248,244,.55);border-radius:2px;background:rgba(20,18,16,.45)}
+.cv-pp{position:absolute;right:14px;bottom:14px;padding:8px 14px;background:rgba(20,18,16,.5);border:1px solid rgba(250,248,244,.5);border-radius:999px;color:#FAF8F4;font:500 11px/1 var(--fb);letter-spacing:.16em;text-transform:uppercase;cursor:pointer}
+.cv-pp:hover{background:rgba(20,18,16,.75)}
+
+/* mosaic on dark */
+.cine .cl-ph{border-radius:2px}
+
+/* featured film: letterboxed panel, plays in place */
+.cv-film{padding:24px 0 96px}
+.cv-film-frame{position:relative;aspect-ratio:2.39/1;overflow:hidden;border-radius:6px;background:#000}
+.cv-film-frame:has(iframe){aspect-ratio:16/9}
+.cv-film-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.cv-film-play{position:absolute;inset:0;width:100%;height:100%;padding:0;border:0;background:none;cursor:pointer;color:#FAF8F4;text-align:left;font:inherit}
+.cv-film-play picture,.cv-film-play img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;transition:transform 1.2s cubic-bezier(.2,.7,.2,1)}
+.cv-film-play:hover img{transform:scale(1.03)}
+.cv-film-play::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(10,9,8,.8),rgba(10,9,8,.1) 60%)}
+.cv-film-copy{position:absolute;z-index:1;left:clamp(20px,4vw,48px);bottom:clamp(20px,4vw,44px);display:flex;align-items:center;gap:22px}
+.cv-film-copy b{display:block;font-weight:300;font-size:clamp(30px,4vw,56px);line-height:1;letter-spacing:-.03em}
+.cv-film-copy small{display:block;margin-top:8px;font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:rgba(250,248,244,.8)}
+.cv-play{flex:none;width:72px;height:72px;border-radius:50%;border:1.5px solid rgba(250,248,244,.9);display:grid;place-items:center;transition:background-color .25s,transform .25s}
+.cv-play::before{content:"";margin-left:5px;border-left:18px solid #FAF8F4;border-top:11px solid transparent;border-bottom:11px solid transparent}
+.cv-film-play:hover .cv-play{background:#A32121;border-color:#A32121;transform:scale(1.06)}
+.cv-film-play:focus-visible{outline:2px solid var(--accent);outline-offset:4px}
+
+/* kind words */
+.cv-quotes{list-style:none;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:40px}
+.cv-quotes li{border-top:1px solid var(--line-2);padding-top:22px}
+.cv-quotes blockquote{font-weight:300;font-size:clamp(19px,1.6vw,23px);line-height:1.4;letter-spacing:-.01em}
+.cv-quotes p{margin-top:16px;font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.cv-quotes p b{color:var(--ink);font-weight:500}
+
+/* category panels */
+.cv-panels{list-style:none;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px}
+.cv-panel{position:relative;display:block;aspect-ratio:4/5;overflow:hidden;border-radius:6px;background:#221f1b;color:#FAF8F4;text-decoration:none}
+.cv-panel picture,.cv-panel img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;transition:transform .9s cubic-bezier(.2,.7,.2,1)}
+.cv-panel::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(10,9,8,.78),rgba(10,9,8,0) 55%)}
+.cv-panel:hover img{transform:scale(1.05)}
+.cv-panel-t{position:absolute;z-index:1;left:22px;bottom:20px;font-weight:300;font-size:clamp(24px,2.2vw,32px);letter-spacing:-.02em}
+.cv-panel-t span{display:inline-block;transition:transform .25s}
+.cv-panel:hover .cv-panel-t span{transform:translateX(6px)}
+.cv-sub{list-style:none;margin-top:14px}
+.cv-sub li{border-bottom:1px solid var(--line)}
+.cv-sub a{display:block;padding:10px 0;color:var(--muted);text-decoration:none;font-size:15px}
+.cv-sub a:hover{color:var(--ink)}
+
+@media (max-width:900px){
+  .cv-copy{padding-bottom:56px}
+  .cv-stats{grid-template-columns:repeat(2,minmax(0,1fr));gap:20px 16px}
+  .cv-sec{padding:64px 0}
+  .cv-reel{aspect-ratio:4/5}
+  .cv-film-frame{aspect-ratio:16/10}
+  .cv-play{width:56px;height:56px}
+  .cv-quotes,.cv-panels{grid-template-columns:1fr;gap:28px}
+  .cv-panel{aspect-ratio:16/10}
+  .cine .sec-top .cv-hint{display:none}
+}
+@media (max-width:640px){
+  .cv-hero{height:clamp(560px,88svh,820px)}
+  .cv-scrim{background:linear-gradient(to bottom,rgba(20,18,16,.55) 0,rgba(20,18,16,0) 120px),linear-gradient(to top,#141210 0,rgba(20,18,16,.75) 40%,rgba(20,18,16,.1) 75%)}
+  .cv-intro{font-size:16.5px}
+}
+@media (prefers-reduced-motion:reduce){.cv-pp{display:none}}
+</style>
+
+<script>
+  // Showreel: plays muted while on screen (phones get the vertical cut), chip follows the cue list, Pause/Play toggle.
+  const reel = document.querySelector<HTMLElement>('.cv-reel');
+  const vid = reel?.querySelector('video');
+  if (reel && vid && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const chip = reel.querySelector<HTMLElement>('.cv-chip')!;
+    const pp = reel.querySelector<HTMLButtonElement>('.cv-pp')!;
+    const cues: [number, string][] = JSON.parse(reel.dataset.cues || '[]');
+    let loaded = false, paused = false, visible = false, last = -1;
+    const load = () => {
+      if (loaded) return; loaded = true;
+      const m = matchMedia('(max-width: 900px)').matches ? '-m' : '';
+      if (m) vid.poster = '/media/creative-reel/poster-m.webp';
+      [['webm', 'video/webm'], ['mp4', 'video/mp4']].forEach(([ext, type]) => {
+        const s = document.createElement('source'); s.src = `/media/creative-reel/creative-reel${m}.${ext}`; s.type = type; vid.appendChild(s);
+      });
+      vid.load();
+    };
+    const sync = () => {
+      if (paused || !visible || document.hidden) { vid.pause(); return; }
+      load(); vid.play().catch(() => {});
+    };
+    vid.addEventListener('timeupdate', () => {
+      let i = 0; while (i + 1 < cues.length && cues[i + 1][0] <= vid.currentTime) i++;
+      if (i !== last) { last = i; chip.textContent = cues[i][1]; }
+    });
+    pp.addEventListener('click', () => {
+      paused = !paused; pp.textContent = paused ? 'Play' : 'Pause'; pp.setAttribute('aria-pressed', String(paused)); sync();
+    });
+    document.addEventListener('visibilitychange', sync);
+    new IntersectionObserver(([e]) => { visible = e.isIntersecting; sync(); }, { threshold: 0.25 }).observe(reel);
+  }
+</script>

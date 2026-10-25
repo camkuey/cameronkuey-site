@@ -114,6 +114,7 @@ const nav = [
     <div class="lb-top"><span class="lb-count" aria-live="polite"></span><button type="button" class="lb-close">Close ✕</button></div>
     <div class="lb-stage"><img alt="" /></div>
     <p class="lb-cap"></p>
+    <a class="lb-more" hidden></a>
     <button type="button" class="lb-prev" aria-label="Previous image">←</button>
     <button type="button" class="lb-next" aria-label="Next image">→</button>
   </dialog>
@@ -162,6 +163,7 @@ const nav = [
     const stage = dlg.querySelector<HTMLElement>('.lb-stage')!;
     const cap = dlg.querySelector<HTMLElement>('.lb-cap')!;
     const count = dlg.querySelector<HTMLElement>('.lb-count')!;
+    const more = dlg.querySelector<HTMLAnchorElement>('.lb-more')!;
     let items: HTMLAnchorElement[] = [];
     let idx = 0;
     let opener: HTMLElement | null = null;
@@ -173,6 +175,9 @@ const nav = [
       img.src = a.href;
       img.alt = a.querySelector('img')?.alt || '';
       cap.textContent = a.dataset.cap || img.alt;
+      // optional link out of the lightbox (data-more / data-more-text on the thumbnail)
+      more.hidden = !a.dataset.more;
+      if (a.dataset.more) { more.href = a.dataset.more; more.textContent = a.dataset.moreText || 'See more →'; }
       count.textContent = `${idx + 1} / ${items.length}`;
       stage.scrollTop = 0;
       const multi = items.length > 1;
