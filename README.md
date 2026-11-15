@@ -68,17 +68,20 @@ The original images (about 800 MB) are not in this repo. To re-run the pipeline,
 3. Link it from `src/pages/projects.astro` (a row in the list or a build card) and, if relevant, from `experience.astro`.
 4. Real screenshots: replace the "Screenshots coming soon" placeholders with `<Pic>` once they are sanitized (sample data, no personal info).
 
-## Deploy: Cloudflare Pages
+## Deploy: Cloudflare Worker
 
-| Setting | Value |
-|---|---|
-| Framework preset | Astro |
-| Build command | `npm run build` |
-| Build output directory | `dist` |
-| Node version | 22 — set the env var `NODE_VERSION=22.23.4` (or rely on `.nvmrc`) |
+The site is a Worker with static assets (Cloudflare Git integration):
 
-The sitemap (`/sitemap-index.xml`) and canonical URLs use `https://www.cameronkuey.com` (see `astro.config.mjs`).
-The output fits Cloudflare limits: about 175 MB, around 1,600 files, and the largest file is about 4.5 MB.
+```sh
+npm run build
+npx wrangler deploy
+```
+
+Node 22.23.4 or newer (`.nvmrc`). The sitemap (`/sitemap-index.xml`) and canonical URLs use `https://www.cameronkuey.com` (see `astro.config.mjs`). The Worker script runs only for `/furniture/api/*`. Every other URL is a static asset from `dist/`.
+
+## Furniture Match
+
+Hidden page at `/furniture/` (not in the nav or the sitemap, `noindex`). It runs on free plans: SerpApi's free search allowance is the only secret, and photo descriptions use the Workers AI binding. With `SERPAPI_API_KEY` unset, the page stays in demo mode. Details, the one-time Llama license accept, and the Workers Free CPU notes are in `docs/furniture.md`.
 
 ## Notes
 

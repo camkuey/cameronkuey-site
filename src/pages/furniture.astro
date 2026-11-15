@@ -1,0 +1,283 @@
+---
+// Standalone document. Do not wrap this page in Base.astro: the portfolio
+// layout adds the site nav, footer, and the portfolio apple-touch-icon.
+// Furniture Match stays off that nav and installs as its own home-screen app.
+const description = "Photograph a piece of furniture and find close matches for sale.";
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Furniture Match</title>
+    <meta name="description" content={description} />
+    <meta name="robots" content="noindex, nofollow" />
+    <link rel="canonical" href="https://www.cameronkuey.com/furniture/" />
+    <meta name="theme-color" content="#FAF8F4" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="Furniture Match" />
+    <link rel="manifest" href="/furniture/manifest.webmanifest" />
+    <link rel="icon" href="/furniture/icons/icon-32.png" type="image/png" sizes="32x32" />
+    <link rel="apple-touch-icon" href="/furniture/icons/apple-touch-icon.png" />
+    <link rel="preload" href="/fonts/jost-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/jost-latin-500-normal.woff2" as="font" type="font/woff2" crossorigin />
+  </head>
+  <body>
+    <div class="screen" data-screen data-state="idle">
+      <header class="top">
+        <p class="eyebrow">Furniture Match</p>
+        <button id="restart" class="btn" type="button" hidden>New photo</button>
+      </header>
+
+      <p id="notice" class="notice" hidden></p>
+      <div id="install-hint" class="hint" hidden>
+        <p>Add to Home Screen. Tap Share, then Add to Home Screen.</p>
+        <button id="dismiss-install" type="button">Dismiss</button>
+      </div>
+
+      <section data-panel="idle">
+        <h1>Photograph a piece. <em>Find it for sale.</em></h1>
+        <p class="lede">
+          Point the camera at a chair, sofa, table, or lamp. Furniture Match looks for the closest versions you can buy.
+        </p>
+        <div class="actions">
+          <button id="take-photo" class="btn solid big" type="button">Take a photo</button>
+          <button id="choose-library" class="btn big" type="button">Choose from library</button>
+          <p class="fine">A compressed copy of the photo is sent to match it. The original stays on this phone.</p>
+        </div>
+      </section>
+
+      <section data-panel="loading">
+        <figure class="frame">
+          <img id="preview" alt="The photo you took" hidden />
+        </figure>
+        <p id="loading-caption" class="loading-title">Matching this piece</p>
+        <p class="lede">Comparing it with listings that look the same.</p>
+        <div class="bar" aria-hidden="true"><span></span></div>
+      </section>
+
+      <section data-panel="results">
+        <p id="description" class="detected"></p>
+        <div class="summary">
+          <p id="price-range" class="range" hidden></p>
+          <p id="result-count" class="count"></p>
+        </div>
+        <div id="results" class="results"></div>
+        <p id="empty" class="lede" hidden>No close matches turned up. Try a tighter photo of a single piece.</p>
+      </section>
+
+      <section data-panel="error">
+        <h1>That search did not finish.</h1>
+        <p id="error-text" class="lede"></p>
+        <div class="actions">
+          <button id="retry" class="btn solid big" type="button">Try again</button>
+        </div>
+      </section>
+    </div>
+
+    <input id="camera-input" class="file-input" type="file" accept="image/*" capture="environment" />
+    <input id="library-input" class="file-input" type="file" accept="image/*" />
+
+    <script>
+      import { mountFurnitureMatch } from "../furniture/client";
+      mountFurnitureMatch();
+    </script>
+  </body>
+</html>
+
+<style is:global>
+  @font-face {
+    font-family: "Jost";
+    src: url(/fonts/jost-latin-300-normal.woff2) format("woff2");
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: "Jost";
+    src: url(/fonts/jost-latin-400-normal.woff2) format("woff2");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: "Jost";
+    src: url(/fonts/jost-latin-500-normal.woff2) format("woff2");
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: "Jost";
+    src: url(/fonts/jost-latin-600-normal.woff2) format("woff2");
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  :root {
+    --bg: #faf8f4;
+    --ink: #1b1a18;
+    --muted: #6b665e;
+    --line: #e2ddd4;
+    --accent: #881919;
+    --card: #f1ece4;
+    --paper: #fffdf9;
+    --red-t: #f6eae7;
+    --font: "Jost", system-ui, sans-serif;
+    color-scheme: light;
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; min-height: 100%; }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--font);
+    font-size: 17px;
+    line-height: 1.5;
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+  }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+  [hidden] { display: none !important; }
+  img { display: block; max-width: 100%; }
+
+  .screen {
+    width: min(100%, 480px);
+    min-height: 100dvh;
+    margin: 0 auto;
+    padding: 0 20px max(24px, env(safe-area-inset-bottom));
+    display: flex;
+    flex-direction: column;
+  }
+  .top {
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: max(16px, env(safe-area-inset-top)) 0 12px;
+    background: rgba(250, 248, 244, 0.92);
+    backdrop-filter: blur(10px);
+  }
+  .eyebrow {
+    margin: 0;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  h1 {
+    margin: 12px 0 0;
+    font-weight: 300;
+    font-size: clamp(36px, 10vw, 48px);
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+  }
+  h1 em { font-style: normal; color: var(--accent); }
+  .lede { margin: 16px 0 0; font-weight: 300; font-size: 19px; line-height: 1.45; max-width: 34ch; }
+  .fine { margin: 4px 0 0; color: var(--muted); font-size: 13px; line-height: 1.45; }
+
+  [data-state="idle"] [data-panel="idle"],
+  [data-state="loading"] [data-panel="loading"],
+  [data-state="results"] [data-panel="results"],
+  [data-state="error"] [data-panel="error"] { display: flex; }
+  [data-panel] { display: none; flex-direction: column; }
+  [data-panel="idle"] { flex: 1; }
+  .actions { margin-top: auto; display: flex; flex-direction: column; gap: 12px; padding-top: 32px; }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 52px;
+    padding: 14px 22px;
+    border-radius: 999px;
+    border: 1px solid var(--ink);
+    background: transparent;
+    color: var(--ink);
+    font: 500 13px/1.2 var(--font);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    text-decoration: none;
+    cursor: pointer;
+    touch-action: manipulation;
+  }
+  .btn.solid { background: var(--accent); border-color: var(--accent); color: #fff; }
+  .btn.big { width: 100%; min-height: 64px; font-size: 14px; }
+  .btn:hover { background: var(--ink); border-color: var(--ink); color: var(--bg); }
+  .top .btn { min-height: 44px; padding: 10px 16px; }
+
+  .notice, .hint {
+    margin: 4px 0 8px;
+    padding: 12px 14px;
+    background: var(--red-t);
+    color: var(--ink);
+    border-radius: 12px;
+    font-size: 14px;
+    line-height: 1.4;
+  }
+  .hint { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+  .hint p { margin: 0; }
+  .hint button {
+    border: 0;
+    background: transparent;
+    color: var(--accent);
+    font: 500 12px/1 var(--font);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    min-height: 44px;
+    cursor: pointer;
+  }
+
+  .frame {
+    margin: 8px 0 0;
+    background: var(--card);
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+  }
+  .frame img { width: 100%; height: 100%; object-fit: cover; }
+  .loading-title { margin: 18px 0 0; font-size: 22px; font-weight: 500; letter-spacing: -0.02em; }
+  .bar { height: 3px; margin-top: 22px; background: var(--line); overflow: hidden; }
+  .bar span { display: block; height: 100%; width: 40%; background: var(--accent); animation: slide 1.1s ease-in-out infinite; }
+  @keyframes slide { 0% { transform: translateX(-120%); } 100% { transform: translateX(320%); } }
+  @media (prefers-reduced-motion: reduce) {
+    .bar span { animation: none; width: 100%; }
+  }
+
+  .detected { margin: 8px 0 0; font-weight: 300; font-size: 20px; line-height: 1.35; letter-spacing: -0.02em; }
+  .summary { display: flex; justify-content: space-between; gap: 12px; align-items: baseline; margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--ink); }
+  .range { margin: 0; font-weight: 500; font-size: 18px; }
+  .count { margin: 0; color: var(--muted); font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 500; text-align: right; }
+  .results { display: flex; flex-direction: column; gap: 28px; margin-top: 22px; }
+  .card { background: var(--paper); border: 1px solid var(--line); }
+  .card-photo { aspect-ratio: 4 / 3; background: var(--card); }
+  .card-photo img { width: 100%; height: 100%; object-fit: cover; }
+  .photo-fallback { height: 100%; display: grid; place-items: center; font-size: 42px; font-weight: 300; color: var(--accent); }
+  .card-body { display: flex; flex-direction: column; gap: 6px; padding: 14px 14px 16px; }
+  .closeness { margin: 0; font-size: 11px; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); }
+  .closeness-exact { color: var(--accent); }
+  .card-body h2 { margin: 0; font-size: 22px; font-weight: 400; letter-spacing: -0.02em; line-height: 1.2; }
+  .store { margin: 0; color: var(--muted); font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 500; }
+  .price { margin: 4px 0 8px; font-size: 20px; font-weight: 500; }
+  .card-body .btn { width: 100%; }
+
+  .file-input {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+</style>

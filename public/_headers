@@ -1,0 +1,10 @@
+# Furniture Match stays out of search indexes. Workers static assets apply
+# these rules. They do not apply to /furniture/api/*, which sets the header itself.
+/furniture*
+	X-Robots-Tag: noindex, nofollow
+
+/furniture/manifest.webmanifest
+	Content-Type: application/manifest+json
+
+/furniture/sw.js
+	Cache-Control: no-cache
