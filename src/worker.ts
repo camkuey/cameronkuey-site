@@ -1,5 +1,5 @@
 import { handleFurnitureApi } from "./furniture/api";
-import type { MatchEnv, WorkersAi } from "./furniture/types";
+import type { LogContext, MatchEnv, WorkersAi } from "./furniture/types";
 
 interface AssetBinding {
   fetch(request: Request): Promise<Response>;
@@ -11,10 +11,10 @@ export interface Env extends MatchEnv {
 }
 
 export default {
-  async fetch(request: Request, env: Env): Promise<Response> {
+  async fetch(request: Request, env: Env, ctx: LogContext): Promise<Response> {
     const { pathname } = new URL(request.url);
     if (pathname === "/furniture/api" || pathname.startsWith("/furniture/api/")) {
-      return handleFurnitureApi(request, env);
+      return handleFurnitureApi(request, env, ctx);
     }
     return env.ASSETS.fetch(request);
   },

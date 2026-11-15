@@ -25,6 +25,10 @@ export interface MatchResponse {
   results: ProductMatch[];
   notice: string | null;
   missingKeys: string[];
+  /** Present on live searches only. Demo searches are not logged. */
+  entryId?: string;
+  /** Shopping query used for the sheet log. Omitted in demo mode. */
+  query?: string;
 }
 
 export interface StatusResponse {
@@ -41,4 +45,12 @@ export interface WorkersAi {
 export interface MatchEnv {
   SERPAPI_API_KEY?: string;
   AI?: WorkersAi;
+  /** Apps Script web app URL. Logging is skipped when this or the secret is empty. */
+  LOG_WEBHOOK_URL?: string;
+  /** Shared secret sent to the Apps Script as the `k` query parameter. */
+  LOG_WEBHOOK_SECRET?: string;
+}
+
+export interface LogContext {
+  waitUntil(promise: Promise<unknown>): void;
 }

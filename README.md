@@ -81,7 +81,7 @@ Node 22.23.4 or newer (`.nvmrc`). The sitemap (`/sitemap-index.xml`) and canonic
 
 ## Furniture Match
 
-Hidden page at `/furniture/` (not in the nav or the sitemap, `noindex`). It runs on free plans: SerpApi's free search allowance is the only secret, and photo descriptions use the Workers AI binding. With `SERPAPI_API_KEY` unset, the page stays in demo mode. Details, the one-time Llama license accept, and the Workers Free CPU notes are in `docs/furniture.md`.
+Hidden page at `/furniture/` (not in the nav or the sitemap, `noindex`). It runs on free plans: SerpApi's free search allowance and an optional Google Sheet log. Photo descriptions use the Workers AI binding. With `SERPAPI_API_KEY` unset, the page stays in demo mode and does not log. Details are in `docs/furniture.md` and `docs/furniture-log.md`.
 
 ## Notes
 

@@ -43,7 +43,7 @@ Copy `.dev.vars.example` to `.dev.vars` for a local key. Do not commit `.dev.var
 
 Deploy stays `npm run build` then `npx wrangler deploy` (Cloudflare Git integration). Stay on the Workers Free plan.
 
-- `SERPAPI_API_KEY` — the only secret. https://serpapi.com/manage-api-key — free plan, 250 searches a month and 50 an hour. Leave it unset to stay in demo mode.
+- `SERPAPI_API_KEY` — https://serpapi.com/manage-api-key — free plan, 250 searches a month and 50 an hour. Leave it unset to stay in demo mode. Demo searches are not logged.
 
   ```sh
   npx wrangler secret put SERPAPI_API_KEY
@@ -58,6 +58,8 @@ Deploy stays `npm run build` then `npx wrangler deploy` (Cloudflare Git integrat
     -d '{ "prompt": "agree" }'
   ```
 
+Live searches can be logged to a Google Sheet. The Worker secrets are `LOG_WEBHOOK_URL` and `LOG_WEBHOOK_SECRET`. If either is empty, logging is skipped and the search still returns. Setup is in `docs/furniture-log.md`.
+
 ## Workers Free CPU
 
-The Free plan allows 10 ms of CPU per request. Waiting on SerpApi and Workers AI does not count. The remaining risk is parsing a large JSON body in JavaScript. Lens and Shopping requests set `json_restrictor` so those bodies stay limited to titles, links, prices, and image URLs. The photo itself is streamed through and is capped at 200 KB. A consistently oversized SerpApi payload could still trip the CPU limit (`Worker exceeded resource limits`, error 1102). Static pages never run this Worker.
+The Free plan allows 10 ms of CPU per request. Waiting on SerpApi and Workers AI does not count. The remaining risk is parsing a large JSON body in JavaScript. Lens and Shopping requests set `json_restrictor` so those bodies stay limited to titles, links, prices, and image URLs. The photo itself is streamed through and is capped at 200 KB. The sheet log is a separate request: the Worker forwards the body and does not read or re-encode the photo. A consistently oversized SerpApi payload could still trip the CPU limit (`Worker exceeded resource limits`, error 1102). Static pages never run this Worker.

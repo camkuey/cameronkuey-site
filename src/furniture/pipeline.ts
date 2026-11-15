@@ -133,16 +133,14 @@ export async function matchPhoto(photo: Blob, mime: string, env: MatchEnv): Prom
   if (lens.quota) notes.push(SERP_QUOTA_MESSAGE);
 
   const vision = await visionPromise;
+  const searchQuery = vision?.shoppingQuery || inferQuery(lens.candidates) || "";
   let shopping: Candidate[] = [];
-  if (!lens.quota && countPriced(lens.candidates) < SHOPPING_MIN_PRICED) {
-    const query = vision?.shoppingQuery || inferQuery(lens.candidates);
-    if (query) {
-      try {
-        shopping = await searchShopping(query, serpKey);
-      } catch (error) {
-        console.error("shopping", safeError(error));
-        notes.push(isSerpQuota(error) ? SERP_QUOTA_MESSAGE : "The extra shopping search did not respond.");
-      }
+  if (!lens.quota && searchQuery && countPriced(lens.candidates) < SHOPPING_MIN_PRICED) {
+    try {
+      shopping = await searchShopping(searchQuery, serpKey);
+    } catch (error) {
+      console.error("shopping", safeError(error));
+      notes.push(isSerpQuota(error) ? SERP_QUOTA_MESSAGE : "The extra shopping search did not respond.");
     }
   }
 
@@ -156,6 +154,8 @@ export async function matchPhoto(photo: Blob, mime: string, env: MatchEnv): Prom
   const notice = notes.filter(Boolean).join(" ") || null;
   return {
     mode: "live",
+    entryId: crypto.randomUUID(),
+    query: searchQuery,
     description,
     priceRange: ranked.priceRange,
     results: ranked.results,

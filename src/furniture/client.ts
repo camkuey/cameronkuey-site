@@ -37,6 +37,12 @@ export function mountFurnitureMatch(): void {
   let previewUrl = "";
   let lastBlob: Blob | null = null;
   let controller: AbortController | null = null;
+  let entryId = "";
+  let accurate = "";
+  let which = "";
+  let logTask: Promise<void> = Promise.resolve();
+  const accuracy = document.querySelector<HTMLElement>("#accuracy");
+  const accuracyNote = document.querySelector<HTMLElement>("#accuracy-note");
 
   const setState = (state: "idle" | "loading" | "results" | "error") => {
     root.dataset.state = state;
@@ -50,8 +56,22 @@ export function mountFurnitureMatch(): void {
   restart.addEventListener("click", () => {
     controller?.abort();
     lastBlob = null;
+    entryId = "";
+    accurate = "";
+    which = "";
+    logTask = Promise.resolve();
+    if (accuracy) accuracy.hidden = true;
     clearPreview();
     setState("idle");
+  });
+  accuracy?.querySelectorAll<HTMLButtonElement>("[data-accurate]").forEach((button) => {
+    button.addEventListener("click", () => {
+      accurate = button.dataset.accurate || "";
+      accuracy.querySelectorAll<HTMLButtonElement>("[data-accurate]").forEach((other) => {
+        other.setAttribute("aria-pressed", other === button ? "true" : "false");
+      });
+      void saveAccuracy();
+    });
   });
   retry.addEventListener("click", () => {
     if (lastBlob) void search(lastBlob);
@@ -128,9 +148,37 @@ export function mountFurnitureMatch(): void {
       notice.textContent = payload.notice ?? "";
     }
     list.replaceChildren();
-    for (const product of payload.results) list.append(renderCard(product));
+    entryId = payload.mode === "live" && payload.entryId ? payload.entryId : "";
+    accurate = "";
+    which = "";
+    const track = Boolean(entryId);
+    for (const product of payload.results) list.append(renderCard(product, track ? markWhich : null));
     if (empty) empty.hidden = payload.results.length > 0;
+    if (accuracy) {
+      accuracy.hidden = !track;
+      accuracy.querySelectorAll<HTMLButtonElement>("[data-accurate]").forEach((button) => button.setAttribute("aria-pressed", "false"));
+    }
+    if (accuracyNote) accuracyNote.hidden = true;
     setState("results");
+    if (track && lastBlob) logTask = sendSearchLog(payload, lastBlob);
+  }
+
+  function markWhich(name: string, button: HTMLButtonElement): void {
+    which = name;
+    list.querySelectorAll<HTMLButtonElement>(".pick").forEach((other) => {
+      other.setAttribute("aria-pressed", other === button ? "true" : "false");
+    });
+    void saveAccuracy();
+  }
+
+  async function saveAccuracy(): Promise<void> {
+    if (!entryId) return;
+    await logTask.catch(() => undefined);
+    const saved = await postLog("accuracy", { action: "accuracy", entryId, accurate, which });
+    if (saved && accuracyNote) {
+      accuracyNote.hidden = false;
+      accuracyNote.textContent = "Saved";
+    }
   }
 
   function showError(message: string): void {
@@ -157,7 +205,61 @@ export function mountFurnitureMatch(): void {
   }
 }
 
-function renderCard(product: ProductMatch): HTMLElement {
+async function sendSearchLog(payload: MatchResponse, photo: Blob): Promise<void> {
+  if (payload.mode !== "live" || !payload.entryId) return;
+  const top = payload.results.slice(0, 5).map((result) => ({
+    name: result.name,
+    store: result.store,
+    priceLabel: result.priceLabel,
+    url: result.url,
+  }));
+  await postLog("search", {
+    action: "search",
+    entryId: payload.entryId,
+    mode: "live",
+    description: payload.description,
+    query: payload.query ?? "",
+    resultCount: payload.results.length,
+    priceRange: payload.priceRange?.label ?? "",
+    results: top,
+    photo: await blobToBase64(photo),
+    mime: "image/jpeg",
+  });
+}
+
+async function postLog(action: "search" | "accuracy", body: Record<string, unknown>): Promise<boolean> {
+  try {
+    const response = await fetch("/furniture/api/log", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "X-Log-Action": action,
+        "X-Match-Mode": "live",
+      },
+      body: JSON.stringify(body),
+    });
+    if (!response.ok) return false;
+    const payload = (await response.json().catch(() => null)) as { logged?: boolean } | null;
+    return payload?.logged === true;
+  } catch {
+    /* The sheet is a record. A missed row should not change the search. */
+    return false;
+  }
+}
+
+function blobToBase64(blob: Blob): Promise<string> {
+  return blob.arrayBuffer().then((buffer) => {
+    const bytes = new Uint8Array(buffer);
+    let binary = "";
+    const size = 0x8000;
+    for (let index = 0; index < bytes.length; index += size) {
+      binary += String.fromCharCode(...bytes.subarray(index, index + size));
+    }
+    return btoa(binary);
+  });
+}
+
+function renderCard(product: ProductMatch, onPick: ((name: string, button: HTMLButtonElement) => void) | null): HTMLElement {
   const card = document.createElement("article");
   card.className = "card";
 
@@ -201,6 +303,16 @@ function renderCard(product: ProductMatch): HTMLElement {
     link.rel = "noopener noreferrer";
     link.textContent = `Buy at ${product.store}`;
     body.append(link);
+  }
+
+  if (onPick) {
+    const pick = document.createElement("button");
+    pick.type = "button";
+    pick.className = "pick";
+    pick.textContent = "This one";
+    pick.setAttribute("aria-pressed", "false");
+    pick.addEventListener("click", () => onPick(product.name, pick));
+    body.append(pick);
   }
 
   card.append(figure, body);

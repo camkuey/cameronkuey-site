@@ -2,3 +2,5 @@
 # Do not commit .dev.vars. The dashboard secret is separate; see docs/furniture.md.
 
 SERPAPI_API_KEY=
+LOG_WEBHOOK_URL=
+LOG_WEBHOOK_SECRET=
