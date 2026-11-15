@@ -2,7 +2,12 @@
 // Standalone document. Do not wrap this page in Base.astro: the portfolio
 // layout adds the site nav, footer, and the portfolio apple-touch-icon.
 // Furniture Match stays off that nav and installs as its own home-screen app.
+import { readFileSync } from "node:fs";
+import { join } from "node:path";
+
 const description = "Photograph a piece of furniture and find close matches for sale.";
+// Inlined so the CSS animation runs. An img of this file stays on the first frame in Safari.
+const howItWorks = readFileSync(join(process.cwd(), "public/furniture/how-it-works.svg"), "utf8");
 ---
 
 <!doctype html>
@@ -43,6 +48,7 @@ const description = "Photograph a piece of furniture and find close matches for 
         <p class="lede">
           Point the camera at a chair, sofa, table, or lamp. Furniture Match looks for the closest versions you can buy.
         </p>
+        <div class="how" set:html={howItWorks}></div>
         <div class="actions">
           <button id="take-photo" class="btn solid big" type="button">Take a photo</button>
           <button id="choose-library" class="btn big" type="button">Choose from library</button>
@@ -200,7 +206,22 @@ const description = "Photograph a piece of furniture and find close matches for 
   [data-state="error"] [data-panel="error"] { display: flex; }
   [data-panel] { display: none; flex-direction: column; }
   [data-panel="idle"] { flex: 1; }
-  .actions { margin-top: auto; display: flex; flex-direction: column; gap: 12px; padding-top: 32px; }
+  .how {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    min-height: 0;
+    margin: 16px 0 4px;
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  .how svg {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 720 / 400;
+  }
+  .actions { margin-top: auto; display: flex; flex-direction: column; gap: 12px; padding-top: 16px; }
 
   .btn {
     display: inline-flex;
