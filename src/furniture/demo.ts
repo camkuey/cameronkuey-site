@@ -1,0 +1,73 @@
+import type { Candidate } from "./rank.ts";
+
+export const DEMO_DESCRIPTION =
+  "Walnut lounge chair with a cognac leather seat, tapered legs, and a low mid-century back.";
+
+export const DEMO_CANDIDATES: Candidate[] = [
+  {
+    name: "Soto Leather Lounge Chair",
+    store: "Article",
+    price: 1149,
+    priceLabel: "$1,149",
+    url: "https://www.article.com/search?q=leather%20lounge%20chair",
+    image: "/furniture/demo/soto.svg",
+    closeness: "exact",
+    origin: "demo",
+    position: 0,
+  },
+  {
+    name: "Andre Leather Lounge",
+    store: "West Elm",
+    price: 899,
+    priceLabel: "$899",
+    url: "https://www.westelm.com/search/results.html?words=leather%20lounge%20chair",
+    image: "/furniture/demo/andre.svg",
+    closeness: "visual",
+    origin: "demo",
+    position: 1,
+  },
+  {
+    name: "Beck Leather Lounge",
+    store: "CB2",
+    price: 1299,
+    priceLabel: "$1,299",
+    url: "https://www.cb2.com/search?query=leather%20lounge%20chair",
+    image: "/furniture/demo/beck.svg",
+    closeness: "visual",
+    origin: "demo",
+    position: 2,
+  },
+  {
+    name: "Hopson Chair",
+    store: "Joybird",
+    price: 1549,
+    priceLabel: "$1,549",
+    url: "https://joybird.com/search?q=leather%20lounge%20chair",
+    image: "/furniture/demo/hopson.svg",
+    closeness: "similar",
+    origin: "demo",
+    position: 3,
+  },
+  {
+    name: "Dawson Leather Armchair",
+    store: "Castlery",
+    price: 699,
+    priceLabel: "$699",
+    url: "https://www.castlery.com/us/search?q=leather%20armchair",
+    image: "/furniture/demo/dawson.svg",
+    closeness: "similar",
+    origin: "demo",
+    position: 4,
+  },
+  {
+    name: "Range Lounge Chair",
+    store: "Burrow",
+    price: 795,
+    priceLabel: "$795",
+    url: "https://burrow.com/search?q=lounge%20chair",
+    image: "/furniture/demo/range.svg",
+    closeness: "similar",
+    origin: "demo",
+    position: 5,
+  },
+];

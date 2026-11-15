@@ -1,6 +1,7 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
+import { furnitureIndex } from './src/furniture/build-index.mjs';
 import fs from 'node:fs';
 import { EDIT_MODE } from './src/data/site-flags.ts';
 
@@ -31,5 +32,11 @@ export default defineConfig({
     '/case-studies': '/projects',
     '/audio-production': '/coffee-meets-bible-podcast',
   },
-  integrations: [sitemap(), editMode()],
+  integrations: [
+    sitemap({
+      filter: (page) => !page.includes('/furniture'),
+    }),
+    editMode(),
+    furnitureIndex(),
+  ],
 });

@@ -1,6 +1,7 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "cameronkuey-site",
+  "main": "src/worker.ts",
   "compatibility_date": "2026-10-01",
   // Custom domains (the cameronkuey.com zone lives in this Cloudflare account). The apex redirects to www with a
   // Cloudflare Redirect Rule; the workers.dev URL stays on.
@@ -9,9 +10,24 @@
     { "pattern": "cameronkuey.com", "custom_domain": true }
   ],
   "workers_dev": true,
+  // Workers AI binding. Descriptions use the free daily Neuron allowance. No API key.
+  // `remote` is local dev only: the model cannot run in the simulator. Production uses the same binding.
+  "ai": {
+    "binding": "AI",
+    "remote": true
+  },
+  // Workers Builds runs `wrangler preview` on pull requests. The block can be empty, but the
+  // Worker reads env.AI, and Preview deployments do not inherit that binding from the top level.
+  "previews": {
+    "ai": {
+      "binding": "AI"
+    }
+  },
   "assets": {
     "directory": "./dist",
+    "binding": "ASSETS",
     "not_found_handling": "404-page",
-    "html_handling": "auto-trailing-slash"
+    "html_handling": "auto-trailing-slash",
+    "run_worker_first": ["/furniture/api/*"]
   }
 }

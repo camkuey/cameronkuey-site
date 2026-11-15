@@ -1,0 +1,69 @@
+const CACHE = "furniture-match-shell-v1";
+const SHELL = [
+  "/furniture/",
+  "/furniture/manifest.webmanifest",
+  "/furniture/icons/icon-192.png",
+  "/furniture/icons/icon-512.png",
+  "/furniture/icons/apple-touch-icon.png",
+];
+
+self.addEventListener("install", (event) => {
+  event.waitUntil(
+    caches.open(CACHE).then((cache) =>
+      Promise.all(
+        SHELL.map(async (url) => {
+          try {
+            await cache.add(url);
+          } catch {
+            /* The shell still works online if a precache misses. */
+          }
+        }),
+      ),
+    ),
+  );
+  self.skipWaiting();
+});
+
+self.addEventListener("activate", (event) => {
+  event.waitUntil(
+    caches
+      .keys()
+      .then((keys) => Promise.all(keys.filter((key) => key !== CACHE).map((key) => caches.delete(key))))
+      .then(() => self.clients.claim()),
+  );
+});
+
+self.addEventListener("fetch", (event) => {
+  const request = event.request;
+  if (request.method !== "GET") return;
+  const url = new URL(request.url);
+  if (url.origin !== self.location.origin) return;
+  if (url.pathname.startsWith("/furniture/api/")) return;
+  if (url.pathname === "/furniture/sw.js") return;
+  const cacheable =
+    url.pathname.startsWith("/furniture/") ||
+    url.pathname === "/furniture" ||
+    url.pathname.startsWith("/fonts/") ||
+    url.pathname.startsWith("/_astro/");
+  if (!cacheable) return;
+
+  event.respondWith(
+    fetch(request)
+      .then((response) => {
+        if (response.ok) {
+          const copy = response.clone();
+          caches.open(CACHE).then((cache) => cache.put(request, copy)).catch(() => {});
+        }
+        return response;
+      })
+      .catch(async () => {
+        const cached = await caches.match(request);
+        if (cached) return cached;
+        if (request.mode === "navigate") {
+          const home = await caches.match("/furniture/");
+          if (home) return home;
+        }
+        return new Response("Offline", { status: 503, headers: { "Content-Type": "text/plain" } });
+      }),
+  );
+});
