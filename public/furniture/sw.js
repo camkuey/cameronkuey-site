@@ -1,6 +1,7 @@
-const CACHE = "furniture-match-shell-v1";
+const CACHE = "furniture-match-shell-v2";
 const SHELL = [
   "/furniture/",
+  "/furniture/how-it-works.svg",
   "/furniture/manifest.webmanifest",
   "/furniture/icons/icon-192.png",
   "/furniture/icons/icon-512.png",

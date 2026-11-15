@@ -1,0 +1,212 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="fm-root" viewBox="0 0 720 400" role="img" aria-labelledby="fm-title fm-desc">
+<title id="fm-title">How Furniture Match works: point your phone at a chair, take a photo, and see matching pieces for sale.</title>
+<desc id="fm-desc">A hand holds a phone aimed at a mid-century armchair. The shutter is tapped, the phone says Matching, then three result cards show similar chairs with prices and store names.</desc>
+<style>
+.fm-root{font-family:ui-sans-serif,system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif}
+.fm-a{fill:var(--fm-a,#b98355)}
+.fm-b{fill:var(--fm-b,#c9966a)}
+.fm-d{fill:var(--fm-d,#a87347)}
+
+/* base (start) states */
+.fm-zoom{transform:translate(548px,218px) rotate(-7deg) scale(.78);transform-origin:0 0}
+.fm-bob,.fm-scene{transform-origin:0 0}
+.fm-res,.fm-flash,.fm-ripple,.fm-match,.fm-scan,.fm-tap{opacity:0}
+.fm-card{opacity:0;transform:translateY(26px)}
+.fm-dot,.fm-press{transform-box:fill-box;transform-origin:center}
+
+/* animations - 8s loop */
+.fm-bob{animation:fm-bob 4s ease-in-out infinite}
+.fm-zoom{animation:fm-zoom 8s cubic-bezier(.45,0,.2,1) infinite}
+.fm-scene{animation:fm-scene 8s ease-in-out infinite}
+.fm-flash{animation:fm-flash 8s linear infinite}
+.fm-ripple{animation:fm-ripple 8s ease-out infinite;transform-box:fill-box;transform-origin:center}
+.fm-press{animation:fm-press 8s ease-in-out infinite}
+.fm-tap{animation:fm-tap 8s cubic-bezier(.4,0,.2,1) infinite}
+.fm-shut{animation:fm-shut 8s ease-in-out infinite}
+.fm-match{animation:fm-match 8s ease-in-out infinite}
+.fm-scan{animation:fm-scan 8s ease-in-out infinite}
+.fm-dot{animation:fm-dot 1s ease-in-out infinite}
+.fm-dot2{animation-delay:.18s}
+.fm-dot3{animation-delay:.36s}
+.fm-res{animation:fm-res 8s ease-in-out infinite}
+.fm-c1{animation:fm-c1 8s cubic-bezier(.2,.7,.2,1) infinite}
+.fm-c2{animation:fm-c2 8s cubic-bezier(.2,.7,.2,1) infinite}
+.fm-c3{animation:fm-c3 8s cubic-bezier(.2,.7,.2,1) infinite}
+
+@keyframes fm-bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
+@keyframes fm-zoom{
+0%,34%{transform:translate(548px,218px) rotate(-7deg) scale(.78)}
+46%,90%{transform:translate(360px,200px) rotate(0deg) scale(.90)}
+100%{transform:translate(548px,218px) rotate(-7deg) scale(.78)}}
+@keyframes fm-scene{0%,34%{opacity:1}46%,90%{opacity:.22}100%{opacity:1}}
+@keyframes fm-flash{0%,27%{opacity:0}28.5%{opacity:.95}34%{opacity:0}100%{opacity:0}}
+@keyframes fm-ripple{0%,27%{opacity:0;transform:scale(1)}28%{opacity:.8;transform:scale(1)}35%{opacity:0;transform:scale(2.3)}100%{opacity:0;transform:scale(2.3)}}
+@keyframes fm-press{0%,26%{transform:scale(1)}28%{transform:scale(.78)}32%,100%{transform:scale(1)}}
+@keyframes fm-tap{
+0%,17%{opacity:0;transform:translate(70px,90px)}
+22%{opacity:1;transform:translate(34px,40px)}
+27%{opacity:1;transform:translate(0,0)}
+28.5%{opacity:1;transform:translate(0,3px)}
+33%{opacity:1;transform:translate(30px,36px)}
+37%,100%{opacity:0;transform:translate(60px,80px)}}
+@keyframes fm-shut{0%,32%{opacity:1}36%,90%{opacity:0}100%{opacity:1}}
+@keyframes fm-match{0%,33%{opacity:0}37%,53%{opacity:1}56%,100%{opacity:0}}
+@keyframes fm-scan{
+0%,35%{opacity:0;transform:translateY(-100px)}
+37%{opacity:1;transform:translateY(-100px)}
+44%{opacity:1;transform:translateY(100px)}
+44.1%{opacity:1;transform:translateY(-100px)}
+52%{opacity:1;transform:translateY(100px)}
+54%,100%{opacity:0;transform:translateY(100px)}}
+@keyframes fm-dot{0%,100%{transform:scale(.6);opacity:.4}40%{transform:scale(1.25);opacity:1}}
+@keyframes fm-res{0%,54%{opacity:0}58%,90%{opacity:1}97%,100%{opacity:0}}
+@keyframes fm-c1{0%,55%{opacity:0;transform:translateY(26px)}61%,100%{opacity:1;transform:translateY(0)}}
+@keyframes fm-c2{0%,58%{opacity:0;transform:translateY(26px)}64.5%,100%{opacity:1;transform:translateY(0)}}
+@keyframes fm-c3{0%,61%{opacity:0;transform:translateY(26px)}67.5%,100%{opacity:1;transform:translateY(0)}}
+
+@media (prefers-reduced-motion:reduce){
+.fm-root,.fm-root *{animation:none !important}
+.fm-zoom{transform:translate(360px,200px) rotate(0deg) scale(.90)}
+.fm-scene{opacity:.22}
+.fm-res{opacity:1}
+.fm-card{opacity:1;transform:none}
+.fm-match,.fm-flash,.fm-ripple,.fm-scan,.fm-tap,.fm-shut{opacity:0}
+}
+</style>
+
+<defs>
+<clipPath id="fm-clip"><rect x="-107" y="-192" width="214" height="384" rx="24"/></clipPath>
+<linearGradient id="fm-scang" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#7d241f" stop-opacity="0"/>
+<stop offset="1" stop-color="#7d241f" stop-opacity=".45"/>
+</linearGradient>
+<!-- mid-century armchair, 200 x 190 -->
+<g id="fm-chair">
+<line x1="40" y1="148" x2="26" y2="188" stroke="#7a5233" stroke-width="9" stroke-linecap="round"/>
+<line x1="160" y1="148" x2="174" y2="188" stroke="#7a5233" stroke-width="9" stroke-linecap="round"/>
+<line x1="66" y1="148" x2="60" y2="180" stroke="#946840" stroke-width="8" stroke-linecap="round"/>
+<line x1="134" y1="148" x2="140" y2="180" stroke="#946840" stroke-width="8" stroke-linecap="round"/>
+<rect class="fm-a" x="22" y="8" width="156" height="100" rx="34"/>
+<rect class="fm-b" x="38" y="22" width="124" height="72" rx="22"/>
+<rect class="fm-d" x="4" y="68" width="38" height="78" rx="16"/>
+<rect class="fm-d" x="158" y="68" width="38" height="78" rx="16"/>
+<rect class="fm-b" x="26" y="90" width="148" height="44" rx="16"/>
+<rect class="fm-d" x="20" y="126" width="160" height="24" rx="9"/>
+</g>
+</defs>
+
+<rect width="720" height="400" fill="#faf8f4"/>
+
+<!-- ROOM -->
+<g class="fm-scene">
+<ellipse cx="236" cy="352" rx="210" ry="32" fill="#efe6d8"/>
+<ellipse cx="240" cy="346" rx="122" ry="11" fill="#1b1a18" opacity=".13"/>
+<!-- plant -->
+<g>
+<ellipse cx="66" cy="346" rx="34" ry="6" fill="#1b1a18" opacity=".1"/>
+<path d="M44 304h44l-6 42H50z" fill="#b5694a"/>
+<rect x="40" y="298" width="52" height="10" rx="4" fill="#c27a5a"/>
+<ellipse cx="52" cy="268" rx="12" ry="32" fill="#7d8a64" transform="rotate(-28 52 268)"/>
+<ellipse cx="82" cy="266" rx="12" ry="34" fill="#6f7d58" transform="rotate(26 82 266)"/>
+<ellipse cx="67" cy="256" rx="12" ry="38" fill="#8a966f"/>
+</g>
+<!-- chair -->
+<use href="#fm-chair" xlink:href="#fm-chair" transform="translate(130,140) scale(1.08)"/>
+<!-- floor lamp -->
+<g>
+<ellipse cx="392" cy="346" rx="26" ry="6" fill="#1b1a18" opacity=".12"/>
+<ellipse cx="392" cy="342" rx="20" ry="5" fill="#7a5233"/>
+<rect x="390" y="130" width="4" height="212" fill="#7a5233"/>
+<path d="M368 134l10-46h28l10 46z" fill="#e6d6b8"/>
+<path d="M368 134l10-46h14l-4 46z" fill="#d9c6a2" opacity=".6"/>
+</g>
+</g>
+
+<!-- PHONE + HAND -->
+<g class="fm-bob"><g class="fm-zoom">
+<!-- hand behind -->
+<rect x="-108" y="50" width="200" height="168" rx="70" fill="#c99373"/>
+<rect x="-117" y="-205" width="234" height="410" rx="34" fill="#000" opacity=".12" transform="translate(6,8)"/>
+<!-- phone body -->
+<rect x="-115" y="-200" width="230" height="400" rx="32" fill="#23221f" stroke="#3a3834" stroke-width="2"/>
+
+<!-- screen -->
+<g clip-path="url(#fm-clip)">
+<!-- viewfinder -->
+<rect x="-107" y="-192" width="214" height="384" fill="#cdbfa9"/>
+<rect x="-107" y="62" width="214" height="130" fill="#b9a68a"/>
+<ellipse cx="0" cy="98" rx="92" ry="10" fill="#1b1a18" opacity=".18"/>
+<use href="#fm-chair" xlink:href="#fm-chair" transform="translate(-95,-86) scale(.95)"/>
+<g fill="none" stroke="#faf8f4" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+<path d="M-88 -120v-24h24M88 -120v-24H64M-88 120v24h24M88 120v24H64" transform="translate(0,-4)"/>
+</g>
+<rect class="fm-scan" x="-107" y="-30" width="214" height="30" fill="url(#fm-scang)"/>
+<rect class="fm-scan" x="-107" y="-2" width="214" height="3" fill="#7d241f"/>
+<!-- bottom bar -->
+<rect x="-107" y="128" width="214" height="64" fill="#1b1a18"/>
+<g class="fm-shut">
+<circle cx="0" cy="160" r="23" fill="none" stroke="#faf8f4" stroke-width="4"/>
+<circle class="fm-press" cx="0" cy="160" r="16" fill="#faf8f4"/>
+</g>
+<g class="fm-match">
+<rect x="-90" y="140" width="180" height="40" rx="20" fill="#faf8f4"/>
+<text x="-66" y="166" font-size="19" font-weight="600" fill="#7d241f">Matching</text>
+<circle class="fm-dot" cx="38" cy="160" r="4.5" fill="#7d241f"/>
+<circle class="fm-dot fm-dot2" cx="53" cy="160" r="4.5" fill="#7d241f"/>
+<circle class="fm-dot fm-dot3" cx="68" cy="160" r="4.5" fill="#7d241f"/>
+</g>
+<circle class="fm-ripple" cx="0" cy="160" r="23" fill="none" stroke="#faf8f4" stroke-width="3"/>
+
+<!-- results -->
+<g class="fm-res">
+<rect x="-107" y="-192" width="214" height="384" fill="#faf8f4"/>
+<g class="fm-card fm-c1" style="animation-name:fm-c1">
+<g transform="translate(0,-170)"><circle cx="-88" cy="0" r="9" fill="#7d241f"/><path d="M-93 0l4 4 7-8" fill="none" stroke="#faf8f4" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="-72" y="6" font-size="18" font-weight="600" fill="#7d241f">3 close matches</text></g>
+</g>
+<g class="fm-card fm-c1">
+<g transform="translate(0,-146)">
+<rect x="-98" y="0" width="196" height="92" rx="14" fill="#fff" stroke="#e4ddd0" stroke-width="1.5"/>
+<rect x="-90" y="12" width="68" height="68" rx="10" fill="#efe7da"/>
+<use href="#fm-chair" xlink:href="#fm-chair" transform="translate(-87,19) scale(.31)"/>
+<text x="-12" y="40" font-size="28" font-weight="700" fill="#1b1a18">$249</text>
+<text x="-12" y="60" font-size="15" fill="#353432">Cedar &amp; Co</text>
+<text x="-12" y="80" font-size="13" font-weight="600" fill="#7d241f">96% match</text>
+</g></g>
+<g class="fm-card fm-c2">
+<g transform="translate(0,-46)">
+<rect x="-98" y="0" width="196" height="92" rx="14" fill="#fff" stroke="#e4ddd0" stroke-width="1.5"/>
+<rect x="-90" y="12" width="68" height="68" rx="10" fill="#efe7da"/>
+<use href="#fm-chair" xlink:href="#fm-chair" transform="translate(-87,19) scale(.31)" style="--fm-a:#b5694a;--fm-b:#c98264;--fm-d:#9a5539"/>
+<text x="-12" y="40" font-size="28" font-weight="700" fill="#1b1a18">$189</text>
+<text x="-12" y="60" font-size="15" fill="#353432">Linen House</text>
+<text x="-12" y="80" font-size="13" font-weight="600" fill="#7d241f">93% match</text>
+</g></g>
+<g class="fm-card fm-c3">
+<g transform="translate(0,54)">
+<rect x="-98" y="0" width="196" height="92" rx="14" fill="#fff" stroke="#e4ddd0" stroke-width="1.5"/>
+<rect x="-90" y="12" width="68" height="68" rx="10" fill="#efe7da"/>
+<use href="#fm-chair" xlink:href="#fm-chair" transform="translate(-87,19) scale(.31)" style="--fm-a:#a79a88;--fm-b:#bfb3a1;--fm-d:#8c806f"/>
+<text x="-12" y="40" font-size="28" font-weight="700" fill="#1b1a18">$320</text>
+<text x="-12" y="60" font-size="15" fill="#353432">Atelier Home</text>
+<text x="-12" y="80" font-size="13" font-weight="600" fill="#7d241f">90% match</text>
+</g></g>
+</g>
+
+<rect class="fm-flash" x="-107" y="-192" width="214" height="384" fill="#fff"/>
+</g>
+
+<!-- fingers gripping left edge, thumb on right -->
+<rect x="-138" y="-28" width="44" height="28" rx="14" fill="#d7a584"/>
+<rect x="-140" y="8" width="48" height="30" rx="15" fill="#d7a584"/>
+<rect x="-136" y="46" width="42" height="29" rx="14.5" fill="#d7a584"/>
+<rect x="-128" y="84" width="32" height="26" rx="13" fill="#d7a584"/>
+<rect x="88" y="94" width="46" height="30" rx="15" fill="#d7a584" transform="rotate(-22 104 108)"/>
+
+<!-- tapping finger -->
+<g class="fm-tap"><g transform="translate(6,166) rotate(-20)">
+<rect x="-17" y="0" width="34" height="130" rx="17" fill="#d7a584"/>
+<rect x="-9" y="6" width="18" height="14" rx="7" fill="#e8c1a5"/>
+</g></g>
+</g></g>
+</svg>
