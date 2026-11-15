@@ -49,7 +49,7 @@ Deploy stays `npm run build` then `npx wrangler deploy` (Cloudflare Git integrat
   npx wrangler secret put SERPAPI_API_KEY
   ```
 
-- Workers AI binding `AI` is declared in `wrangler.jsonc`. The free allowance is 10,000 Neurons per day and resets at 00:00 UTC. It needs no key. The first time this account calls `@cf/meta/llama-3.2-11b-vision-instruct`, Meta's license has to be accepted. The Worker does that itself: if the model asks for agreement, it sends `{ "prompt": "agree" }` once and retries the photo. If that automatic accept fails, send the same prompt once from a machine that has a Cloudflare API token (this is not a Worker secret):
+- Workers AI binding `AI` is declared in `wrangler.jsonc`, including under `previews`, because pull-request builds run `wrangler preview` and Previews do not inherit the production AI binding. The free allowance is 10,000 Neurons per day and resets at 00:00 UTC. It needs no key. The first time this account calls `@cf/meta/llama-3.2-11b-vision-instruct`, Meta's license has to be accepted. The Worker does that itself: if the model asks for agreement, it sends `{ "prompt": "agree" }` once and retries the photo. If that automatic accept fails, send the same prompt once from a machine that has a Cloudflare API token (this is not a Worker secret):
 
   ```sh
   curl https://api.cloudflare.com/client/v4/accounts/$CLOUDFLARE_ACCOUNT_ID/ai/run/@cf/meta/llama-3.2-11b-vision-instruct \
