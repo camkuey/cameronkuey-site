@@ -1,10 +1,11 @@
+import { logSkipped, loggingEnabled, scheduleLog } from "./log.ts";
 import { isSerpQuota, keyStatus, matchPhoto, SERP_QUOTA_MESSAGE } from "./pipeline.ts";
-import type { MatchEnv } from "./types";
+import type { LogContext, MatchEnv } from "./types";
 
 const MAX_BYTES = 200_000;
 const ALLOWED = new Set(["image/jpeg", "image/jpg", "image/png", "image/webp"]);
 
-export async function handleFurnitureApi(request: Request, env: MatchEnv): Promise<Response> {
+export async function handleFurnitureApi(request: Request, env: MatchEnv, ctx?: LogContext): Promise<Response> {
   const url = new URL(request.url);
   const path = url.pathname.replace(/\/+$/, "") || "/";
 
@@ -16,7 +17,11 @@ export async function handleFurnitureApi(request: Request, env: MatchEnv): Promi
     return matchRequest(request, env);
   }
 
-  if (path === "/furniture/api/status" || path === "/furniture/api/match") {
+  if (path === "/furniture/api/log" && request.method === "POST") {
+    return logRequest(request, env, ctx);
+  }
+
+  if (path === "/furniture/api/status" || path === "/furniture/api/match" || path === "/furniture/api/log") {
     return json({ error: "Method not allowed." }, 405);
   }
 
@@ -50,6 +55,12 @@ async function matchRequest(request: Request, env: MatchEnv): Promise<Response> 
     console.error("match", message.slice(0, 180));
     return json({ error: friendly(message) }, 502);
   }
+}
+
+function logRequest(request: Request, env: MatchEnv, ctx?: LogContext): Response {
+  if (logSkipped(request) || !loggingEnabled(env) || !request.body) return json({ logged: false });
+  scheduleLog(ctx, env, request);
+  return json({ logged: true });
 }
 
 function normalizeMime(type: string): string {

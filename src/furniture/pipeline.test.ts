@@ -37,6 +37,7 @@ describe("demo mode", () => {
     assert.equal(match.status, 200);
     const body = (await match.json()) as { mode: string; results: { price: number; url: string }[]; priceRange: { label: string }; notice: string };
     assert.equal(body.mode, "demo");
+    assert.equal("entryId" in body, false);
     assert.equal(body.results.length, 6);
     assert.equal(body.results[0]?.price, 1149);
     assert.equal(body.priceRange.label, "$699 – $1,549");
@@ -162,6 +163,8 @@ describe("live parsers", () => {
       },
     });
     assert.equal(result.mode, "live");
+    assert.match(result.entryId ?? "", /^[0-9a-f-]{36}$/);
+    assert.equal(result.query, "walnut lounge chair");
     assert.equal(result.missingKeys.length, 0);
     assert.equal(result.notice, null);
     assert.equal(result.description, "Walnut lounge chair with a cognac leather seat.");

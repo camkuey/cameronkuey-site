@@ -67,6 +67,15 @@ const description = "Photograph a piece of furniture and find close matches for 
         </div>
         <div id="results" class="results"></div>
         <p id="empty" class="lede" hidden>No close matches turned up. Try a tighter photo of a single piece.</p>
+        <div id="accuracy" class="accuracy" hidden>
+          <p class="accuracy-label">Was this right?</p>
+          <div class="accuracy-choices" role="group" aria-label="Was this right?">
+            <button type="button" data-accurate="Found it">Found it</button>
+            <button type="button" data-accurate="Close">Close</button>
+            <button type="button" data-accurate="Wrong">Wrong</button>
+          </div>
+          <p id="accuracy-note" class="fine" hidden></p>
+        </div>
       </section>
 
       <section data-panel="error">
@@ -268,6 +277,38 @@ const description = "Photograph a piece of furniture and find close matches for 
   .store { margin: 0; color: var(--muted); font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 500; }
   .price { margin: 4px 0 8px; font-size: 20px; font-weight: 500; }
   .card-body .btn { width: 100%; }
+  .pick {
+    align-self: flex-start;
+    min-height: 44px;
+    margin-top: 4px;
+    padding: 8px 14px;
+    border-radius: 999px;
+    border: 1px solid var(--line);
+    background: transparent;
+    color: var(--muted);
+    font: 500 12px/1 var(--font);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    cursor: pointer;
+  }
+  .pick[aria-pressed="true"] { border-color: var(--accent); color: var(--accent); background: var(--red-t); }
+
+  .accuracy { margin-top: 28px; padding-top: 18px; border-top: 1px solid var(--line); }
+  .accuracy-label { margin: 0 0 12px; font-size: 13px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
+  .accuracy-choices { display: flex; flex-wrap: wrap; gap: 8px; }
+  .accuracy-choices button {
+    min-height: 44px;
+    padding: 10px 16px;
+    border-radius: 999px;
+    border: 1px solid var(--ink);
+    background: transparent;
+    color: var(--ink);
+    font: 500 13px/1 var(--font);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    cursor: pointer;
+  }
+  .accuracy-choices button[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: #fff; }
 
   .file-input {
     position: absolute;
